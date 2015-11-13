@@ -16,6 +16,7 @@ public class AlzaEshopProductParser extends AbstractEshopProductParser {
 
     @Override
     protected EshopProductInfo parsePrice(Document document) {
+        //ta kto to nie
         //<span class="bigPrice price_withVat">€16,64</span>
         Elements elements = document.select("span[class=bigPrice price_withVat]");
         StringBuffer sb = new StringBuffer(elements.get(0).text());
