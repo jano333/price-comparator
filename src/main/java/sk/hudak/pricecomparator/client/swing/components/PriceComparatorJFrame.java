@@ -15,19 +15,19 @@ public class PriceComparatorJFrame extends JFrame {
 
     private final MyContainer cardContainer;
 
-    private EshopCreatePage eshopCreatePage = new EshopCreatePage();
     private EshopListPage eshopListPage = new EshopListPage();
+    private EshopCreatePage eshopCreatePage = new EshopCreatePage();
 
-    private ProductCreatePage productCreatePage = new ProductCreatePage();
     private ProductListPage productListPage = new ProductListPage();
-    private ProductInEshopCreatePage productInEshopCreatePage = new ProductInEshopCreatePage();
     private EshopsPerProductListPage eshopsPerProductListPage = new EshopsPerProductListPage();
+    private ProductCreatePage productCreatePage = new ProductCreatePage();
+    private ProductInEshopCreatePage productInEshopCreatePage = new ProductInEshopCreatePage();
 
     private ProductInEshopListPage productInEshopListPage = new ProductInEshopListPage();
 
     private GroupOfProductsCreatePage groupOfProductsCreatePage = new GroupOfProductsCreatePage();
     private GroupOfProductAddProductPage groupOfProductAddProductPage = new GroupOfProductAddProductPage();
-        private GroupOfProductListPage groupOfProductListPage = new GroupOfProductListPage();
+    private GroupOfProductListPage groupOfProductListPage = new GroupOfProductListPage();
 //    private GroupOfProductListPage2 groupOfProductListPage = new GroupOfProductListPage2();
 
 
@@ -95,7 +95,7 @@ public class PriceComparatorJFrame extends JFrame {
         mnzoznamEshop.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                eshopListPage.reloadData();
+                eshopListPage.init();
                 CardLayout cl = (CardLayout) (cardContainer.getLayout());
                 cl.show(cardContainer, eshopListPage.getClass().getSimpleName());
             }
@@ -106,6 +106,7 @@ public class PriceComparatorJFrame extends JFrame {
         mnCreateEshop.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                eshopCreatePage.init();
                 CardLayout cl = (CardLayout) (cardContainer.getLayout());
                 cl.show(cardContainer, eshopCreatePage.getClass().getSimpleName());
             }

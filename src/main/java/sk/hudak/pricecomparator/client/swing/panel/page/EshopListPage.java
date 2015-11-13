@@ -6,6 +6,8 @@ import sk.hudak.pricecomparator.client.swing.utils.GuiUtils;
 import javax.swing.*;
 
 /**
+ * Page pre zoznam existujucich eshopov.
+ * <p/>
  * Created by jan on 24. 10. 2015.
  */
 public class EshopListPage extends JPanel {
@@ -31,7 +33,12 @@ public class EshopListPage extends JPanel {
         add(lvEshop);
     }
 
-    public void reloadData() {
+    public void init() {
+        reloadData();
+        lvEshop.setFirstSelected();
+    }
+
+    private void reloadData() {
         lvEshop.reloadData();
     }
 }

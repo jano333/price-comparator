@@ -96,4 +96,8 @@ public class EshopCreatePage extends JPanel {
         tfName.requestFocus();
     }
 
+    public void init() {
+        tfName.requestFocus();
+    }
+
 }

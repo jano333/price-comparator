@@ -29,7 +29,8 @@ public abstract class BasicSelectionListViewPanel<T> extends JPanel implements L
     public BasicSelectionListViewPanel(int selectionMode) {
         setLayout(new BorderLayout());
 
-        jList = new JList(readData().toArray());
+//        jList = new JList(readData().toArray());
+        jList = new JList();
         jList.setSelectionMode(selectionMode);
         //nastvi prvu moznost ako vybratu
         setFirstSelected();
