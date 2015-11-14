@@ -7,8 +7,10 @@ import sk.hudak.pricecomparator.middle.api.canonical.Unit;
 import sk.hudak.pricecomparator.middle.api.to.ProductCreateDto;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.math.BigDecimal;
 
 /**
@@ -41,6 +43,7 @@ public class ProductCreatePage extends JPanel {
 
     private int rowNumber = 1;
     private JRadioButton rbGram;
+    private JTextField tfImage;
 
     public ProductCreatePage() {
         setLayout(null);
@@ -63,10 +66,12 @@ public class ProductCreatePage extends JPanel {
         create_JednotkovyTyp();
         create_Mnozstvo();
         create_Category();
+        create_Image();
 
         create_btCreate();
         create_btReset();
     }
+
 
     private void create_btReset() {
         btReset = GuiUtils.button("Reset");
@@ -99,6 +104,33 @@ public class ProductCreatePage extends JPanel {
                 GuiUtils.LABEL_WIDTH,
                 GuiUtils.ROW_HEIGHT);
         add(alCategory);
+    }
+
+    private void create_Image() {
+        rowNumber++;
+        add(GuiUtils.labelRequired("Obrázok: ", rowNumber));
+        add(tfImage = GuiUtils.textField(rowNumber));
+        tfImage.setSize(300, GuiUtils.ROW_HEIGHT);
+        JButton btImageFind = GuiUtils.button("Prehladavat");
+        btImageFind.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                final JFileChooser fc = new JFileChooser();
+                fc.setFileFilter(new ImageFilter());
+//                fc.setFileSelectionMode(JFileChooser.IRECTORIES_ONLY);
+                int returnVal = fc.showOpenDialog(ProductCreatePage.this);
+                if (returnVal == JFileChooser.APPROVE_OPTION) {
+                    File file = fc.getSelectedFile();
+                    tfImage.setText(file.getAbsolutePath());
+                }
+            }
+        });
+        btImageFind.setBounds(
+                tfImage.getX() + tfImage.getWidth() + GuiUtils.GAP_AFTER_LABEL,
+                GuiUtils.TOP_BORDER + ((rowNumber - 1) * GuiUtils.ROW_HEIGHT + ((rowNumber - 1) * GuiUtils.GAP_BEETWEN_ROWS)),
+                btImageFind.getPreferredSize().width,
+                GuiUtils.ROW_HEIGHT);
+        add(btImageFind);
     }
 
     private void create_btCreate() {
@@ -268,5 +300,39 @@ public class ProductCreatePage extends JPanel {
 
     public void init() {
         tfName.requestFocus();
+    }
+
+    private class ImageFilter extends FileFilter {
+
+        //Accept all directories and all gif, jpg, tiff, or png files.
+        public boolean accept(File f) {
+            if (f.isDirectory()) {
+                return true;
+            }
+
+            if (f.getName().endsWith(".tiff")) {
+                return true;
+            }
+            if (f.getName().endsWith(".tif")) {
+                return true;
+            }
+            if (f.getName().endsWith(".gif")) {
+                return true;
+            }
+            if (f.getName().endsWith(".jpeg")) {
+                return true;
+            }
+            if (f.getName().endsWith(".jpg")) {
+                return true;
+            }
+            if (f.getName().endsWith(".png")) {
+                return true;
+            }
+            return false;
+        }
+
+        public String getDescription() {
+            return "Obrázky";
+        }
     }
 }
