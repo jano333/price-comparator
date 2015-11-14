@@ -13,6 +13,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Collections;
 
 /**
  * Created by jan on 7. 11. 2015.
@@ -37,7 +38,7 @@ public class EshopsPerProductListPage extends JPanel {
         lvProduct.setBounds(
                 GuiUtils.LEFT_BORDER + GuiUtils.LABEL_WIDTH + GuiUtils.GAP_AFTER_LABEL,
                 GuiUtils.TOP_BORDER + ((rowNumber - 1) * GuiUtils.ROW_HEIGHT + ((rowNumber - 1) * GuiUtils.GAP_BEETWEN_ROWS)),
-                400,
+                600,
                 6 * 17);
         add(lvProduct);
 
@@ -49,7 +50,11 @@ public class EshopsPerProductListPage extends JPanel {
         lvEshopsWithProduct = new EshopSelectionListViewPanel() {
             @Override
             public java.util.List<EshopListDto> readData() {
-                return ServiceLocator.getService().getEshopsWithProduct(lvProduct.getSelectedEntity().getId());
+                if (lvProduct.getSelectedEntity() != null) {
+                    return ServiceLocator.getService().getEshopsWithProduct(lvProduct.getSelectedEntity().getId());
+                } else {
+                    return Collections.emptyList();
+                }
             }
 
             @Override
@@ -104,4 +109,8 @@ public class EshopsPerProductListPage extends JPanel {
 
     }
 
+    public void init() {
+        lvProduct.reloadData();
+        lvProduct.setFirstSelected();
+    }
 }

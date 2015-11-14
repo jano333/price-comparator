@@ -265,4 +265,8 @@ public class ProductCreatePage extends JPanel {
         //focus
         tfName.requestFocus();
     }
+
+    public void init() {
+        tfName.requestFocus();
+    }
 }

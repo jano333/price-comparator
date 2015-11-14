@@ -136,4 +136,8 @@ public class GroupOfProductsCreatePage extends JPanel {
     }
 
 
+    public void init() {
+        lvProduct.reloadData();
+        tfName.requestFocus();
+    }
 }

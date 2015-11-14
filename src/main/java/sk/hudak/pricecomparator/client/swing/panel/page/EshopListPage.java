@@ -34,11 +34,8 @@ public class EshopListPage extends JPanel {
     }
 
     public void init() {
-        reloadData();
-        lvEshop.setFirstSelected();
-    }
-
-    private void reloadData() {
         lvEshop.reloadData();
+        lvEshop.setFirstSelected();
+        lvEshop.requestFocus();
     }
 }

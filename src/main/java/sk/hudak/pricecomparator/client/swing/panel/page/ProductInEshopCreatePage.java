@@ -162,7 +162,7 @@ public class ProductInEshopCreatePage extends JPanel {
         lvEshopsWithoutProduct.reloadData();
     }
 
-    public void reloadData() {
+    public void init() {
         lvProduct.reloadData();
         lvProduct.setFirstSelected();
 

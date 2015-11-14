@@ -12,6 +12,7 @@ import sk.hudak.pricecomparator.server.downloader.GroupPriceListDto;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -50,7 +51,11 @@ public class GroupOfProductListPage extends JPanel {
         lvProduct = new ProductSelectionListView() {
             @Override
             public List<ProductListDto> readData() {
-                return ServiceLocator.getService().getProductsInGroup(lvGroup.getSelectedEntity().getId());
+                if (lvGroup.getSelectedEntity() != null) {
+                    return ServiceLocator.getService().getProductsInGroup(lvGroup.getSelectedEntity().getId());
+                } else {
+                    return Collections.emptyList();
+                }
             }
         };
         lvProduct.setBounds(
@@ -91,7 +96,9 @@ public class GroupOfProductListPage extends JPanel {
 
     }
 
-    public void reloadData() {
-        lvProduct.reloadData();
+    public void init() {
+        lvGroup.reloadData();
+        lvGroup.setFirstSelected();
+
     }
 }

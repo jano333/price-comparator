@@ -9,10 +9,7 @@ import sk.hudak.pricecomparator.middle.api.to.ProductListDto;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by jan on 7. 11. 2015.
@@ -55,6 +52,9 @@ public class GroupOfProductAddProductPage extends JPanel {
         lvProductsInGroup = new ProductSelectionListView() {
             @Override
             public List<ProductListDto> readData() {
+                if (lvGroup.getSelectedEntity() == null) {
+                    return Collections.emptyList();
+                }
                 List<ProductListDto> fromServer = ServiceLocator.getService().getProductsInGroup(lvGroup.getSelectedEntity().getId());
                 List<ProductListDto> result = new ArrayList<>();
                 result.addAll(addProducts);
@@ -75,8 +75,10 @@ public class GroupOfProductAddProductPage extends JPanel {
         lvProductsNotInGroup = new ProductSelectionListView() {
             @Override
             public List<ProductListDto> readData() {
+                if (lvGroup.getSelectedEntity() == null) {
+                    return Collections.emptyList();
+                }
                 List<ProductListDto> fromServer = ServiceLocator.getService().getProductsNotInGroup(lvGroup.getSelectedEntity().getId());
-
                 List<ProductListDto> result = new ArrayList<>();
                 result.addAll(fromServer);
                 result.removeAll(addProducts);
@@ -126,8 +128,8 @@ public class GroupOfProductAddProductPage extends JPanel {
         addProducts.clear();
     }
 
-    public void reloadData() {
-        lvProductsInGroup.reloadData();
-        lvProductsNotInGroup.reloadData();
+    public void init() {
+        lvGroup.reloadData();
+        lvGroup.setFirstSelected();
     }
 }

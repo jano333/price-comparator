@@ -95,9 +95,9 @@ public class PriceComparatorJFrame extends JFrame {
         mnzoznamEshop.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                eshopListPage.init();
                 CardLayout cl = (CardLayout) (cardContainer.getLayout());
                 cl.show(cardContainer, eshopListPage.getClass().getSimpleName());
+                eshopListPage.init();
             }
         });
 
@@ -106,9 +106,9 @@ public class PriceComparatorJFrame extends JFrame {
         mnCreateEshop.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                eshopCreatePage.init();
                 CardLayout cl = (CardLayout) (cardContainer.getLayout());
                 cl.show(cardContainer, eshopCreatePage.getClass().getSimpleName());
+                eshopCreatePage.init();
             }
         });
 
@@ -119,9 +119,9 @@ public class PriceComparatorJFrame extends JFrame {
         mnzoznamProdukt.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                productListPage.reloadData();
                 CardLayout cl = (CardLayout) (cardContainer.getLayout());
                 cl.show(cardContainer, productListPage.getClass().getSimpleName());
+                productListPage.init();
             }
         });
 
@@ -132,6 +132,7 @@ public class PriceComparatorJFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 CardLayout cl = (CardLayout) (cardContainer.getLayout());
                 cl.show(cardContainer, eshopsPerProductListPage.getClass().getSimpleName());
+                eshopsPerProductListPage.init();
             }
         });
         JMenuItem mnCreateProdukt = new JMenuItem("Pridanie noveho produktu");
@@ -141,6 +142,7 @@ public class PriceComparatorJFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 CardLayout cl = (CardLayout) (cardContainer.getLayout());
                 cl.show(cardContainer, productCreatePage.getClass().getSimpleName());
+                productCreatePage.init();
             }
         });
 
@@ -149,9 +151,9 @@ public class PriceComparatorJFrame extends JFrame {
         mnCreateProduktPerEhop.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                productInEshopCreatePage.reloadData();
                 CardLayout cl = (CardLayout) (cardContainer.getLayout());
                 cl.show(cardContainer, productInEshopCreatePage.getClass().getSimpleName());
+                productInEshopCreatePage.init();
             }
         });
 
@@ -162,10 +164,9 @@ public class PriceComparatorJFrame extends JFrame {
         mnListGroupOfProdukt.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO odkomentovat
-                groupOfProductListPage.reloadData();
                 CardLayout cl = (CardLayout) (cardContainer.getLayout());
                 cl.show(cardContainer, groupOfProductListPage.getClass().getSimpleName());
+                groupOfProductListPage.init();
             }
         });
 
@@ -176,6 +177,7 @@ public class PriceComparatorJFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 CardLayout cl = (CardLayout) (cardContainer.getLayout());
                 cl.show(cardContainer, groupOfProductsCreatePage.getClass().getSimpleName());
+                groupOfProductsCreatePage.init();
             }
         });
 
@@ -186,6 +188,7 @@ public class PriceComparatorJFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 CardLayout cl = (CardLayout) (cardContainer.getLayout());
                 cl.show(cardContainer, groupOfProductAddProductPage.getClass().getSimpleName());
+                groupOfProductAddProductPage.init();
             }
         });
 
