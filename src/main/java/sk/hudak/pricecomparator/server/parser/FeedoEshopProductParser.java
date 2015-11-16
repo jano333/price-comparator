@@ -22,7 +22,8 @@ public class FeedoEshopProductParser extends AbstractEshopProductParser {
         // ak sa nenajde tak skusim akcnu cenu
         if (select.isEmpty()) {
             select = document.select("div[class=price-discount]");
-        } else {
+        }
+        if (select.isEmpty()) {
             throw new PriceComparatorException("Price element value not found.");
         }
         Element element = select.get(0).child(0);

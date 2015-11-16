@@ -20,6 +20,8 @@ public class ProductXmlEntity {
     private BigDecimal countOfUnit;
     // kategoria
     private Long categoryId;
+    // kde je ulozeny obrazok pre dany produkt
+    private String imagePath;
 
     public Long getId() {
         return id;
@@ -67,5 +69,13 @@ public class ProductXmlEntity {
 
     public void setCategoryId(Long categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 }

@@ -6,8 +6,13 @@ import sk.hudak.pricecomparator.middle.api.service.ProductService;
 import sk.hudak.pricecomparator.middle.api.to.ProductCreateDto;
 import sk.hudak.pricecomparator.middle.api.to.ProductDto;
 import sk.hudak.pricecomparator.middle.api.to.ProductListDto;
+import sk.hudak.pricecomparator.server.core.ServerConfig;
 import sk.hudak.pricecomparator.server.xml.model.ProductXmlEntity;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -40,6 +45,27 @@ public class ProductServiceXmlIml extends AbstracServiceXmlImpl implements Produ
         entity.setUnit(dto.getUnit());
         entity.setCountOfUnit(dto.getCountOfUnit());
         entity.setCategoryId(dto.getCategoryId());
+
+        // spracovanie obrazku
+        if (StringUtils.isNotBlank(dto.getImageLocalPath())) {
+            try {
+                String imageLocalPath = dto.getImageLocalPath();
+                int indexOfLastDot = imageLocalPath.lastIndexOf(".");
+                StringBuilder imagePathOnServer = new StringBuilder();
+                imagePathOnServer.append(ServerConfig.getImagesRootDirectory());
+                imagePathOnServer.append(entity.getId());
+                imagePathOnServer.append(imageLocalPath.substring(indexOfLastDot, imageLocalPath.length()));
+
+                File imageOnServer = new File(imagePathOnServer.toString());
+                Files.copy(new ByteArrayInputStream(dto.getImageContent()), imageOnServer.toPath());
+
+
+            } catch (IOException e) {
+                //TODO
+                e.printStackTrace();
+            }
+
+        }
 
         saveXmlEntity(entity);
 

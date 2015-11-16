@@ -16,6 +16,9 @@ public class ProductCreateDto implements Serializable {
     private BigDecimal countOfUnit;
     private Long categoryId;
 
+    private String imageLocalPath;
+    private byte[] imageContent;
+
     public String getName() {
         return name;
     }
@@ -54,5 +57,21 @@ public class ProductCreateDto implements Serializable {
 
     public void setCategoryId(Long categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public String getImageLocalPath() {
+        return imageLocalPath;
+    }
+
+    public void setImageLocalPath(String imageLocalPath) {
+        this.imageLocalPath = imageLocalPath;
+    }
+
+    public byte[] getImageContent() {
+        return imageContent;
+    }
+
+    public void setImageContent(byte[] imageContent) {
+        this.imageContent = imageContent;
     }
 }

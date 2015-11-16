@@ -1,5 +1,6 @@
 package sk.hudak.pricecomparator.client.swing.panel.page;
 
+import org.apache.commons.lang3.StringUtils;
 import sk.hudak.pricecomparator.client.ServiceLocator;
 import sk.hudak.pricecomparator.client.swing.components.ActionLabelPanel;
 import sk.hudak.pricecomparator.client.swing.utils.GuiUtils;
@@ -10,8 +11,12 @@ import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.math.BigDecimal;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 /**
  * Created by jan on 15. 10. 2015.
@@ -108,29 +113,29 @@ public class ProductCreatePage extends JPanel {
 
     private void create_Image() {
         rowNumber++;
-        add(GuiUtils.labelRequired("Obrázok: ", rowNumber));
-        add(tfImage = GuiUtils.textField(rowNumber));
-        tfImage.setSize(300, GuiUtils.ROW_HEIGHT);
-        JButton btImageFind = GuiUtils.button("Prehladavat");
-        btImageFind.addActionListener(new ActionListener() {
+        ActionLabelPanel alImage = new ActionLabelPanel("Obrázok") {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            protected void onClick() {
                 final JFileChooser fc = new JFileChooser();
                 fc.setFileFilter(new ImageFilter());
-//                fc.setFileSelectionMode(JFileChooser.IRECTORIES_ONLY);
                 int returnVal = fc.showOpenDialog(ProductCreatePage.this);
                 if (returnVal == JFileChooser.APPROVE_OPTION) {
                     File file = fc.getSelectedFile();
                     tfImage.setText(file.getAbsolutePath());
                 }
             }
-        });
-        btImageFind.setBounds(
-                tfImage.getX() + tfImage.getWidth() + GuiUtils.GAP_AFTER_LABEL,
+        };
+        alImage.setBounds(
+                GuiUtils.LEFT_BORDER,
                 GuiUtils.TOP_BORDER + ((rowNumber - 1) * GuiUtils.ROW_HEIGHT + ((rowNumber - 1) * GuiUtils.GAP_BEETWEN_ROWS)),
-                btImageFind.getPreferredSize().width,
+                GuiUtils.LABEL_WIDTH,
                 GuiUtils.ROW_HEIGHT);
-        add(btImageFind);
+
+        tfImage = GuiUtils.textField(rowNumber);
+        tfImage.setEditable(false);
+
+        add(alImage);
+        add(tfImage);
     }
 
     private void create_btCreate() {
@@ -280,6 +285,17 @@ public class ProductCreatePage extends JPanel {
             createDto.setUnit(Unit.DAVKA);
         }
         createDto.setCountOfUnit(new BigDecimal(tfCountOfUnit.getText().replace(",", ".")));
+        createDto.setImageLocalPath(tfImage.getText());
+        if (StringUtils.isNotBlank(tfImage.getText())) {
+            try {
+                ByteArrayOutputStream imageContent = new ByteArrayOutputStream();
+                Files.copy(Paths.get(tfImage.getText()), imageContent);
+                createDto.setImageContent(imageContent.toByteArray());
+            } catch (IOException e) {
+                //TODO
+                e.printStackTrace();
+            }
+        }
 
         ServiceLocator.getService().createProduct(createDto);
 
@@ -293,6 +309,7 @@ public class ProductCreatePage extends JPanel {
         spAmountInPackage.setValue((Integer.valueOf(1)));
         tfCountOfUnit.setText("");
         rbKus.setSelected(true);
+        tfImage.setText("");
 
         //focus
         tfName.requestFocus();
