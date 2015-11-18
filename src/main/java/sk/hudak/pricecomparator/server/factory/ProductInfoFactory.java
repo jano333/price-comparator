@@ -1,7 +1,7 @@
 package sk.hudak.pricecomparator.server.factory;
 
-import sk.hudak.pricecomparator.middle.api.model.ProductAction;
 import sk.hudak.pricecomparator.middle.api.model.EshopProductInfo;
+import sk.hudak.pricecomparator.middle.api.model.ProductAction;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -39,6 +39,11 @@ public class ProductInfoFactory {
             @Override
             public BigDecimal getPriceForUnit() {
                 return PRICE_UNAVIABLE;
+            }
+
+            @Override
+            public String getProductImageUrl() {
+                return null;
             }
         };
     }

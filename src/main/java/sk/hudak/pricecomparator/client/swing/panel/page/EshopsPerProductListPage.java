@@ -103,6 +103,8 @@ public class EshopsPerProductListPage extends JPanel {
             sb.append(eshopProductPriceDto.getEshopProductInfo().getPriceForUnit());
             sb.append(" ");
             sb.append(eshopProductPriceDto.getProductEshopPage());
+            sb.append(" image path: ");
+            sb.append(eshopProductPriceDto.getEshopProductInfo().getProductImageUrl());
             System.out.println(sb.toString());
         }
 

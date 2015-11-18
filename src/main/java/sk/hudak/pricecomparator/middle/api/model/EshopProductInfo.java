@@ -44,4 +44,15 @@ public interface EshopProductInfo {
      */
     BigDecimal getPriceForUnit();
 
+    /**
+     * @return URL na stiahnutie obrazka produktu v danom eshope
+     */
+    String getProductImageUrl();
+
+    /**
+     * @return nazov produktu v eshope
+     */
+    //TODO
+//    String getProductNameInEhop();
+
 }

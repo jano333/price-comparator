@@ -31,6 +31,11 @@ public abstract class AbstractEshopProductInfo implements EshopProductInfo {
     }
 
     @Override
+    public String getProductImageUrl() {
+        return null;
+    }
+
+    @Override
     public BigDecimal getPriceForOneItemInPackage() {
         return calculatePriceForItemInPackage(getPriceForPackage());
     }

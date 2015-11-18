@@ -1,7 +1,7 @@
 package sk.hudak.pricecomparator.server.core;
 
-import sk.hudak.pricecomparator.middle.api.model.ProductAction;
 import sk.hudak.pricecomparator.middle.api.model.EshopProductInfo;
+import sk.hudak.pricecomparator.middle.api.model.ProductAction;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -9,6 +9,7 @@ import java.util.Date;
 /**
  * Created by jan on 14. 10. 2015.
  */
+@Deprecated
 public class EshopProductInfoDefault implements EshopProductInfo {
 
     private ProductAction action;
@@ -60,5 +61,11 @@ public class EshopProductInfoDefault implements EshopProductInfo {
     @Override
     public BigDecimal getPriceForUnit() {
         return priceForJednotka;
+    }
+
+    @Override
+    public String getProductImageUrl() {
+        //TODO
+        return null;
     }
 }

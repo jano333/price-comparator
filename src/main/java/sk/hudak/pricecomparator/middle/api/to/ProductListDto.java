@@ -9,6 +9,8 @@ public class ProductListDto implements Serializable {
 
     private Long id;
     private String name;
+    //TODO toto nahradit aj byte resp domysliet ako to dostat na klienta
+    private String imagePath;
 
     public Long getId() {
         return id;
@@ -26,6 +28,14 @@ public class ProductListDto implements Serializable {
         this.name = name;
     }
 
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -34,7 +44,8 @@ public class ProductListDto implements Serializable {
         ProductListDto dto = (ProductListDto) o;
 
         if (id != null ? !id.equals(dto.id) : dto.id != null) return false;
-        return !(name != null ? !name.equals(dto.name) : dto.name != null);
+        if (name != null ? !name.equals(dto.name) : dto.name != null) return false;
+        return !(imagePath != null ? !imagePath.equals(dto.imagePath) : dto.imagePath != null);
 
     }
 
@@ -42,6 +53,7 @@ public class ProductListDto implements Serializable {
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (imagePath != null ? imagePath.hashCode() : 0);
         return result;
     }
 }

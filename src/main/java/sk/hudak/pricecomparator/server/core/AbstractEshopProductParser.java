@@ -27,6 +27,7 @@ public abstract class AbstractEshopProductParser implements EshopProductParser {
         this.parserInputData = parserInputData;
 
         try {
+            System.out.println("conneting to: " + parserInputData.getEshopProductPage());
             Connection connection = Jsoup.connect(parserInputData.getEshopProductPage());
             connection.userAgent(getUserAgent());
             connection.cookies(getCookies());
@@ -38,6 +39,7 @@ public abstract class AbstractEshopProductParser implements EshopProductParser {
             return parsePrice(doc);
 
         } catch (Exception e) {
+            System.out.println("error while conneting to: " + parserInputData.getEshopProductPage());
             //TODO
             e.printStackTrace();
             return null;

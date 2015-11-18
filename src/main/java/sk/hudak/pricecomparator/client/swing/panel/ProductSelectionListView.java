@@ -20,7 +20,10 @@ public class ProductSelectionListView extends BasicSelectionListViewPanel<Produc
     @Override
     public Component getListCellRendererComponent(JList<? extends ProductListDto> list, ProductListDto value, int index, boolean isSelected, boolean cellHasFocus) {
         JLabel label = new JLabel();
-//        label.setIcon(new ImageIcon("C:\\Users\\jan\\Desktop\\PRG001.jpg"));
+        if (showImage() && value.getImagePath() != null) {
+            System.out.println(">> " + value.getImagePath());
+            label.setIcon(new ImageIcon(value.getImagePath()));
+        }
         label.setOpaque(true);
         label.setText(value.getName());
         if (isSelected) {
@@ -29,5 +32,9 @@ public class ProductSelectionListView extends BasicSelectionListViewPanel<Produc
             label.setBackground(Color.WHITE);
         }
         return label;
+    }
+
+    protected boolean showImage() {
+        return true;
     }
 }
