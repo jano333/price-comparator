@@ -71,7 +71,7 @@ public abstract class AbstractEshopProductInfo implements EshopProductInfo {
         // to znamena ze 0.7 litra stoji 'priceForOneItemInPackage'
         BigDecimal priceForOneItemInPackage = getPriceForOneItemInPackage();
         // kolko stoje 1 liter?
-        return priceForOneItemInPackage.divide(countOfUnit, 2, RoundingMode.HALF_UP);
+        return priceForOneItemInPackage.divide(countOfUnit, ServerConfig.getRoundingScale(), RoundingMode.HALF_UP);
     }
 
     private BigDecimal calculatePriceForUnit_METER() {
@@ -80,7 +80,7 @@ public abstract class AbstractEshopProductInfo implements EshopProductInfo {
         // to znamena ze 68 metrov stoji 'priceForOneItemInPackage'
         BigDecimal priceForOneItemInPackage = getPriceForOneItemInPackage();
         // kolko stoje 1 meter ?
-        return priceForOneItemInPackage.divide(countOfUnit, 2, RoundingMode.HALF_UP);
+        return priceForOneItemInPackage.divide(countOfUnit, ServerConfig.getRoundingScale(), RoundingMode.HALF_UP);
     }
 
     private BigDecimal calculatePriceForUnit_KILOGRAM() {
@@ -89,13 +89,13 @@ public abstract class AbstractEshopProductInfo implements EshopProductInfo {
         // to znamena ze 0.75kg stoji 'priceForOneItemInPackage'
         BigDecimal priceForOneItemInPackage = getPriceForOneItemInPackage();
         // kolko stoje 1 kilo ?
-        return priceForOneItemInPackage.divide(countOfUnit, 2, RoundingMode.HALF_UP);
+        return priceForOneItemInPackage.divide(countOfUnit, ServerConfig.getRoundingScale(), RoundingMode.HALF_UP);
     }
 
     private BigDecimal calculatePriceForUnit_DAVKA() {
         BigDecimal countOfUnit = parserInputData.getCountOfUnit();
         BigDecimal priceForOneItemInPackage = getPriceForOneItemInPackage();
-        return priceForOneItemInPackage.divide(countOfUnit, 2, RoundingMode.HALF_UP);
+        return priceForOneItemInPackage.divide(countOfUnit, ServerConfig.getRoundingScale(), RoundingMode.HALF_UP);
     }
 
     /**
@@ -107,7 +107,7 @@ public abstract class AbstractEshopProductInfo implements EshopProductInfo {
     protected BigDecimal calculatePriceForItemInPackage(BigDecimal priceForPackage) {
         //TODO pocit iba ak je rozdny od jedna, lebo inak to je zbytocne teda je to rovnake ako cena za balenie
         BigDecimal countOfItemInPackage = new BigDecimal(parserInputData.getCountOfItemInOnePackage());
-        BigDecimal result = priceForPackage.divide(countOfItemInPackage, 2, RoundingMode.HALF_UP);
+        BigDecimal result = priceForPackage.divide(countOfItemInPackage, ServerConfig.getRoundingScale(), RoundingMode.HALF_UP);
         return result;
     }
 

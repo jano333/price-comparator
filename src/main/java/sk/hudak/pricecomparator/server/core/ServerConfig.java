@@ -11,4 +11,11 @@ public class ServerConfig {
     public static String getImagesRootDirectory() {
         return "C:\\price-comparator\\images\\";
     }
+
+    /**
+     * @return pocet miest na kolko sa ma zaokruhlovat
+     */
+    public static int getRoundingScale() {
+        return 3;
+    }
 }
