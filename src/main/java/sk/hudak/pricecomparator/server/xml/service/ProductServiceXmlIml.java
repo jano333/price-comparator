@@ -5,6 +5,7 @@ import sk.hudak.pricecomparator.middle.api.exeption.PriceComparatorException;
 import sk.hudak.pricecomparator.middle.api.service.ProductService;
 import sk.hudak.pricecomparator.middle.api.to.ProductCreateDto;
 import sk.hudak.pricecomparator.middle.api.to.ProductDto;
+import sk.hudak.pricecomparator.middle.api.to.ProductEditDto;
 import sk.hudak.pricecomparator.middle.api.to.ProductListDto;
 import sk.hudak.pricecomparator.server.core.ServerConfig;
 import sk.hudak.pricecomparator.server.xml.model.ProductXmlEntity;
@@ -71,6 +72,11 @@ public class ProductServiceXmlIml extends AbstracServiceXmlImpl implements Produ
         saveXmlEntity(entity);
 
         return entity.getId();
+    }
+
+    @Override
+    public void updateProduct(ProductEditDto editDto) {
+        //TODO
     }
 
     @Override

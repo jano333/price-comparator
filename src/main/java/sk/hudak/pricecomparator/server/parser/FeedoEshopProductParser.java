@@ -17,11 +17,15 @@ public class FeedoEshopProductParser extends AbstractEshopProductParser {
 
     @Override
     protected EshopProductInfo parsePrice(Document document) {
-        // skusim premim cenu
+        // skusim -> premim cena
         Elements select = document.select("div[class=price-premium]");
-        // ak sa nenajde tak skusim akcnu cenu
+        // ak sa nenajde tak skusim -> akcna cena
         if (select.isEmpty()) {
             select = document.select("div[class=price-discount]");
+        }
+        // ak sa nenajde tak skusim -> normalna cena
+        if (select.isEmpty()) {
+            select = document.select("div[class=price]");
         }
         if (select.isEmpty()) {
             throw new PriceComparatorException("Price element value not found.");

@@ -40,7 +40,7 @@ public interface EshopProductInfo {
      * Ak su to napr. plienky, tak je to cena za jednu plienku(tu je to to iste ako
      * {@link #getPriceForOneItemInPackage()}
      *
-     * @return cena prepocitana na jednotku.
+     * @return cena prepocitana za mernu jednotku {@link sk.hudak.pricecomparator.middle.api.canonical.Unit}.
      */
     BigDecimal getPriceForUnit();
 

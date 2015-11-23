@@ -82,6 +82,11 @@ public class PriceComparatorXmlService implements PriceComparatorService {
     }
 
     @Override
+    public void updateProduct(ProductEditDto editDto) {
+        productService.updateProduct(editDto);
+    }
+
+    @Override
     public ProductDto getProduct(Long productId) {
         return productService.getProduct(productId);
     }

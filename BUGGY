@@ -1,0 +1,9 @@
+BUGY:
+4.
+3. pridanie produktu do skupiny 'Nepriradene produkty' nie su sortovane
+2. - nepovolit vkladanie produktu ak taky produkt s danym nazovm uz existuje
+1. - nepovolit aby sa do skupiny dali pridavat produkty ktore maju roznu unit, lebo potom sa to urcite
+neda porovnavat
+
+
+DONE:

@@ -2,6 +2,7 @@ package sk.hudak.pricecomparator.middle.api.service;
 
 import sk.hudak.pricecomparator.middle.api.to.ProductCreateDto;
 import sk.hudak.pricecomparator.middle.api.to.ProductDto;
+import sk.hudak.pricecomparator.middle.api.to.ProductEditDto;
 import sk.hudak.pricecomparator.middle.api.to.ProductListDto;
 
 import java.util.List;
@@ -13,7 +14,10 @@ public interface ProductService {
 
     Long createProduct(ProductCreateDto dto);
 
+    void updateProduct(ProductEditDto editDto);
+
     ProductDto getProduct(Long productId);
 
     List<ProductListDto> getAllProduct();
+
 }

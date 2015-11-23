@@ -37,7 +37,7 @@ public abstract class AbstractEshopProductInfo implements EshopProductInfo {
 
     @Override
     public BigDecimal getPriceForOneItemInPackage() {
-        return calculatePriceForItemInPackage(getPriceForPackage());
+        return calculatePriceForOneItemInPackage(getPriceForPackage());
     }
 
     @Override
@@ -59,10 +59,16 @@ public abstract class AbstractEshopProductInfo implements EshopProductInfo {
     }
 
     /**
-     * @return cena za jeden kus je rovnaka ako cena za jednu polozku
+     * balenie (4x52ks)
+     * @return
      */
     private BigDecimal calculatePriceForUnit_KUS() {
-        return getPriceForOneItemInPackage();
+        // napr.: 52
+        BigDecimal countOfUnit = parserInputData.getCountOfUnit();
+        // cena za jedno balenie(52 kusov)
+        BigDecimal priceForOneItemInPackage = getPriceForOneItemInPackage();
+        // kolko stoji 1 kus?
+        return priceForOneItemInPackage.divide(countOfUnit, ServerConfig.getRoundingScale(), RoundingMode.HALF_UP);
     }
 
     private BigDecimal calculatePriceForUnit_LITER() {
@@ -104,7 +110,7 @@ public abstract class AbstractEshopProductInfo implements EshopProductInfo {
      * @param priceForPackage
      * @return
      */
-    protected BigDecimal calculatePriceForItemInPackage(BigDecimal priceForPackage) {
+    protected BigDecimal calculatePriceForOneItemInPackage(BigDecimal priceForPackage) {
         //TODO pocit iba ak je rozdny od jedna, lebo inak to je zbytocne teda je to rovnake ako cena za balenie
         BigDecimal countOfItemInPackage = new BigDecimal(parserInputData.getCountOfItemInOnePackage());
         BigDecimal result = priceForPackage.divide(countOfItemInPackage, ServerConfig.getRoundingScale(), RoundingMode.HALF_UP);
