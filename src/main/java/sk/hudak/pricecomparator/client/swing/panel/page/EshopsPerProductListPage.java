@@ -39,10 +39,10 @@ public class EshopsPerProductListPage extends JPanel {
                 GuiUtils.LEFT_BORDER + GuiUtils.LABEL_WIDTH + GuiUtils.GAP_AFTER_LABEL,
                 GuiUtils.TOP_BORDER + ((rowNumber - 1) * GuiUtils.ROW_HEIGHT + ((rowNumber - 1) * GuiUtils.GAP_BEETWEN_ROWS)),
                 600,
-                6 * 17);
+                12 * 17);
         add(lvProduct);
 
-        rowNumber = rowNumber + 4;
+        rowNumber = rowNumber + 8;
         JLabel lbEshopWithProducts = GuiUtils.label("Eshopy s produktom: ", rowNumber);
         lbEshopWithProducts.setForeground(Color.gray);
         add(lbEshopWithProducts);

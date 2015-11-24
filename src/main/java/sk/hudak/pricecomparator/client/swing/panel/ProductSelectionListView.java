@@ -21,7 +21,6 @@ public class ProductSelectionListView extends BasicSelectionListViewPanel<Produc
     public Component getListCellRendererComponent(JList<? extends ProductListDto> list, ProductListDto value, int index, boolean isSelected, boolean cellHasFocus) {
         JLabel label = new JLabel();
         if (showImage() && value.getImagePath() != null) {
-            System.out.println(">> " + value.getImagePath());
             label.setIcon(new ImageIcon(value.getImagePath()));
         }
         label.setOpaque(true);

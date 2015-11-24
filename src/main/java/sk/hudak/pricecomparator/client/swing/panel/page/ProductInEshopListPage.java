@@ -8,7 +8,9 @@ import javax.swing.*;
 
 /**
  * Created by jan on 24. 10. 2015.
+ * Nepouziva sa
  */
+@Deprecated
 public class ProductInEshopListPage extends JPanel {
 
     private final JLabel lbEshop;
