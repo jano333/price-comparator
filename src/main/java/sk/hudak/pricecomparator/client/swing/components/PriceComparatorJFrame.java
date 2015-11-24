@@ -56,9 +56,11 @@ public class PriceComparatorJFrame extends JFrame {
 
         getContentPane().add(cardContainer);
 
+        //zabezpocim zobprazenie stranky eshopsPerProductListPage:
+        CardLayout cl = (CardLayout) (cardContainer.getLayout());
+        cl.show(cardContainer, eshopsPerProductListPage.getClass().getSimpleName());
+        eshopsPerProductListPage.init();
 
-        //Display the window.
-//        frame.pack();
         setVisible(true);
     }
 

@@ -23,12 +23,13 @@ public class EshopsPerProductListPage extends JPanel {
     private ProductSelectionListView lvProduct;
     private EshopSelectionListViewPanel lvEshopsWithProduct;
     private JButton btDownloadPrices;
+    private final JTextArea taPriceInfo;
 
     public EshopsPerProductListPage() {
         setLayout(null);
 
         int rowNumber = 1;
-        add(GuiUtils.label("Produkt: ", rowNumber));
+        add(GuiUtils.label("Produkty: ", rowNumber));
         lvProduct = new ProductSelectionListView() {
             @Override
             protected void onSelectionChanged() {
@@ -66,9 +67,21 @@ public class EshopsPerProductListPage extends JPanel {
         lvEshopsWithProduct.setBounds(
                 GuiUtils.LEFT_BORDER + GuiUtils.LABEL_WIDTH + GuiUtils.GAP_AFTER_LABEL,
                 GuiUtils.TOP_BORDER + ((rowNumber - 1) * GuiUtils.ROW_HEIGHT + ((rowNumber - 1) * GuiUtils.GAP_BEETWEN_ROWS)),
-                400,
+                600,
                 6 * 17); // je pocet vyditelnych riadkov
         add(lvEshopsWithProduct);
+
+        rowNumber = rowNumber + 4;
+        add(GuiUtils.label("Vysledne ceny: ", rowNumber));
+        taPriceInfo = new JTextArea();
+        taPriceInfo.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(taPriceInfo);
+        scrollPane.setBounds(
+                GuiUtils.LEFT_BORDER + GuiUtils.LABEL_WIDTH + GuiUtils.GAP_AFTER_LABEL,
+                GuiUtils.TOP_BORDER + ((rowNumber - 1) * GuiUtils.ROW_HEIGHT + ((rowNumber - 1) * GuiUtils.GAP_BEETWEN_ROWS)),
+                600,
+                100);
+        add(scrollPane);
 
         rowNumber = rowNumber + 4;
         btDownloadPrices = GuiUtils.button("Stiahni info o cene");
@@ -96,17 +109,20 @@ public class EshopsPerProductListPage extends JPanel {
         Downloader downloader = new Downloader();
         ProductPriceListDto result = downloader.downloadProductInfoForProduct(lvProduct.getSelectedEntity().getId());
         java.util.List<EshopProductPriceDto> eshopProductPriceDtos = result.getEshopProductPriceDtos();
+        StringBuilder sb = new StringBuilder();
         for (EshopProductPriceDto eshopProductPriceDto : eshopProductPriceDtos) {
-            StringBuilder sb = new StringBuilder();
-            sb.append(eshopProductPriceDto.getEshopName());
-            sb.append(" ");
-            sb.append(eshopProductPriceDto.getEshopProductInfo().getPriceForUnit());
-            sb.append(" ");
-            sb.append(eshopProductPriceDto.getProductEshopPage());
-            sb.append(" image path: ");
-            sb.append(eshopProductPriceDto.getEshopProductInfo().getProductImageUrl());
-            System.out.println(sb.toString());
+            sb.append(eshopProductPriceDto.getEshopName()).append("\t").append(" ");
+            sb.append(eshopProductPriceDto.getEshopProductInfo().getPriceForUnit()).append(" ");
+            sb.append("€ za jednotku, ").append("\t");
+            sb.append(eshopProductPriceDto.getEshopProductInfo().getPriceForPackage()).append(" ");
+            sb.append("€ za balenie, ");
+            sb.append(eshopProductPriceDto.getProductEshopPage()).append(" ");
+//            sb.append("image path: ");
+//            sb.append(eshopProductPriceDto.getEshopProductInfo().getProductImageUrl());
+            sb.append(System.lineSeparator());
         }
+        System.out.println(sb.toString());
+        taPriceInfo.setText(sb.toString());
 
 
     }
