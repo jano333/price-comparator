@@ -1,7 +1,5 @@
 package sk.hudak.pricecomparator.server.database.model;
 
-import sk.hudak.pricecomparator.server.core.LongIdEntity;
-
 import javax.persistence.*;
 
 /**
@@ -9,7 +7,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "ESHOP")
-public class EshopEntity implements LongIdEntity {
+public class EshopEntity extends BasicEntity {
 
     @Id
     @Column(name = "ID")
