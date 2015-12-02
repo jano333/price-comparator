@@ -11,14 +11,14 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <spring.version>4.1.6.RELEASE</spring.version>
-        <commons-dbcp.version>1.4</commons-dbcp.version>
-        <h2.version>1.4.182</h2.version>
         <logback-classic.version>1.1.2</logback-classic.version>
-        <testng.version>6.8.7</testng.version>
-        <xsteam.version>1.4.8</xsteam.version>
-        <commons-lang3.version>3.4</commons-lang3.version>
+        <spring.version>4.1.6.RELEASE</spring.version>
         <hibernate.version>4.3.6.Final</hibernate.version>
+        <h2.version>1.4.182</h2.version>
+        <xsteam.version>1.4.8</xsteam.version>
+        <commons-dbcp.version>1.4</commons-dbcp.version>
+        <commons-lang3.version>3.4</commons-lang3.version>
+        <testng.version>6.8.7</testng.version>
     </properties>
 
     <dependencies>
@@ -113,6 +113,38 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.10</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/libs</outputDirectory>
+                            <includeScope>compile</includeScope>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>libs/</classpathPrefix>
+                            <mainClass>sk.hudak.pricecomparator.client.swing.MainSwing</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
             </plugin>
         </plugins>
     </build>
