@@ -20,9 +20,10 @@ import java.util.List;
  */
 public class GroupOfProductListPage extends JPanel {
 
-    private final JButton btCreate;
+    private final JButton btbtDownloadPrices;
     private GroupOfProductListViewPanel lvGroup;
     private ProductSelectionListView lvProduct;
+    private final JTextArea taPriceInfo;
 
     public GroupOfProductListPage() {
         setLayout(null);
@@ -40,7 +41,7 @@ public class GroupOfProductListPage extends JPanel {
         lvGroup.setBounds(
                 GuiUtils.LEFT_BORDER + GuiUtils.LABEL_WIDTH + GuiUtils.GAP_AFTER_LABEL,
                 GuiUtils.TOP_BORDER + ((rowNumber - 1) * GuiUtils.ROW_HEIGHT + ((rowNumber - 1) * GuiUtils.GAP_BEETWEN_ROWS)),
-                400,
+                600,
                 6 * 17);
         add(lvGroup);
 
@@ -61,37 +62,50 @@ public class GroupOfProductListPage extends JPanel {
         lvProduct.setBounds(
                 GuiUtils.LEFT_BORDER + GuiUtils.LABEL_WIDTH + GuiUtils.GAP_AFTER_LABEL,
                 GuiUtils.TOP_BORDER + ((rowNumber - 1) * GuiUtils.ROW_HEIGHT + ((rowNumber - 1) * GuiUtils.GAP_BEETWEN_ROWS)),
-                400,
+                600,
                 6 * 17);
         add(lvProduct);
 
         rowNumber = rowNumber + 4;
-        btCreate = GuiUtils.button("Stihani info");
-        btCreate.setBounds(
+        add(GuiUtils.label("Vysledne ceny: ", rowNumber));
+        taPriceInfo = new JTextArea();
+        taPriceInfo.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(taPriceInfo);
+        scrollPane.setBounds(
                 GuiUtils.LEFT_BORDER + GuiUtils.LABEL_WIDTH + GuiUtils.GAP_AFTER_LABEL,
                 GuiUtils.TOP_BORDER + ((rowNumber - 1) * GuiUtils.ROW_HEIGHT + ((rowNumber - 1) * GuiUtils.GAP_BEETWEN_ROWS)),
-                btCreate.getPreferredSize().width,
+                600,
+                100);
+        add(scrollPane);
+
+        rowNumber = rowNumber + 4;
+        btbtDownloadPrices = GuiUtils.button("Stiahni info o cene");
+        btbtDownloadPrices.setBounds(
+                GuiUtils.LEFT_BORDER + GuiUtils.LABEL_WIDTH + GuiUtils.GAP_AFTER_LABEL,
+                GuiUtils.TOP_BORDER + ((rowNumber - 1) * GuiUtils.ROW_HEIGHT + ((rowNumber - 1) * GuiUtils.GAP_BEETWEN_ROWS)),
+                btbtDownloadPrices.getPreferredSize().width,
                 GuiUtils.ROW_HEIGHT);
-        btCreate.addActionListener(new ActionListener() {
+        btbtDownloadPrices.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Downloader downloader = new Downloader();
                 GroupPriceListDto groupPriceListDto = downloader.downloadProductInfoForGroup(lvGroup.getSelectedEntity().getId());
 
+                StringBuilder sb = new StringBuilder();
                 java.util.List<EshopProductPriceDto> eshopProductPriceDtos = groupPriceListDto.getEshopProductPriceDtos();
                 for (EshopProductPriceDto eshopProductPriceDto : eshopProductPriceDtos) {
-                    StringBuilder sb = new StringBuilder();
-                    sb.append(eshopProductPriceDto.getEshopName());
-                    sb.append(" ");
-                    sb.append(eshopProductPriceDto.getEshopProductInfo().getPriceForUnit());
-                    sb.append(" ");
-                    sb.append(eshopProductPriceDto.getProductEshopPage());
-                    System.out.println(sb.toString());
+                    sb.append(eshopProductPriceDto.getEshopName()).append("\t").append(" ");
+                    sb.append(eshopProductPriceDto.getEshopProductInfo().getPriceForUnit()).append(" ");
+                    sb.append("€ za jednotku, ").append("\t");
+                    sb.append(eshopProductPriceDto.getEshopProductInfo().getPriceForPackage()).append(" ");
+                    sb.append("€ za balenie, ");
+                    sb.append(eshopProductPriceDto.getProductEshopPage()).append(" ");
+                    sb.append(System.lineSeparator());
                 }
-
+                taPriceInfo.setText(sb.toString());
             }
         });
-        add(btCreate);
+        add(btbtDownloadPrices);
 
 
     }

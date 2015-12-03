@@ -121,7 +121,6 @@ public class EshopsPerProductListPage extends JPanel {
 //            sb.append(eshopProductPriceDto.getEshopProductInfo().getProductImageUrl());
             sb.append(System.lineSeparator());
         }
-        System.out.println(sb.toString());
         taPriceInfo.setText(sb.toString());
 
 
