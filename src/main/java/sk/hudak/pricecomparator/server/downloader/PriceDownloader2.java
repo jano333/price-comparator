@@ -13,26 +13,23 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * Created by jan on 6. 11. 2015.
+ * Created by jan on 11. 11. 2015.
  */
-public class Downloader {
+public class PriceDownloader2 {
 
     private PriceComparatorService service = new PriceComparatorXmlService();
 
     public GroupPriceListDto downloadProductInfoForGroup(Long groupOfProductId) {
-        GroupOfProductDto groupOfProduct = service.getGroupOfProduct(groupOfProductId);
-        // ziskam produkty v danej skupine
-        List<ProductListDto> productsInGroup = service.getProductsInGroup(groupOfProductId);
-
         List<EshopProductPriceDto> eshopProductPriceDtos = new ArrayList<>();
-        for (ProductListDto productListDto : productsInGroup) {
+        for (ProductListDto productListDto : service.getProductsInGroup(groupOfProductId)) {
             ProductDto productDto = service.getProduct(productListDto.getId());
-            eshopProductPriceDtos.addAll(getEshopProductPriceDtos(productDto));
+//            eshopProductPriceDtos.addAll(getEshopProductPriceDtos(productDto));
         }
         // zotriedim podla ceny za jednotku
         Collections.sort(eshopProductPriceDtos, new PriceComparator());
 
-        //TODO
+        GroupOfProductDto groupOfProduct = service.getGroupOfProduct(groupOfProductId);
+
         return new GroupPriceListDto(
                 groupOfProduct.getId(),
                 groupOfProduct.getName(),
@@ -50,20 +47,10 @@ public class Downloader {
     public ProductPriceListDto downloadProductInfoForProduct(Long productId) {
         // ziskam informacie o produkte
         ProductDto productDto = service.getProduct(productId);
-        List<EshopProductPriceDto> eshopProductPriceDtos = getEshopProductPriceDtos(productDto);
+        // ziskam zoznam ehopov, v ktorych je dany produkt zaregistrovany
+        List<ProductInEshopDto> productInEshopDtos = service.getProductsInEshopForDownloaderByProductId(productId);
 
-        // zotriedim podla ceny za jednotku
-        Collections.sort(eshopProductPriceDtos, new PriceComparator());
 
-        return new ProductPriceListDto(
-                productId,
-                productDto.getName(),
-                eshopProductPriceDtos);
-    }
-
-    private List<EshopProductPriceDto> getEshopProductPriceDtos(ProductDto productDto) {
-        // ziskam zoznam ehopov v ktorych je zaregistrovany dany produkt
-        List<ProductInEshopDto> productInEshopDtos = service.getProductsInEshopForDownloaderByProductId(productDto.getId());
         List<EshopProductPriceDto> eshopProductPriceDtos = new ArrayList<>(productInEshopDtos.size());
 
 
@@ -71,12 +58,14 @@ public class Downloader {
             EshopDto eshopDto = service.getEshopById(productInEshopDto.getEshopId());
 
             String parserClassName = eshopDto.getParserClassName();
-            ParserInputData parserInputData = transformToParserInputData(productDto, productInEshopDto);
+            ParserInputData parserInputData = transformToParserInputData(productDto, productInEshopDto.getEshopProductPage());
 
             try {
                 Class<?> parserClazz = Class.forName(parserClassName);
                 EshopProductParser instance = (EshopProductParser) parserClazz.newInstance();
                 EshopProductInfo productInfo = instance.getProductInfo(parserInputData);
+
+                EshopProductInfoDto result = EshopProductInfoDto.create(productInfo);
 
                 eshopProductPriceDtos.add(new EshopProductPriceDto(
                         eshopDto.getId(),
@@ -99,15 +88,65 @@ public class Downloader {
                 e.printStackTrace();
             }
         }
-        return eshopProductPriceDtos;
+
+        // zotriedim podla ceny za jednotku
+        Collections.sort(eshopProductPriceDtos, new PriceComparator());
+
+        return new ProductPriceListDto(
+                productId,
+                productDto.getName(),
+                eshopProductPriceDtos);
     }
 
-    private ParserInputData transformToParserInputData(ProductDto productDto, ProductInEshopDto productInEshopDto) {
+    private void getEshopProductPriceDtos(ProductDto productDto) {
+        // ziskam zoznam ehopov v ktorych je zaregistrovany dany produkt
+        List<ProductInEshopDto> productInEshopDtos = service.getProductsInEshopForDownloaderByProductId(productDto.getId());
+        List<EshopProductPriceDto> eshopProductPriceDtos = new ArrayList<>(productInEshopDtos.size());
+
+
+        for (ProductInEshopDto productInEshopDto : productInEshopDtos) {
+            EshopDto eshopDto = service.getEshopById(productInEshopDto.getEshopId());
+
+            ParserInputData parserInputData = transformToParserInputData(productDto, productInEshopDto.getEshopProductPage());
+
+            try {
+                Class<?> parserClazz = Class.forName(eshopDto.getParserClassName());
+                EshopProductParser instance = (EshopProductParser) parserClazz.newInstance();
+                EshopProductInfo productInfo = instance.getProductInfo(parserInputData);
+
+
+                EshopProductInfoDto result = EshopProductInfoDto.create(productInfo);
+
+
+                eshopProductPriceDtos.add(new EshopProductPriceDto(
+                        eshopDto.getId(),
+                        eshopDto.getName(),
+                        productInEshopDto.getEshopProductPage(),
+                        productInfo
+                ));
+                System.out.println("start sleeping");
+                Thread.sleep(5 * 1000);
+                System.out.println("end sleeping");
+
+            } catch (ClassNotFoundException e) {
+                //TODO
+                e.printStackTrace();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private ParserInputData transformToParserInputData(ProductDto productDto, String eshopProductPage) {
         return new ParserInputData(
                 productDto.getCountOfItemInOnePackage(),
                 productDto.getUnit(),
                 productDto.getCountOfUnit(),
-                productInEshopDto.getEshopProductPage());
+                eshopProductPage);
     }
 
     private class PriceComparator implements Comparator<EshopProductPriceDto> {

@@ -5,8 +5,8 @@ import sk.hudak.pricecomparator.client.swing.panel.EshopSelectionListViewPanel;
 import sk.hudak.pricecomparator.client.swing.panel.ProductSelectionListView;
 import sk.hudak.pricecomparator.client.swing.utils.GuiUtils;
 import sk.hudak.pricecomparator.middle.api.to.EshopListDto;
-import sk.hudak.pricecomparator.server.downloader.Downloader;
 import sk.hudak.pricecomparator.server.downloader.EshopProductPriceDto;
+import sk.hudak.pricecomparator.server.downloader.PriceDownloader;
 import sk.hudak.pricecomparator.server.downloader.ProductPriceListDto;
 
 import javax.swing.*;
@@ -106,8 +106,8 @@ public class EshopsPerProductListPage extends JPanel {
     }
 
     private void onDownloadAction() {
-        Downloader downloader = new Downloader();
-        ProductPriceListDto result = downloader.downloadProductInfoForProduct(lvProduct.getSelectedEntity().getId());
+        PriceDownloader priceDownloader = new PriceDownloader();
+        ProductPriceListDto result = priceDownloader.downloadProductInfoForProduct(lvProduct.getSelectedEntity().getId());
         java.util.List<EshopProductPriceDto> eshopProductPriceDtos = result.getEshopProductPriceDtos();
         StringBuilder sb = new StringBuilder();
         for (EshopProductPriceDto eshopProductPriceDto : eshopProductPriceDtos) {

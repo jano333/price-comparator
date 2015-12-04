@@ -5,9 +5,9 @@ import sk.hudak.pricecomparator.client.swing.panel.GroupOfProductListViewPanel;
 import sk.hudak.pricecomparator.client.swing.panel.ProductSelectionListView;
 import sk.hudak.pricecomparator.client.swing.utils.GuiUtils;
 import sk.hudak.pricecomparator.middle.api.to.ProductListDto;
-import sk.hudak.pricecomparator.server.downloader.Downloader;
 import sk.hudak.pricecomparator.server.downloader.EshopProductPriceDto;
 import sk.hudak.pricecomparator.server.downloader.GroupPriceListDto;
+import sk.hudak.pricecomparator.server.downloader.PriceDownloader;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -88,8 +88,8 @@ public class GroupOfProductListPage extends JPanel {
         btbtDownloadPrices.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Downloader downloader = new Downloader();
-                GroupPriceListDto groupPriceListDto = downloader.downloadProductInfoForGroup(lvGroup.getSelectedEntity().getId());
+                PriceDownloader priceDownloader = new PriceDownloader();
+                GroupPriceListDto groupPriceListDto = priceDownloader.downloadProductInfoForGroup(lvGroup.getSelectedEntity().getId());
 
                 StringBuilder sb = new StringBuilder();
                 java.util.List<EshopProductPriceDto> eshopProductPriceDtos = groupPriceListDto.getEshopProductPriceDtos();
