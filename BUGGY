@@ -1,4 +1,5 @@
-9.
+9. TASK:
+- obrazky ak resources odstranit
 
 8. TASK:
 - obfuskator na source neaky plugin pre maven
@@ -7,12 +8,7 @@
 - ked ma zoskrolovane nizsie a potom dam seselectio ntak potom sa skroll bar dal hore...
 
 6. TASK:
-- build aplikacie urobit aby sa dala spustat samostatne...
 - zavislot na ceste XML odstranit lebo je napevno cesta
-- obrazky ak resources odstranit
-
-5. TASK:
-- urobit to co je pre pre jeden produkt aj pre skupinu, teda aby sa vysledky zobrazovali v aplikacii
 
 4. BUG:
 - error while conneting to: https://www.alza.sk/maxi/ariel-mountain-spring-5-265-l-81-pranie-d2431017.htm
@@ -126,3 +122,6 @@ nepovolit aby sa do skupiny dali pridavat produkty ktore maju roznu unit, lebo p
 neda porovnavat
 
 DONE:
+5. TASK:
+- urobit to co je pre pre jeden produkt aj pre skupinu, teda aby sa vysledky zobrazovali v aplikacii
+
