@@ -28,20 +28,24 @@ public class TescoPictureDownloader {
     private static final String MOZILLA_USER_AGENT_DEFAULT = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0";
     private static final String PICTURE_DIR = "C:\\price-comparator\\tesco\\pictures\\";
 
+    //    public static final String PRODUCT_FILE_INPUT = "C:\\price-comparator\\tesco\\unprocessed_products.txt";
+    public static final String PRODUCT_FILE_INPUT = "C:\\price-comparator\\tesco\\Nápoje.txt";
 
 
     public void start() {
         try {
             int i = 1;
             for (String productUrl : getProductsUrl()) {
-
+                System.out.println(productUrl);
 
                 File pictureFileOnLocal = getPictureFileOnLocal(productUrl);
                 if (pictureFileOnLocal.length() != 0) {
-                    System.err.println("k produktu " + productUrl + " uz existuje obrazok");
+                    System.out.println("k produktu uz existuje obrazok");
                     continue;
                 }
-                System.out.println(productUrl);
+                int waitingTimeInSecond = getWaitingTimeInSecond();
+                System.out.println("cakam " + waitingTimeInSecond);
+                Thread.sleep(waitingTimeInSecond * 1000);
 
                 i++;
                 if (i == 1000) {
@@ -55,6 +59,7 @@ public class TescoPictureDownloader {
 
                 Elements elements = document.select("div[class=productImage]");
                 if (elements.isEmpty()) {
+                    //TODO totoje stav ked produkt uz nie dostupny na danej adrese
                     System.err.println("div elements is empty");
                     continue;
                 }
@@ -73,7 +78,7 @@ public class TescoPictureDownloader {
     }
 
     private List<String> getProductsUrl() throws IOException {
-        File unprocesedFile = new File("C:\\price-comparator\\tesco\\unprocessed_products.txt");
+        File unprocesedFile = new File(PRODUCT_FILE_INPUT);
         List<String> result = new ArrayList<>();
         for (String line : Files.readAllLines(unprocesedFile.toPath(), StandardCharsets.UTF_8)) {
             StringTokenizer st = new StringTokenizer(line, "|", false);
@@ -89,9 +94,7 @@ public class TescoPictureDownloader {
     }
 
     private void downloadPictureAndSave(String url, File toSave) throws IOException, InterruptedException {
-        int waitingTimeInSecond = getWaitingTimeInSecond();
-        System.out.println("cakam " + waitingTimeInSecond);
-        Thread.sleep(waitingTimeInSecond * 1000);
+
         URL pictureUrl = new URL(url);
         InputStream inputStream = pictureUrl.openStream();
         BufferedInputStream bis;

@@ -1,5 +1,28 @@
-9. TASK:
+
+13. BUG
+https://www.feedo.sk/obchod/plienky-a-doplnky/plienky-jednorazove/pampers-premium-care-2-mini-216ks-3-6-kg-mesacna-zasoba-jednorazove-plienky/
+- je tam sice cena, ale ja tam napisane:
+Predaj skončil, alebo je tovar dočasne nedostupný. Pre viac informácií kontaktujte náš zákaznícky servis
+..
+teda je potrebne osetrit to v parsovani...
+
+
+12. BUG:
+po stlaceni stiahni cenu najprv vynulovat ked uz je tam zobraze
+
+11. BUG:
+je chyba 3 prlinka pamper 80 ks je pridana do skupina pre pamper 2 !!!!!
+
+10. TASK:
 - obrazky ak resources odstranit
+9. BUG:
+- pri vypocitavani ceny nezaokruhlovat(lebo 0.225 ale vysledna cena je za balenie je nizsia pozri 26.94
+Andrea Shop	        0.208 € za jednotku, 	24.90 € za balenie, https://www.andreashop.sk/pampers-premium-care-s3-120-ks-465461
+pilulka	            0.210 € za jednotku, 	25.19 € za balenie, http://www.pilulka.sk/pampers-premium-care-s3-midi-4-9-kg-120-ks
+Mall	            0.225 € za jednotku, 	26.99 € za balenie, https://www.mall.sk/plienky-pampers-4-9-kg/pampers-plenky-premiumcare-3-midi-120-ks
+Feedo	            0.225 € za jednotku, 	26.99 € za balenie, https://www.feedo.sk/obchod/plienky-a-doplnky/plienky-jednorazove/pampers-premium-care-mega-box-midi-120ks-jednorazove-plienky/
+Internetova Lekaren 0.225 € za jednotku, 	26.94 € za balenie, http://www.internetovalekaren.eu/katalog/product/4234-Pampers-Premium-care-3-Midi-120ks-4-9kg-Mega-Box-darcek-zdarma/
+Perinbaba	        0.226 € za jednotku, 	27.10 € za balenie, http://www.perinbaba.sk/premium-care-3-midi-4-9kg-mega-box-120ks.html
 
 8. TASK:
 - obfuskator na source neaky plugin pre maven

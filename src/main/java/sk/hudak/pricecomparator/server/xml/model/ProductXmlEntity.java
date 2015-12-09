@@ -12,12 +12,12 @@ public class ProductXmlEntity {
     private Long id;
     // nazov produktu
     private String name;
-    // pocet poloziek v baliku
-    private int countOfItemInOnePackage;
     // merna jednotka
     private Unit unit;
     // mnozstvo z danej jednotky(napr. sampon - 0.25l, toaletak - 68m, plienky 72ks)
     private BigDecimal countOfUnit;
+    // pocet poloziek v baliku
+    private int countOfItemInOnePackage;
     // kategoria
     private Long categoryId;
     // kde je ulozeny obrazok pre dany produkt

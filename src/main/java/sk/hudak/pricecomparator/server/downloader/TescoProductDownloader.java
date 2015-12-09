@@ -12,7 +12,7 @@ import java.util.Random;
 /**
  * Created by jan on 3. 12. 2015.
  */
-public class TescoProductInActionDownloader {
+public class TescoProductDownloader {
 
     private static final int DEFAULT_TIMEOUT = 12000;
     private static final String MOZILLA_USER_AGENT_DEFAULT = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0";
@@ -21,18 +21,23 @@ public class TescoProductInActionDownloader {
 
     public void start() {
         try {
-            // prva url je pevna:
-            // http://potravinydomov.itesco.sk/sk-SK/Promotion/List?SortBy=Default
-            // dalsie url sa vyskladavaju
-
-            // musi
-            for (int pageNumber = 2; pageNumber <= 196; pageNumber++) {
+            for (int pageNumber = 122; pageNumber <= 203; pageNumber++) {
                 int waitingTimeInSecond = getWaitingTimeInSecond();
                 System.err.println("cakam " + waitingTimeInSecond);
                 Thread.sleep(waitingTimeInSecond * 1000);
+                System.out.println("Stranka " + pageNumber);
 
 
-                String url = "http://potravinydomov.itesco.sk/sk-SK/Promotion/List?pageNo=" + pageNumber + "&SortBy=Default";
+//                String url = "http://potravinydomov.itesco.sk/sk-SK/Promotion/List?pageNo=" + pageNumber + "&SortBy=Default";
+//                String url = "http://potravinydomov.itesco.sk/sk-SK/Product/BrowseProducts?taxonomyID=Cat00000068&pageNo="+pageNumber+"&sortBy=Default";
+//                String url = "http://potravinydomov.itesco.sk/sk-SK/Product/BrowseProducts?taxonomyID=Cat00000088&pageNo=" + pageNumber + "&sortBy=Default";
+
+                // Jogurty a dezerty
+//                String url = "http://potravinydomov.itesco.sk/sk-SK/Product/BrowseProducts?taxonomyID=Cat00000081&pageNo=" + pageNumber + "&sortBy=Default";
+//                String url = "http://potravinydomov.itesco.sk/sk-SK/Product/BrowseProducts?taxonomyId=Cat00000104";
+//                String url = "http://potravinydomov.itesco.sk/sk-SK/Product/BrowseProducts?taxonomyID=Cat00000376&pageNo=" + pageNumber + "&sortBy=Default";
+                // drogeria
+                String url = "http://potravinydomov.itesco.sk/sk-SK/Product/BrowseProducts?taxonomyID=Cat00000514&pageNo=" + pageNumber + "&sortBy=Default";
 //
                 Connection connection = Jsoup.connect(url);
                 connection.userAgent(MOZILLA_USER_AGENT_DEFAULT);
@@ -77,8 +82,9 @@ public class TescoProductInActionDownloader {
                         System.out.println(productName + "|" + productUrl);
                     }
                 }
-                System.out.println("END");
+//                System.out.println("END");
             }
+            System.out.println("Vsetko");
 
 
             //listedProductItems
@@ -98,7 +104,7 @@ public class TescoProductInActionDownloader {
     }
 
     public static void main(String[] args) {
-        new TescoProductInActionDownloader().start();
+        new TescoProductDownloader().start();
 
 //        for (int i = 0; i < 50; i++) {
 //            System.out.println(getWaitingTimeInSecond());
