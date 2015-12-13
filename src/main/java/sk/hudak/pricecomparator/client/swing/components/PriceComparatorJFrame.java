@@ -25,9 +25,9 @@ public class PriceComparatorJFrame extends JFrame {
 
     private ProductInEshopListPage productInEshopListPage = new ProductInEshopListPage();
 
+    private GroupOfProductListPage groupOfProductListPage = new GroupOfProductListPage();
     private GroupOfProductsCreatePage groupOfProductsCreatePage = new GroupOfProductsCreatePage();
     private GroupOfProductAddProductPage groupOfProductAddProductPage = new GroupOfProductAddProductPage();
-    private GroupOfProductListPage groupOfProductListPage = new GroupOfProductListPage();
 //    private GroupOfProductListPage2 groupOfProductListPage = new GroupOfProductListPage2();
 
 

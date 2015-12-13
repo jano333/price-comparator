@@ -43,7 +43,7 @@ public class ProductInEshopCreatePage extends JPanel {
         lvProduct.setBounds(
                 GuiUtils.LEFT_BORDER + GuiUtils.LABEL_WIDTH + GuiUtils.GAP_AFTER_LABEL,
                 GuiUtils.TOP_BORDER + ((rowNumber - 1) * GuiUtils.ROW_HEIGHT + ((rowNumber - 1) * GuiUtils.GAP_BEETWEN_ROWS)),
-                400,
+                600,
                 6 * 17);
         add(lvProduct);
 
@@ -62,13 +62,13 @@ public class ProductInEshopCreatePage extends JPanel {
         lvEshopsWithoutProduct.setBounds(
                 GuiUtils.LEFT_BORDER + GuiUtils.LABEL_WIDTH + GuiUtils.GAP_AFTER_LABEL,
                 GuiUtils.TOP_BORDER + ((rowNumber - 1) * GuiUtils.ROW_HEIGHT + ((rowNumber - 1) * GuiUtils.GAP_BEETWEN_ROWS)),
-                400,
+                600,
                 6 * 17);
         add(lvEshopsWithoutProduct);
 
         rowNumber = rowNumber + 4;
         add(GuiUtils.labelRequired("Stránka produktu: ", rowNumber));
-        add(tfStrankaProduktu = GuiUtils.textField(rowNumber));
+        add(tfStrankaProduktu = GuiUtils.textField(rowNumber, 600));
 
         rowNumber++;
         btCreate = GuiUtils.button("Vytvor");
@@ -127,7 +127,7 @@ public class ProductInEshopCreatePage extends JPanel {
         lvEshopsWithProduct.setBounds(
                 GuiUtils.LEFT_BORDER + GuiUtils.LABEL_WIDTH + GuiUtils.GAP_AFTER_LABEL,
                 GuiUtils.TOP_BORDER + ((rowNumber - 1) * GuiUtils.ROW_HEIGHT + ((rowNumber - 1) * GuiUtils.GAP_BEETWEN_ROWS)),
-                400,
+                600,
                 6 * 17); // je pocet vyditelnych riadkov
         add(lvEshopsWithProduct);
 

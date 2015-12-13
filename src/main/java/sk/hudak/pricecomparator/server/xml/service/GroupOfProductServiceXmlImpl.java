@@ -114,6 +114,7 @@ public class GroupOfProductServiceXmlImpl extends AbstracServiceXmlImpl implemen
             dto.setName(product.getName());
             result.add(dto);
         }
+        Collections.sort(result, new ProductListDtoComparatorByName());
         return result;
     }
 

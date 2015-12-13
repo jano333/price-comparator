@@ -54,11 +54,15 @@ public class GuiUtils {
     }
 
     public static JTextField textField(int rowNumber) {
+        return textField(rowNumber, GuiUtils.TEXT_FIELD_WIDTH);
+    }
+
+    public static JTextField textField(int rowNumber, int width) {
         JTextField tfName = new JTextField();
         tfName.setBounds(
                 GuiUtils.LEFT_BORDER + GuiUtils.LABEL_WIDTH + GuiUtils.GAP_AFTER_LABEL,
                 GuiUtils.TOP_BORDER + ((rowNumber - 1) * GuiUtils.ROW_HEIGHT + ((rowNumber - 1) * GuiUtils.GAP_BEETWEN_ROWS)),
-                GuiUtils.TEXT_FIELD_WIDTH,
+                width,
                 GuiUtils.ROW_HEIGHT);
 
         return tfName;

@@ -116,17 +116,13 @@ public class PriceComparatorXmlService implements PriceComparatorService {
 
     @Override
     public List<ProductListDto> getProductsInGroup(Long groupOfProductId) {
-        System.out.println(">> getProductsInGroup");
         List<ProductListDto> productsInGroup = groupOfProductService.getProductsInGroup(groupOfProductId);
-        System.out.println("<< getProductsInGroup");
         return productsInGroup;
     }
 
     @Override
     public List<ProductListDto> getProductsNotInGroup(Long groupOfProductId) {
-        System.out.println(">> getProductsNotInGroup");
         List<ProductListDto> productsNotInGroup = groupOfProductService.getProductsNotInGroup(groupOfProductId);
-        System.out.println("<< getProductsNotInGroup");
         return productsNotInGroup;
     }
 
