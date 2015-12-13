@@ -1,11 +1,21 @@
 
+16. BUG.
+osetri 404 pre kazdy eshop teda ako to zistit ci sa da pre spolocne pre vsetky parsre jeden ale osobitne pre kady jeden..
+malo by sa dat pre vsetky spolu na zaklade http resposce code 404...
+
+15. BUG.
+osetril mall parser
+Mall.sk maju tam 'Uz sa nepredava' pre https://www.mall.sk/plienky-pampers-4-9-kg/pampers-plenky-premiumcare-3-midi-120-kss?v=536120
+
+14. BUG
+- po pridani noveho produktu robit trim na meno, lebo potom mam na konci aj s medzerou...
+
 13. BUG
 https://www.feedo.sk/obchod/plienky-a-doplnky/plienky-jednorazove/pampers-premium-care-2-mini-216ks-3-6-kg-mesacna-zasoba-jednorazove-plienky/
 - je tam sice cena, ale ja tam napisane:
 Predaj skončil, alebo je tovar dočasne nedostupný. Pre viac informácií kontaktujte náš zákaznícky servis
 ..
 teda je potrebne osetrit to v parsovani...
-
 
 12. BUG:
 po stlaceni stiahni cenu najprv vynulovat ked uz je tam zobraze
@@ -15,6 +25,7 @@ je chyba 3 prlinka pamper 80 ks je pridana do skupina pre pamper 2 !!!!!
 
 10. TASK:
 - obrazky ak resources odstranit
+
 9. BUG:
 - pri vypocitavani ceny nezaokruhlovat(lebo 0.225 ale vysledna cena je za balenie je nizsia pozri 26.94
 Andrea Shop	        0.208 € za jednotku, 	24.90 € za balenie, https://www.andreashop.sk/pampers-premium-care-s3-120-ks-465461
@@ -134,9 +145,6 @@ at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:146)
 at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:138)
 at java.awt.EventDispatchThread.run(EventDispatchThread.java:91)
 
-3. BUG:
-pridanie produktu do skupiny 'Nepriradene produkty' nie su sortovane
-
 2. BUG:
 nepovolit vkladanie produktu ak taky produkt s danym nazovm uz existuje
 
@@ -145,6 +153,10 @@ nepovolit aby sa do skupiny dali pridavat produkty ktore maju roznu unit, lebo p
 neda porovnavat
 
 DONE:
+-----------------------------------------------------------------------------------------------------
+3. BUG:
+pridanie produktu do skupiny 'Nepriradene produkty' nie su sortovane
+
 5. TASK:
 - urobit to co je pre pre jeden produkt aj pre skupinu, teda aby sa vysledky zobrazovali v aplikacii
 
