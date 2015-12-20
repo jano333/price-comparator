@@ -1,0 +1,15 @@
+4. TASK
+na obrazovke zoznam eshop, na dvojklik urobit otvorenie externeho browsera ktory v externom browseri
+zobrazi stranku daneho eshopu
+
+3. TASK
+- zobrazit swing na stred obrazovky
+
+2. TASK:
+- obfuskator na source neaky plugin pre maven
+
+
+DONE
+************************
+5. TASK:
+urobit to co je pre pre jeden produkt aj pre skupinu, teda aby sa vysledky zobrazovali v aplikacii

@@ -29,7 +29,7 @@ public class TescoPictureDownloader {
     private static final String PICTURE_DIR = "C:\\price-comparator\\tesco\\pictures\\";
 
     //    public static final String PRODUCT_FILE_INPUT = "C:\\price-comparator\\tesco\\unprocessed_products.txt";
-    public static final String PRODUCT_FILE_INPUT = "C:\\price-comparator\\tesco\\Nápoje.txt";
+    public static final String PRODUCT_FILE_INPUT = "C:\\price-comparator\\tesco\\Starostlivosť o dieťa.txt";
 
 
     public void start() {
@@ -66,7 +66,12 @@ public class TescoPictureDownloader {
                 Element imgElement = elements.get(0).child(0);
                 String src = imgElement.attr("src");
 
-                downloadPictureAndSave(src, pictureFileOnLocal);
+                try {
+                    downloadPictureAndSave(src, pictureFileOnLocal);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
             }
 

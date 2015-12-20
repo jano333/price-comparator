@@ -21,11 +21,11 @@ public class TescoProductDownloader {
 
     public void start() {
         try {
-            for (int pageNumber = 122; pageNumber <= 203; pageNumber++) {
+            for (int pageNumber = 1; pageNumber <= 31; pageNumber++) {
                 int waitingTimeInSecond = getWaitingTimeInSecond();
-                System.err.println("cakam " + waitingTimeInSecond);
+//                System.err.println("cakam " + waitingTimeInSecond);
                 Thread.sleep(waitingTimeInSecond * 1000);
-                System.out.println("Stranka " + pageNumber);
+//                System.out.println("Stranka " + pageNumber);
 
 
 //                String url = "http://potravinydomov.itesco.sk/sk-SK/Promotion/List?pageNo=" + pageNumber + "&SortBy=Default";
@@ -37,7 +37,8 @@ public class TescoProductDownloader {
 //                String url = "http://potravinydomov.itesco.sk/sk-SK/Product/BrowseProducts?taxonomyId=Cat00000104";
 //                String url = "http://potravinydomov.itesco.sk/sk-SK/Product/BrowseProducts?taxonomyID=Cat00000376&pageNo=" + pageNumber + "&sortBy=Default";
                 // drogeria
-                String url = "http://potravinydomov.itesco.sk/sk-SK/Product/BrowseProducts?taxonomyID=Cat00000514&pageNo=" + pageNumber + "&sortBy=Default";
+//                String url = "http://potravinydomov.itesco.sk/sk-SK/Product/BrowseProducts?taxonomyID=Cat00000514&pageNo=" + pageNumber + "&sortBy=Default";
+                String url = "http://potravinydomov.itesco.sk/sk-SK/Product/BrowseProducts?taxonomyID=Cat00000655&pageNo=" + pageNumber + "&sortBy=Default";
 //
                 Connection connection = Jsoup.connect(url);
                 connection.userAgent(MOZILLA_USER_AGENT_DEFAULT);
