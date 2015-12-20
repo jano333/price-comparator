@@ -1,11 +1,13 @@
 package sk.hudak.pricecomparator.server.parser;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import sk.hudak.pricecomparator.middle.api.model.EshopProductInfo;
 import sk.hudak.pricecomparator.server.core.AbstractEshopProductInfo;
 import sk.hudak.pricecomparator.server.core.AbstractEshopProductParser;
+import sk.hudak.pricecomparator.server.factory.ProductInfoFactory;
 
 import java.math.BigDecimal;
 
@@ -20,6 +22,10 @@ public class AlzaEshopProductParser extends AbstractEshopProductParser {
         //ta kto to nie
         //<span class="bigPrice price_withVat">€16,64</span>
         final String cenaZaBalenie = parseCenaZaBalenie(document);
+
+        if (StringUtils.isBlank(cenaZaBalenie)) {
+            return ProductInfoFactory.createUnaviable();
+        }
 
         final String productImageUrl = parseProductImageUrl(document);
 
@@ -38,7 +44,14 @@ public class AlzaEshopProductParser extends AbstractEshopProductParser {
 
     private String parseCenaZaBalenie(Document document) {
         Elements elements = document.select("span[class=bigPrice price_withVat]");
-        StringBuffer sb = new StringBuffer(elements.get(0).text());
+        if (elements.isEmpty()) {
+            return null;
+        }
+        String text = elements.get(0).text();
+        if (StringUtils.isBlank(text)) {
+            return null;
+        }
+        StringBuffer sb = new StringBuffer(text);
         sb = sb.deleteCharAt(0);
         return sb.toString().replace(",", ".");
     }

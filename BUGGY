@@ -1,19 +1,7 @@
 
-13. BUG
-https://www.feedo.sk/obchod/plienky-a-doplnky/plienky-jednorazove/pampers-premium-care-2-mini-216ks-3-6-kg-mesacna-zasoba-jednorazove-plienky/
-- je tam sice cena, ale ja tam napisane:
-Predaj skončil, alebo je tovar dočasne nedostupný. Pre viac informácií kontaktujte náš zákaznícky servis
-..
-teda je potrebne osetrit to v parsovani...
-
 ---------------------------------------
 17. BUG
 - zavislot na ceste XML odstranit lebo je napevno cesta
-
-16. BUG.
-osetri 404 pre kazdy eshop teda ako to zistit ci sa da pre spolocne pre vsetky parsre jeden ale osobitne pre kady jeden..
-malo by sa dat pre vsetky spolu na zaklade http resposce code 404...
-
 
 12. BUG:
 po stlaceni stiahni cenu najprv vynulovat ked uz je tam zobraze
@@ -148,6 +136,18 @@ neda porovnavat
 
 DONE:
 -----------------------------------------------------------------------------------------------------
+16. BUG. DONE 20.12.2015
+osetri 404 pre kazdy eshop teda ako to zistit ci sa da pre spolocne pre vsetky parsre jeden ale osobitne pre kady jeden..
+malo by sa dat pre vsetky spolu na zaklade http resposce code 404...
+
+13. BUG  DONE: 20.12.2015
+https://www.feedo.sk/obchod/plienky-a-doplnky/plienky-jednorazove/pampers-premium-care-2-mini-216ks-3-6-kg-mesacna-zasoba-jednorazove-plienky/
+- je tam sice cena, ale ja tam napisane:
+Predaj skončil, alebo je tovar dočasne nedostupný. Pre viac informácií kontaktujte náš zákaznícky servis
+..
+teda je potrebne osetrit to v parsovani...
+
+
 15. BUG.
 osetril mall parser
 Mall.sk maju tam 'Uz sa nepredava' pre https://www.mall.sk/plienky-pampers-4-9-kg/pampers-plenky-premiumcare-3-midi-120-kss?v=536120

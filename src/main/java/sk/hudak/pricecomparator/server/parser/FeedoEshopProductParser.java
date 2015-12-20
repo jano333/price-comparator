@@ -18,6 +18,17 @@ public class FeedoEshopProductParser extends AbstractEshopProductParser {
 
     @Override
     protected EshopProductInfo parsePrice(Document document) {
+        // overim ci je tam button na pridanie do kosika,
+        // lebo bol produkt kde bola cena ale uz bol nedostupny a zlozity text tam je,
+        // tak idem radsej otestovat ci je tam button pre pridanie do kosika,
+        // ak nie je, tak koncim
+        Elements elements = document.select("button[class=btn btn-danger btn-large]");
+        if (elements.isEmpty()) {
+            System.err.println("produkt nedostupny");
+            return ProductInfoFactory.createUnaviable();
+        }
+
+
         // skusim -> premim cena
         Elements select = document.select("div[class=price-premium]");
         // ak sa nenajde tak skusim -> akcna cena

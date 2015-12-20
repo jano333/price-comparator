@@ -1,11 +1,13 @@
 package sk.hudak.pricecomparator.server.core;
 
 import org.jsoup.Connection;
+import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import sk.hudak.pricecomparator.middle.api.EshopProductParser;
 import sk.hudak.pricecomparator.middle.api.canonical.ParserInputData;
 import sk.hudak.pricecomparator.middle.api.model.EshopProductInfo;
+import sk.hudak.pricecomparator.server.factory.ProductInfoFactory;
 
 import java.util.Collections;
 import java.util.Map;
@@ -37,6 +39,11 @@ public abstract class AbstractEshopProductParser implements EshopProductParser {
 
 
             return parsePrice(doc);
+
+        } catch (HttpStatusException e) {
+            // ak hodi napr 404 tak vratit ze je nedostupne
+            e.printStackTrace();
+            return ProductInfoFactory.createUnaviable();
 
         } catch (Exception e) {
             System.out.println("error while conneting to: " + parserInputData.getEshopProductPage());

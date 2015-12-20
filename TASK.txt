@@ -1,3 +1,6 @@
+5.
+pridat logovanie
+
 4. TASK
 na obrazovke zoznam eshop, na dvojklik urobit otvorenie externeho browsera ktory v externom browseri
 zobrazi stranku daneho eshopu
