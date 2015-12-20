@@ -30,7 +30,7 @@ public class ProductServiceXmlIml extends AbstracServiceXmlImpl implements Produ
         if (dto == null) {
             throw new PriceComparatorException("dto is null");
         }
-        if (StringUtils.isBlank(dto.getName())) {
+        if (StringUtils.isBlank(dto.getName().trim())) {
             throw new PriceComparatorException("name is null or empty");
         }
         if (dto.getUnit() == null) {
@@ -42,7 +42,7 @@ public class ProductServiceXmlIml extends AbstracServiceXmlImpl implements Produ
 
         ProductXmlEntity entity = new ProductXmlEntity();
         entity.setId(generateNewId());
-        entity.setName(dto.getName());
+        entity.setName(dto.getName().trim());
         entity.setCountOfItemInOnePackage(dto.getCountOfItemInOnePackage());
         entity.setUnit(dto.getUnit());
         entity.setCountOfUnit(dto.getCountOfUnit());

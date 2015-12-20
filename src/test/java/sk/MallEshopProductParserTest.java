@@ -14,13 +14,13 @@ public class MallEshopProductParserTest {
 
     public static void main(String[] args) {
         ParserInputData parserInputData = new ParserInputData(
-                160,
+                60,
                 Unit.KUS,
-                new BigDecimal(1),
-                "https://www.mall.sk/plienky-pampers-3-6-kg/pampers-premium-care-plenky-2-mini-3-6-kg-216-ks?v=705110");
+                new BigDecimal(2),
+                "https://www.mall.sk/plienky-pampers-4-9-kg/pampers-plenky-premiumcare-3-midi-120-kss?v=536120");
 
         MallEshopProductParser parser = new MallEshopProductParser();
         EshopProductInfo productInfo = parser.getProductInfo(parserInputData);
-        System.out.println("");
+        System.out.println(productInfo.toString());
     }
 }
