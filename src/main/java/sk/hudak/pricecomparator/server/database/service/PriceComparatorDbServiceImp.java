@@ -92,6 +92,11 @@ public class PriceComparatorDbServiceImp implements PriceComparatorService {
     }
 
     @Override
+    public List<ProductInEshopCustomListDto> getProductsInEshop(Long eshopId) {
+        return null;
+    }
+
+    @Override
     public Long createProduct(ProductCreateDto dto) {
         return null;
     }

@@ -16,6 +16,6 @@ public class ServerConfig {
      * @return pocet miest na kolko sa ma zaokruhlovat
      */
     public static int getRoundingScale() {
-        return 3;
+        return 4;
     }
 }

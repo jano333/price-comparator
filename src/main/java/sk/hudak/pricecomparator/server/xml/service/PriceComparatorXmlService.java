@@ -75,6 +75,11 @@ public class PriceComparatorXmlService implements PriceComparatorService {
         return productInEshopService.getProductsInEshopForDownloaderByProductId(productId);
     }
 
+    @Override
+    public List<ProductInEshopCustomListDto> getProductsInEshop(Long eshopId) {
+        return productInEshopService.getProductsInEshop(eshopId);
+    }
+
 
     @Override
     public Long createProduct(ProductCreateDto dto) {
@@ -108,22 +113,17 @@ public class PriceComparatorXmlService implements PriceComparatorService {
 
     @Override
     public List<GroupOfProductListDto> findAllGroupsOfProducts() {
-        System.out.println(">> findAllGroupsOfProducts");
-        List<GroupOfProductListDto> allGroupsOfProducts = groupOfProductService.findAllGroupsOfProducts();
-        System.out.println("<< findAllGroupsOfProducts");
-        return allGroupsOfProducts;
+        return groupOfProductService.findAllGroupsOfProducts();
     }
 
     @Override
     public List<ProductListDto> getProductsInGroup(Long groupOfProductId) {
-        List<ProductListDto> productsInGroup = groupOfProductService.getProductsInGroup(groupOfProductId);
-        return productsInGroup;
+        return groupOfProductService.getProductsInGroup(groupOfProductId);
     }
 
     @Override
     public List<ProductListDto> getProductsNotInGroup(Long groupOfProductId) {
-        List<ProductListDto> productsNotInGroup = groupOfProductService.getProductsNotInGroup(groupOfProductId);
-        return productsNotInGroup;
+        return groupOfProductService.getProductsNotInGroup(groupOfProductId);
     }
 
     @Override

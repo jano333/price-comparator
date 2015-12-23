@@ -2,6 +2,7 @@ package sk.hudak.pricecomparator.server.xml.service;
 
 import sk.hudak.pricecomparator.middle.api.service.EshopService;
 import sk.hudak.pricecomparator.middle.api.service.ProductInEshopService;
+import sk.hudak.pricecomparator.middle.api.service.ProductService;
 import sk.hudak.pricecomparator.middle.api.to.*;
 import sk.hudak.pricecomparator.server.xml.model.EshopXmlEntity;
 import sk.hudak.pricecomparator.server.xml.model.ProductInEshopXmlEntity;
@@ -14,7 +15,9 @@ import java.util.*;
  */
 public class ProductInEshopServiceXmlImpl extends AbstracServiceXmlImpl implements ProductInEshopService {
 
+    //TODO inak cez,  dao a factory ??
     private EshopService eshopService = new EshopServiceXmlImpl();
+    private ProductService productService = new ProductServiceXmlIml();
 
     @Override
     public Long createProductInEshop(ProductInEshopCreateDto dto) {
@@ -115,6 +118,27 @@ public class ProductInEshopServiceXmlImpl extends AbstracServiceXmlImpl implemen
                 productInEshopDto.setProductId(productInEshop.getProductId());
                 productInEshopDto.setEshopProductPage(productInEshop.getEshopProductPage());
                 result.add(productInEshopDto);
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public List<ProductInEshopCustomListDto> getProductsInEshop(Long eshopId) {
+        List<ProductInEshopXmlEntity> productInEshops = xmlDataDb.getProductInEshops();
+        List<ProductInEshopCustomListDto> result = new ArrayList<>(productInEshops.size());
+        for (ProductInEshopXmlEntity productInEshop : productInEshops) {
+            if (productInEshop.getEshopId().equals(eshopId)) {
+                ProductInEshopCustomListDto dto = new ProductInEshopCustomListDto();
+                dto.setId(productInEshop.getId());
+                dto.setEshopProductPage(productInEshop.getEshopProductPage());
+                //cez DAO a z entity preklapat !!!
+                ProductDto product = productService.getProduct(productInEshop.getProductId());
+                ProductListDto productListDto = new ProductListDto();
+                productListDto.setId(product.getId());
+                productListDto.setName(product.getName());
+                dto.setProductListDto(productListDto);
+                result.add(dto);
             }
         }
         return result;

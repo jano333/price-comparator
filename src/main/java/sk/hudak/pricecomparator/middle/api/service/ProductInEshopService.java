@@ -22,4 +22,9 @@ public interface ProductInEshopService {
     List<ProductInEshopDto> getProductsInEshopForDownloaderByProductId(Long productId);
 
 
+    /**
+     * @param eshopId id eshop-u
+     * @return zoznam produktov v danom eshope
+     */
+    List<ProductInEshopCustomListDto> getProductsInEshop(Long eshopId);
 }

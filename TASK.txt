@@ -1,3 +1,7 @@
+6.
+pridat eshop https://www.hravo-zdravo.sk/produkt/nutrilon-1-6x800g
+pridat eshop http://www.mojalekaren.sk/nutrilon-1-350g/
+
 5.
 pridat logovanie
 

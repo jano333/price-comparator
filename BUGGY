@@ -1,17 +1,3 @@
-
----------------------------------------
-17. BUG
-- zavislot na ceste XML odstranit lebo je napevno cesta
-
-12. BUG:
-po stlaceni stiahni cenu najprv vynulovat ked uz je tam zobraze
-
-11. BUG:
-je chyba 3 prlinka pamper 80 ks je pridana do skupina pre pamper 2 !!!!!
-
-10. BUG:
-- obrazky ak resources odstranit
-
 9. BUG:
 - pri vypocitavani ceny nezaokruhlovat(lebo 0.225 ale vysledna cena je za balenie je nizsia pozri 26.94
 Andrea Shop	        0.208 € za jednotku, 	24.90 € za balenie, https://www.andreashop.sk/pampers-premium-care-s3-120-ks-465461
@@ -21,12 +7,32 @@ Feedo	            0.225 € za jednotku, 	26.99 € za balenie, https://www.feed
 Internetova Lekaren 0.225 € za jednotku, 	26.94 € za balenie, http://www.internetovalekaren.eu/katalog/product/4234-Pampers-Premium-care-3-Midi-120ks-4-9kg-Mega-Box-darcek-zdarma/
 Perinbaba	        0.226 € za jednotku, 	27.10 € za balenie, http://www.perinbaba.sk/premium-care-3-midi-4-9kg-mega-box-120ks.html
 
+2. BUG:
+nepovolit vkladanie produktu ak taky produkt s danym nazovm uz existuje
+
+1. BUG:
+nepovolit aby sa do skupiny dali pridavat produkty ktore maju roznu unit, lebo potom sa to urcite
+neda porovnavat
+
+12. BUG:
+po stlaceni stiahni cenu najprv vynulovat ked uz je tam zobraze
+
+11. BUG:
+je chyba 3 prlinka pamper 80 ks je pridana do skupina pre pamper 2 !!!!!
+
+17. BUG
+zavislot na ceste XML odstranit lebo je napevno cesta
+
+10. BUG:
+obrazky ak resources odstranit
 
 7. BUG:
-- ked ma zoskrolovane nizsie a potom dam seselectio ntak potom sa skroll bar dal hore...
+ked ma zoskrolovane nizsie a potom dam seselectio ntak potom sa skroll bar dal hore...
 
 
-4. BUG:
+DONE:
+-----------------------------------------------------------------------------------------------------
+4. BUG: DONE 20.12.2015
 - error while conneting to: https://www.alza.sk/maxi/ariel-mountain-spring-5-265-l-81-pranie-d2431017.htm
 java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
 at java.util.ArrayList.rangeCheck(ArrayList.java:635)
@@ -127,15 +133,7 @@ at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:146)
 at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:138)
 at java.awt.EventDispatchThread.run(EventDispatchThread.java:91)
 
-2. BUG:
-nepovolit vkladanie produktu ak taky produkt s danym nazovm uz existuje
 
-1. BUG:
-nepovolit aby sa do skupiny dali pridavat produkty ktore maju roznu unit, lebo potom sa to urcite
-neda porovnavat
-
-DONE:
------------------------------------------------------------------------------------------------------
 16. BUG. DONE 20.12.2015
 osetri 404 pre kazdy eshop teda ako to zistit ci sa da pre spolocne pre vsetky parsre jeden ale osobitne pre kady jeden..
 malo by sa dat pre vsetky spolu na zaklade http resposce code 404...

@@ -20,6 +20,7 @@ public class PriceComparatorJFrame extends JFrame {
 
     private ProductListPage productListPage = new ProductListPage();
     private EshopsPerProductListPage eshopsPerProductListPage = new EshopsPerProductListPage();
+    private ProductsPerEshopListPage productsPerEshopListPage = new ProductsPerEshopListPage();
     private ProductCreatePage productCreatePage = new ProductCreatePage();
     private ProductInEshopCreatePage productInEshopCreatePage = new ProductInEshopCreatePage();
 
@@ -45,6 +46,7 @@ public class PriceComparatorJFrame extends JFrame {
 
         cardContainer.add(productListPage.getClass().getSimpleName(), productListPage);
         cardContainer.add(eshopsPerProductListPage.getClass().getSimpleName(), eshopsPerProductListPage);
+        cardContainer.add(productsPerEshopListPage.getClass().getSimpleName(), productsPerEshopListPage);
         cardContainer.add(productCreatePage.getClass().getSimpleName(), productCreatePage);
         cardContainer.add(productInEshopCreatePage.getClass().getSimpleName(), productInEshopCreatePage);
 
@@ -137,6 +139,19 @@ public class PriceComparatorJFrame extends JFrame {
                 eshopsPerProductListPage.init();
             }
         });
+
+//        productsPerEshopListPage
+        JMenuItem mnProductsPerEshopListPage = new JMenuItem("Zoznam produktov v eshope");
+        mnSpravaProductov.add(mnProductsPerEshopListPage);
+        mnProductsPerEshopListPage.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CardLayout cl = (CardLayout) (cardContainer.getLayout());
+                cl.show(cardContainer, productsPerEshopListPage.getClass().getSimpleName());
+                productsPerEshopListPage.init();
+            }
+        });
+
         JMenuItem mnCreateProdukt = new JMenuItem("Pridanie noveho produktu");
         mnSpravaProductov.add(mnCreateProdukt);
         mnCreateProdukt.addActionListener(new ActionListener() {
