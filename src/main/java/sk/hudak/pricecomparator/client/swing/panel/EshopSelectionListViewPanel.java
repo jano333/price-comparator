@@ -6,6 +6,7 @@ import sk.hudak.pricecomparator.middle.api.to.EshopListDto;
 
 import javax.swing.*;
 import java.awt.*;
+import java.net.URI;
 import java.util.List;
 
 
@@ -33,6 +34,19 @@ public class EshopSelectionListViewPanel extends BasicSelectionListViewPanel<Esh
             label.setForeground(getForegroundColor());
         }
         return label;
+    }
+
+    @Override
+    protected void onMouseDoubleClick(EshopListDto entity) {
+        if (!Desktop.isDesktopSupported()) {
+            return;
+        }
+        try {
+            Desktop.getDesktop().browse(new URI(entity.getHomePage()));
+        } catch (Exception e) {
+            //TODO
+            e.printStackTrace();
+        }
     }
 
 

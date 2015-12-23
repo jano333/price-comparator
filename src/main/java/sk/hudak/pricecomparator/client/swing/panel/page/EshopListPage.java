@@ -12,8 +12,8 @@ import javax.swing.*;
  */
 public class EshopListPage extends JPanel {
 
-    private final JLabel lbEshops;
-    private final EshopSelectionListViewPanel lvEshop;
+    private JLabel lbEshops;
+    private EshopSelectionListViewPanel lvEshops;
 
     public EshopListPage() {
         setLayout(null);
@@ -24,18 +24,20 @@ public class EshopListPage extends JPanel {
         lbEshops = GuiUtils.label("Zoznam eshopov: ", rowNumber);
         add(lbEshops);
 
-        lvEshop = new EshopSelectionListViewPanel();
-        lvEshop.setBounds(
+        lvEshops = new EshopSelectionListViewPanel();
+        lvEshops.setBounds(
                 GuiUtils.LEFT_BORDER + GuiUtils.LABEL_WIDTH + GuiUtils.GAP_AFTER_LABEL,
                 GuiUtils.TOP_BORDER + ((rowNumber - 1) * GuiUtils.ROW_HEIGHT + ((rowNumber - 1) * GuiUtils.GAP_BEETWEN_ROWS)),
                 600,
                 250);
-        add(lvEshop);
+
+        add(lvEshops);
+
     }
 
     public void init() {
-        lvEshop.reloadData();
-        lvEshop.setFirstSelected();
-        lvEshop.requestFocus();
+        lvEshops.reloadData();
+        lvEshops.setFirstSelected();
+        lvEshops.requestFocus();
     }
 }

@@ -29,7 +29,6 @@ public abstract class BasicSelectionListViewPanel<T> extends JPanel implements L
     public BasicSelectionListViewPanel(int selectionMode) {
         setLayout(new BorderLayout());
 
-//        jList = new JList(readData().toArray());
         jList = new JList();
         jList.setSelectionMode(selectionMode);
         //nastvi prvu moznost ako vybratu
@@ -89,6 +88,8 @@ public abstract class BasicSelectionListViewPanel<T> extends JPanel implements L
     protected void onDeleteKeyPressed(T entity) {
         // nothing
     }
+
+    //TODO podportu pre tooltip nad vybranou polozkou
 
     public void reloadData() {
         jList.setListData(readData().toArray());
