@@ -137,6 +137,7 @@ public class ProductInEshopServiceXmlImpl extends AbstracServiceXmlImpl implemen
                 ProductListDto productListDto = new ProductListDto();
                 productListDto.setId(product.getId());
                 productListDto.setName(product.getName());
+                productListDto.setImagePath(ImageUtils.findProductImage(product.getId()));
                 dto.setProductListDto(productListDto);
                 result.add(dto);
             }
