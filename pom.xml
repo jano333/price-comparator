@@ -12,12 +12,16 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <logback-classic.version>1.1.2</logback-classic.version>
+
         <spring.version>4.1.6.RELEASE</spring.version>
         <hibernate.version>4.3.6.Final</hibernate.version>
-        <h2.version>1.4.182</h2.version>
+        <h2.version>1.4.190</h2.version>
         <xsteam.version>1.4.8</xsteam.version>
+        <jsoup.version>1.8.1</jsoup.version>
+
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <commons-lang3.version>3.4</commons-lang3.version>
+
         <testng.version>6.8.7</testng.version>
     </properties>
 
@@ -25,7 +29,7 @@
         <dependency>
             <groupId>org.jsoup</groupId>
             <artifactId>jsoup</artifactId>
-            <version>1.8.1</version>
+            <version>${jsoup.version}</version>
         </dependency>
         <dependency>
             <groupId>com.thoughtworks.xstream</groupId>
@@ -42,11 +46,6 @@
             <artifactId>javax.inject</artifactId>
             <version>1</version>
         </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>${hibernate.version}</version>
-        </dependency>
 
         <!-- datasource -->
         <dependency>
@@ -54,6 +53,17 @@
             <artifactId>commons-dbcp</artifactId>
             <version>${commons-dbcp.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2.version}</version>
+        </dependency>
+
         <!-- spring -->
         <dependency>
             <groupId>org.springframework</groupId>

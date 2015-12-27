@@ -10,6 +10,9 @@ import java.util.Date;
  */
 public abstract class BasicEntity implements LongIdEntity {
 
+    public static final transient String AT_CREATED = "created";
+    public static final transient String AT_LAST_MODIFIED = "lastModified";
+
     @Column(name = "CREATED", nullable = false)
     private Date created;
 

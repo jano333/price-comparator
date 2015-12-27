@@ -1,13 +1,16 @@
 package sk.hudak.pricecomparator.middle.api.to;
 
+import java.io.Serializable;
+
 /**
  * Created by jan on 14. 10. 2015.
  */
-public class EshopCreateDto {
+public class EshopCreateDto implements Serializable {
 
-    private String name;
-    private String homePage;
-    private String parserClassName;
+    private String name; // povinne
+    private String parserClassName; // povinne
+
+    private String homePage; // nepovinne
 
     public String getName() {
         return name;

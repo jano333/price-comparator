@@ -5,6 +5,8 @@ package sk.hudak.pricecomparator.server.core;
  */
 public interface LongIdEntity {
 
+    String AT_ID = "id";
+
     void setId(Long id);
 
     Long getId();

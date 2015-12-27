@@ -1,13 +1,17 @@
-package sk.hudak.pricecomparator.server.database.dao;
+package sk.hudak.jef.server;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
+import sk.hudak.jef.middle.paging.PageData;
+import sk.hudak.jef.middle.paging.Paging;
+import sk.hudak.pricecomparator.middle.api.to.FindDto;
 import sk.hudak.pricecomparator.server.core.JefValidator;
 import sk.hudak.pricecomparator.server.core.LongIdEntity;
 
 import javax.inject.Inject;
+import java.util.List;
 
 /**
  * Created by jan on 24. 3. 2015.
@@ -18,36 +22,36 @@ public abstract class JefDao<T extends LongIdEntity> {
     protected SessionFactory sessionFactory;
 
     @Inject
-    protected JefValidator validator;
+    protected JefValidator val;
 
-    protected Long create(T entity) {
-        validator.checkNotNull(entity, "entity is null.");
+    public Long create(T entity) {
+        val.notNull(entity, "entity is null.");
 
         return (Long) getCurrentSession().save(entity);
     }
 
-    protected void update(T entity) {
-        validator.checkNotNull(entity, "entity is null.");
+    public void update(T entity) {
+        val.notNull(entity, "entity is null.");
 
         getCurrentSession().update(entity);
     }
 
-    protected Long createOrUpdate(T entity) {
-        validator.checkNotNull(entity, "entity is null.");
+    public Long createOrUpdate(T entity) {
+        val.notNull(entity, "entity is null.");
 
         getCurrentSession().saveOrUpdate(entity);
         return entity.getId();
     }
 
     protected void delete(T entity) {
-        validator.checkNotNull(entity, "entity is null.");
+        val.notNull(entity, "entity is null.");
 
         getCurrentSession().delete(entity);
     }
 
     protected T read(Long id, Class<T> entityClass) {
-        validator.checkNotNull(id, "id is null.");
-        validator.checkNotNull(entityClass, "entity class is null.");
+        val.notNull(id, "id is null.");
+        val.notNull(entityClass, "entity class is null.");
 
         return (T) getCurrentSession().get(entityClass, id);
     }
@@ -56,14 +60,14 @@ public abstract class JefDao<T extends LongIdEntity> {
 
     protected T readMandatory(Long id, Class<T> entityClass) {
         T entity = read(id, entityClass);
-        validator.checkNotNull(entity, "entity with id " + id + " not found");
+        val.notNull(entity, "entity with id " + id + " not found");
         return entity;
     }
 
-    /*protected PageData<T> createPageData(Criteria criteria, FindDto findDto) {
-        validator.checkNotNull(criteria, "criteria is null.");
-        validator.checkNotNull(findDto, "findDto is null.");
-        validator.checkNotNull(findDto.getPaging(), "paging in find dto is null.");
+    protected PageData<T> createPageData(Criteria criteria, FindDto findDto) {
+        val.notNull(criteria, "criteria is null.");
+        val.notNull(findDto, "findDto is null.");
+        val.notNull(findDto.getPaging(), "paging in find dto is null.");
 
         Paging paging = findDto.getPaging();
         criteria.setMaxResults(paging.getPageSize());
@@ -72,7 +76,7 @@ public abstract class JefDao<T extends LongIdEntity> {
 
         return new PageData<>(result.size(), paging, result);
     }
-*/
+
     protected Criteria addAscOrder(Criteria criteria, String property) {
         return criteria.addOrder(Order.asc(property));
     }
@@ -89,7 +93,7 @@ public abstract class JefDao<T extends LongIdEntity> {
         return getSessionFactory().getCurrentSession();
     }
 
-    protected Criteria createCriteria(Class<T> enityClass) {
+    protected Criteria createCriteria(Class<?> enityClass) {
         return getCurrentSession().createCriteria(enityClass);
     }
 

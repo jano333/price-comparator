@@ -1,30 +1,46 @@
 package sk.hudak.pricecomparator.server.database.service;
 
+import org.springframework.transaction.annotation.Transactional;
+import sk.hudak.pricecomparator.middle.api.service.EshopService;
 import sk.hudak.pricecomparator.middle.api.service.PriceComparatorService;
 import sk.hudak.pricecomparator.middle.api.to.*;
 
+import javax.inject.Inject;
+import javax.inject.Named;
 import java.util.List;
 import java.util.Set;
 
 /**
  * Created by jan on 29. 11. 2015.
  */
+@Named
 public class PriceComparatorDbServiceImp implements PriceComparatorService {
 
+    @Inject
+    private EshopService eshopService;
+
+    // --------- ESHOP ----------
+
     @Override
+    @Transactional
     public Long createEshop(EshopCreateDto dto) {
-        return null;
+        return eshopService.createEshop(dto);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public EshopDto getEshopById(Long eshopId) {
-        return null;
+        return eshopService.getEshopById(eshopId);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<EshopListDto> getAllEshops() {
-        return null;
+        return eshopService.getAllEshops();
     }
+
+
+    // --------- CATEGORY ----------
 
     @Override
     public Long createCategory(CategoryCreateDto dto) {

@@ -12,7 +12,6 @@ import javax.swing.*;
  */
 public class EshopListPage extends JPanel {
 
-    private JLabel lbEshops;
     private EshopSelectionListViewPanel lvEshops;
 
     public EshopListPage() {
@@ -21,8 +20,7 @@ public class EshopListPage extends JPanel {
         // 1 riadok
         int rowNumber = 1;
 
-        lbEshops = GuiUtils.label("Zoznam eshopov: ", rowNumber);
-        add(lbEshops);
+        add(GuiUtils.label("Zoznam eshopov: ", rowNumber));
 
         lvEshops = new EshopSelectionListViewPanel();
         lvEshops.setBounds(
