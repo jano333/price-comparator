@@ -6,8 +6,10 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import sk.hudak.pricecomparator.middle.api.service.PriceComparatorService;
 import sk.hudak.pricecomparator.middle.api.to.EshopCreateDto;
+import sk.hudak.pricecomparator.middle.api.to.EshopListDto;
 
 import javax.inject.Inject;
+import java.util.List;
 
 /**
  * Created by jan on 27. 12. 2015.
@@ -15,7 +17,6 @@ import javax.inject.Inject;
 @Test
 @ContextConfiguration(locations = {"classpath:ctx-server.xml"})
 public class EshopEntityTest extends AbstractTestNGSpringContextTests {
-
 
     @Inject
     private PriceComparatorService service;
@@ -30,6 +31,8 @@ public class EshopEntityTest extends AbstractTestNGSpringContextTests {
         Long eshop = service.createEshop(dto);
         Assert.assertNotNull(eshop);
 
-        System.out.println("Done");
+        List<EshopListDto> allEshops = service.getAllEshops();
+        Assert.assertNotNull(allEshops);
+        Assert.assertTrue(allEshops.get(0) != null);
     }
 }

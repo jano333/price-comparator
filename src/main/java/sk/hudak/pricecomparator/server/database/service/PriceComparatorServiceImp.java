@@ -3,6 +3,7 @@ package sk.hudak.pricecomparator.server.database.service;
 import org.springframework.transaction.annotation.Transactional;
 import sk.hudak.pricecomparator.middle.api.service.EshopService;
 import sk.hudak.pricecomparator.middle.api.service.PriceComparatorService;
+import sk.hudak.pricecomparator.middle.api.service.ProductService;
 import sk.hudak.pricecomparator.middle.api.to.*;
 
 import javax.inject.Inject;
@@ -14,10 +15,13 @@ import java.util.Set;
  * Created by jan on 29. 11. 2015.
  */
 @Named
-public class PriceComparatorDbServiceImp implements PriceComparatorService {
+public class PriceComparatorServiceImp implements PriceComparatorService {
 
     @Inject
     private EshopService eshopService;
+
+    @Inject
+    private ProductService productService;
 
     // --------- ESHOP ----------
 
@@ -37,6 +41,31 @@ public class PriceComparatorDbServiceImp implements PriceComparatorService {
     @Transactional(readOnly = true)
     public List<EshopListDto> getAllEshops() {
         return eshopService.getAllEshops();
+    }
+
+    // -------------- PRODUCT -----------
+    @Override
+    @Transactional
+    public Long createProduct(ProductCreateDto dto) {
+        return productService.createProduct(dto);
+    }
+
+    @Override
+    @Transactional
+    public void updateProduct(ProductEditDto editDto) {
+        productService.updateProduct(editDto);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public ProductDto getProduct(Long productId) {
+        return productService.getProduct(productId);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<ProductListDto> getAllProduct() {
+        return productService.getAllProduct();
     }
 
 
@@ -112,23 +141,5 @@ public class PriceComparatorDbServiceImp implements PriceComparatorService {
         return null;
     }
 
-    @Override
-    public Long createProduct(ProductCreateDto dto) {
-        return null;
-    }
 
-    @Override
-    public void updateProduct(ProductEditDto editDto) {
-
-    }
-
-    @Override
-    public ProductDto getProduct(Long productId) {
-        return null;
-    }
-
-    @Override
-    public List<ProductListDto> getAllProduct() {
-        return null;
-    }
 }

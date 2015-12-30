@@ -34,6 +34,8 @@
         <property name="annotatedClasses">
             <list>
                 <value>sk.hudak.pricecomparator.server.database.model.EshopEntity</value>
+                <value>sk.hudak.pricecomparator.server.database.model.CategoryEntity</value>
+                <value>sk.hudak.pricecomparator.server.database.model.ProductEntity</value>
             </list>
         </property>
     </bean>

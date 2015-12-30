@@ -16,7 +16,7 @@ import java.util.List;
  * Created by jan on 27. 12. 2015.
  */
 @Named
-public class EshopDbServiceImpl implements EshopService {
+public class EshopServiceImpl implements EshopService {
 
     @Inject
     private EshopFacade eshopFacade;
@@ -39,7 +39,6 @@ public class EshopDbServiceImpl implements EshopService {
 
     @Override
     public List<EshopListDto> getAllEshops() {
-        //TODO
-        return null;
+        return eshopAssembler.transformToListOfEshopListDto(eshopDao.getAllEshops());
     }
 }

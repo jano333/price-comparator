@@ -24,4 +24,9 @@ public class JefValidator {
             throw new PriceComparatorException(errorMsg);
         }
     }
+
+
+    public void maxLength(String value, int maxLength, String errMsg) {
+        //TODO koltola na maximalnu dlzku
+    }
 }

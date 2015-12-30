@@ -19,19 +19,7 @@ public class EshopFacade extends JefFacade {
     private EshopDao eshopDao;
 
     public Long createEshop(EshopCreateDto dto) {
-        val.notNull(dto, "dto is null");
-        val.notNullAndNotEmpty(dto.getName(), "name is null or empty");
-        val.notNullAndNotEmpty(dto.getParserClassName(), "parser class name is null or empty");
-
-        //TODO kontorola na unikatnost name a persar class
-        if (eshopDao.existWithName(dto.getName())) {
-            throw new PriceComparatorException("Eshop s nazvom " + dto.getName() + " uz existuje.");
-        }
-
-        if (eshopDao.existWithParserClassName(dto.getParserClassName())) {
-            throw new PriceComparatorException("Eshop s danym parser class name " + dto.getParserClassName() + " uz existuje.");
-        }
-
+        validateDto(dto);
 
         EshopEntity eshop = new EshopEntity();
         eshop.setName(dto.getName());
@@ -39,5 +27,20 @@ public class EshopFacade extends JefFacade {
         eshop.setHomePage(dto.getHomePage());
 
         return eshopDao.create(eshop);
+    }
+
+    private void validateDto(EshopCreateDto dto) {
+        val.notNull(dto, "dto is null");
+        val.notNullAndNotEmpty(dto.getName(), "name is null or empty");
+        //TODO validacia na max dlzku 255 ?
+        val.notNullAndNotEmpty(dto.getParserClassName(), "parser class name is null or empty");
+        //TODO validacia na max dlzku 255 ?
+
+        if (eshopDao.existWithName(dto.getName())) {
+            throw new PriceComparatorException("Eshop s nazvom " + dto.getName() + " uz existuje.");
+        }
+        if (eshopDao.existWithParserClassName(dto.getParserClassName())) {
+            throw new PriceComparatorException("Eshop s danym parser class name " + dto.getParserClassName() + " uz existuje.");
+        }
     }
 }

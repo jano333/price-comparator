@@ -8,6 +8,7 @@ import sk.hudak.pricecomparator.middle.api.to.EshopFindDto;
 import sk.hudak.pricecomparator.server.database.model.EshopEntity;
 
 import javax.inject.Named;
+import java.util.List;
 
 /**
  * Created by jan on 29. 11. 2015.
@@ -49,5 +50,11 @@ public class EshopDao extends JefDao<EshopEntity> {
         Criteria cr = createCriteria(EshopEntity.class);
         cr.add(Restrictions.eq(EshopEntity.AT_PARSER_CLASS_NAME, parserClassName));
         return !cr.list().isEmpty();
+    }
+
+    public List<EshopEntity> getAllEshops() {
+        Criteria crit = createCriteria(EshopEntity.class);
+        addAscOrder(crit, EshopEntity.AT_NAME);
+        return crit.list();
     }
 }

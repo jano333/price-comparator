@@ -12,6 +12,8 @@ import java.math.BigDecimal;
 @Table(name = "PRODUCT")
 public class ProductEntity extends BasicEntity {
 
+    public static final transient String AT_NAME = "name";
+
     @Id
     @Column(name = "ID")
     @GeneratedValue(generator = "PRODUCT_SEQ")

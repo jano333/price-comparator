@@ -1,9 +1,12 @@
 package sk.hudak.pricecomparator.server.database.assembler;
 
 import sk.hudak.pricecomparator.middle.api.to.EshopDto;
+import sk.hudak.pricecomparator.middle.api.to.EshopListDto;
 import sk.hudak.pricecomparator.server.database.model.EshopEntity;
 
 import javax.inject.Named;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by jan on 27. 12. 2015.
@@ -13,7 +16,40 @@ public class EshopAssembler {
 
 
     public EshopDto transformToEshopDto(EshopEntity eshopEntity) {
-        //TODO
-        return null;
+        if (eshopEntity == null) {
+            return null;
+        }
+
+        EshopDto dto = new EshopDto();
+        dto.setId(eshopEntity.getId());
+        dto.setName(eshopEntity.getName());
+        dto.setHomePage(eshopEntity.getHomePage());
+        dto.setParserClassName(eshopEntity.getParserClassName());
+        return dto;
+    }
+
+    public List<EshopListDto> transformToListOfEshopListDto(List<EshopEntity> listOfEshopEntity) {
+        if (listOfEshopEntity == null) {
+            return null;
+        }
+
+        List<EshopListDto> result = new ArrayList<>(listOfEshopEntity.size());
+        for (EshopEntity eshopEntity : listOfEshopEntity) {
+            result.add(transformToEshopListDto(eshopEntity));
+        }
+
+
+        return result;
+    }
+
+    private EshopListDto transformToEshopListDto(EshopEntity eshopEntity) {
+        if (eshopEntity == null) {
+            return null;
+        }
+        EshopListDto result = new EshopListDto();
+        result.setId(eshopEntity.getId());
+        result.setName(eshopEntity.getName());
+        result.setHomePage(eshopEntity.getHomePage());
+        return result;
     }
 }
