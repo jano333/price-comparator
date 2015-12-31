@@ -31,8 +31,7 @@ public class ProductInEshopDao extends JefDao<ProductInEshopEntity> {
         Criteria crit = createCriteria(ProductInEshopEntity.class);
         crit.add(Restrictions.eq(ProductInEshopEntity.AT_PRODUCT + "." + ProductEntity.AT_ID, productId));
         crit.setProjection(Projections.property(ProductInEshopEntity.AT_ESHOP));
-        //TODO ordering nejde
-//        addAscOrder(crit, ProductInEshopEntity.AT_ESHOP + "." + EshopEntity.AT_NAME);
+        addAscOrder(crit.createCriteria(ProductInEshopEntity.AT_ESHOP), EshopEntity.AT_NAME);
         return crit.list();
     }
 
@@ -40,8 +39,7 @@ public class ProductInEshopDao extends JefDao<ProductInEshopEntity> {
         Criteria crit = createCriteria(ProductInEshopEntity.class);
         crit.add(Restrictions.ne(ProductInEshopEntity.AT_PRODUCT + "." + ProductEntity.AT_ID, productId));
         crit.setProjection(Projections.property(ProductInEshopEntity.AT_ESHOP));
-        //TODO ordering nejde
-//        addAscOrder(crit, ProductInEshopEntity.AT_ESHOP + "." + EshopEntity.AT_NAME);
+        addAscOrder(crit.createCriteria(ProductInEshopEntity.AT_ESHOP), EshopEntity.AT_NAME);
         return crit.list();
     }
 
