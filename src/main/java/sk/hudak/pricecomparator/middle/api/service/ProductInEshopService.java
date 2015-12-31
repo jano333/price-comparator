@@ -13,11 +13,13 @@ public interface ProductInEshopService {
 
     List<ProductInEshopListDto> getAllProductInEshop();
 
-    List<ProductInEshopListDto> getProductsInEshopByProductId(Long productId);
+    List<EshopListDto> getEshopsWithProduct(Long productId);
 
     List<EshopListDto> getEshopsWithoutProduct(Long productId);
 
-    List<EshopListDto> getEshopsWithProduct(Long productId);
+
+    List<ProductInEshopListDto> getProductsInEshopByProductId(Long productId);
+
 
     List<ProductInEshopDto> getProductsInEshopForDownloaderByProductId(Long productId);
 

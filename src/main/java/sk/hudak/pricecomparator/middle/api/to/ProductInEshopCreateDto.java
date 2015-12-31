@@ -1,9 +1,11 @@
 package sk.hudak.pricecomparator.middle.api.to;
 
+import java.io.Serializable;
+
 /**
  * Created by jan on 14. 10. 2015.
  */
-public class ProductInEshopCreateDto {
+public class ProductInEshopCreateDto implements Serializable {
 
     private Long productId;
     private Long eshopId;

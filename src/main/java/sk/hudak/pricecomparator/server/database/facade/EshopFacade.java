@@ -18,13 +18,13 @@ public class EshopFacade extends JefFacade {
     @Inject
     private EshopDao eshopDao;
 
-    public Long createEshop(EshopCreateDto dto) {
-        validateDto(dto);
+    public Long createEshop(EshopCreateDto createDto) {
+        validateDto(createDto);
 
         EshopEntity eshop = new EshopEntity();
-        eshop.setName(dto.getName());
-        eshop.setParserClassName(dto.getParserClassName());
-        eshop.setHomePage(dto.getHomePage());
+        eshop.setName(createDto.getName());
+        eshop.setParserClassName(createDto.getParserClassName());
+        eshop.setHomePage(createDto.getHomePage());
 
         return eshopDao.create(eshop);
     }

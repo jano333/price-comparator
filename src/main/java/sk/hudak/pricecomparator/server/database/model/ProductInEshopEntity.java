@@ -9,6 +9,9 @@ import javax.persistence.*;
 @Table(name = "PRODUCT_IN_ESHOP")
 public class ProductInEshopEntity extends BasicEntity {
 
+    public static final transient String AT_PRODUCT = "product";
+    public static final transient String AT_ESHOP = "eshop";
+
     //TODO
     // urobit generovanie podla http://stackoverflow.com/questions/27314165/generate-ddl-script-at-maven-build-with-hibernate4-jpa-2-1
 

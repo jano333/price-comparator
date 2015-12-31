@@ -42,7 +42,7 @@ public class EshopAssembler {
         return result;
     }
 
-    private EshopListDto transformToEshopListDto(EshopEntity eshopEntity) {
+    public EshopListDto transformToEshopListDto(EshopEntity eshopEntity) {
         if (eshopEntity == null) {
             return null;
         }

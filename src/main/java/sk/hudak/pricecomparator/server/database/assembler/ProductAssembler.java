@@ -45,7 +45,7 @@ public class ProductAssembler {
         return result;
     }
 
-    private ProductListDto transfomToProductListDto(ProductEntity product) {
+    public ProductListDto transfomToProductListDto(ProductEntity product) {
         if (product == null) {
             return null;
         }

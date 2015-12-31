@@ -5,8 +5,8 @@ package sk.hudak.pricecomparator.middle.api.service;
  */
 public interface PriceComparatorService extends
         EshopService,
-        ProductService,
         CategoryService,
+        ProductService,
         ProductInEshopService,
         GroupOfProductService {
 

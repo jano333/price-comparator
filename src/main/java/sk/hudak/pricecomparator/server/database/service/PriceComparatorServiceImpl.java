@@ -3,6 +3,7 @@ package sk.hudak.pricecomparator.server.database.service;
 import org.springframework.transaction.annotation.Transactional;
 import sk.hudak.pricecomparator.middle.api.service.EshopService;
 import sk.hudak.pricecomparator.middle.api.service.PriceComparatorService;
+import sk.hudak.pricecomparator.middle.api.service.ProductInEshopService;
 import sk.hudak.pricecomparator.middle.api.service.ProductService;
 import sk.hudak.pricecomparator.middle.api.to.*;
 
@@ -15,13 +16,16 @@ import java.util.Set;
  * Created by jan on 29. 11. 2015.
  */
 @Named
-public class PriceComparatorServiceImp implements PriceComparatorService {
+public class PriceComparatorServiceImpl implements PriceComparatorService {
 
     @Inject
     private EshopService eshopService;
 
     @Inject
     private ProductService productService;
+
+    @Inject
+    private ProductInEshopService productInEshopService;
 
     // --------- ESHOP ----------
 
@@ -72,9 +76,57 @@ public class PriceComparatorServiceImp implements PriceComparatorService {
     // --------- CATEGORY ----------
 
     @Override
+    @Transactional
     public Long createCategory(CategoryCreateDto dto) {
         return null;
     }
+
+
+    // ----------- PRODUCT_IN_ESHOP ------------
+    @Override
+    @Transactional
+    public Long createProductInEshop(ProductInEshopCreateDto dto) {
+        return productInEshopService.createProductInEshop(dto);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<ProductInEshopListDto> getAllProductInEshop() {
+        return productInEshopService.getAllProductInEshop();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<ProductInEshopListDto> getProductsInEshopByProductId(Long productId) {
+        return productInEshopService.getProductsInEshopByProductId(productId);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<EshopListDto> getEshopsWithProduct(Long productId) {
+        return productInEshopService.getEshopsWithProduct(productId);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<EshopListDto> getEshopsWithoutProduct(Long productId) {
+        return productInEshopService.getEshopsWithoutProduct(productId);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<ProductInEshopDto> getProductsInEshopForDownloaderByProductId(Long productId) {
+        return productInEshopService.getProductsInEshopForDownloaderByProductId(productId);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<ProductInEshopCustomListDto> getProductsInEshop(Long eshopId) {
+        return productInEshopService.getProductsInEshop(eshopId);
+    }
+
+
+    // --------- GROUP_OF_PRODUCTS ------------
 
     @Override
     public Long createGroupOfProduct(GroupOfProductCreateDto dto) {
@@ -104,41 +156,6 @@ public class PriceComparatorServiceImp implements PriceComparatorService {
     @Override
     public void addProductsToGroup(Set<Long> productsIdToBeAdded, Long groupOfProductId) {
 
-    }
-
-    @Override
-    public Long createProductInEshop(ProductInEshopCreateDto dto) {
-        return null;
-    }
-
-    @Override
-    public List<ProductInEshopListDto> getAllProductInEshop() {
-        return null;
-    }
-
-    @Override
-    public List<ProductInEshopListDto> getProductsInEshopByProductId(Long productId) {
-        return null;
-    }
-
-    @Override
-    public List<EshopListDto> getEshopsWithoutProduct(Long productId) {
-        return null;
-    }
-
-    @Override
-    public List<EshopListDto> getEshopsWithProduct(Long productId) {
-        return null;
-    }
-
-    @Override
-    public List<ProductInEshopDto> getProductsInEshopForDownloaderByProductId(Long productId) {
-        return null;
-    }
-
-    @Override
-    public List<ProductInEshopCustomListDto> getProductsInEshop(Long eshopId) {
-        return null;
     }
 
 
