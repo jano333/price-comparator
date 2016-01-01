@@ -1,10 +1,7 @@
 package sk.hudak.pricecomparator.server.database.service;
 
 import org.springframework.transaction.annotation.Transactional;
-import sk.hudak.pricecomparator.middle.api.service.EshopService;
-import sk.hudak.pricecomparator.middle.api.service.PriceComparatorService;
-import sk.hudak.pricecomparator.middle.api.service.ProductInEshopService;
-import sk.hudak.pricecomparator.middle.api.service.ProductService;
+import sk.hudak.pricecomparator.middle.api.service.*;
 import sk.hudak.pricecomparator.middle.api.to.*;
 
 import javax.inject.Inject;
@@ -26,6 +23,9 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
 
     @Inject
     private ProductInEshopService productInEshopService;
+
+    @Inject
+    private GroupOfProductService groupOfProductService;
 
     // --------- ESHOP ----------
 
@@ -129,33 +129,39 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
     // --------- GROUP_OF_PRODUCTS ------------
 
     @Override
+    @Transactional
     public Long createGroupOfProduct(GroupOfProductCreateDto dto) {
-        return null;
+        return groupOfProductService.createGroupOfProduct(dto);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public GroupOfProductDto getGroupOfProduct(Long groupOfProductId) {
-        return null;
+        return groupOfProductService.getGroupOfProduct(groupOfProductId);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<GroupOfProductListDto> findAllGroupsOfProducts() {
-        return null;
+        return groupOfProductService.findAllGroupsOfProducts();
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<ProductListDto> getProductsInGroup(Long groupOfProductId) {
-        return null;
+        return groupOfProductService.getProductsInGroup(groupOfProductId);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<ProductListDto> getProductsNotInGroup(Long groupOfProductId) {
-        return null;
+        return groupOfProductService.getProductsNotInGroup(groupOfProductId);
     }
 
     @Override
+    @Transactional
     public void addProductsToGroup(Set<Long> productsIdToBeAdded, Long groupOfProductId) {
-
+        groupOfProductService.addProductsToGroup(productsIdToBeAdded, groupOfProductId);
     }
 
 

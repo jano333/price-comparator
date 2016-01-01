@@ -9,9 +9,6 @@ import javax.inject.Inject;
  */
 public abstract class JefFacade {
 
-//    @PersistenceContext
-//    protected EntityManager em;
-
     @Inject
     protected JefValidator val;
 
