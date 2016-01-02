@@ -56,6 +56,11 @@ public class PriceComparatorXmlService implements PriceComparatorService {
     }
 
     @Override
+    public ProductInEshopDto getProductInEshop(Long productId, Long eshopId) {
+        return productInEshopService.getProductInEshop(productId, eshopId);
+    }
+
+    @Override
     public List<ProductInEshopListDto> getProductsInEshopByProductId(Long productId) {
         return productInEshopService.getProductsInEshopByProductId(productId);
     }

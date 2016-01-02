@@ -44,6 +44,12 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
     }
 
     @Override
+    public ProductInEshopDto getProductInEshop(Long productId, Long eshopId) {
+        //TODO
+        return null;
+    }
+
+    @Override
     public List<EshopListDto> getEshopsWithProduct(Long productId) {
         val.notNull(productId, "productId is null");
         return eshopAssembler.transformToListOfEshopListDto(productInEshopDao.getEshopsWithProduct(productId));

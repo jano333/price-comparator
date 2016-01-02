@@ -97,6 +97,13 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
 
     @Override
     @Transactional(readOnly = true)
+    public ProductInEshopDto getProductInEshop(Long productId, Long eshopId) {
+        //TODO
+        return null;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public List<ProductInEshopListDto> getProductsInEshopByProductId(Long productId) {
         return productInEshopService.getProductsInEshopByProductId(productId);
     }

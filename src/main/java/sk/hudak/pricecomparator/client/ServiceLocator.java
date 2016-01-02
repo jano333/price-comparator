@@ -3,6 +3,7 @@ package sk.hudak.pricecomparator.client;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import sk.hudak.pricecomparator.middle.api.service.PriceComparatorService;
+import sk.hudak.pricecomparator.middle.api.service.ProductInEshopService;
 import sk.hudak.pricecomparator.server.xml.service.PriceComparatorXmlService;
 
 /**
@@ -27,5 +28,9 @@ public class ServiceLocator {
             }
         }
         return service;
+    }
+
+    public static ProductInEshopService getProductInEshopService() {
+        return getService();
     }
 }

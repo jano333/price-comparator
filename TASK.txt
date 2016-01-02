@@ -1,22 +1,12 @@
-6.
-pridat eshop https://www.hravo-zdravo.sk/produkt/nutrilon-1-6x800g
-pridat eshop http://www.mojalekaren.sk/nutrilon-1-350g/
-
-5.
-pridat logovanie
-
-4. TASK
-na obrazovke zoznam eshop, na dvojklik urobit otvorenie externeho browsera ktory v externom browseri
-zobrazi stranku daneho eshopu
-
-3. TASK
+- pridat eshop http://www.mojalekaren.sk/nutrilon-1-350g/
+- pridat logovanie
 - zobrazit swing na stred obrazovky
-
-2. TASK:
 - obfuskator na source neaky plugin pre maven
-
 
 DONE
 ************************
-5. TASK:
-urobit to co je pre pre jeden produkt aj pre skupinu, teda aby sa vysledky zobrazovali v aplikacii
+- pridat eshop https://www.hravo-zdravo.sk/produkt/nutrilon-1-6x800g
+- urobit to co je pre pre jeden produkt aj pre skupinu, teda aby sa vysledky zobrazovali v aplikacii
+- na obrazovke zoznam eshop, na dvojklik urobit otvorenie externeho browsera ktory v externom browseri
+  zobrazi stranku daneho eshopu
+

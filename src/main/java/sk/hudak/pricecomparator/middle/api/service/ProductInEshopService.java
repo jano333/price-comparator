@@ -9,17 +9,29 @@ import java.util.List;
  */
 public interface ProductInEshopService {
 
+    /**
+     * Priradenie existujuceho produktu do eshopu.
+     *
+     * @param dto
+     * @return
+     */
     Long createProductInEshop(ProductInEshopCreateDto dto);
 
     List<ProductInEshopListDto> getAllProductInEshop();
+
+    /**
+     * @param productId id produktu, povinne
+     * @param eshopId   id eshop-u, povinne
+     * @return null ak sa nenajde, inak produkt v eshope.
+     */
+    ProductInEshopDto getProductInEshop(Long productId, Long eshopId);
+
 
     List<EshopListDto> getEshopsWithProduct(Long productId);
 
     List<EshopListDto> getEshopsWithoutProduct(Long productId);
 
-
     List<ProductInEshopListDto> getProductsInEshopByProductId(Long productId);
-
 
     List<ProductInEshopDto> getProductsInEshopForDownloaderByProductId(Long productId);
 

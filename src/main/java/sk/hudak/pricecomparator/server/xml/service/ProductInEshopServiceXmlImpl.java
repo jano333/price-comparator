@@ -45,6 +45,29 @@ public class ProductInEshopServiceXmlImpl extends AbstracServiceXmlImpl implemen
         return result;
     }
 
+    @Override
+    public ProductInEshopDto getProductInEshop(Long productId, Long eshopId) {
+        List<ProductInEshopXmlEntity> productInEshops = xmlDataDb.getProductInEshops();
+        for (ProductInEshopXmlEntity productInEshop : productInEshops) {
+            if (productInEshop.getEshopId().equals(eshopId) && productInEshop.getProductId().equals(productId)) {
+                return transformToProductInEshopDto(productInEshop);
+            }
+        }
+        return null;
+    }
+
+    private ProductInEshopDto transformToProductInEshopDto(ProductInEshopXmlEntity productInEshop) {
+        if (productInEshop == null) {
+            return null;
+        }
+        ProductInEshopDto result = new ProductInEshopDto();
+        result.setId(productInEshop.getId());
+        result.setProductId(productInEshop.getProductId());
+        result.setEshopId(productInEshop.getEshopId());
+        result.setEshopProductPage(productInEshop.getEshopProductPage());
+        return result;
+    }
+
 
     @Override
     public List<ProductInEshopListDto> getProductsInEshopByProductId(Long productId) {

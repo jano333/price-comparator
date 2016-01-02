@@ -38,11 +38,15 @@ public class EshopSelectionListViewPanel extends BasicSelectionListViewPanel<Esh
 
     @Override
     protected void onMouseDoubleClick(EshopListDto entity) {
+        openURLInExternalBrowser(entity.getHomePage());
+    }
+
+    protected void openURLInExternalBrowser(String uri) {
         if (!Desktop.isDesktopSupported()) {
             return;
         }
         try {
-            Desktop.getDesktop().browse(new URI(entity.getHomePage()));
+            Desktop.getDesktop().browse(new URI(uri));
         } catch (Exception e) {
             //TODO
             e.printStackTrace();

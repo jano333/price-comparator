@@ -5,6 +5,7 @@ import sk.hudak.pricecomparator.client.swing.panel.EshopSelectionListViewPanel;
 import sk.hudak.pricecomparator.client.swing.panel.ProductSelectionListView;
 import sk.hudak.pricecomparator.client.swing.utils.GuiUtils;
 import sk.hudak.pricecomparator.middle.api.to.EshopListDto;
+import sk.hudak.pricecomparator.middle.api.to.ProductInEshopDto;
 import sk.hudak.pricecomparator.server.downloader.EshopProductPriceDto;
 import sk.hudak.pricecomparator.server.downloader.PriceDownloader;
 import sk.hudak.pricecomparator.server.downloader.ProductPriceListDto;
@@ -61,6 +62,17 @@ public class EshopsPerProductListPage extends JPanel {
             @Override
             protected Color getForegroundColor() {
                 return Color.gray;
+            }
+
+            @Override
+            protected void onMouseDoubleClick(EshopListDto entity) {
+                if (lvProduct.getSelectedEntity() != null) {
+                    ProductInEshopDto productInEshop = ServiceLocator.getProductInEshopService().getProductInEshop(
+                            lvProduct.getSelectedEntity().getId(),
+                            entity.getId());
+                    openURLInExternalBrowser(productInEshop.getEshopProductPage());
+
+                }
             }
         };
 
