@@ -8,6 +8,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.URI;
 import java.util.List;
 
 /**
@@ -106,6 +107,18 @@ public abstract class BasicSelectionListViewPanel<T> extends JPanel implements L
         jList.setSelectedIndex(Integer.MAX_VALUE);
         // disablujem jlist
         jList.setEnabled(false);
+    }
+
+    protected void openURLInExternalBrowser(String uri) {
+        if (!Desktop.isDesktopSupported()) {
+            return;
+        }
+        try {
+            Desktop.getDesktop().browse(new URI(uri));
+        } catch (Exception e) {
+            //TODO
+            e.printStackTrace();
+        }
     }
 
 }

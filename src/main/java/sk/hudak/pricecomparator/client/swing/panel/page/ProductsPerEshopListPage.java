@@ -7,7 +7,6 @@ import sk.hudak.pricecomparator.client.swing.utils.GuiUtils;
 import sk.hudak.pricecomparator.middle.api.to.ProductInEshopCustomListDto;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.Collections;
 
 /**
@@ -38,7 +37,6 @@ public class ProductsPerEshopListPage extends JPanel {
 
         rowNumber = rowNumber + 4;
         JLabel lbEshopWithProducts = GuiUtils.label("Produkty v eshope: ", rowNumber);
-        lbEshopWithProducts.setForeground(Color.gray);
         add(lbEshopWithProducts);
 
         lvProductsInEshop = new ProductInEshopSelectionListView() {
@@ -52,11 +50,13 @@ public class ProductsPerEshopListPage extends JPanel {
             }
 
             @Override
-            protected Color getForegroundColor() {
-                return Color.gray;
+            protected void onMouseDoubleClick(ProductInEshopCustomListDto entity) {
+                if (lvEshops.getSelectedEntity() == null) {
+                    return;
+                }
+                openURLInExternalBrowser(entity.getEshopProductPage());
             }
         };
-
         lvProductsInEshop.setBounds(
                 GuiUtils.LEFT_BORDER + GuiUtils.LABEL_WIDTH + GuiUtils.GAP_AFTER_LABEL,
                 GuiUtils.TOP_BORDER + ((rowNumber - 1) * GuiUtils.ROW_HEIGHT + ((rowNumber - 1) * GuiUtils.GAP_BEETWEN_ROWS)),

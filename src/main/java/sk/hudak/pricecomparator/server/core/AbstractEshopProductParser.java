@@ -49,7 +49,7 @@ public abstract class AbstractEshopProductParser implements EshopProductParser {
             System.out.println("error while conneting to: " + parserInputData.getEshopProductPage());
             //TODO
             e.printStackTrace();
-            return null;
+            return ProductInfoFactory.createUnaviable();
         }
 
     }

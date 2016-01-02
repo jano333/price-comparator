@@ -165,6 +165,9 @@ public class ProductInEshopServiceXmlImpl extends AbstracServiceXmlImpl implemen
                 result.add(dto);
             }
         }
+        // sortovanie
+        Collections.sort(result, new ProductInEshopCustomListDtoComparatorByProductName());
+
         return result;
     }
 

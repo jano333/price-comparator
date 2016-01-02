@@ -11,7 +11,6 @@ import sk.hudak.pricecomparator.server.downloader.PriceDownloader;
 import sk.hudak.pricecomparator.server.downloader.ProductPriceListDto;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Collections;
@@ -46,7 +45,6 @@ public class EshopsPerProductListPage extends JPanel {
 
         rowNumber = rowNumber + 8;
         JLabel lbEshopWithProducts = GuiUtils.label("Eshopy s produktom: ", rowNumber);
-        lbEshopWithProducts.setForeground(Color.gray);
         add(lbEshopWithProducts);
 
         lvEshopsWithProduct = new EshopSelectionListViewPanel() {
@@ -57,11 +55,6 @@ public class EshopsPerProductListPage extends JPanel {
                 } else {
                     return Collections.emptyList();
                 }
-            }
-
-            @Override
-            protected Color getForegroundColor() {
-                return Color.gray;
             }
 
             @Override
