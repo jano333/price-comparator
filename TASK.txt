@@ -1,12 +1,12 @@
+- po kliknuti stiahnut cenu vymazat a az tak dat tahat!!!
+- pridat eshop http://www.pilulka24.sk/nutrilon-2-800g-prasok-na-pripravu-mlieka-800-g
+- pridat eshop http://www.fitlekaren.sk/produkt/nutrilon-2-easy-pack-mliecna-vyziva-od-ukonc-6-mesiaca-1x800-g/
 - pridat eshop http://www.mojalekaren.sk/nutrilon-1-350g/
+- pridat eshop http://www.nej-lekarna.cz/index.php?jazyk=sk&page=&id=71/174/175/176&detail=2722230
+- urobit to co je cez XML cez H2
+- page: vsetky produkty v akcii pre tesco
+- page: vsetky produkty v akcii pre metro
+- GUI: tabulka ako komponent
 - pridat logovanie
 - zobrazit swing na stred obrazovky
 - obfuskator na source neaky plugin pre maven
-
-DONE
-************************
-- pridat eshop https://www.hravo-zdravo.sk/produkt/nutrilon-1-6x800g
-- urobit to co je pre pre jeden produkt aj pre skupinu, teda aby sa vysledky zobrazovali v aplikacii
-- na obrazovke zoznam eshop, na dvojklik urobit otvorenie externeho browsera ktory v externom browseri
-  zobrazi stranku daneho eshopu
-

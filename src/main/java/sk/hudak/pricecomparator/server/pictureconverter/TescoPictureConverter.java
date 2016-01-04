@@ -23,6 +23,12 @@ public class TescoPictureConverter {
             System.out.println(">> i " + (i + 1));
             File sourceFile = sorceFiles[i];
             String pictureName = sourceFile.getName();
+            if (new File(START_FORLDER + pictureName).length() == 0) {
+                continue;
+            }
+            if (new File(TARGET_FORLDER + pictureName).exists()) {
+                continue;
+            }
             convertImage(START_FORLDER + pictureName, TARGET_FORLDER + pictureName);
         }
 
