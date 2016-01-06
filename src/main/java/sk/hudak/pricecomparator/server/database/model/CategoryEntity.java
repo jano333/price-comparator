@@ -19,7 +19,7 @@ public class CategoryEntity extends BasicEntity {
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PARENT_CATEGORY_ID", nullable = false, updatable = false)
+    @JoinColumn(name = "PARENT_CATEGORY_ID", updatable = false)
     private CategoryEntity parentCategory;
 
     public boolean isRoot() {
