@@ -15,7 +15,7 @@
 
         <spring.version>4.1.6.RELEASE</spring.version>
         <hibernate.version>4.3.6.Final</hibernate.version>
-        <h2.version>1.4.190</h2.version>
+        <h2.version>1.3.176</h2.version>
         <xsteam.version>1.4.8</xsteam.version>
         <jsoup.version>1.8.1</jsoup.version>
 
