@@ -2,6 +2,7 @@ package sk.hudak.pricecomparator.server.xml.service;
 
 import sk.hudak.pricecomparator.middle.api.service.*;
 import sk.hudak.pricecomparator.middle.api.to.*;
+import sk.hudak.pricecomparator.server.tasks.DownloaderEshopType;
 
 import java.util.List;
 import java.util.Set;
@@ -83,6 +84,12 @@ public class PriceComparatorXmlService implements PriceComparatorService {
     @Override
     public List<ProductInEshopCustomListDto> getProductsInEshop(Long eshopId) {
         return productInEshopService.getProductsInEshop(eshopId);
+    }
+
+    @Override
+    public List<ProductInEshopDto> findProductInEshopForPriceUpdate(DownloaderEshopType eshopId) {
+        //TODO
+        return null;
     }
 
 

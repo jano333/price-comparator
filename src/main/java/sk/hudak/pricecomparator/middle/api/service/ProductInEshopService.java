@@ -1,6 +1,7 @@
 package sk.hudak.pricecomparator.middle.api.service;
 
 import sk.hudak.pricecomparator.middle.api.to.*;
+import sk.hudak.pricecomparator.server.tasks.DownloaderEshopType;
 
 import java.util.List;
 
@@ -41,4 +42,11 @@ public interface ProductInEshopService {
      * @return zoznam produktov v danom eshope
      */
     List<ProductInEshopCustomListDto> getProductsInEshop(Long eshopId);
+
+    /**
+     * ZOznam produktov, kde cena je null alebo je starsia ako 24 hodin
+     *
+     * @param eshopId
+     */
+    List<ProductInEshopDto> findProductInEshopForPriceUpdate(DownloaderEshopType eshopId);
 }

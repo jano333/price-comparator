@@ -1,6 +1,5 @@
 package sk.hudak.pricecomparator.client;
 
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import sk.hudak.pricecomparator.middle.api.service.PriceComparatorService;
 import sk.hudak.pricecomparator.middle.api.service.ProductInEshopService;
@@ -12,6 +11,7 @@ import sk.hudak.pricecomparator.server.xml.service.PriceComparatorXmlService;
 public class ServiceLocator {
 
     public static final boolean XML_VERSION = true;
+//    public static final boolean XML_VERSION = false;
 
     private static PriceComparatorService service;
 
@@ -23,8 +23,7 @@ public class ServiceLocator {
             if (XML_VERSION) {
                 service = new PriceComparatorXmlService();
             } else {
-                ApplicationContext context = new ClassPathXmlApplicationContext("ctx-server.xml");
-                service = context.getBean(PriceComparatorService.class);
+                service = new ClassPathXmlApplicationContext("ctx-server.xml").getBean(PriceComparatorService.class);
             }
         }
         return service;

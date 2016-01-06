@@ -4,6 +4,7 @@ import sk.hudak.pricecomparator.middle.api.service.EshopService;
 import sk.hudak.pricecomparator.middle.api.service.ProductInEshopService;
 import sk.hudak.pricecomparator.middle.api.service.ProductService;
 import sk.hudak.pricecomparator.middle.api.to.*;
+import sk.hudak.pricecomparator.server.tasks.DownloaderEshopType;
 import sk.hudak.pricecomparator.server.xml.model.EshopXmlEntity;
 import sk.hudak.pricecomparator.server.xml.model.ProductInEshopXmlEntity;
 import sk.hudak.pricecomparator.server.xml.service.comparator.EshopListDtoComparatorByName;
@@ -15,15 +16,11 @@ import java.util.*;
  */
 public class ProductInEshopServiceXmlImpl extends AbstracServiceXmlImpl implements ProductInEshopService {
 
-    //TODO inak cez,  dao a factory ??
     private EshopService eshopService = new EshopServiceXmlImpl();
     private ProductService productService = new ProductServiceXmlIml();
 
     @Override
     public Long createProductInEshop(ProductInEshopCreateDto dto) {
-        //TODO validacie
-        //TODO overit ci eshop a product s danym id realne existuju
-
         ProductInEshopXmlEntity entity = new ProductInEshopXmlEntity();
         entity.setId(generateNewId());
         entity.setEshopId(dto.getEshopId());
@@ -71,7 +68,6 @@ public class ProductInEshopServiceXmlImpl extends AbstracServiceXmlImpl implemen
 
     @Override
     public List<ProductInEshopListDto> getProductsInEshopByProductId(Long productId) {
-        //TODO validacie
         List<ProductInEshopListDto> result = new ArrayList<>();
         List<ProductInEshopXmlEntity> productInEshops = xmlDataDb.getProductInEshops();
         for (ProductInEshopXmlEntity productInEshop : productInEshops) {
@@ -115,7 +111,6 @@ public class ProductInEshopServiceXmlImpl extends AbstracServiceXmlImpl implemen
         List<EshopListDto> result = new ArrayList<>();
         for (ProductInEshopXmlEntity productInEshop : productInEshops) {
             if (productInEshop.getProductId().equals(productId)) {
-                //TODO prerobit
                 EshopDto eshopById = eshopService.getEshopById(productInEshop.getEshopId());
                 EshopListDto dto = new EshopListDto();
                 dto.setHomePage(eshopById.getHomePage());
@@ -155,7 +150,6 @@ public class ProductInEshopServiceXmlImpl extends AbstracServiceXmlImpl implemen
                 ProductInEshopCustomListDto dto = new ProductInEshopCustomListDto();
                 dto.setId(productInEshop.getId());
                 dto.setEshopProductPage(productInEshop.getEshopProductPage());
-                //cez DAO a z entity preklapat !!!
                 ProductDto product = productService.getProduct(productInEshop.getProductId());
                 ProductListDto productListDto = new ProductListDto();
                 productListDto.setId(product.getId());
@@ -169,6 +163,12 @@ public class ProductInEshopServiceXmlImpl extends AbstracServiceXmlImpl implemen
         Collections.sort(result, new ProductInEshopCustomListDtoComparatorByProductName());
 
         return result;
+    }
+
+    @Override
+    public List<ProductInEshopDto> findProductInEshopForPriceUpdate(DownloaderEshopType eshopId) {
+        //TODO
+        return null;
     }
 
     private ProductInEshopListDto transformToProductInEshopListDto(ProductInEshopXmlEntity productInEshop) {

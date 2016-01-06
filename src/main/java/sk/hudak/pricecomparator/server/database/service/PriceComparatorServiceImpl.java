@@ -3,6 +3,7 @@ package sk.hudak.pricecomparator.server.database.service;
 import org.springframework.transaction.annotation.Transactional;
 import sk.hudak.pricecomparator.middle.api.service.*;
 import sk.hudak.pricecomparator.middle.api.to.*;
+import sk.hudak.pricecomparator.server.tasks.DownloaderEshopType;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -130,6 +131,12 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
     @Transactional(readOnly = true)
     public List<ProductInEshopCustomListDto> getProductsInEshop(Long eshopId) {
         return productInEshopService.getProductsInEshop(eshopId);
+    }
+
+    @Override
+    public List<ProductInEshopDto> findProductInEshopForPriceUpdate(DownloaderEshopType eshopId) {
+        //TODO impl
+        return null;
     }
 
 

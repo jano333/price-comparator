@@ -7,6 +7,7 @@ import sk.hudak.pricecomparator.server.database.assembler.EshopAssembler;
 import sk.hudak.pricecomparator.server.database.assembler.ProductInEshopAssembler;
 import sk.hudak.pricecomparator.server.database.dao.ProductInEshopDao;
 import sk.hudak.pricecomparator.server.database.facade.ProductInEshopFacade;
+import sk.hudak.pricecomparator.server.tasks.DownloaderEshopType;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -77,5 +78,11 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
     public List<ProductInEshopCustomListDto> getProductsInEshop(Long eshopId) {
         val.notNull(eshopId, "eshopId is null");
         return productInEshopAssembler.transformToListOfProductInEshopCustomListDto(productInEshopDao.getProductsInEshop(eshopId));
+    }
+
+    @Override
+    public List<ProductInEshopDto> findProductInEshopForPriceUpdate(DownloaderEshopType eshopId) {
+        //TODO validacie
+        return null;
     }
 }
