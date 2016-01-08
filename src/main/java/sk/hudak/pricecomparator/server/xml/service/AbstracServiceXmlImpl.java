@@ -19,7 +19,7 @@ public class AbstracServiceXmlImpl {
     public static final String PATH_TO_XML_DATA_FILE = "C:\\price-comparator\\db\\data.xml";
 
     private static XStream xstream;
-    protected static XMLDataDb xmlDataDb;
+    public static XMLDataDb xmlDataDb;
 
 
     static {

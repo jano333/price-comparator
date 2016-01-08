@@ -42,7 +42,7 @@ public class ProductFacade extends JefFacade {
 
         Long productId = productDao.create(product);
 
-        // spracovanie obrazku
+        // TODO spracovanie obrazku
         processImage(dto, productId);
 
         return productId;

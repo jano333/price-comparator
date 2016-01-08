@@ -79,6 +79,7 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
     @Override
     @Transactional
     public Long createCategory(CategoryCreateDto dto) {
+        //TODO impl
         return null;
     }
 
@@ -99,7 +100,7 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
     @Override
     @Transactional(readOnly = true)
     public ProductInEshopDto getProductInEshop(Long productId, Long eshopId) {
-        //TODO
+        //TODO impl
         return null;
     }
 
@@ -112,13 +113,19 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
     @Override
     @Transactional(readOnly = true)
     public List<EshopListDto> getEshopsWithProduct(Long productId) {
-        return productInEshopService.getEshopsWithProduct(productId);
+        System.out.println(">> getEshopsWithProduct");
+        List<EshopListDto> result = productInEshopService.getEshopsWithProduct(productId);
+        System.out.println("<< getEshopsWithProduct");
+        return result;
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<EshopListDto> getEshopsWithoutProduct(Long productId) {
-        return productInEshopService.getEshopsWithoutProduct(productId);
+        System.out.println(">> getEshopsWithoutProduct");
+        List<EshopListDto> result = productInEshopService.getEshopsWithoutProduct(productId);
+        System.out.println("<< getEshopsWithoutProduct");
+        return result;
     }
 
     @Override
@@ -130,10 +137,14 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
     @Override
     @Transactional(readOnly = true)
     public List<ProductInEshopCustomListDto> getProductsInEshop(Long eshopId) {
-        return productInEshopService.getProductsInEshop(eshopId);
+        System.out.println(">> getProductsInEshop");
+        List<ProductInEshopCustomListDto> result = productInEshopService.getProductsInEshop(eshopId);
+        System.out.println("<< getProductsInEshop");
+        return result;
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<ProductInEshopDto> findProductInEshopForPriceUpdate(DownloaderEshopType eshopId) {
         //TODO impl
         return null;

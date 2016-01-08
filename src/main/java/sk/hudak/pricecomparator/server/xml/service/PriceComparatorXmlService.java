@@ -10,6 +10,7 @@ import java.util.Set;
 /**
  * Created by jan on 15. 10. 2015.
  */
+@Deprecated
 public class PriceComparatorXmlService implements PriceComparatorService {
 
     private CategoryService categoryService;
@@ -18,6 +19,7 @@ public class PriceComparatorXmlService implements PriceComparatorService {
     private ProductInEshopService productInEshopService;
     private GroupOfProductService groupOfProductService;
 
+    @Deprecated
     public PriceComparatorXmlService() {
         this.categoryService = new CategoryServiceXmlImpl();
         this.eshopService = new EshopServiceXmlImpl();

@@ -40,6 +40,9 @@ public class ProductInEshopDao extends JefDao<ProductInEshopEntity> {
         crit.add(Restrictions.ne(ProductInEshopEntity.AT_PRODUCT + "." + ProductEntity.AT_ID, productId));
         crit.setProjection(Projections.property(ProductInEshopEntity.AT_ESHOP));
         addAscOrder(crit.createCriteria(ProductInEshopEntity.AT_ESHOP), EshopEntity.AT_NAME);
+        //TODO fixnut treba disticn alebo neako inak prerobit !!!
+//        crit.setProjection(Projections.distinct(Projections.property(ProductInEshopEntity.AT_ESHOP)));
+//        addAscOrder(crit, ProductInEshopEntity.AT_ESHOP +"."+ EshopEntity.AT_NAME);
         return crit.list();
     }
 

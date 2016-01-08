@@ -1,12 +1,13 @@
 package sk.hudak.pricecomparator.middle.api.to;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by jan on 3. 11. 2015.
  */
-public class GroupOfProductCreateDto {
+public class GroupOfProductCreateDto implements Serializable {
     //nazov
     private String name;
     // zoznam produktov v danej grupe

@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.server.pictureconverter;
+package sk.hudak.pricecomparator.server.tools;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
