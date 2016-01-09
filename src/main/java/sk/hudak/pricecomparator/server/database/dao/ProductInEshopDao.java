@@ -36,14 +36,18 @@ public class ProductInEshopDao extends JefDao<ProductInEshopEntity> {
     }
 
     public List<EshopEntity> getEshopsWithoutProduct(Long productId) {
-        Criteria crit = createCriteria(ProductInEshopEntity.class);
-        crit.add(Restrictions.ne(ProductInEshopEntity.AT_PRODUCT + "." + ProductEntity.AT_ID, productId));
-        crit.setProjection(Projections.property(ProductInEshopEntity.AT_ESHOP));
-        addAscOrder(crit.createCriteria(ProductInEshopEntity.AT_ESHOP), EshopEntity.AT_NAME);
-        //TODO fixnut treba disticn alebo neako inak prerobit !!!
-//        crit.setProjection(Projections.distinct(Projections.property(ProductInEshopEntity.AT_ESHOP)));
-//        addAscOrder(crit, ProductInEshopEntity.AT_ESHOP +"."+ EshopEntity.AT_NAME);
-        return crit.list();
+        Criteria cr = createCriteria(ProductInEshopEntity.class);
+        cr.add(Restrictions.eq(ProductInEshopEntity.AT_PRODUCT + "." + ProductEntity.AT_ID, productId));
+        cr.setProjection(Projections.distinct(Projections.property(ProductInEshopEntity.AT_ESHOP + "." + EshopEntity.AT_ID)));
+        // zoznam eshopov, ktore maju dany produkt
+        List<Long> eshopsIds = cr.list();
+
+        Criteria crEshop = createCriteria(EshopEntity.class);
+        crEshop.add(Restrictions.not(Restrictions.in(EshopEntity.AT_ID, eshopsIds)));
+        addAscOrder(crEshop, EshopEntity.AT_NAME);
+        List<EshopEntity> eshops = crEshop.list();
+
+        return eshops;
     }
 
     public List<ProductInEshopEntity> getProductsInEshopByProductId(Long productId) {
