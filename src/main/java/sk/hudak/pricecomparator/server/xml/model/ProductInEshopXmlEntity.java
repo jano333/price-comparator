@@ -3,6 +3,7 @@ package sk.hudak.pricecomparator.server.xml.model;
 /**
  * Created by jan on 14. 10. 2015.
  */
+@Deprecated
 public class ProductInEshopXmlEntity {
 
     // generuje sa pri vytvoreni
