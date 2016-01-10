@@ -56,6 +56,9 @@ public class ProductInEshopEntity extends BasicEntity {
     @Column(name = "PRICE_FOR_UNIT")
     private BigDecimal priceForUnit;
 
+    @Column(name = "LAST_UPDATED_PRICE")
+    private Date lastUpdatedPrice;
+
     @Override
     public Long getId() {
         return id;
@@ -136,5 +139,13 @@ public class ProductInEshopEntity extends BasicEntity {
 
     public void setPriceForUnit(BigDecimal priceForUnit) {
         this.priceForUnit = priceForUnit;
+    }
+
+    public Date getLastUpdatedPrice() {
+        return lastUpdatedPrice;
+    }
+
+    public void setLastUpdatedPrice(Date lastUpdatedPrice) {
+        this.lastUpdatedPrice = lastUpdatedPrice;
     }
 }
