@@ -1,9 +1,9 @@
 package sk.hudak.pricecomparator.server.database.service;
 
 import org.springframework.transaction.annotation.Transactional;
+import sk.hudak.pricecomparator.middle.api.EshopType;
 import sk.hudak.pricecomparator.middle.api.service.*;
 import sk.hudak.pricecomparator.middle.api.to.*;
-import sk.hudak.pricecomparator.server.tasks.DownloaderEshopType;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -88,26 +88,37 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
     @Override
     @Transactional
     public Long createProductInEshop(ProductInEshopCreateDto dto) {
-        return productInEshopService.createProductInEshop(dto);
+        System.out.println(">> createProductInEshop");
+        Long result = productInEshopService.createProductInEshop(dto);
+        System.out.println("<< createProductInEshop");
+        return result;
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<ProductInEshopListDto> getAllProductInEshop() {
-        return productInEshopService.getAllProductInEshop();
+        System.out.println(">> getAllProductInEshop");
+        List<ProductInEshopListDto> result = productInEshopService.getAllProductInEshop();
+        System.out.println("<< getAllProductInEshop");
+        return result;
     }
 
     @Override
     @Transactional(readOnly = true)
     public ProductInEshopDto getProductInEshop(Long productId, Long eshopId) {
-        //TODO impl
-        return null;
+        System.out.println(">> getProductInEshop");
+        ProductInEshopDto result = productInEshopService.getProductInEshop(productId, eshopId);
+        System.out.println("<< getProductInEshop");
+        return result;
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<ProductInEshopListDto> getProductsInEshopByProductId(Long productId) {
-        return productInEshopService.getProductsInEshopByProductId(productId);
+        System.out.println(">> getProductsInEshopByProductId");
+        List<ProductInEshopListDto> result = productInEshopService.getProductsInEshopByProductId(productId);
+        System.out.println("<< getProductsInEshopByProductId");
+        return result;
     }
 
     @Override
@@ -145,9 +156,15 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<ProductInEshopDto> findProductInEshopForPriceUpdate(DownloaderEshopType eshopId) {
+    public List<ProductInEshopDto> findProductInEshopForPriceUpdate(EshopType eshopId) {
         //TODO impl
         return null;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public ProductInEshopDto getProductForPriceUpdate(EshopType eshopType) {
+        return productInEshopService.getProductForPriceUpdate(eshopType);
     }
 
 

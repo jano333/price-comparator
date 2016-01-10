@@ -54,7 +54,7 @@ public class ProductInEshopAssembler {
         return result;
     }
 
-    private ProductInEshopDto transformToProductInEshopDto(ProductInEshopEntity entity) {
+    public ProductInEshopDto transformToProductInEshopDto(ProductInEshopEntity entity) {
         if (entity == null) {
             return null;
         }

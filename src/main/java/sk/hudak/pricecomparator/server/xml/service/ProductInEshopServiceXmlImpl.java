@@ -1,10 +1,10 @@
 package sk.hudak.pricecomparator.server.xml.service;
 
+import sk.hudak.pricecomparator.middle.api.EshopType;
 import sk.hudak.pricecomparator.middle.api.service.EshopService;
 import sk.hudak.pricecomparator.middle.api.service.ProductInEshopService;
 import sk.hudak.pricecomparator.middle.api.service.ProductService;
 import sk.hudak.pricecomparator.middle.api.to.*;
-import sk.hudak.pricecomparator.server.tasks.DownloaderEshopType;
 import sk.hudak.pricecomparator.server.xml.model.EshopXmlEntity;
 import sk.hudak.pricecomparator.server.xml.model.ProductInEshopXmlEntity;
 import sk.hudak.pricecomparator.server.xml.service.comparator.EshopListDtoComparatorByName;
@@ -166,8 +166,13 @@ public class ProductInEshopServiceXmlImpl extends AbstracServiceXmlImpl implemen
     }
 
     @Override
-    public List<ProductInEshopDto> findProductInEshopForPriceUpdate(DownloaderEshopType eshopId) {
+    public List<ProductInEshopDto> findProductInEshopForPriceUpdate(EshopType eshopId) {
         //TODO
+        return null;
+    }
+
+    @Override
+    public ProductInEshopDto getProductForPriceUpdate(EshopType eshopType) {
         return null;
     }
 

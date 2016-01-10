@@ -97,5 +97,4 @@ public abstract class JefDao<T extends LongIdEntity> {
         return getCurrentSession().createCriteria(enityClass);
     }
 
-
 }

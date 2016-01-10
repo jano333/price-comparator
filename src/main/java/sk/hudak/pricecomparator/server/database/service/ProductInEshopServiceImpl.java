@@ -1,5 +1,6 @@
 package sk.hudak.pricecomparator.server.database.service;
 
+import sk.hudak.pricecomparator.middle.api.EshopType;
 import sk.hudak.pricecomparator.middle.api.service.ProductInEshopService;
 import sk.hudak.pricecomparator.middle.api.to.*;
 import sk.hudak.pricecomparator.server.core.JefValidator;
@@ -7,7 +8,7 @@ import sk.hudak.pricecomparator.server.database.assembler.EshopAssembler;
 import sk.hudak.pricecomparator.server.database.assembler.ProductInEshopAssembler;
 import sk.hudak.pricecomparator.server.database.dao.ProductInEshopDao;
 import sk.hudak.pricecomparator.server.database.facade.ProductInEshopFacade;
-import sk.hudak.pricecomparator.server.tasks.DownloaderEshopType;
+import sk.hudak.pricecomparator.server.database.model.ProductInEshopEntity;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -41,19 +42,24 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
 
     @Override
     public List<ProductInEshopListDto> getAllProductInEshop() {
-        return productInEshopAssembler.transformToListOfProductInEshopListDto(productInEshopDao.getAllProductInEshop());
+        List<ProductInEshopEntity> allProductInEshop = productInEshopDao.getAllProductInEshop();
+
+        return productInEshopAssembler.transformToListOfProductInEshopListDto(allProductInEshop);
     }
 
     @Override
     public ProductInEshopDto getProductInEshop(Long productId, Long eshopId) {
-        //TODO
-        return null;
+        ProductInEshopEntity productInEshopEntity = productInEshopDao.getProductInEshop(productId, eshopId);
+
+        return productInEshopAssembler.transformToProductInEshopDto(productInEshopEntity);
     }
 
     @Override
     public List<EshopListDto> getEshopsWithProduct(Long productId) {
         val.notNull(productId, "productId is null");
-        return eshopAssembler.transformToListOfEshopListDto(productInEshopDao.getEshopsWithProduct(productId));
+
+        return eshopAssembler.transformToListOfEshopListDto(
+                productInEshopDao.getEshopsWithProduct(productId));
     }
 
     @Override
@@ -81,8 +87,14 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
     }
 
     @Override
-    public List<ProductInEshopDto> findProductInEshopForPriceUpdate(DownloaderEshopType eshopId) {
+    public List<ProductInEshopDto> findProductInEshopForPriceUpdate(EshopType eshopId) {
         //TODO validacie
+        return null;
+    }
+
+    @Override
+    public ProductInEshopDto getProductForPriceUpdate(EshopType eshopType) {
+        //TODO
         return null;
     }
 }

@@ -1,3 +1,6 @@
+- vsetky vytvorene entity nemaju created a modified date, a ni sa stym nopocita
+v jednotlivych servicoch
+
 9. BUG:
 - pri vypocitavani ceny nezaokruhlovat(lebo 0.225 ale vysledna cena je za balenie je nizsia pozri 26.94
 Andrea Shop	        0.208 € za jednotku, 	24.90 € za balenie, https://www.andreashop.sk/pampers-premium-care-s3-120-ks-465461

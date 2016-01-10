@@ -42,7 +42,7 @@ public class GroupOfProductDao extends JefDao<GroupOfProductEntity> {
             idList.add(productEntity.getId());
         }
         Criteria crit = createCriteria(ProductEntity.class);
-        //TODO In je limitovana poctom a treba ju rozdelit cez or...
+        //FIXME In je limitovana poctom a treba ju rozdelit cez or...
         crit.add(Restrictions.not(Restrictions.in(ProductEntity.AT_ID, idList)));
         addAscOrder(crit, ProductEntity.AT_NAME);
 

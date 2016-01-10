@@ -10,4 +10,5 @@ public interface PriceComparatorService extends
         ProductInEshopService,
         GroupOfProductService {
 
+
 }

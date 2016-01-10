@@ -1,12 +1,12 @@
 package sk.hudak.pricecomparator.server.tasks;
 
 import sk.hudak.pricecomparator.middle.api.EshopProductParser;
-import sk.hudak.pricecomparator.middle.api.exeption.PriceComparatorException;
+import sk.hudak.pricecomparator.middle.api.EshopType;
+import sk.hudak.pricecomparator.middle.api.canonical.ParserInputData;
+import sk.hudak.pricecomparator.middle.api.model.EshopProductInfo;
 import sk.hudak.pricecomparator.middle.api.service.PriceComparatorService;
+import sk.hudak.pricecomparator.middle.api.to.ProductDto;
 import sk.hudak.pricecomparator.middle.api.to.ProductInEshopDto;
-import sk.hudak.pricecomparator.server.parser.MetroEshopProductParser;
-import sk.hudak.pricecomparator.server.parser.TescoEshopProductParser;
-import sk.hudak.pricecomparator.server.xml.service.PriceComparatorXmlService;
 
 import java.util.List;
 
@@ -15,18 +15,43 @@ import java.util.List;
  */
 public abstract class EshopProductInfoDownloaderTask implements Runnable {
 
-    private boolean stop = false;
-    private EshopProductParser parser;
     private PriceComparatorService service;
 
-    public EshopProductInfoDownloaderTask() {
+    private Boolean stop = Boolean.FALSE;
+    private EshopProductParser parser;
+
+    public EshopProductInfoDownloaderTask(PriceComparatorService service) {
+        this.service = service;
         this.parser = getEshopParser();
-        //TODO DB impl doriesit
-        this.service = new PriceComparatorXmlService();
+    }
+
+    private void checkContinue() {
+        //TODO vyhodit vynimku a ma skoncit
     }
 
     @Override
     public void run() {
+
+        // 1. TODO ziskat jeden produkt, ktoremu sa vytvorit/aktualizovat vo zvolenom eshope
+
+        //TODO prerobit tu vraciat len jedno DTO a nieco ako z ProductEshopInfoEntity
+        // tam doimplementovat ktore atributy tam budu drzane lebo tam musim dat aj tie, ktore sa budu
+        // aktualizovat teda, cena, ci je alebo nie je akcia...
+
+        ProductInEshopDto productForUpdate = service.getProductForPriceUpdate(getEshopType());
+        ProductDto product = service.getProduct(productForUpdate.getProductId());
+
+        // 2. TODO preklopit na:
+        ParserInputData parserInputData = transformToParserInputData(productForUpdate, product);
+        // 3. ziskam stiahnem aktualne informacie a dopitam zvysne atributy
+        EshopProductInfo productInfo = parser.getProductInfo(parserInputData);
+
+
+
+
+
+
+
         // ziskam zozonam produktov, ktorym treba urobit update
         List<ProductInEshopDto> productsForUpdate = service.findProductInEshopForPriceUpdate(getEshopType());
         System.out.println(">> pocet produktov pre eshop " + getEshopType() + " na aktualizaciu: " + productsForUpdate.size());
@@ -34,22 +59,27 @@ public abstract class EshopProductInfoDownloaderTask implements Runnable {
 
     }
 
+    private ParserInputData transformToParserInputData(ProductInEshopDto productForUpdate, ProductDto product) {
+        //TODO impl
+        return null;
+    }
+
     //------------- DONE:
 
-    public abstract DownloaderEshopType getEshopType();
+    protected abstract EshopType getEshopType();
+
+    protected abstract EshopProductParser getEshopParser();
 
     public void stopTask() {
-        this.stop = true;
-    }
-
-    private EshopProductParser getEshopParser() {
-        switch (getEshopType()) {
-            case TESCO:
-                return new TescoEshopProductParser();
-            case METRO:
-                return new MetroEshopProductParser();
-            default:
-                throw new PriceComparatorException("Perser for eshop type not found");
+        synchronized (stop) {
+            this.stop = Boolean.TRUE;
         }
     }
+
+    private boolean shouldStopTask() {
+        synchronized (stop) {
+            return stop;
+        }
+    }
+
 }

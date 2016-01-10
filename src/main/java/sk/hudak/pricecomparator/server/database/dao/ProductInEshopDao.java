@@ -28,6 +28,8 @@ public class ProductInEshopDao extends JefDao<ProductInEshopEntity> {
     }
 
     public List<EshopEntity> getEshopsWithProduct(Long productId) {
+        // FIXME urobit optimalne tak ako je getEshopsWithoutProduct, lebo robi n selectov,
+        // velmi neoptimalne...
         Criteria crit = createCriteria(ProductInEshopEntity.class);
         crit.add(Restrictions.eq(ProductInEshopEntity.AT_PRODUCT + "." + ProductEntity.AT_ID, productId));
         crit.setProjection(Projections.property(ProductInEshopEntity.AT_ESHOP));
@@ -60,6 +62,12 @@ public class ProductInEshopDao extends JefDao<ProductInEshopEntity> {
         Criteria crit = createCriteria(ProductInEshopEntity.class);
         crit.add(Restrictions.eq(ProductInEshopEntity.AT_ESHOP + "." + EshopEntity.AT_ID, eshopId));
         return crit.list();
+    }
 
+    public ProductInEshopEntity getProductInEshop(Long productId, Long eshopId) {
+        Criteria crit = createCriteria(ProductInEshopEntity.class);
+        crit.add(Restrictions.eq(ProductInEshopEntity.AT_ESHOP + "." + EshopEntity.AT_ID, eshopId));
+        crit.add(Restrictions.eq(ProductInEshopEntity.AT_PRODUCT + "." + ProductEntity.AT_ID, productId));
+        return (ProductInEshopEntity) crit.uniqueResult();
     }
 }

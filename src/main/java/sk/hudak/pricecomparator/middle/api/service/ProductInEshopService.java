@@ -1,7 +1,7 @@
 package sk.hudak.pricecomparator.middle.api.service;
 
+import sk.hudak.pricecomparator.middle.api.EshopType;
 import sk.hudak.pricecomparator.middle.api.to.*;
-import sk.hudak.pricecomparator.server.tasks.DownloaderEshopType;
 
 import java.util.List;
 
@@ -48,5 +48,8 @@ public interface ProductInEshopService {
      *
      * @param eshopId
      */
-    List<ProductInEshopDto> findProductInEshopForPriceUpdate(DownloaderEshopType eshopId);
+    @Deprecated
+    List<ProductInEshopDto> findProductInEshopForPriceUpdate(EshopType eshopId);
+
+    ProductInEshopDto getProductForPriceUpdate(EshopType eshopType);
 }
