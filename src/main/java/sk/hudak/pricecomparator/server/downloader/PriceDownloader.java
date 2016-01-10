@@ -1,11 +1,11 @@
 package sk.hudak.pricecomparator.server.downloader;
 
+import sk.hudak.pricecomparator.client.ServiceLocator;
 import sk.hudak.pricecomparator.middle.api.EshopProductParser;
 import sk.hudak.pricecomparator.middle.api.canonical.ParserInputData;
 import sk.hudak.pricecomparator.middle.api.model.EshopProductInfo;
 import sk.hudak.pricecomparator.middle.api.service.PriceComparatorService;
 import sk.hudak.pricecomparator.middle.api.to.*;
-import sk.hudak.pricecomparator.server.xml.service.PriceComparatorXmlService;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class PriceDownloader {
 
-    private PriceComparatorService service = new PriceComparatorXmlService();
+    private PriceComparatorService service = ServiceLocator.getService();
 
     public GroupPriceListDto downloadProductInfoForGroup(Long groupOfProductId) {
         GroupOfProductDto groupOfProduct = service.getGroupOfProduct(groupOfProductId);
