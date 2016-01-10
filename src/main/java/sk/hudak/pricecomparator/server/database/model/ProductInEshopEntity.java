@@ -1,6 +1,10 @@
 package sk.hudak.pricecomparator.server.database.model;
 
+import sk.hudak.pricecomparator.middle.api.model.ProductAction;
+
 import javax.persistence.*;
+import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * Created by jan on 1. 12. 2015.
@@ -32,6 +36,25 @@ public class ProductInEshopEntity extends BasicEntity {
     // definuje stranku produktu v danom eshope
     @Column(name = "PRODUCT_PAGE_IN_ESHOP", nullable = false, unique = true)
     private String productPageInEshop;
+
+    @Column(name = "PRODUCT_NAME_IN_ESHOP")
+    private String productNameInEhop;
+
+    @Column(name = "PRODUCT_ACTION")
+    @Enumerated(EnumType.STRING)
+    private ProductAction productAction;
+
+    @Column(name = "ACTION_VALID_TO")
+    private Date actionValidTo;
+
+    @Column(name = "PRICE_FOR_PACKAGE")
+    private BigDecimal priceForPackage;
+
+    @Column(name = "PRICE_FOR_ONE_ITEM_IN_PAC")
+    private BigDecimal priceForOneItemInPackage;
+
+    @Column(name = "PRICE_FOR_UNIT")
+    private BigDecimal priceForUnit;
 
     @Override
     public Long getId() {
@@ -67,5 +90,51 @@ public class ProductInEshopEntity extends BasicEntity {
         this.productPageInEshop = productPageInEshop;
     }
 
+    public String getProductNameInEhop() {
+        return productNameInEhop;
+    }
 
+    public void setProductNameInEhop(String productNameInEhop) {
+        this.productNameInEhop = productNameInEhop;
+    }
+
+    public ProductAction getProductAction() {
+        return productAction;
+    }
+
+    public void setProductAction(ProductAction productAction) {
+        this.productAction = productAction;
+    }
+
+    public Date getActionValidTo() {
+        return actionValidTo;
+    }
+
+    public void setActionValidTo(Date actionValidTo) {
+        this.actionValidTo = actionValidTo;
+    }
+
+    public BigDecimal getPriceForPackage() {
+        return priceForPackage;
+    }
+
+    public void setPriceForPackage(BigDecimal priceForPackage) {
+        this.priceForPackage = priceForPackage;
+    }
+
+    public BigDecimal getPriceForOneItemInPackage() {
+        return priceForOneItemInPackage;
+    }
+
+    public void setPriceForOneItemInPackage(BigDecimal priceForOneItemInPackage) {
+        this.priceForOneItemInPackage = priceForOneItemInPackage;
+    }
+
+    public BigDecimal getPriceForUnit() {
+        return priceForUnit;
+    }
+
+    public void setPriceForUnit(BigDecimal priceForUnit) {
+        this.priceForUnit = priceForUnit;
+    }
 }
