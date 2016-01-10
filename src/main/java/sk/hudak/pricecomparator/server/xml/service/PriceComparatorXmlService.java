@@ -88,15 +88,15 @@ public class PriceComparatorXmlService implements PriceComparatorService {
         return productInEshopService.getProductsInEshop(eshopId);
     }
 
-    @Override
-    public List<ProductInEshopDto> findProductInEshopForPriceUpdate(EshopType eshopId) {
-        //TODO
-        return null;
-    }
 
     @Override
     public ProductInEshopDto getProductForPriceUpdate(EshopType eshopType) {
         return null;
+    }
+
+    @Override
+    public void updateProductInEshopPrice(ProductInEshopPriceUpdateDto updateDto) {
+
     }
 
 

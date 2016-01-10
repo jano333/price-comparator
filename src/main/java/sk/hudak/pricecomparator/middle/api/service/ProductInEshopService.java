@@ -43,13 +43,7 @@ public interface ProductInEshopService {
      */
     List<ProductInEshopCustomListDto> getProductsInEshop(Long eshopId);
 
-    /**
-     * ZOznam produktov, kde cena je null alebo je starsia ako 24 hodin
-     *
-     * @param eshopId
-     */
-    @Deprecated
-    List<ProductInEshopDto> findProductInEshopForPriceUpdate(EshopType eshopId);
-
     ProductInEshopDto getProductForPriceUpdate(EshopType eshopType);
+
+    void updateProductInEshopPrice(ProductInEshopPriceUpdateDto updateDto);
 }

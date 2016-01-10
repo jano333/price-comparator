@@ -11,7 +11,7 @@ import java.util.Date;
  */
 public class ProductInfoFactory {
 
-    //TODO do api
+    //TODO presunut do api
     public static final BigDecimal PRICE_UNAVIABLE = new BigDecimal(-1);
 
     public static EshopProductInfo createUnaviable() {

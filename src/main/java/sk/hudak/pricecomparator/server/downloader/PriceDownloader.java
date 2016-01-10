@@ -32,7 +32,6 @@ public class PriceDownloader {
         // zotriedim podla ceny za jednotku
         Collections.sort(eshopProductPriceDtos, new PriceComparator());
 
-        //TODO
         return new GroupPriceListDto(
                 groupOfProduct.getId(),
                 groupOfProduct.getName(),
@@ -89,7 +88,6 @@ public class PriceDownloader {
                 System.out.println("end sleeping");
 
             } catch (ClassNotFoundException e) {
-                //TODO
                 e.printStackTrace();
             } catch (InstantiationException e) {
                 e.printStackTrace();

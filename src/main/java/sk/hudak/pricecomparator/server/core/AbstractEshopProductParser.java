@@ -47,7 +47,7 @@ public abstract class AbstractEshopProductParser implements EshopProductParser {
 
         } catch (Exception e) {
             System.out.println("error while conneting to: " + parserInputData.getEshopProductPage());
-            //TODO
+            //TODO proces exception
             e.printStackTrace();
             return ProductInfoFactory.createUnaviable();
         }

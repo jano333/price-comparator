@@ -7,8 +7,7 @@ import sk.hudak.pricecomparator.middle.api.model.EshopProductInfo;
 import sk.hudak.pricecomparator.middle.api.service.PriceComparatorService;
 import sk.hudak.pricecomparator.middle.api.to.ProductDto;
 import sk.hudak.pricecomparator.middle.api.to.ProductInEshopDto;
-
-import java.util.List;
+import sk.hudak.pricecomparator.middle.api.to.ProductInEshopPriceUpdateDto;
 
 /**
  * Created by jan on 4. 1. 2016.
@@ -32,39 +31,44 @@ public abstract class EshopProductInfoDownloaderTask implements Runnable {
     @Override
     public void run() {
 
-        // 1. TODO ziskat jeden produkt, ktoremu sa vytvorit/aktualizovat vo zvolenom eshope
-
-        //TODO prerobit tu vraciat len jedno DTO a nieco ako z ProductEshopInfoEntity
-        // tam doimplementovat ktore atributy tam budu drzane lebo tam musim dat aj tie, ktore sa budu
-        // aktualizovat teda, cena, ci je alebo nie je akcia...
-
+        // 1. ziskam jeden produkt, ktoremu sa vytvori/aktualizuje cena pre zvoleny eshop
+        //FIXME, prerobit na jednot DTO (aby som to nacital v jednej transakcii)
         ProductInEshopDto productForUpdate = service.getProductForPriceUpdate(getEshopType());
         ProductDto product = service.getProduct(productForUpdate.getProductId());
 
-        // 2. TODO preklopit na:
+        // 2. preklopenie
         ParserInputData parserInputData = transformToParserInputData(productForUpdate, product);
-        // 3. ziskam stiahnem aktualne informacie a dopitam zvysne atributy
+
+        // 3. stiahnem aktualne informacie a dopitam zvysne atributy
         EshopProductInfo productInfo = parser.getProductInfo(parserInputData);
 
+        // 4. preklopenie
+        ProductInEshopPriceUpdateDto updateDto = transfromToProductInEshopPriceUpdateDto(productForUpdate.getId(), productInfo);
 
-
-
-
-
-
-        // ziskam zozonam produktov, ktorym treba urobit update
-        List<ProductInEshopDto> productsForUpdate = service.findProductInEshopForPriceUpdate(getEshopType());
-        System.out.println(">> pocet produktov pre eshop " + getEshopType() + " na aktualizaciu: " + productsForUpdate.size());
-
+        service.updateProductInEshopPrice(updateDto);
 
     }
 
-    private ParserInputData transformToParserInputData(ProductInEshopDto productForUpdate, ProductDto product) {
-        //TODO impl
-        return null;
+    private ProductInEshopPriceUpdateDto transfromToProductInEshopPriceUpdateDto(Long id, EshopProductInfo productInfo) {
+        ProductInEshopPriceUpdateDto dto = new ProductInEshopPriceUpdateDto();
+        dto.setId(id);
+        dto.setActionValidTo(productInfo.getActionValidTo());
+        dto.setPriceForOneItemInPackage(productInfo.getPriceForOneItemInPackage());
+        dto.setPriceForPackage(productInfo.getPriceForPackage());
+        dto.setPriceForUnit(productInfo.getPriceForUnit());
+        dto.setProductAction(productInfo.getAction());
+        return dto;
     }
 
     //------------- DONE:
+
+    private ParserInputData transformToParserInputData(ProductInEshopDto productInEshopDto, ProductDto productDto) {
+        return new ParserInputData(
+                productDto.getCountOfItemInOnePackage(),
+                productDto.getUnit(),
+                productDto.getCountOfUnit(),
+                productInEshopDto.getEshopProductPage());
+    }
 
     protected abstract EshopType getEshopType();
 

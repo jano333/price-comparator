@@ -142,7 +142,10 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
     @Override
     @Transactional(readOnly = true)
     public List<ProductInEshopDto> getProductsInEshopForDownloaderByProductId(Long productId) {
-        return productInEshopService.getProductsInEshopForDownloaderByProductId(productId);
+        System.out.println(">> getProductsInEshopForDownloaderByProductId");
+        List<ProductInEshopDto> result = productInEshopService.getProductsInEshopForDownloaderByProductId(productId);
+        System.out.println("<< getProductsInEshopForDownloaderByProductId");
+        return result;
     }
 
     @Override
@@ -156,15 +159,19 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<ProductInEshopDto> findProductInEshopForPriceUpdate(EshopType eshopId) {
-        //TODO impl
-        return null;
+    public ProductInEshopDto getProductForPriceUpdate(EshopType eshopType) {
+        System.out.println(">> getProductForPriceUpdate");
+        ProductInEshopDto result = productInEshopService.getProductForPriceUpdate(eshopType);
+        System.out.println("<< getProductForPriceUpdate");
+        return result;
     }
 
     @Override
-    @Transactional(readOnly = true)
-    public ProductInEshopDto getProductForPriceUpdate(EshopType eshopType) {
-        return productInEshopService.getProductForPriceUpdate(eshopType);
+    @Transactional
+    public void updateProductInEshopPrice(ProductInEshopPriceUpdateDto updateDto) {
+        System.out.println(">> updateProductInEshopPrice");
+        productInEshopService.updateProductInEshopPrice(updateDto);
+        System.out.println("<< updateProductInEshopPrice");
     }
 
 

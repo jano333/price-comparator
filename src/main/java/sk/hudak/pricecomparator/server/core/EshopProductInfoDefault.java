@@ -65,7 +65,7 @@ public class EshopProductInfoDefault implements EshopProductInfo {
 
     @Override
     public String getProductImageUrl() {
-        //TODO
+        //TODO impl
         return null;
     }
 }

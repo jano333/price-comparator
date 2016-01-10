@@ -27,6 +27,6 @@ public class JefValidator {
 
 
     public void maxLength(String value, int maxLength, String errMsg) {
-        //TODO koltola na maximalnu dlzku
+        //TODO impl  kontola na maximalnu dlzku
     }
 }

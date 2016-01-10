@@ -86,15 +86,17 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
         return productInEshopAssembler.transformToListOfProductInEshopCustomListDto(productInEshopDao.getProductsInEshop(eshopId));
     }
 
+
     @Override
-    public List<ProductInEshopDto> findProductInEshopForPriceUpdate(EshopType eshopId) {
-        //TODO validacie
+    public ProductInEshopDto getProductForPriceUpdate(EshopType eshopType) {
+        val.notNull(eshopType, "eshopType is null");
+
+        //TODO impl
         return null;
     }
 
     @Override
-    public ProductInEshopDto getProductForPriceUpdate(EshopType eshopType) {
-        //TODO
-        return null;
+    public void updateProductInEshopPrice(ProductInEshopPriceUpdateDto updateDto) {
+        //TODO impl
     }
 }

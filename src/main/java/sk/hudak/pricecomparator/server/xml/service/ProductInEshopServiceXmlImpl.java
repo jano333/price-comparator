@@ -165,15 +165,15 @@ public class ProductInEshopServiceXmlImpl extends AbstracServiceXmlImpl implemen
         return result;
     }
 
-    @Override
-    public List<ProductInEshopDto> findProductInEshopForPriceUpdate(EshopType eshopId) {
-        //TODO
-        return null;
-    }
 
     @Override
     public ProductInEshopDto getProductForPriceUpdate(EshopType eshopType) {
         return null;
+    }
+
+    @Override
+    public void updateProductInEshopPrice(ProductInEshopPriceUpdateDto updateDto) {
+
     }
 
     private ProductInEshopListDto transformToProductInEshopListDto(ProductInEshopXmlEntity productInEshop) {
