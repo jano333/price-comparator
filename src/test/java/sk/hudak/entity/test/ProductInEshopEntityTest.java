@@ -47,16 +47,16 @@ public class ProductInEshopEntityTest extends AbstractTestNGSpringContextTests {
         Assert.assertNotNull(productInEshopId);
 
         ProductInEshopService ser = service;
-        List<ProductInEshopListDto> productsInEshopByProductId = ser.getProductsInEshopByProductId(productId);
+        List<ProductInEshopListDto> productsInEshopByProductId = ser.findProductsInEshopByProductId(productId);
         Assert.assertNotNull(productsInEshopByProductId);
 
-        List<ProductInEshopCustomListDto> productsInEshop = ser.getProductsInEshop(eshopId);
+        List<ProductInEshopCustomListDto> productsInEshop = ser.findProductsInEshop(eshopId);
         Assert.assertNotNull(productsInEshop);
 
-        List<EshopListDto> eshopsWithProduct = ser.getEshopsWithProduct(productId);
+        List<EshopListDto> eshopsWithProduct = ser.findEshopsWithProduct(productId);
         Assert.assertNotNull(eshopsWithProduct);
 
-        List<EshopListDto> eshopsWithoutProduct = ser.getEshopsWithoutProduct(productId);
+        List<EshopListDto> eshopsWithoutProduct = ser.findEshopsWithoutProduct(productId);
         Assert.assertNotNull(eshopsWithoutProduct);
 
 

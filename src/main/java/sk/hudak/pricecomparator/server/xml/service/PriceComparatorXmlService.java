@@ -54,8 +54,8 @@ public class PriceComparatorXmlService implements PriceComparatorService {
     }
 
     @Override
-    public List<ProductInEshopListDto> getAllProductInEshop() {
-        return productInEshopService.getAllProductInEshop();
+    public List<ProductInEshopListDto> findAllProductInEshop() {
+        return productInEshopService.findAllProductInEshop();
     }
 
     @Override
@@ -64,33 +64,33 @@ public class PriceComparatorXmlService implements PriceComparatorService {
     }
 
     @Override
-    public List<ProductInEshopListDto> getProductsInEshopByProductId(Long productId) {
-        return productInEshopService.getProductsInEshopByProductId(productId);
+    public List<ProductInEshopListDto> findProductsInEshopByProductId(Long productId) {
+        return productInEshopService.findProductsInEshopByProductId(productId);
     }
 
     @Override
-    public List<EshopListDto> getEshopsWithoutProduct(Long productId) {
-        return productInEshopService.getEshopsWithoutProduct(productId);
+    public List<EshopListDto> findEshopsWithoutProduct(Long productId) {
+        return productInEshopService.findEshopsWithoutProduct(productId);
     }
 
     @Override
-    public List<EshopListDto> getEshopsWithProduct(Long productId) {
-        return productInEshopService.getEshopsWithProduct(productId);
+    public List<EshopListDto> findEshopsWithProduct(Long productId) {
+        return productInEshopService.findEshopsWithProduct(productId);
     }
 
     @Override
-    public List<ProductInEshopDto> getProductsInEshopForDownloaderByProductId(Long productId) {
-        return productInEshopService.getProductsInEshopForDownloaderByProductId(productId);
+    public List<ProductInEshopDto> findProductsInEshopForDownloaderByProductId(Long productId) {
+        return productInEshopService.findProductsInEshopForDownloaderByProductId(productId);
     }
 
     @Override
-    public List<ProductInEshopCustomListDto> getProductsInEshop(Long eshopId) {
-        return productInEshopService.getProductsInEshop(eshopId);
+    public List<ProductInEshopCustomListDto> findProductsInEshop(Long eshopId) {
+        return productInEshopService.findProductsInEshop(eshopId);
     }
 
 
     @Override
-    public ProductInEshopDto getProductForPriceUpdate(EshopType eshopType) {
+    public ProductInEshopDto findProductForPriceUpdate(EshopType eshopType) {
         return null;
     }
 

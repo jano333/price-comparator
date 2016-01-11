@@ -56,7 +56,7 @@ public abstract class JefDao<T extends LongIdEntity> {
         return (T) getCurrentSession().get(entityClass, id);
     }
 
-    protected abstract T readMandatory(Long id);
+    public abstract T readMandatory(Long id);
 
     protected T readMandatory(Long id, Class<T> entityClass) {
         T entity = read(id, entityClass);

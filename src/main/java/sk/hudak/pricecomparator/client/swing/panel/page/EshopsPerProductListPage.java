@@ -51,7 +51,7 @@ public class EshopsPerProductListPage extends JPanel {
             @Override
             public java.util.List<EshopListDto> readData() {
                 if (lvProduct.getSelectedEntity() != null) {
-                    return ServiceLocator.getService().getEshopsWithProduct(lvProduct.getSelectedEntity().getId());
+                    return ServiceLocator.getService().findEshopsWithProduct(lvProduct.getSelectedEntity().getId());
                 } else {
                     return Collections.emptyList();
                 }

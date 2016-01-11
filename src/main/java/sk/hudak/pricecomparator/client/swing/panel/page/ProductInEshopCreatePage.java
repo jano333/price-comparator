@@ -53,7 +53,7 @@ public class ProductInEshopCreatePage extends JPanel {
             @Override
             public List<EshopListDto> readData() {
                 if (lvProduct.getSelectedEntity() != null) {
-                    return ServiceLocator.getService().getEshopsWithoutProduct(lvProduct.getSelectedEntity().getId());
+                    return ServiceLocator.getService().findEshopsWithoutProduct(lvProduct.getSelectedEntity().getId());
                 } else {
                     return Collections.emptyList();
                 }
@@ -109,7 +109,7 @@ public class ProductInEshopCreatePage extends JPanel {
             @Override
             public List<EshopListDto> readData() {
                 if (lvProduct.getSelectedEntity() != null) {
-                    return ServiceLocator.getService().getEshopsWithProduct(lvProduct.getSelectedEntity().getId());
+                    return ServiceLocator.getService().findEshopsWithProduct(lvProduct.getSelectedEntity().getId());
                 } else {
                     return Collections.emptyList();
                 }

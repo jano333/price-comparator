@@ -11,7 +11,7 @@ public class PriceComparator {
 //        for (ProductListDto product : service.getAllProduct()) {
 //            System.out.println("Product " + product.getName());
 //
-//            for (ProductInEshopListDto productInEshop : service.getProductsInEshopByProductId(product.getId())) {
+//            for (ProductInEshopListDto productInEshop : service.findProductsInEshopByProductId(product.getId())) {
 //
 //
 //                Eshop eshop = productInEshop.getEshop();
@@ -35,7 +35,7 @@ public class PriceComparator {
         }
 
 
-//        List<ProductInEshop> productInEshops = productInEshopService.getAllProductInEshop();
+//        List<ProductInEshop> productInEshops = productInEshopService.findAllProductInEshop();
 //
 //
 //        for (ProductInEshop productInEshop : productInEshops) {

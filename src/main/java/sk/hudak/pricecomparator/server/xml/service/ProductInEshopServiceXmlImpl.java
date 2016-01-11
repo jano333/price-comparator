@@ -33,7 +33,7 @@ public class ProductInEshopServiceXmlImpl extends AbstracServiceXmlImpl implemen
     }
 
     @Override
-    public List<ProductInEshopListDto> getAllProductInEshop() {
+    public List<ProductInEshopListDto> findAllProductInEshop() {
         List<ProductInEshopXmlEntity> productInEshops = xmlDataDb.getProductInEshops();
         List<ProductInEshopListDto> result = new ArrayList<>(productInEshops.size());
         for (ProductInEshopXmlEntity productInEshop : productInEshops) {
@@ -67,7 +67,7 @@ public class ProductInEshopServiceXmlImpl extends AbstracServiceXmlImpl implemen
 
 
     @Override
-    public List<ProductInEshopListDto> getProductsInEshopByProductId(Long productId) {
+    public List<ProductInEshopListDto> findProductsInEshopByProductId(Long productId) {
         List<ProductInEshopListDto> result = new ArrayList<>();
         List<ProductInEshopXmlEntity> productInEshops = xmlDataDb.getProductInEshops();
         for (ProductInEshopXmlEntity productInEshop : productInEshops) {
@@ -79,7 +79,7 @@ public class ProductInEshopServiceXmlImpl extends AbstracServiceXmlImpl implemen
     }
 
     @Override
-    public List<EshopListDto> getEshopsWithoutProduct(Long productId) {
+    public List<EshopListDto> findEshopsWithoutProduct(Long productId) {
 
         // zoznam eshopov s danym produktom
         Set<Long> eshopsId = new HashSet<>();
@@ -106,7 +106,7 @@ public class ProductInEshopServiceXmlImpl extends AbstracServiceXmlImpl implemen
     }
 
     @Override
-    public List<EshopListDto> getEshopsWithProduct(Long productId) {
+    public List<EshopListDto> findEshopsWithProduct(Long productId) {
         List<ProductInEshopXmlEntity> productInEshops = xmlDataDb.getProductInEshops();
         List<EshopListDto> result = new ArrayList<>();
         for (ProductInEshopXmlEntity productInEshop : productInEshops) {
@@ -125,7 +125,7 @@ public class ProductInEshopServiceXmlImpl extends AbstracServiceXmlImpl implemen
     }
 
     @Override
-    public List<ProductInEshopDto> getProductsInEshopForDownloaderByProductId(Long productId) {
+    public List<ProductInEshopDto> findProductsInEshopForDownloaderByProductId(Long productId) {
         List<ProductInEshopXmlEntity> productInEshops = xmlDataDb.getProductInEshops();
         List<ProductInEshopDto> result = new ArrayList<>();
         for (ProductInEshopXmlEntity productInEshop : productInEshops) {
@@ -142,7 +142,7 @@ public class ProductInEshopServiceXmlImpl extends AbstracServiceXmlImpl implemen
     }
 
     @Override
-    public List<ProductInEshopCustomListDto> getProductsInEshop(Long eshopId) {
+    public List<ProductInEshopCustomListDto> findProductsInEshop(Long eshopId) {
         List<ProductInEshopXmlEntity> productInEshops = xmlDataDb.getProductInEshops();
         List<ProductInEshopCustomListDto> result = new ArrayList<>(productInEshops.size());
         for (ProductInEshopXmlEntity productInEshop : productInEshops) {
@@ -167,7 +167,7 @@ public class ProductInEshopServiceXmlImpl extends AbstracServiceXmlImpl implemen
 
 
     @Override
-    public ProductInEshopDto getProductForPriceUpdate(EshopType eshopType) {
+    public ProductInEshopDto findProductForPriceUpdate(EshopType eshopType) {
         return null;
     }
 

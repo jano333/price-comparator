@@ -62,7 +62,7 @@ public class PriceDownloader {
 
     private List<EshopProductPriceDto> getEshopProductPriceDtos(ProductDto productDto) {
         // ziskam zoznam ehopov v ktorych je zaregistrovany dany produkt
-        List<ProductInEshopDto> productInEshopDtos = service.getProductsInEshopForDownloaderByProductId(productDto.getId());
+        List<ProductInEshopDto> productInEshopDtos = service.findProductsInEshopForDownloaderByProductId(productDto.getId());
         List<EshopProductPriceDto> eshopProductPriceDtos = new ArrayList<>(productInEshopDtos.size());
 
 

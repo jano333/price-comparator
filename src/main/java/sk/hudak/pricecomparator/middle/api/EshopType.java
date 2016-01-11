@@ -6,6 +6,12 @@ package sk.hudak.pricecomparator.middle.api;
 public enum EshopType {
 
     //TODO doplnit vsetky eshopy, a rozsirit entity o dany typ
+    HEJ,
     TESCO,
-    METRO,;
+    METRO,
+    PERINBABA,
+
+    //TODO ostatne;
+    ;
+
 }

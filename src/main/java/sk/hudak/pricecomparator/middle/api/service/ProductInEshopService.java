@@ -18,7 +18,7 @@ public interface ProductInEshopService {
      */
     Long createProductInEshop(ProductInEshopCreateDto dto);
 
-    List<ProductInEshopListDto> getAllProductInEshop();
+    List<ProductInEshopListDto> findAllProductInEshop();
 
     /**
      * @param productId id produktu, povinne
@@ -28,22 +28,22 @@ public interface ProductInEshopService {
     ProductInEshopDto getProductInEshop(Long productId, Long eshopId);
 
 
-    List<EshopListDto> getEshopsWithProduct(Long productId);
+    List<EshopListDto> findEshopsWithProduct(Long productId);
 
-    List<EshopListDto> getEshopsWithoutProduct(Long productId);
+    List<EshopListDto> findEshopsWithoutProduct(Long productId);
 
-    List<ProductInEshopListDto> getProductsInEshopByProductId(Long productId);
+    List<ProductInEshopListDto> findProductsInEshopByProductId(Long productId);
 
-    List<ProductInEshopDto> getProductsInEshopForDownloaderByProductId(Long productId);
+    List<ProductInEshopDto> findProductsInEshopForDownloaderByProductId(Long productId);
 
 
     /**
      * @param eshopId id eshop-u
      * @return zoznam produktov v danom eshope
      */
-    List<ProductInEshopCustomListDto> getProductsInEshop(Long eshopId);
+    List<ProductInEshopCustomListDto> findProductsInEshop(Long eshopId);
 
-    ProductInEshopDto getProductForPriceUpdate(EshopType eshopType);
+    ProductInEshopDto findProductForPriceUpdate(EshopType eshopType);
 
     void updateProductInEshopPrice(ProductInEshopPriceUpdateDto updateDto);
 }

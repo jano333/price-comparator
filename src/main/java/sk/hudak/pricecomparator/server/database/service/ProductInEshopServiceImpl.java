@@ -8,6 +8,7 @@ import sk.hudak.pricecomparator.server.database.assembler.EshopAssembler;
 import sk.hudak.pricecomparator.server.database.assembler.ProductInEshopAssembler;
 import sk.hudak.pricecomparator.server.database.dao.ProductInEshopDao;
 import sk.hudak.pricecomparator.server.database.facade.ProductInEshopFacade;
+import sk.hudak.pricecomparator.server.database.model.EshopEntity;
 import sk.hudak.pricecomparator.server.database.model.ProductInEshopEntity;
 
 import javax.inject.Inject;
@@ -41,62 +42,74 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
     }
 
     @Override
-    public List<ProductInEshopListDto> getAllProductInEshop() {
-        List<ProductInEshopEntity> allProductInEshop = productInEshopDao.getAllProductInEshop();
+    public List<ProductInEshopListDto> findAllProductInEshop() {
 
+        List<ProductInEshopEntity> allProductInEshop = productInEshopDao.findAllProductInEshop();
         return productInEshopAssembler.transformToListOfProductInEshopListDto(allProductInEshop);
     }
 
     @Override
     public ProductInEshopDto getProductInEshop(Long productId, Long eshopId) {
-        ProductInEshopEntity productInEshopEntity = productInEshopDao.getProductInEshop(productId, eshopId);
+        //TODO mozu byt vstupne pametre null??
 
+        ProductInEshopEntity productInEshopEntity = productInEshopDao.findProductInEshop(productId, eshopId);
         return productInEshopAssembler.transformToProductInEshopDto(productInEshopEntity);
     }
 
     @Override
-    public List<EshopListDto> getEshopsWithProduct(Long productId) {
+    public List<EshopListDto> findEshopsWithProduct(Long productId) {
         val.notNull(productId, "productId is null");
 
-        return eshopAssembler.transformToListOfEshopListDto(
-                productInEshopDao.getEshopsWithProduct(productId));
+        List<EshopEntity> eshopsWithProduct = productInEshopDao.findEshopsWithProduct(productId);
+        return eshopAssembler.transformToListOfEshopListDto(eshopsWithProduct);
     }
 
     @Override
-    public List<EshopListDto> getEshopsWithoutProduct(Long productId) {
+    public List<EshopListDto> findEshopsWithoutProduct(Long productId) {
         val.notNull(productId, "productId is null");
-        return eshopAssembler.transformToListOfEshopListDto(productInEshopDao.getEshopsWithoutProduct(productId));
+
+        List<EshopEntity> eshopsWithoutProduct = productInEshopDao.findEshopsWithoutProduct(productId);
+        return eshopAssembler.transformToListOfEshopListDto(eshopsWithoutProduct);
     }
 
     @Override
-    public List<ProductInEshopListDto> getProductsInEshopByProductId(Long productId) {
+    public List<ProductInEshopListDto> findProductsInEshopByProductId(Long productId) {
         val.notNull(productId, "productId is null");
-        return productInEshopAssembler.transformToListOfProductInEshopListDto(productInEshopDao.getProductsInEshopByProductId(productId));
+
+        List<ProductInEshopEntity> productsInEshopByProductId = productInEshopDao.findProductsInEshopByProductId(productId);
+        return productInEshopAssembler.transformToListOfProductInEshopListDto(productsInEshopByProductId);
     }
 
     @Override
-    public List<ProductInEshopDto> getProductsInEshopForDownloaderByProductId(Long productId) {
+    public List<ProductInEshopDto> findProductsInEshopForDownloaderByProductId(Long productId) {
         val.notNull(productId, "productId is null");
-        return productInEshopAssembler.transformToListOfProductInEshopDto(productInEshopDao.getProductsInEshopByProductId(productId));
+
+        List<ProductInEshopEntity> productsInEshopByProductId = productInEshopDao.findProductsInEshopByProductId(productId);
+        return productInEshopAssembler.transformToListOfProductInEshopDto(productsInEshopByProductId);
     }
 
     @Override
-    public List<ProductInEshopCustomListDto> getProductsInEshop(Long eshopId) {
+    public List<ProductInEshopCustomListDto> findProductsInEshop(Long eshopId) {
         val.notNull(eshopId, "eshopId is null");
-        return productInEshopAssembler.transformToListOfProductInEshopCustomListDto(productInEshopDao.getProductsInEshop(eshopId));
+
+        List<ProductInEshopEntity> productsInEshop = productInEshopDao.findProductsInEshop(eshopId);
+        return productInEshopAssembler.transformToListOfProductInEshopCustomListDto(productsInEshop);
     }
 
-
     @Override
-    public ProductInEshopDto getProductForPriceUpdate(EshopType eshopType) {
+    public ProductInEshopDto findProductForPriceUpdate(EshopType eshopType) {
         val.notNull(eshopType, "eshopType is null");
 
-        //TODO impl
-        return null;
+        // TODO tu ma byt logika najdenia
+        // presunut do fasady !!!
+
+        ProductInEshopEntity productInEshop = productInEshopDao.findProductInEshopByType(eshopType);
+
+        return productInEshopAssembler.transformToProductInEshopDto(productInEshop);
     }
 
     @Override
     public void updateProductInEshopPrice(ProductInEshopPriceUpdateDto updateDto) {
-        //TODO impl
+        productInEshopFacade.updateProductInEshopPrice(updateDto);
     }
 }

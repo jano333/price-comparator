@@ -43,7 +43,7 @@ public class ProductsPerEshopListPage extends JPanel {
             @Override
             public java.util.List<ProductInEshopCustomListDto> readData() {
                 if (lvEshops.getSelectedEntity() != null) {
-                    return ServiceLocator.getService().getProductsInEshop(lvEshops.getSelectedEntity().getId());
+                    return ServiceLocator.getService().findProductsInEshop(lvEshops.getSelectedEntity().getId());
                 } else {
                     return Collections.emptyList();
                 }

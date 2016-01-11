@@ -141,7 +141,7 @@ public class AbstracServiceXmlImpl {
         saveToXml();
     }
 
-//    protected List<ProductInEshopXmlEntity> getProductsInEshopByProductId(Long id) {
+//    protected List<ProductInEshopXmlEntity> findProductsInEshopByProductId(Long id) {
 //        List<ProductInEshopXmlEntity> result = new ArrayList<>();
 //        for (ProductInEshopXmlEntity productInEshop : xmlDataDb.getProductInEshops()) {
 //            if (productInEshop.getProduct().getId().equals(id)) {

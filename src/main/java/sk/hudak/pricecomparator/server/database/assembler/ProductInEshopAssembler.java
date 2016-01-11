@@ -38,7 +38,7 @@ public class ProductInEshopAssembler {
         listDto.setId(entity.getId());
         listDto.setEshopId(entity.getEshop().getId());
         listDto.setProductId(entity.getProduct().getId());
-        //TODO nesedia nazvy... urcit ako to zjednotit
+        //FIXME nesedia nazvy... urcit ako to zjednotit
         listDto.setEshopProductPage(entity.getProductPageInEshop());
         return listDto;
     }
@@ -63,6 +63,7 @@ public class ProductInEshopAssembler {
         result.setEshopId(entity.getEshop().getId());
         result.setProductId(entity.getProduct().getId());
         result.setEshopProductPage(entity.getProductPageInEshop());
+        //TODO dalsie
 
         return result;
     }

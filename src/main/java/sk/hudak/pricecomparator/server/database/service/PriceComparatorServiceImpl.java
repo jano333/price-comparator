@@ -96,73 +96,73 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<ProductInEshopListDto> getAllProductInEshop() {
-        System.out.println(">> getAllProductInEshop");
-        List<ProductInEshopListDto> result = productInEshopService.getAllProductInEshop();
-        System.out.println("<< getAllProductInEshop");
+    public List<ProductInEshopListDto> findAllProductInEshop() {
+        System.out.println(">> findAllProductInEshop");
+        List<ProductInEshopListDto> result = productInEshopService.findAllProductInEshop();
+        System.out.println("<< findAllProductInEshop");
         return result;
     }
 
     @Override
     @Transactional(readOnly = true)
     public ProductInEshopDto getProductInEshop(Long productId, Long eshopId) {
-        System.out.println(">> getProductInEshop");
+        System.out.println(">> findProductInEshop");
         ProductInEshopDto result = productInEshopService.getProductInEshop(productId, eshopId);
-        System.out.println("<< getProductInEshop");
+        System.out.println("<< findProductInEshop");
         return result;
     }
 
     @Override
     @Transactional(readOnly = true)
-    public List<ProductInEshopListDto> getProductsInEshopByProductId(Long productId) {
-        System.out.println(">> getProductsInEshopByProductId");
-        List<ProductInEshopListDto> result = productInEshopService.getProductsInEshopByProductId(productId);
-        System.out.println("<< getProductsInEshopByProductId");
+    public List<ProductInEshopListDto> findProductsInEshopByProductId(Long productId) {
+        System.out.println(">> findProductsInEshopByProductId");
+        List<ProductInEshopListDto> result = productInEshopService.findProductsInEshopByProductId(productId);
+        System.out.println("<< findProductsInEshopByProductId");
         return result;
     }
 
     @Override
     @Transactional(readOnly = true)
-    public List<EshopListDto> getEshopsWithProduct(Long productId) {
-        System.out.println(">> getEshopsWithProduct");
-        List<EshopListDto> result = productInEshopService.getEshopsWithProduct(productId);
-        System.out.println("<< getEshopsWithProduct");
+    public List<EshopListDto> findEshopsWithProduct(Long productId) {
+        System.out.println(">> findEshopsWithProduct");
+        List<EshopListDto> result = productInEshopService.findEshopsWithProduct(productId);
+        System.out.println("<< findEshopsWithProduct");
         return result;
     }
 
     @Override
     @Transactional(readOnly = true)
-    public List<EshopListDto> getEshopsWithoutProduct(Long productId) {
-        System.out.println(">> getEshopsWithoutProduct");
-        List<EshopListDto> result = productInEshopService.getEshopsWithoutProduct(productId);
-        System.out.println("<< getEshopsWithoutProduct");
+    public List<EshopListDto> findEshopsWithoutProduct(Long productId) {
+        System.out.println(">> findEshopsWithoutProduct");
+        List<EshopListDto> result = productInEshopService.findEshopsWithoutProduct(productId);
+        System.out.println("<< findEshopsWithoutProduct");
         return result;
     }
 
     @Override
     @Transactional(readOnly = true)
-    public List<ProductInEshopDto> getProductsInEshopForDownloaderByProductId(Long productId) {
-        System.out.println(">> getProductsInEshopForDownloaderByProductId");
-        List<ProductInEshopDto> result = productInEshopService.getProductsInEshopForDownloaderByProductId(productId);
-        System.out.println("<< getProductsInEshopForDownloaderByProductId");
+    public List<ProductInEshopDto> findProductsInEshopForDownloaderByProductId(Long productId) {
+        System.out.println(">> findProductsInEshopForDownloaderByProductId");
+        List<ProductInEshopDto> result = productInEshopService.findProductsInEshopForDownloaderByProductId(productId);
+        System.out.println("<< findProductsInEshopForDownloaderByProductId");
         return result;
     }
 
     @Override
     @Transactional(readOnly = true)
-    public List<ProductInEshopCustomListDto> getProductsInEshop(Long eshopId) {
-        System.out.println(">> getProductsInEshop");
-        List<ProductInEshopCustomListDto> result = productInEshopService.getProductsInEshop(eshopId);
-        System.out.println("<< getProductsInEshop");
+    public List<ProductInEshopCustomListDto> findProductsInEshop(Long eshopId) {
+        System.out.println(">> findProductsInEshop");
+        List<ProductInEshopCustomListDto> result = productInEshopService.findProductsInEshop(eshopId);
+        System.out.println("<< findProductsInEshop");
         return result;
     }
 
     @Override
     @Transactional(readOnly = true)
-    public ProductInEshopDto getProductForPriceUpdate(EshopType eshopType) {
-        System.out.println(">> getProductForPriceUpdate");
-        ProductInEshopDto result = productInEshopService.getProductForPriceUpdate(eshopType);
-        System.out.println("<< getProductForPriceUpdate");
+    public ProductInEshopDto findProductForPriceUpdate(EshopType eshopType) {
+        System.out.println(">> findProductForPriceUpdate");
+        ProductInEshopDto result = productInEshopService.findProductForPriceUpdate(eshopType);
+        System.out.println("<< findProductForPriceUpdate");
         return result;
     }
 

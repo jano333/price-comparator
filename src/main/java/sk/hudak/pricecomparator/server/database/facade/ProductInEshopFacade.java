@@ -2,6 +2,7 @@ package sk.hudak.pricecomparator.server.database.facade;
 
 import sk.hudak.jef.server.JefFacade;
 import sk.hudak.pricecomparator.middle.api.to.ProductInEshopCreateDto;
+import sk.hudak.pricecomparator.middle.api.to.ProductInEshopPriceUpdateDto;
 import sk.hudak.pricecomparator.server.database.dao.EshopDao;
 import sk.hudak.pricecomparator.server.database.dao.ProductDao;
 import sk.hudak.pricecomparator.server.database.dao.ProductInEshopDao;
@@ -34,6 +35,20 @@ public class ProductInEshopFacade extends JefFacade {
         entity.setProductPageInEshop(createDto.getEshopProductPage());
 
         return productInEshopDao.create(entity);
+    }
+
+    public void updateProductInEshopPrice(ProductInEshopPriceUpdateDto updateDto) {
+        val.notNull(updateDto, "updateDto is null");
+        val.notNull(updateDto.getId(), "id is null");
+
+        ProductInEshopEntity entity = productInEshopDao.readMandatory(updateDto.getId());
+        entity.setProductAction(updateDto.getProductAction());
+        entity.setActionValidTo(updateDto.getActionValidTo());
+        entity.setPriceForUnit(updateDto.getPriceForUnit());
+        entity.setPriceForPackage(updateDto.getPriceForPackage());
+        entity.setPriceForOneItemInPackage(updateDto.getPriceForOneItemInPackage());
+
+        productInEshopDao.update(entity);
     }
 
     private void validateDto(ProductInEshopCreateDto createDto) {

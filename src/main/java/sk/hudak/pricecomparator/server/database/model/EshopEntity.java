@@ -1,5 +1,7 @@
 package sk.hudak.pricecomparator.server.database.model;
 
+import sk.hudak.pricecomparator.middle.api.EshopType;
+
 import javax.persistence.*;
 
 /**
@@ -11,6 +13,7 @@ public class EshopEntity extends BasicEntity {
 
     public static final transient String AT_NAME = "name";
     public static final transient String AT_PARSER_CLASS_NAME = "parserClassName";
+    public static final transient String AT_ESHOP_TYPE = "eshopType";
 
     @Id
     @Column(name = "ID")
@@ -26,6 +29,9 @@ public class EshopEntity extends BasicEntity {
 
     @Column(name = "HOME_PAGE")
     private String homePage;
+
+    @Column(name = "ESHOP_TYPE")
+    private EshopType eshopType;
 
     public void setId(Long id) {
         this.id = id;
@@ -57,5 +63,13 @@ public class EshopEntity extends BasicEntity {
 
     public String getParserClassName() {
         return parserClassName;
+    }
+
+    public EshopType getEshopType() {
+        return eshopType;
+    }
+
+    public void setEshopType(EshopType eshopType) {
+        this.eshopType = eshopType;
     }
 }

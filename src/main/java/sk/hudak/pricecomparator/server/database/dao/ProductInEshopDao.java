@@ -4,6 +4,7 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import sk.hudak.jef.server.JefDao;
+import sk.hudak.pricecomparator.middle.api.EshopType;
 import sk.hudak.pricecomparator.server.database.model.EshopEntity;
 import sk.hudak.pricecomparator.server.database.model.ProductEntity;
 import sk.hudak.pricecomparator.server.database.model.ProductInEshopEntity;
@@ -18,17 +19,17 @@ import java.util.List;
 public class ProductInEshopDao extends JefDao<ProductInEshopEntity> {
 
     @Override
-    protected ProductInEshopEntity readMandatory(Long id) {
+    public ProductInEshopEntity readMandatory(Long id) {
         return read(id, ProductInEshopEntity.class);
     }
 
-    public List<ProductInEshopEntity> getAllProductInEshop() {
+    public List<ProductInEshopEntity> findAllProductInEshop() {
         Criteria crit = createCriteria(ProductInEshopEntity.class);
         return crit.list();
     }
 
-    public List<EshopEntity> getEshopsWithProduct(Long productId) {
-        // FIXME urobit optimalne tak ako je getEshopsWithoutProduct, lebo robi n selectov,
+    public List<EshopEntity> findEshopsWithProduct(Long productId) {
+        // FIXME urobit optimalne tak ako je findEshopsWithoutProduct, lebo robi n selectov,
         // velmi neoptimalne...
         Criteria crit = createCriteria(ProductInEshopEntity.class);
         crit.add(Restrictions.eq(ProductInEshopEntity.AT_PRODUCT + "." + ProductEntity.AT_ID, productId));
@@ -37,7 +38,7 @@ public class ProductInEshopDao extends JefDao<ProductInEshopEntity> {
         return crit.list();
     }
 
-    public List<EshopEntity> getEshopsWithoutProduct(Long productId) {
+    public List<EshopEntity> findEshopsWithoutProduct(Long productId) {
         Criteria cr = createCriteria(ProductInEshopEntity.class);
         cr.add(Restrictions.eq(ProductInEshopEntity.AT_PRODUCT + "." + ProductEntity.AT_ID, productId));
         cr.setProjection(Projections.distinct(Projections.property(ProductInEshopEntity.AT_ESHOP + "." + EshopEntity.AT_ID)));
@@ -52,22 +53,29 @@ public class ProductInEshopDao extends JefDao<ProductInEshopEntity> {
         return eshops;
     }
 
-    public List<ProductInEshopEntity> getProductsInEshopByProductId(Long productId) {
+    public List<ProductInEshopEntity> findProductsInEshopByProductId(Long productId) {
         Criteria crit = createCriteria(ProductInEshopEntity.class);
         crit.add(Restrictions.eq(ProductInEshopEntity.AT_PRODUCT + "." + ProductEntity.AT_ID, productId));
         return crit.list();
     }
 
-    public List<ProductInEshopEntity> getProductsInEshop(Long eshopId) {
+    public List<ProductInEshopEntity> findProductsInEshop(Long eshopId) {
         Criteria crit = createCriteria(ProductInEshopEntity.class);
         crit.add(Restrictions.eq(ProductInEshopEntity.AT_ESHOP + "." + EshopEntity.AT_ID, eshopId));
         return crit.list();
     }
 
-    public ProductInEshopEntity getProductInEshop(Long productId, Long eshopId) {
+    public ProductInEshopEntity findProductInEshop(Long productId, Long eshopId) {
         Criteria crit = createCriteria(ProductInEshopEntity.class);
         crit.add(Restrictions.eq(ProductInEshopEntity.AT_ESHOP + "." + EshopEntity.AT_ID, eshopId));
         crit.add(Restrictions.eq(ProductInEshopEntity.AT_PRODUCT + "." + ProductEntity.AT_ID, productId));
+        return (ProductInEshopEntity) crit.uniqueResult();
+    }
+
+    public ProductInEshopEntity findProductInEshopByType(EshopType eshopType) {
+        Criteria crit = createCriteria(ProductInEshopEntity.class);
+        crit.add(Restrictions.eq(ProductInEshopEntity.AT_ESHOP + "." + EshopEntity.AT_ESHOP_TYPE, eshopType));
+        //TODO pridat unique constrain na eshop type, a povinnost !!!
         return (ProductInEshopEntity) crit.uniqueResult();
     }
 }
