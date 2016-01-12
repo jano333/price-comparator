@@ -31,6 +31,7 @@ public class EshopEntity extends BasicEntity {
     private String homePage;
 
     @Column(name = "ESHOP_TYPE")
+    @Enumerated(EnumType.STRING)
     private EshopType eshopType;
 
     public void setId(Long id) {

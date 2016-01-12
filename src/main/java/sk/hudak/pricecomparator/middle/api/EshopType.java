@@ -10,6 +10,10 @@ public enum EshopType {
     TESCO,
     METRO,
     PERINBABA,
+    SEMISTOR,
+    BAMBINO,
+    INTERNETOVA_LEKAREN
+
 
     //TODO ostatne;
     ;
