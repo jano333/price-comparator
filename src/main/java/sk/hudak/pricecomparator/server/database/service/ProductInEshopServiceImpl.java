@@ -16,6 +16,8 @@ import javax.inject.Named;
 import java.util.List;
 
 /**
+ * DB sevice implementacia nad entitou {@link ProductInEshopEntity}.
+ * <p/>
  * Created by jan on 30. 12. 2015.
  */
 @Named
@@ -43,14 +45,14 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
 
     @Override
     public List<ProductInEshopListDto> findAllProductInEshop() {
-
         List<ProductInEshopEntity> allProductInEshop = productInEshopDao.findAllProductInEshop();
         return productInEshopAssembler.transformToListOfProductInEshopListDto(allProductInEshop);
     }
 
     @Override
     public ProductInEshopDto getProductInEshop(Long productId, Long eshopId) {
-        //TODO mozu byt vstupne pametre null??
+        val.notNull(productId, "productId is null");
+        val.notNull(eshopId, "eshopId is null");
 
         ProductInEshopEntity productInEshopEntity = productInEshopDao.findProductInEshop(productId, eshopId);
         return productInEshopAssembler.transformToProductInEshopDto(productInEshopEntity);
@@ -98,14 +100,9 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
 
     @Override
     public ProductInEshopDto findProductForPriceUpdate(EshopType eshopType) {
-        val.notNull(eshopType, "eshopType is null");
-
-        // TODO tu ma byt logika najdenia
-        // presunut do fasady !!!
-
-        ProductInEshopEntity productInEshop = productInEshopDao.findProductInEshopByType(eshopType);
-
+        ProductInEshopEntity productInEshop = productInEshopFacade.findProductForPriceUpdate(eshopType);
         return productInEshopAssembler.transformToProductInEshopDto(productInEshop);
+
     }
 
     @Override

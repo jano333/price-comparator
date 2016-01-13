@@ -4,14 +4,14 @@ import sk.hudak.pricecomparator.client.swing.panel.page.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 
 /**
  * Created by jan on 25. 10. 2015.
  */
 public class PriceComparatorJFrame extends JFrame {
+
+    private TaskManager taskManager;
 
     private final MyContainer cardContainer;
 
@@ -32,9 +32,20 @@ public class PriceComparatorJFrame extends JFrame {
 //    private GroupOfProductListPage2 groupOfProductListPage = new GroupOfProductListPage2();
 
 
-    public PriceComparatorJFrame() throws HeadlessException {
+    public PriceComparatorJFrame(TaskManager taskManager) throws HeadlessException {
         super("Price Comparator ver.: 1.0");
+
+        this.taskManager = taskManager;
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                System.out.println("TOTO");
+                PriceComparatorJFrame.this.taskManager.stopDownloading();
+            }
+        });
+
         setSize(800, 600);
 
         createMenu();
@@ -65,6 +76,7 @@ public class PriceComparatorJFrame extends JFrame {
 
         setVisible(true);
     }
+
 
     private static class MyContainer extends JPanel {
         public MyContainer() {

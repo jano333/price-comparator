@@ -1,15 +1,19 @@
 package sk.hudak.pricecomparator.server.database.facade;
 
 import sk.hudak.jef.server.JefFacade;
+import sk.hudak.pricecomparator.middle.api.EshopType;
 import sk.hudak.pricecomparator.middle.api.to.ProductInEshopCreateDto;
 import sk.hudak.pricecomparator.middle.api.to.ProductInEshopPriceUpdateDto;
+import sk.hudak.pricecomparator.server.core.ServerConfig;
 import sk.hudak.pricecomparator.server.database.dao.EshopDao;
 import sk.hudak.pricecomparator.server.database.dao.ProductDao;
 import sk.hudak.pricecomparator.server.database.dao.ProductInEshopDao;
 import sk.hudak.pricecomparator.server.database.model.ProductInEshopEntity;
+import sk.hudak.pricecomparator.server.utils.DateUtils;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.Date;
 
 /**
  * Created by jan on 30. 12. 2015.
@@ -27,7 +31,11 @@ public class ProductInEshopFacade extends JefFacade {
     private ProductDao productDao;
 
     public Long createProductInEshop(ProductInEshopCreateDto createDto) {
-        validateDto(createDto);
+        val.notNull(createDto, "createDto is null");
+        val.notNull(createDto.getEshopId(), "eshopId is null");
+        val.notNull(createDto.getProductId(), "productId is null");
+        val.notNullAndNotEmpty(createDto.getEshopProductPage(), "eshop product page is null or empty");
+        // TODO ostatne a dlzky validovat
 
         ProductInEshopEntity entity = new ProductInEshopEntity();
         entity.setEshop(eshopDao.readMandatory(createDto.getEshopId()));
@@ -47,16 +55,19 @@ public class ProductInEshopFacade extends JefFacade {
         entity.setPriceForUnit(updateDto.getPriceForUnit());
         entity.setPriceForPackage(updateDto.getPriceForPackage());
         entity.setPriceForOneItemInPackage(updateDto.getPriceForOneItemInPackage());
+        //TODO ako jeden
+        entity.setLastUpdatedPrice(new Date());
 
         productInEshopDao.update(entity);
     }
 
-    private void validateDto(ProductInEshopCreateDto createDto) {
-        val.notNull(createDto, "createDto is null");
-        val.notNull(createDto.getEshopId(), "eshopId is null");
-        val.notNull(createDto.getProductId(), "productId is null");
-        val.notNullAndNotEmpty(createDto.getEshopProductPage(), "eshop product page is null or empty");
-        // TODO
 
+    public ProductInEshopEntity findProductForPriceUpdate(EshopType eshopType) {
+        val.notNull(eshopType, "eshopType is null");
+
+        // maxmalny pocet hodin, kolko moze byt cena neaktualna
+        Date maxOlderDate = DateUtils.minusHours(new Date(), ServerConfig.getMaxOldProductPriceForUpdateInOurs());
+        System.out.println("finding first product older than " + maxOlderDate);
+        return productInEshopDao.findProductForPriceUpdate(eshopType, maxOlderDate);
     }
 }

@@ -18,4 +18,14 @@ public class ServerConfig {
     public static int getRoundingScale() {
         return 4;
     }
+
+
+    /**
+     * Definuje maxmalny pocet v hodinych, pre produkty ktore je potrebne aktualizovat.
+     *
+     * @return
+     */
+    public static int getMaxOldProductPriceForUpdateInOurs() {
+        return 24;
+    }
 }

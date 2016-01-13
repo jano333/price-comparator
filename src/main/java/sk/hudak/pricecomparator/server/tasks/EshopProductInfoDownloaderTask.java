@@ -24,16 +24,36 @@ public abstract class EshopProductInfoDownloaderTask implements Runnable {
         this.parser = getEshopParser();
     }
 
-    private void checkContinue() {
-        //TODO vyhodit vynimku a ma skoncit
-    }
-
     @Override
     public void run() {
+        System.out.println(">> zacinam " + getClass().getSimpleName() + " thread name " + Thread.currentThread().getName());
+        do {
+            doInOneCycle();
+            try {
+                System.out.println("zacinam cakat");
+                Thread.currentThread().sleep(5 * 1000);
+                System.out.println("skoncil som cakat");
 
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        } while (!shouldStopTask());
+
+        System.out.println("<< koncim " + getClass().getSimpleName() + " thread name " + Thread.currentThread().getName());
+    }
+
+    private void doInOneCycle() {
+        System.out.println();
+        System.out.println("starting next round " + getClass().getSimpleName());
         // 1. ziskam jeden produkt, ktoremu sa vytvori/aktualizuje cena pre zvoleny eshop
         //FIXME, prerobit na jednot DTO (aby som to nacital v jednej transakcii)
         ProductInEshopDto productForUpdate = service.findProductForPriceUpdate(getEshopType());
+        if (productForUpdate == null) {
+            System.out.println("nic nenaslo -> vsetko je aktualne");
+            stopTask();
+            return;
+        }
         ProductDto product = service.getProduct(productForUpdate.getProductId());
 
         // 2. preklopenie
@@ -47,7 +67,6 @@ public abstract class EshopProductInfoDownloaderTask implements Runnable {
 
         // 5. ulozenie do DB
         service.updateProductInEshopPrice(updateDto);
-
     }
 
     private ProductInEshopPriceUpdateDto transfromToProductInEshopPriceUpdateDto(Long id, EshopProductInfo productInfo) {
@@ -71,11 +90,12 @@ public abstract class EshopProductInfoDownloaderTask implements Runnable {
                 productInEshopDto.getEshopProductPage());
     }
 
-    protected abstract EshopType getEshopType();
+    public abstract EshopType getEshopType();
 
     protected abstract EshopProductParser getEshopParser();
 
     public void stopTask() {
+        System.out.println("marking task " + getClass().getSimpleName() + "as stop ");
         synchronized (stop) {
             this.stop = Boolean.TRUE;
         }

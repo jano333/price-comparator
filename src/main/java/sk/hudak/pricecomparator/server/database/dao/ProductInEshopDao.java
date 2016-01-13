@@ -10,6 +10,7 @@ import sk.hudak.pricecomparator.server.database.model.ProductEntity;
 import sk.hudak.pricecomparator.server.database.model.ProductInEshopEntity;
 
 import javax.inject.Named;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -67,6 +68,7 @@ public class ProductInEshopDao extends JefDao<ProductInEshopEntity> {
 
     public ProductInEshopEntity findProductInEshop(Long productId, Long eshopId) {
         Criteria crit = createCriteria(ProductInEshopEntity.class);
+        //FIXME pridat do bazovej triedy metodu na spajanie...
         crit.add(Restrictions.eq(ProductInEshopEntity.AT_ESHOP + "." + EshopEntity.AT_ID, eshopId));
         crit.add(Restrictions.eq(ProductInEshopEntity.AT_PRODUCT + "." + ProductEntity.AT_ID, productId));
         return (ProductInEshopEntity) crit.uniqueResult();
@@ -75,7 +77,23 @@ public class ProductInEshopDao extends JefDao<ProductInEshopEntity> {
     public ProductInEshopEntity findProductInEshopByType(EshopType eshopType) {
         Criteria crit = createCriteria(ProductInEshopEntity.class);
         crit.add(Restrictions.eq(ProductInEshopEntity.AT_ESHOP + "." + EshopEntity.AT_ESHOP_TYPE, eshopType));
-        //TODO pridat unique constrain na eshop type, a povinnost !!!
+        //FIXME pridat unique constrain na eshop type, a povinnost !!!
+        return (ProductInEshopEntity) crit.uniqueResult();
+    }
+
+    public ProductInEshopEntity findProductForPriceUpdate(EshopType eshopType, Date maxOlderDate) {
+        Criteria crit = createCriteria(ProductInEshopEntity.class);
+
+        Criteria critEshop = crit.createCriteria(ProductInEshopEntity.AT_ESHOP);
+        critEshop.add(Restrictions.eq(EshopEntity.AT_ESHOP_TYPE, eshopType));
+
+        crit.add(Restrictions.or(
+                Restrictions.isNull(ProductInEshopEntity.AT_LAST_UPDATED_PRICE),
+                Restrictions.lt(ProductInEshopEntity.AT_LAST_UPDATED_PRICE, maxOlderDate)));
+
+        addDescOrder(crit, ProductInEshopEntity.AT_LAST_UPDATED_PRICE);
+        crit.setMaxResults(1);
+
         return (ProductInEshopEntity) crit.uniqueResult();
     }
 }

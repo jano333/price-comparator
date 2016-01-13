@@ -1,6 +1,7 @@
 package sk.hudak.pricecomparator.client.swing;
 
 import sk.hudak.pricecomparator.client.swing.components.PriceComparatorJFrame;
+import sk.hudak.pricecomparator.client.swing.components.TaskManager;
 
 import javax.swing.*;
 
@@ -10,9 +11,14 @@ import javax.swing.*;
 public class MainSwing {
 
     public static void main(String[] args) {
+        final TaskManager taskManager = new TaskManager();
+        //tasky pre stahovanie
+        taskManager.initTaks();
+        taskManager.startDownloading();
+
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                new PriceComparatorJFrame();
+                new PriceComparatorJFrame(taskManager);
             }
         });
     }

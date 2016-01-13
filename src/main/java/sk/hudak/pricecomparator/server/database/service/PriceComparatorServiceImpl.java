@@ -180,7 +180,10 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
     @Override
     @Transactional
     public Long createGroupOfProduct(GroupOfProductCreateDto dto) {
-        return groupOfProductService.createGroupOfProduct(dto);
+        System.out.println(">> createGroupOfProduct");
+        Long result = groupOfProductService.createGroupOfProduct(dto);
+        System.out.println("<< createGroupOfProduct");
+        return result;
     }
 
     @Override
