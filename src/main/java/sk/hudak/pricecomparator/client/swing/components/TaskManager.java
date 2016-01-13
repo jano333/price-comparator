@@ -2,9 +2,7 @@ package sk.hudak.pricecomparator.client.swing.components;
 
 import sk.hudak.pricecomparator.client.ServiceLocator;
 import sk.hudak.pricecomparator.middle.api.service.PriceComparatorService;
-import sk.hudak.pricecomparator.server.tasks.EshopProductInfoDownloaderTask;
-import sk.hudak.pricecomparator.server.tasks.MetroProductInfoDownloaderTask;
-import sk.hudak.pricecomparator.server.tasks.TescoProductInfoDowlnoaderTask;
+import sk.hudak.pricecomparator.server.tasks.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +21,11 @@ public class TaskManager {
         service = ServiceLocator.getService();
 
         taskList = new ArrayList<>();
-        taskList.add(new TescoProductInfoDowlnoaderTask(service));
+        taskList.add(new BambinoProductInfoDownloaderTask(service));
+        taskList.add(new FeedoProductInfoDownloaderTask(service));
+        taskList.add(new MallProductInfoDownloaderTask(service));
         taskList.add(new MetroProductInfoDownloaderTask(service));
+        taskList.add(new TescoProductInfoDownloaderTask(service));
     }
 
     public void startDownloading() {

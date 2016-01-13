@@ -8,6 +8,9 @@ import sk.hudak.pricecomparator.middle.api.service.PriceComparatorService;
 import sk.hudak.pricecomparator.middle.api.to.ProductDto;
 import sk.hudak.pricecomparator.middle.api.to.ProductInEshopDto;
 import sk.hudak.pricecomparator.middle.api.to.ProductInEshopPriceUpdateDto;
+import sk.hudak.pricecomparator.server.core.ServerConfig;
+
+import java.util.Random;
 
 /**
  * Created by jan on 4. 1. 2016.
@@ -29,18 +32,29 @@ public abstract class EshopProductInfoDownloaderTask implements Runnable {
         System.out.println(">> zacinam " + getClass().getSimpleName() + " thread name " + Thread.currentThread().getName());
         do {
             doInOneCycle();
-            try {
-                System.out.println("zacinam cakat");
-                Thread.currentThread().sleep(5 * 1000);
-                System.out.println("skoncil som cakat");
-
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            sleepFor();
 
         } while (!shouldStopTask());
 
         System.out.println("<< koncim " + getClass().getSimpleName() + " thread name " + Thread.currentThread().getName());
+    }
+
+    private void sleepFor() {
+        int minSecond = ServerConfig.getMinWaitingTimeBeforeDownloadNextPriceInSecond();
+        int maxSecond = ServerConfig.getMaxWaitingTimeBeforeDownloadNextPriceInSecond();
+
+        int result = new Random().nextInt((maxSecond - minSecond) + 1) + minSecond;
+
+        try {
+            System.out.println("zacinam cakat " + result + " sekund");
+            Thread.currentThread().sleep(result * 1000);
+            System.out.println("skoncil som cakat");
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            //TODO log
+            stopTask();
+        }
     }
 
     private void doInOneCycle() {
@@ -79,8 +93,6 @@ public abstract class EshopProductInfoDownloaderTask implements Runnable {
         dto.setProductAction(productInfo.getAction());
         return dto;
     }
-
-    //------------- DONE:
 
     private ParserInputData transformToParserInputData(ProductInEshopDto productInEshopDto, ProductDto productDto) {
         return new ParserInputData(

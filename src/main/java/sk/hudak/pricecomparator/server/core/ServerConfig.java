@@ -5,6 +5,25 @@ package sk.hudak.pricecomparator.server.core;
  */
 public class ServerConfig {
 
+    public static int getMinWaitingTimeBeforeDownloadNextPriceInSecond() {
+        return 5;
+    }
+
+    public static int getMaxWaitingTimeBeforeDownloadNextPriceInSecond() {
+        return 15;
+    }
+
+
+    /**
+     * Definuje maxmalny pocet v hodinych, pre produkty ktore je potrebne aktualizovat.
+     *
+     * @return
+     */
+    public static int getMaxOldProductPriceForUpdateInOurs() {
+        return 24;
+    }
+
+
     /**
      * @return root adresar, kde su ukladane obrazky k produktom
      */
@@ -20,12 +39,4 @@ public class ServerConfig {
     }
 
 
-    /**
-     * Definuje maxmalny pocet v hodinych, pre produkty ktore je potrebne aktualizovat.
-     *
-     * @return
-     */
-    public static int getMaxOldProductPriceForUpdateInOurs() {
-        return 24;
-    }
 }

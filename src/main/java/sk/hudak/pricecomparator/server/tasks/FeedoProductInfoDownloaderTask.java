@@ -3,24 +3,24 @@ package sk.hudak.pricecomparator.server.tasks;
 import sk.hudak.pricecomparator.middle.api.EshopProductParser;
 import sk.hudak.pricecomparator.middle.api.EshopType;
 import sk.hudak.pricecomparator.middle.api.service.PriceComparatorService;
-import sk.hudak.pricecomparator.server.parser.TescoEshopProductParser;
+import sk.hudak.pricecomparator.server.parser.FeedoEshopProductParser;
 
 /**
- * Created by jan on 4. 1. 2016.
+ * Created by jan on 13. 1. 2016.
  */
-public class TescoProductInfoDowlnoaderTask extends EshopProductInfoDownloaderTask {
+public class FeedoProductInfoDownloaderTask extends EshopProductInfoDownloaderTask {
 
-    public TescoProductInfoDowlnoaderTask(PriceComparatorService service) {
+    public FeedoProductInfoDownloaderTask(PriceComparatorService service) {
         super(service);
     }
 
     @Override
     public EshopType getEshopType() {
-        return EshopType.TESCO;
+        return EshopType.FEEDO;
     }
 
     @Override
     protected EshopProductParser getEshopParser() {
-        return new TescoEshopProductParser();
+        return new FeedoEshopProductParser();
     }
 }
