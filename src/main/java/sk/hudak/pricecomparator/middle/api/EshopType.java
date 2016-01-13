@@ -7,20 +7,26 @@ package sk.hudak.pricecomparator.middle.api;
  */
 public enum EshopType {
 
-    HEJ,
-    TESCO,
-    METRO,
-    PERINBABA,
-    SEMISTOR,
-    BAMBINO,
-    INTERNETOVA_LEKAREN,
-    K24,
-    FEEDO,
-    PILULKA,
     ALZA,
     ANDREA_ESHOP,
-    HRAVO_ZDRAVO,
-    DR_MAX,
-    MALL,;
 
+    BAMBINO,
+    DR_MAX,
+    FEEDO,
+
+    INTERNETOVA_LEKAREN,
+
+    HEJ,
+    HRAVO_ZDRAVO,
+
+    K24,
+
+    MALL,
+    METRO,
+
+    PERINBABA,
+    PILULKA,
+
+    SEMISTOR,
+    TESCO,;
 }
