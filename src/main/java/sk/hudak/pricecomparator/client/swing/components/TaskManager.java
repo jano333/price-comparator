@@ -24,10 +24,12 @@ public class TaskManager {
         taskList.add(new AlzaProductInfoDownloaderTask(service));
         taskList.add(new AndreaEshopProductInfoDownloaderTask(service));
         taskList.add(new BambinoProductInfoDownloaderTask(service));
+        taskList.add(new DrMaxProductInfoDownloaderTask(service));
         taskList.add(new FeedoProductInfoDownloaderTask(service));
         taskList.add(new HejProductInfoDownloaderTask(service));
         taskList.add(new HravoZdravoProductInfoDownloaderTask(service));
         taskList.add(new InternetovaLekarenProductInfoDownloaderTask(service));
+        taskList.add(new K24ProductInfoDownloaderTask(service));
         taskList.add(new MallProductInfoDownloaderTask(service));
         taskList.add(new MetroProductInfoDownloaderTask(service));
         taskList.add(new PerinbabaProductInfoDownloaderTask(service));
