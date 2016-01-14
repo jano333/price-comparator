@@ -30,12 +30,14 @@ public abstract class EshopProductInfoDownloaderTask implements Runnable {
     @Override
     public void run() {
         System.out.println(">> zacinam " + getClass().getSimpleName() + " thread name " + Thread.currentThread().getName());
-        do {
+
+        while (!shouldStopTask()) {
             doInOneCycle();
-            sleepFor();
 
-        } while (!shouldStopTask());
-
+            if (!shouldStopTask()) {
+                sleepFor();
+            }
+        }
         System.out.println("<< koncim " + getClass().getSimpleName() + " thread name " + Thread.currentThread().getName());
     }
 
