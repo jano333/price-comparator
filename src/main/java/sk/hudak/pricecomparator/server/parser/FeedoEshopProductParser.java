@@ -17,6 +17,12 @@ import java.math.BigDecimal;
 public class FeedoEshopProductParser extends AbstractEshopProductParser {
 
     @Override
+    protected int getTimeout() {
+        //koli pomalym odozvam davam na 15 sekund
+        return 15000;
+    }
+
+    @Override
     protected EshopProductInfo parsePrice(Document document) {
         // overim ci je tam button na pridanie do kosika,
         // lebo bol produkt kde bola cena ale uz bol nedostupny a zlozity text tam je,

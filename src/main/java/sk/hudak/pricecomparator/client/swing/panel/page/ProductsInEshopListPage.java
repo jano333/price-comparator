@@ -12,12 +12,12 @@ import java.util.Collections;
 /**
  * Created by jan on 20. 12. 2015.
  */
-public class ProductsPerEshopListPage extends JPanel {
+public class ProductsInEshopListPage extends JPanel {
 
     private EshopSelectionListViewPanel lvEshops;
     private ProductInEshopSelectionListView lvProductsInEshop;
 
-    public ProductsPerEshopListPage() {
+    public ProductsInEshopListPage() {
         setLayout(null);
 
         int rowNumber = 1;

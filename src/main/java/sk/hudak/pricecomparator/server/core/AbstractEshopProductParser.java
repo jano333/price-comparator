@@ -17,7 +17,7 @@ import java.util.Map;
  */
 public abstract class AbstractEshopProductParser implements EshopProductParser {
 
-    private static final int DEFAULT_TIMEOUT = 12000;
+    private static final int DEFAULT_TIMEOUT = 10000;
     private static final String MOZILLA_USER_AGENT_DEFAULT = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0";
 
     protected ParserInputData parserInputData;

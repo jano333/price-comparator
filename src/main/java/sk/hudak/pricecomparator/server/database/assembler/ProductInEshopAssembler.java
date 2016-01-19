@@ -3,6 +3,7 @@ package sk.hudak.pricecomparator.server.database.assembler;
 import sk.hudak.pricecomparator.middle.api.to.ProductInEshopCustomListDto;
 import sk.hudak.pricecomparator.middle.api.to.ProductInEshopDto;
 import sk.hudak.pricecomparator.middle.api.to.ProductInEshopListDto;
+import sk.hudak.pricecomparator.middle.api.to.ProductInEshopPriceResultListDto;
 import sk.hudak.pricecomparator.server.database.model.ProductInEshopEntity;
 
 import javax.inject.Inject;
@@ -90,5 +91,31 @@ public class ProductInEshopAssembler {
         return result;
     }
 
+    public List<ProductInEshopPriceResultListDto> transformToListOfProductInEshopEntity(List<ProductInEshopEntity> entities) {
+        if (entities == null) {
+            return null;
+        }
+        List<ProductInEshopPriceResultListDto> result = new ArrayList<>(entities.size());
+        for (ProductInEshopEntity entity : entities) {
+            result.add(transformToProductInEshopPriceResultListDto(entity));
+        }
+        return result;
+    }
 
+    private ProductInEshopPriceResultListDto transformToProductInEshopPriceResultListDto(ProductInEshopEntity entity) {
+        if (entity == null) {
+            return null;
+        }
+        ProductInEshopPriceResultListDto result = new ProductInEshopPriceResultListDto();
+        result.setId(entity.getId());
+        result.setProductAction(entity.getProductAction());
+        result.setPriceForUnit(entity.getPriceForUnit());
+        result.setActionValidTo(entity.getActionValidTo());
+        result.setPriceForOneItemInPackage(entity.getPriceForOneItemInPackage());
+        result.setPriceForPackage(entity.getPriceForPackage());
+        result.setProductEshopPage(entity.getProductPageInEshop());
+        result.setEshopName(entity.getEshop().getName());
+
+        return result;
+    }
 }

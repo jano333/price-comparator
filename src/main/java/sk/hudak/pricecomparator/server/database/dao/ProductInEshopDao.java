@@ -10,6 +10,7 @@ import sk.hudak.pricecomparator.server.database.model.ProductEntity;
 import sk.hudak.pricecomparator.server.database.model.ProductInEshopEntity;
 
 import javax.inject.Named;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -95,5 +96,16 @@ public class ProductInEshopDao extends JefDao<ProductInEshopEntity> {
         crit.setMaxResults(1);
 
         return (ProductInEshopEntity) crit.uniqueResult();
+    }
+
+    public List<ProductInEshopEntity> findPriceInfoInEshopsForProduct(Long productId) {
+        Criteria crit = createCriteria(ProductInEshopEntity.class);
+        crit.add(Restrictions.eq(ProductInEshopEntity.AT_PRODUCT + "." + ProductEntity.AT_ID, productId));
+        // FIXME dat null do DB alebo neako inak ako -1... riesit
+        // iba take, ktore mame cenu !!!,
+        crit.add(Restrictions.ne(ProductInEshopEntity.AT_PRICE_FOR_UNIT, new BigDecimal(-1)));
+        // od najnizsej po najvyssiu
+        addAscOrder(crit, ProductInEshopEntity.AT_PRICE_FOR_UNIT);
+        return crit.list();
     }
 }

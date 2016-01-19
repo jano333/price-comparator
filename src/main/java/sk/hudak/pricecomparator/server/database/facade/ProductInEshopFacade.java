@@ -4,15 +4,14 @@ import sk.hudak.jef.server.JefFacade;
 import sk.hudak.pricecomparator.middle.api.EshopType;
 import sk.hudak.pricecomparator.middle.api.to.ProductInEshopCreateDto;
 import sk.hudak.pricecomparator.middle.api.to.ProductInEshopPriceUpdateDto;
-import sk.hudak.pricecomparator.server.core.ServerConfig;
 import sk.hudak.pricecomparator.server.database.dao.EshopDao;
 import sk.hudak.pricecomparator.server.database.dao.ProductDao;
 import sk.hudak.pricecomparator.server.database.dao.ProductInEshopDao;
 import sk.hudak.pricecomparator.server.database.model.ProductInEshopEntity;
-import sk.hudak.pricecomparator.server.utils.DateUtils;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -65,9 +64,26 @@ public class ProductInEshopFacade extends JefFacade {
     public ProductInEshopEntity findProductForPriceUpdate(EshopType eshopType) {
         val.notNull(eshopType, "eshopType is null");
 
+        //TODO dat do kongigu neako ze co sa ma updatovat !!!
+        // moznosti:
+        // vsetko co nebolo dnes aktualizovane
+        // vsetko starsie ako 24 hodin
+        // ??
+
+
         // maxmalny pocet hodin, kolko moze byt cena neaktualna
-        Date maxOlderDate = DateUtils.minusHours(new Date(), ServerConfig.getMaxOldProductPriceForUpdateInOurs());
+//        Date maxOlderDate = DateUtils.minusHours(new Date(), ServerConfig.getMaxOldProductPriceForUpdateInOurs());
+//        System.out.println("finding first product older than " + maxOlderDate);
+//        return productInEshopDao.findProductForPriceUpdate(eshopType, maxOlderDate);
+
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        Date maxOlderDate = cal.getTime();
+
         System.out.println("finding first product older than " + maxOlderDate);
         return productInEshopDao.findProductForPriceUpdate(eshopType, maxOlderDate);
+
+
     }
 }

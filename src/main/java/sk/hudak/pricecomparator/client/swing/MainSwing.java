@@ -14,6 +14,7 @@ public class MainSwing {
         final TaskManager taskManager = new TaskManager();
         //tasky pre stahovanie
         taskManager.initTaks();
+        //TODO odkomentovat
         taskManager.startDownloading();
 
         SwingUtilities.invokeLater(new Runnable() {

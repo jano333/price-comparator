@@ -15,6 +15,7 @@ import java.util.List;
 /**
  * Created by jan on 6. 11. 2015.
  */
+@Deprecated
 public class PriceDownloader {
 
     private PriceComparatorService service = ServiceLocator.getService();

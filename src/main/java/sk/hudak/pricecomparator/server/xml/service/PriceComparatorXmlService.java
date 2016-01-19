@@ -99,6 +99,11 @@ public class PriceComparatorXmlService implements PriceComparatorService {
 
     }
 
+    @Override
+    public List<ProductInEshopPriceResultListDto> findPriceInfoInEshopsForProduct(Long productId) {
+        return null;
+    }
+
 
     @Override
     public Long createProduct(ProductCreateDto dto) {

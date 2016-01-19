@@ -21,7 +21,6 @@ public class TestService {
 
     private void init() {
         createEshops();
-        createCategories();
 
     }
 
@@ -33,10 +32,6 @@ public class TestService {
         createEshop("Hej", HejEshopProductParser.class.getName(), "www.hej.sk");
     }
 
-    private void createCategories() {
-        //TODO
-
-    }
 
     private void createEshop(String name, String parserClassName, String homePage) {
         EshopCreateDto dto = new EshopCreateDto();

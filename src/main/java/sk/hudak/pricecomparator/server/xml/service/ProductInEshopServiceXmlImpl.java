@@ -176,6 +176,11 @@ public class ProductInEshopServiceXmlImpl extends AbstracServiceXmlImpl implemen
 
     }
 
+    @Override
+    public List<ProductInEshopPriceResultListDto> findPriceInfoInEshopsForProduct(Long productId) {
+        return null;
+    }
+
     private ProductInEshopListDto transformToProductInEshopListDto(ProductInEshopXmlEntity productInEshop) {
         ProductInEshopListDto listDto = new ProductInEshopListDto();
         listDto.setId(productInEshop.getId());

@@ -6,14 +6,14 @@ import sk.hudak.pricecomparator.client.swing.panel.ProductSelectionListView;
 import sk.hudak.pricecomparator.client.swing.utils.GuiUtils;
 import sk.hudak.pricecomparator.middle.api.to.EshopListDto;
 import sk.hudak.pricecomparator.middle.api.to.ProductInEshopDto;
+import sk.hudak.pricecomparator.middle.api.to.ProductInEshopPriceResultListDto;
 import sk.hudak.pricecomparator.server.downloader.EshopProductPriceDto;
 import sk.hudak.pricecomparator.server.downloader.PriceDownloader;
 import sk.hudak.pricecomparator.server.downloader.ProductPriceListDto;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by jan on 7. 11. 2015.
@@ -22,7 +22,7 @@ public class EshopsPerProductListPage extends JPanel {
 
     private ProductSelectionListView lvProduct;
     private EshopSelectionListViewPanel lvEshopsWithProduct;
-    private JButton btDownloadPrices;
+    //    private JButton btDownloadPrices;
     private final JTextArea taPriceInfo;
 
     public EshopsPerProductListPage() {
@@ -88,29 +88,54 @@ public class EshopsPerProductListPage extends JPanel {
                 100);
         add(scrollPane);
 
-        rowNumber = rowNumber + 4;
-        btDownloadPrices = GuiUtils.button("Stiahni info o cene");
-        btDownloadPrices.setBounds(
-                GuiUtils.LEFT_BORDER + GuiUtils.LABEL_WIDTH + GuiUtils.GAP_AFTER_LABEL,
-                GuiUtils.TOP_BORDER + ((rowNumber - 1) * GuiUtils.ROW_HEIGHT + ((rowNumber - 1) * GuiUtils.GAP_BEETWEN_ROWS)),
-                btDownloadPrices.getPreferredSize().width,
-                GuiUtils.ROW_HEIGHT);
-        btDownloadPrices.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                onDownloadAction();
-            }
-        });
-        add(btDownloadPrices);
-
-
+//        rowNumber = rowNumber + 4;
+//        btDownloadPrices = GuiUtils.button("Stiahni info o cene");
+//        btDownloadPrices.setBounds(
+//                GuiUtils.LEFT_BORDER + GuiUtils.LABEL_WIDTH + GuiUtils.GAP_AFTER_LABEL,
+//                GuiUtils.TOP_BORDER + ((rowNumber - 1) * GuiUtils.ROW_HEIGHT + ((rowNumber - 1) * GuiUtils.GAP_BEETWEN_ROWS)),
+//                btDownloadPrices.getPreferredSize().width,
+//                GuiUtils.ROW_HEIGHT);
+//        btDownloadPrices.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                showProductPriceInfo();
+//            }
+//        });
+//        add(btDownloadPrices);
     }
 
     private void onProductChanged() {
         lvEshopsWithProduct.reloadData();
+        showProductPriceInfo();
     }
 
-    private void onDownloadAction() {
+    private void showProductPriceInfo() {
+        Long productId = lvProduct.getSelectedEntity().getId();
+        List<ProductInEshopPriceResultListDto> result = ServiceLocator.getService().findPriceInfoInEshopsForProduct(productId);
+
+        //FIXME tabulku so sortovanim a paging :-)
+        StringBuilder sb = new StringBuilder();
+        for (ProductInEshopPriceResultListDto eshopProductPriceDto : result) {
+            sb.append(eshopProductPriceDto.getEshopName()).append("\t").append(" ");
+            sb.append(eshopProductPriceDto.getPriceForUnit()).append(" ");
+            sb.append("€ za jednotku, ").append("\t");
+            sb.append(eshopProductPriceDto.getPriceForPackage()).append(" ");
+            sb.append("€ za balenie, ");
+            sb.append(eshopProductPriceDto.getProductEshopPage()).append(" ");
+//            sb.append("image path: ");
+//            sb.append(eshopProductPriceDto.getEshopProductInfo().getProductImageUrl());
+            sb.append(System.lineSeparator());
+        }
+        taPriceInfo.setText(sb.toString());
+    }
+
+    public void init() {
+        lvProduct.reloadData();
+        lvProduct.setFirstSelected();
+    }
+
+    @Deprecated
+    private void onDownloadActionOld() {
         PriceDownloader priceDownloader = new PriceDownloader();
         ProductPriceListDto result = priceDownloader.downloadProductInfoForProduct(lvProduct.getSelectedEntity().getId());
         java.util.List<EshopProductPriceDto> eshopProductPriceDtos = result.getEshopProductPriceDtos();
@@ -127,12 +152,5 @@ public class EshopsPerProductListPage extends JPanel {
             sb.append(System.lineSeparator());
         }
         taPriceInfo.setText(sb.toString());
-
-
-    }
-
-    public void init() {
-        lvProduct.reloadData();
-        lvProduct.setFirstSelected();
     }
 }
