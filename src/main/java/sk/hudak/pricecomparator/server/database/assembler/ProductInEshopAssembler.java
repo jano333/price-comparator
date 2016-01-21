@@ -115,6 +115,7 @@ public class ProductInEshopAssembler {
         result.setPriceForPackage(entity.getPriceForPackage());
         result.setProductEshopPage(entity.getProductPageInEshop());
         result.setEshopName(entity.getEshop().getName());
+        result.setLastUpdatedPrice(entity.getLastUpdatedPrice());
 
         return result;
     }

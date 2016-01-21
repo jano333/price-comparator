@@ -21,6 +21,7 @@ public class ProductInEshopPriceResultListDto implements Serializable {
     private BigDecimal priceForPackage;
     private BigDecimal priceForOneItemInPackage;
     private BigDecimal priceForUnit;
+    private Date lastUpdatedPrice;
 
     public Long getId() {
         return id;
@@ -84,5 +85,13 @@ public class ProductInEshopPriceResultListDto implements Serializable {
 
     public void setEshopName(String eshopName) {
         this.eshopName = eshopName;
+    }
+
+    public Date getLastUpdatedPrice() {
+        return lastUpdatedPrice;
+    }
+
+    public void setLastUpdatedPrice(Date lastUpdatedPrice) {
+        this.lastUpdatedPrice = lastUpdatedPrice;
     }
 }

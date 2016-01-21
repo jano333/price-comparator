@@ -7,11 +7,9 @@ import sk.hudak.pricecomparator.client.swing.utils.GuiUtils;
 import sk.hudak.pricecomparator.middle.api.to.EshopListDto;
 import sk.hudak.pricecomparator.middle.api.to.ProductInEshopDto;
 import sk.hudak.pricecomparator.middle.api.to.ProductInEshopPriceResultListDto;
-import sk.hudak.pricecomparator.server.downloader.EshopProductPriceDto;
-import sk.hudak.pricecomparator.server.downloader.PriceDownloader;
-import sk.hudak.pricecomparator.server.downloader.ProductPriceListDto;
 
 import javax.swing.*;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.List;
 
@@ -20,9 +18,10 @@ import java.util.List;
  */
 public class EshopsPerProductListPage extends JPanel {
 
+    private SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+
     private ProductSelectionListView lvProduct;
     private EshopSelectionListViewPanel lvEshopsWithProduct;
-    //    private JButton btDownloadPrices;
     private final JTextArea taPriceInfo;
 
     public EshopsPerProductListPage() {
@@ -73,7 +72,7 @@ public class EshopsPerProductListPage extends JPanel {
                 GuiUtils.LEFT_BORDER + GuiUtils.LABEL_WIDTH + GuiUtils.GAP_AFTER_LABEL,
                 GuiUtils.TOP_BORDER + ((rowNumber - 1) * GuiUtils.ROW_HEIGHT + ((rowNumber - 1) * GuiUtils.GAP_BEETWEN_ROWS)),
                 600,
-                6 * 17); // je pocet vyditelnych riadkov
+                6 * 17); // je pocet viditelnych riadkov
         add(lvEshopsWithProduct);
 
         rowNumber = rowNumber + 4;
@@ -87,21 +86,6 @@ public class EshopsPerProductListPage extends JPanel {
                 600,
                 100);
         add(scrollPane);
-
-//        rowNumber = rowNumber + 4;
-//        btDownloadPrices = GuiUtils.button("Stiahni info o cene");
-//        btDownloadPrices.setBounds(
-//                GuiUtils.LEFT_BORDER + GuiUtils.LABEL_WIDTH + GuiUtils.GAP_AFTER_LABEL,
-//                GuiUtils.TOP_BORDER + ((rowNumber - 1) * GuiUtils.ROW_HEIGHT + ((rowNumber - 1) * GuiUtils.GAP_BEETWEN_ROWS)),
-//                btDownloadPrices.getPreferredSize().width,
-//                GuiUtils.ROW_HEIGHT);
-//        btDownloadPrices.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                showProductPriceInfo();
-//            }
-//        });
-//        add(btDownloadPrices);
     }
 
     private void onProductChanged() {
@@ -110,6 +94,11 @@ public class EshopsPerProductListPage extends JPanel {
     }
 
     private void showProductPriceInfo() {
+        if (lvProduct.getSelectedEntity() == null) {
+            taPriceInfo.setText("");
+            return;
+        }
+
         Long productId = lvProduct.getSelectedEntity().getId();
         List<ProductInEshopPriceResultListDto> result = ServiceLocator.getService().findPriceInfoInEshopsForProduct(productId);
 
@@ -120,8 +109,16 @@ public class EshopsPerProductListPage extends JPanel {
             sb.append(eshopProductPriceDto.getPriceForUnit()).append(" ");
             sb.append("€ za jednotku, ").append("\t");
             sb.append(eshopProductPriceDto.getPriceForPackage()).append(" ");
-            sb.append("€ za balenie, ");
+            sb.append("€ za balenie, ").append("\t");
+            sb.append("akt.: ");
+            if (eshopProductPriceDto.getLastUpdatedPrice() == null) {
+                sb.append("---").append("\t");
+
+            } else {
+                sb.append(sdf.format(eshopProductPriceDto.getLastUpdatedPrice())).append("\t");
+            }
             sb.append(eshopProductPriceDto.getProductEshopPage()).append(" ");
+
 //            sb.append("image path: ");
 //            sb.append(eshopProductPriceDto.getEshopProductInfo().getProductImageUrl());
             sb.append(System.lineSeparator());
@@ -134,23 +131,5 @@ public class EshopsPerProductListPage extends JPanel {
         lvProduct.setFirstSelected();
     }
 
-    @Deprecated
-    private void onDownloadActionOld() {
-        PriceDownloader priceDownloader = new PriceDownloader();
-        ProductPriceListDto result = priceDownloader.downloadProductInfoForProduct(lvProduct.getSelectedEntity().getId());
-        java.util.List<EshopProductPriceDto> eshopProductPriceDtos = result.getEshopProductPriceDtos();
-        StringBuilder sb = new StringBuilder();
-        for (EshopProductPriceDto eshopProductPriceDto : eshopProductPriceDtos) {
-            sb.append(eshopProductPriceDto.getEshopName()).append("\t").append(" ");
-            sb.append(eshopProductPriceDto.getEshopProductInfo().getPriceForUnit()).append(" ");
-            sb.append("€ za jednotku, ").append("\t");
-            sb.append(eshopProductPriceDto.getEshopProductInfo().getPriceForPackage()).append(" ");
-            sb.append("€ za balenie, ");
-            sb.append(eshopProductPriceDto.getProductEshopPage()).append(" ");
-//            sb.append("image path: ");
-//            sb.append(eshopProductPriceDto.getEshopProductInfo().getProductImageUrl());
-            sb.append(System.lineSeparator());
-        }
-        taPriceInfo.setText(sb.toString());
-    }
+
 }
