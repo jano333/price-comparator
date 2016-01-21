@@ -15,7 +15,8 @@ public class ImageUtils {
         File[] list = tmp.listFiles(new FileFilter() {
             @Override
             public boolean accept(File pathname) {
-                return pathname.getName().equalsIgnoreCase(String.valueOf(productId));
+                //TODO fixnnut aby to nebolo zavisle od pripony jpg !!!! hladat po prvu bodku
+                return pathname.getName().equalsIgnoreCase(String.valueOf(productId) + ".jpg");
             }
         });
         if (list == null || list.length < 1) {
