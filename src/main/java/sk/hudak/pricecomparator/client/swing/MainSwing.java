@@ -2,6 +2,7 @@ package sk.hudak.pricecomparator.client.swing;
 
 import sk.hudak.pricecomparator.client.swing.components.PriceComparatorJFrame;
 import sk.hudak.pricecomparator.client.swing.components.TaskManager;
+import sk.hudak.pricecomparator.server.downloader.TescoPictureLocalFinder;
 
 import javax.swing.*;
 
@@ -16,6 +17,9 @@ public class MainSwing {
         taskManager.initTaks();
         //TODO odkomentovat
         taskManager.startDownloading();
+
+        // nakopiruj obrazky ak su neake nove...
+        TescoPictureLocalFinder.main(args);
 
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
