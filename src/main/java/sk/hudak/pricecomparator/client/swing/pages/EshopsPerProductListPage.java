@@ -1,6 +1,9 @@
-package sk.hudak.pricecomparator.client.swing.panel.page;
+package sk.hudak.pricecomparator.client.swing.pages;
 
 import sk.hudak.pricecomparator.client.ServiceLocator;
+import sk.hudak.pricecomparator.client.swing.components.BasicColumn;
+import sk.hudak.pricecomparator.client.swing.components.BasicTable;
+import sk.hudak.pricecomparator.client.swing.components.TextColumn;
 import sk.hudak.pricecomparator.client.swing.panel.EshopSelectionListViewPanel;
 import sk.hudak.pricecomparator.client.swing.panel.ProductSelectionListView;
 import sk.hudak.pricecomparator.client.swing.utils.GuiUtils;
@@ -10,6 +13,7 @@ import sk.hudak.pricecomparator.middle.api.to.ProductInEshopPriceResultListDto;
 
 import javax.swing.*;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -23,6 +27,7 @@ public class EshopsPerProductListPage extends JPanel {
     private ProductSelectionListView lvProduct;
     private EshopSelectionListViewPanel lvEshopsWithProduct;
     private final JTextArea taPriceInfo;
+    private final BasicTable<ProductInEshopPriceResultListDto> table;
 
     public EshopsPerProductListPage() {
         setLayout(null);
@@ -86,6 +91,38 @@ public class EshopsPerProductListPage extends JPanel {
                 600,
                 100);
         add(scrollPane);
+
+        rowNumber = rowNumber + 4;
+        List<BasicColumn> columns = new ArrayList<>();
+        columns.add(new TextColumn("eshopName", "Eshop", 100));
+        columns.add(new TextColumn("priceForUnit", "Cena za jednotku(€)", 100));
+        columns.add(new TextColumn("priceForUnit", "Cena za balenie(€)", 100));
+        columns.add(new TextColumn("lastUpdatedPrice", "Aktualizovane o", 120));
+        columns.add(new TextColumn("productEshopPage", "Stranka produktu", 100));
+
+        table = new BasicTable<ProductInEshopPriceResultListDto>(columns) {
+            @Override
+            protected List<ProductInEshopPriceResultListDto> loadData() {
+                if (lvProduct.getSelectedEntity() == null) {
+                    return new ArrayList<>();
+                }
+
+                Long productId = lvProduct.getSelectedEntity().getId();
+                List<ProductInEshopPriceResultListDto> result = ServiceLocator.getService().findPriceInfoInEshopsForProduct(productId);
+                return result;
+            }
+        };
+
+        JScrollPane scrollPane2 = new JScrollPane(table);
+        scrollPane2.setBounds(
+                GuiUtils.LEFT_BORDER + GuiUtils.LABEL_WIDTH + GuiUtils.GAP_AFTER_LABEL,
+                GuiUtils.TOP_BORDER + ((rowNumber - 1) * GuiUtils.ROW_HEIGHT + ((rowNumber - 1) * GuiUtils.GAP_BEETWEN_ROWS)),
+                600,
+                100);
+//        add(scrollPane2);
+
+
+
     }
 
     private void onProductChanged() {

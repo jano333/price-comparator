@@ -1,6 +1,6 @@
 package sk.hudak.pricecomparator.client.swing.components;
 
-import sk.hudak.pricecomparator.client.swing.panel.page.*;
+import sk.hudak.pricecomparator.client.swing.pages.*;
 
 import javax.swing.*;
 import java.awt.*;

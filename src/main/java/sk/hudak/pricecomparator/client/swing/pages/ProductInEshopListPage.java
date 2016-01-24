@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.client.swing.panel.page;
+package sk.hudak.pricecomparator.client.swing.pages;
 
 import sk.hudak.pricecomparator.client.swing.panel.EshopSelectionListViewPanel;
 import sk.hudak.pricecomparator.client.swing.panel.ProductSelectionListView;

@@ -29,13 +29,36 @@ public class TescoPictureDownloader {
     private static final String PICTURE_DIR = "C:\\price-comparator\\tesco\\pictures\\";
 
     //    public static final String PRODUCT_FILE_INPUT = "C:\\price-comparator\\tesco\\unprocessed_products.txt";
-    public static final String PRODUCT_FILE_INPUT = "C:\\price-comparator\\tesco\\Starostlivosť o dieťa.txt";
+    //public static final String PRODUCT_FILE_INPUT = "C:\\price-comparator\\tesco\\Starostlivosť o dieťa.txt";
+//    public static final String PRODUCT_FILE_INPUT = "C:\\price-comparator\\tesco\\Jogurty a dezerty.txt";
+//    public static final String PRODUCT_FILE_INPUT = "C:\\price-comparator\\tesco\\Maslá, tuky a nátierky.txt";
+//    public static final String PRODUCT_FILE_INPUT = "C:\\price-comparator\\tesco\\Mlieka a smotany.txt";
+//    public static final String PRODUCT_FILE_INPUT = "C:\\price-comparator\\tesco\\Vajcia a droždie.txt";
+    public static final String PRODUCT_FILE_INPUT = "C:\\price-comparator\\tesco\\Drogéria a kozmetika.txt";
 
 
     public void start() {
         try {
             int i = 1;
             for (String productUrl : getProductsUrl()) {
+
+//              String productUrl = "http://potravinydomov.itesco.sk/sk-SK/ProductDetail/ProductDetail/2002015932862";
+//            String productUrl = "http://potravinydomov.itesco.sk/sk-SK/ProductDetail/ProductDetail/2002015116798";
+//            String productUrl = "http://potravinydomov.itesco.sk/sk-SK/ProductDetail/ProductDetail/2002121218187";
+//            String productUrl = "http://potravinydomov.itesco.sk/sk-SK/ProductDetail/ProductDetail/2002121105073";
+//            String productUrl = "http://potravinydomov.itesco.sk/sk-SK/ProductDetail/ProductDetail/2002016496660";
+//            String productUrl = "http://potravinydomov.itesco.sk/sk-SK/ProductDetail/ProductDetail/2002015932886";
+
+//            String productUrl = "http://potravinydomov.itesco.sk/sk-SK/ProductDetail/ProductDetail/2002120131970";
+//            String productUrl = "http://potravinydomov.itesco.sk/sk-SK/ProductDetail/ProductDetail/2002120523506";
+//            String productUrl = "http://potravinydomov.itesco.sk/sk-SK/ProductDetail/ProductDetail/2002121220828";
+//            String productUrl = "http://potravinydomov.itesco.sk/sk-SK/ProductDetail/ProductDetail/2002016453915";
+//            String productUrl = "http://potravinydomov.itesco.sk/sk-SK/ProductDetail/ProductDetail/2002120018759";
+//            String productUrl = "http://potravinydomov.itesco.sk/sk-SK/ProductDetail/ProductDetail/2002121104955";
+//            String productUrl = "http://potravinydomov.itesco.sk/sk-SK/ProductDetail/ProductDetail/2002121218129";
+//            String productUrl = "http://potravinydomov.itesco.sk/sk-SK/ProductDetail/ProductDetail/2002006239031";
+
+
                 System.out.println(productUrl);
 
                 File pictureFileOnLocal = getPictureFileOnLocal(productUrl);
@@ -114,7 +137,7 @@ public class TescoPictureDownloader {
     private File getPictureFileOnLocal(String productUrl) throws IOException {
 
         StringBuilder sb = new StringBuilder();
-        sb.append(productUrl.substring(productUrl.lastIndexOf("/"), productUrl.length() - 1));
+        sb.append(productUrl.substring(productUrl.lastIndexOf("/"), productUrl.length()));
         sb.append(".jpeg");
 
         String pictureName = sb.toString();

@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.client.swing.panel.page;
+package sk.hudak.pricecomparator.client.swing.pages;
 
 import org.apache.commons.lang3.StringUtils;
 import sk.hudak.pricecomparator.client.ServiceLocator;
@@ -58,6 +58,9 @@ public class ProductCreatePage extends JPanel {
         add(GuiUtils.labelRequired("Názov: ", rowNumber));
         add(tfName = GuiUtils.textField(rowNumber));
 
+        create_JednotkovyTyp();
+        create_Mnozstvo();
+
         rowNumber++;
         add(GuiUtils.labelRequired("Množstvo v balení (ks): ", rowNumber));
         spAmountInPackage = new JSpinner(new SpinnerNumberModel(1, 1, Integer.MAX_VALUE, 1));
@@ -68,8 +71,6 @@ public class ProductCreatePage extends JPanel {
                 GuiUtils.ROW_HEIGHT);
         add(spAmountInPackage);
 
-        create_JednotkovyTyp();
-        create_Mnozstvo();
         create_Category();
         create_Image();
 
@@ -157,8 +158,7 @@ public class ProductCreatePage extends JPanel {
 
     private void create_Mnozstvo() {
         rowNumber++;
-        lbCountOfUnit = GuiUtils.label("Množstvo: ", rowNumber);
-        add(lbCountOfUnit);
+        add(lbCountOfUnit = GuiUtils.labelRequired("Množstvo: ", rowNumber));
 
         tfCountOfUnit = GuiUtils.textField(rowNumber);
         tfCountOfUnit.setSize(100, tfCountOfUnit.getHeight());
