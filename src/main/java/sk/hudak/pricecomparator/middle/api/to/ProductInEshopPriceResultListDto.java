@@ -14,14 +14,14 @@ import java.util.Date;
 public class ProductInEshopPriceResultListDto implements Serializable {
 
     private Long id;
-    private String productEshopPage;
     private String eshopName;
-    private ProductAction productAction;
-    private Date actionValidTo;
+    private BigDecimal priceForUnit;
     private BigDecimal priceForPackage;
     private BigDecimal priceForOneItemInPackage;
-    private BigDecimal priceForUnit;
+    private ProductAction productAction;
+    private Date actionValidTo;
     private Date lastUpdatedPrice;
+    private String productEshopPage;
 
     public Long getId() {
         return id;

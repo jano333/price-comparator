@@ -96,7 +96,8 @@ public class EshopsPerProductListPage extends JPanel {
         List<BasicColumn> columns = new ArrayList<>();
         columns.add(new TextColumn("eshopName", "Eshop", 100));
         columns.add(new TextColumn("priceForUnit", "Cena za jednotku(€)", 100));
-        columns.add(new TextColumn("priceForUnit", "Cena za balenie(€)", 100));
+        columns.add(new TextColumn("priceForPackage", "Cena za balenie(€)", 100));
+        columns.add(new TextColumn("productAction", "Akcia", 100));
         columns.add(new TextColumn("lastUpdatedPrice", "Aktualizovane o", 120));
         columns.add(new TextColumn("productEshopPage", "Stranka produktu", 100));
 
@@ -119,7 +120,7 @@ public class EshopsPerProductListPage extends JPanel {
                 GuiUtils.TOP_BORDER + ((rowNumber - 1) * GuiUtils.ROW_HEIGHT + ((rowNumber - 1) * GuiUtils.GAP_BEETWEN_ROWS)),
                 600,
                 100);
-//        add(scrollPane2);
+        add(scrollPane2);
 
 
 
@@ -128,6 +129,8 @@ public class EshopsPerProductListPage extends JPanel {
     private void onProductChanged() {
         lvEshopsWithProduct.reloadData();
         showProductPriceInfo();
+
+        table.reload();
     }
 
     private void showProductPriceInfo() {

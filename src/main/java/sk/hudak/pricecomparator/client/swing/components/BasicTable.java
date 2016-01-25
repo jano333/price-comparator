@@ -14,6 +14,7 @@ public abstract class BasicTable<T> extends JPanel {
 
 
     private final MyTableModel myTableModel;
+    private final JTable table;
 
     private List<T> data;
     private List<? extends BasicColumn> columns;
@@ -23,7 +24,7 @@ public abstract class BasicTable<T> extends JPanel {
         this.columns = columns;
 
         myTableModel = new MyTableModel();
-        JTable table = new JTable(myTableModel);
+        table = new JTable(myTableModel);
 
         //TODO dimenzion ako metodu s moznostou override
         table.setPreferredScrollableViewportSize(new Dimension(500, 70));
@@ -58,6 +59,12 @@ public abstract class BasicTable<T> extends JPanel {
             data = loadData();
         }
         return data;
+    }
+
+    public void reload() {
+        data = null;
+        table.invalidate();
+        table.repaint();
     }
 
 
