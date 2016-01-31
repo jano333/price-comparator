@@ -1,9 +1,6 @@
 package sk.hudak.pricecomparator.middle.api.service;
 
-import sk.hudak.pricecomparator.middle.api.to.GroupOfProductCreateDto;
-import sk.hudak.pricecomparator.middle.api.to.GroupOfProductDto;
-import sk.hudak.pricecomparator.middle.api.to.GroupOfProductListDto;
-import sk.hudak.pricecomparator.middle.api.to.ProductListDto;
+import sk.hudak.pricecomparator.middle.api.to.*;
 
 import java.util.List;
 import java.util.Set;
@@ -19,9 +16,11 @@ public interface GroupOfProductService {
 
     List<GroupOfProductListDto> findAllGroupsOfProducts();
 
-    List<ProductListDto> getProductsInGroup(Long groupOfProductId);
+    List<ProductListDto> findProductsInGroup(Long groupOfProductId);
 
-    List<ProductListDto> getProductsNotInGroup(Long groupOfProductId);
+    List<ProductListDto> findProductsNotInGroup(Long groupOfProductId);
 
     void addProductsToGroup(Set<Long> productsIdToBeAdded, Long groupOfProductId);
+
+    List<ProductInEshopPriceResultListDto> findPriceInfoInEshopsForGroup(Long groupId);
 }

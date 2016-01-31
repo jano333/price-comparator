@@ -2,10 +2,7 @@ package sk.hudak.pricecomparator.server.xml.service;
 
 import sk.hudak.pricecomparator.middle.api.exeption.PriceComparatorException;
 import sk.hudak.pricecomparator.middle.api.service.GroupOfProductService;
-import sk.hudak.pricecomparator.middle.api.to.GroupOfProductCreateDto;
-import sk.hudak.pricecomparator.middle.api.to.GroupOfProductDto;
-import sk.hudak.pricecomparator.middle.api.to.GroupOfProductListDto;
-import sk.hudak.pricecomparator.middle.api.to.ProductListDto;
+import sk.hudak.pricecomparator.middle.api.to.*;
 import sk.hudak.pricecomparator.server.xml.model.GroupOfProductXmlEntity;
 import sk.hudak.pricecomparator.server.xml.model.ProductXmlEntity;
 import sk.hudak.pricecomparator.server.xml.service.comparator.GroupListDtoComparatorByName;
@@ -64,7 +61,7 @@ public class GroupOfProductServiceXmlImpl extends AbstracServiceXmlImpl implemen
     }
 
     @Override
-    public List<ProductListDto> getProductsInGroup(Long groupOfProductId) {
+    public List<ProductListDto> findProductsInGroup(Long groupOfProductId) {
         if (groupOfProductId == null) {
             throw new PriceComparatorException("groupOfProductId is null ");
         }
@@ -96,7 +93,7 @@ public class GroupOfProductServiceXmlImpl extends AbstracServiceXmlImpl implemen
     }
 
     @Override
-    public List<ProductListDto> getProductsNotInGroup(Long groupOfProductId) {
+    public List<ProductListDto> findProductsNotInGroup(Long groupOfProductId) {
         GroupOfProductXmlEntity group = readMandatory(groupOfProductId);
         //TODO prerobit cez DAO nad entitami a tie volat...
         List<Long> productIdsInGroup = group.getProductIds();
@@ -124,6 +121,11 @@ public class GroupOfProductServiceXmlImpl extends AbstracServiceXmlImpl implemen
         group.getProductIds().addAll(productsIdToBeAdded);
 
         updateXmlEntity();
+    }
+
+    @Override
+    public List<ProductInEshopPriceResultListDto> findPriceInfoInEshopsForGroup(Long groupId) {
+        return null;
     }
 
 

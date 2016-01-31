@@ -10,8 +10,8 @@ import sk.hudak.pricecomparator.server.xml.service.PriceComparatorXmlService;
  */
 public class ServiceLocator {
 
-    public static final boolean XML_VERSION = true;
-//    public static final boolean XML_VERSION = false;
+    //    public static final boolean XML_VERSION = true;
+    public static final boolean XML_VERSION = false;
 
     private static PriceComparatorService service;
 

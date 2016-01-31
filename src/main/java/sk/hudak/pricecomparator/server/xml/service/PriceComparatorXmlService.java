@@ -104,6 +104,11 @@ public class PriceComparatorXmlService implements PriceComparatorService {
         return null;
     }
 
+    @Override
+    public List<ProductInEshopPriceResultListDto> findPriceInfoInEshopsForGroup(Long groupId) {
+        return null;
+    }
+
 
     @Override
     public Long createProduct(ProductCreateDto dto) {
@@ -141,13 +146,13 @@ public class PriceComparatorXmlService implements PriceComparatorService {
     }
 
     @Override
-    public List<ProductListDto> getProductsInGroup(Long groupOfProductId) {
-        return groupOfProductService.getProductsInGroup(groupOfProductId);
+    public List<ProductListDto> findProductsInGroup(Long groupOfProductId) {
+        return groupOfProductService.findProductsInGroup(groupOfProductId);
     }
 
     @Override
-    public List<ProductListDto> getProductsNotInGroup(Long groupOfProductId) {
-        return groupOfProductService.getProductsNotInGroup(groupOfProductId);
+    public List<ProductListDto> findProductsNotInGroup(Long groupOfProductId) {
+        return groupOfProductService.findProductsNotInGroup(groupOfProductId);
     }
 
     @Override

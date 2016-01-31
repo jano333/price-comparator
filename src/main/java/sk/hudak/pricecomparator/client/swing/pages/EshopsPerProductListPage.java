@@ -1,9 +1,6 @@
 package sk.hudak.pricecomparator.client.swing.pages;
 
 import sk.hudak.pricecomparator.client.ServiceLocator;
-import sk.hudak.pricecomparator.client.swing.components.BasicColumn;
-import sk.hudak.pricecomparator.client.swing.components.BasicTable;
-import sk.hudak.pricecomparator.client.swing.components.TextColumn;
 import sk.hudak.pricecomparator.client.swing.panel.EshopSelectionListViewPanel;
 import sk.hudak.pricecomparator.client.swing.panel.ProductSelectionListView;
 import sk.hudak.pricecomparator.client.swing.utils.GuiUtils;
@@ -13,7 +10,6 @@ import sk.hudak.pricecomparator.middle.api.to.ProductInEshopPriceResultListDto;
 
 import javax.swing.*;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -22,12 +18,13 @@ import java.util.List;
  */
 public class EshopsPerProductListPage extends JPanel {
 
-    private SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+    private SimpleDateFormat dateFormater = new SimpleDateFormat("dd.MM.yyyy");
+    private SimpleDateFormat dateTimeFormater = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
 
     private ProductSelectionListView lvProduct;
     private EshopSelectionListViewPanel lvEshopsWithProduct;
     private final JTextArea taPriceInfo;
-    private final BasicTable<ProductInEshopPriceResultListDto> table;
+//    private final BasicTable<ProductInEshopPriceResultListDto> table;
 
     public EshopsPerProductListPage() {
         setLayout(null);
@@ -43,7 +40,7 @@ public class EshopsPerProductListPage extends JPanel {
         lvProduct.setBounds(
                 GuiUtils.LEFT_BORDER + GuiUtils.LABEL_WIDTH + GuiUtils.GAP_AFTER_LABEL,
                 GuiUtils.TOP_BORDER + ((rowNumber - 1) * GuiUtils.ROW_HEIGHT + ((rowNumber - 1) * GuiUtils.GAP_BEETWEN_ROWS)),
-                600,
+                GuiUtils.LIST_VIEW_SELECTOR_WIDTH,
                 12 * 17);
         add(lvProduct);
 
@@ -76,7 +73,7 @@ public class EshopsPerProductListPage extends JPanel {
         lvEshopsWithProduct.setBounds(
                 GuiUtils.LEFT_BORDER + GuiUtils.LABEL_WIDTH + GuiUtils.GAP_AFTER_LABEL,
                 GuiUtils.TOP_BORDER + ((rowNumber - 1) * GuiUtils.ROW_HEIGHT + ((rowNumber - 1) * GuiUtils.GAP_BEETWEN_ROWS)),
-                600,
+                GuiUtils.LIST_VIEW_SELECTOR_WIDTH,
                 6 * 17); // je pocet viditelnych riadkov
         add(lvEshopsWithProduct);
 
@@ -88,49 +85,47 @@ public class EshopsPerProductListPage extends JPanel {
         scrollPane.setBounds(
                 GuiUtils.LEFT_BORDER + GuiUtils.LABEL_WIDTH + GuiUtils.GAP_AFTER_LABEL,
                 GuiUtils.TOP_BORDER + ((rowNumber - 1) * GuiUtils.ROW_HEIGHT + ((rowNumber - 1) * GuiUtils.GAP_BEETWEN_ROWS)),
-                600,
+                GuiUtils.LIST_VIEW_SELECTOR_WIDTH,
                 100);
         add(scrollPane);
 
-        rowNumber = rowNumber + 4;
-        List<BasicColumn> columns = new ArrayList<>();
-        columns.add(new TextColumn("eshopName", "Eshop", 100));
-        columns.add(new TextColumn("priceForUnit", "Cena za jednotku(€)", 100));
-        columns.add(new TextColumn("priceForPackage", "Cena za balenie(€)", 100));
-        columns.add(new TextColumn("productAction", "Akcia", 100));
-        columns.add(new TextColumn("lastUpdatedPrice", "Aktualizovane o", 120));
-        columns.add(new TextColumn("productEshopPage", "Stranka produktu", 100));
-
-        table = new BasicTable<ProductInEshopPriceResultListDto>(columns) {
-            @Override
-            protected List<ProductInEshopPriceResultListDto> loadData() {
-                if (lvProduct.getSelectedEntity() == null) {
-                    return new ArrayList<>();
-                }
-
-                Long productId = lvProduct.getSelectedEntity().getId();
-                List<ProductInEshopPriceResultListDto> result = ServiceLocator.getService().findPriceInfoInEshopsForProduct(productId);
-                return result;
-            }
-        };
-
-        JScrollPane scrollPane2 = new JScrollPane(table);
-        scrollPane2.setBounds(
-                GuiUtils.LEFT_BORDER + GuiUtils.LABEL_WIDTH + GuiUtils.GAP_AFTER_LABEL,
-                GuiUtils.TOP_BORDER + ((rowNumber - 1) * GuiUtils.ROW_HEIGHT + ((rowNumber - 1) * GuiUtils.GAP_BEETWEN_ROWS)),
-                600,
-                100);
-        add(scrollPane2);
-
-
-
+//        rowNumber = rowNumber + 4;
+//        List<BasicColumn> columns = new ArrayList<>();
+//        columns.add(new TextColumn("eshopName", "Eshop", 100));
+//        columns.add(new TextColumn("priceForUnit", "Cena za jednotku(€)", 100));
+//        columns.add(new TextColumn("priceForPackage", "Cena za balenie(€)", 100));
+//        columns.add(new TextColumn("productAction", "Akcia", 100));
+//        columns.add(new TextColumn("lastUpdatedPrice", "Aktualizovane o", 120));
+//        columns.add(new TextColumn("productEshopPage", "Stranka produktu", 100));
+//
+//        table = new BasicTable<ProductInEshopPriceResultListDto>(columns) {
+//            @Override
+//            protected List<ProductInEshopPriceResultListDto> loadData() {
+//                if (lvProduct.getSelectedEntity() == null) {
+//                    return new ArrayList<>();
+//                }
+//
+//                Long productId = lvProduct.getSelectedEntity().getId();
+//                List<ProductInEshopPriceResultListDto> result = ServiceLocator.getService().findPriceInfoInEshopsForProduct(productId);
+//                return result;
+//            }
+//        };
+//
+//        JScrollPane scrollPane2 = new JScrollPane(table);
+////        scrollPane2.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+//        scrollPane2.setBounds(
+//                GuiUtils.LEFT_BORDER + GuiUtils.LABEL_WIDTH + GuiUtils.GAP_AFTER_LABEL,
+//                GuiUtils.TOP_BORDER + ((rowNumber - 1) * GuiUtils.ROW_HEIGHT + ((rowNumber - 1) * GuiUtils.GAP_BEETWEN_ROWS)),
+//                600,
+//                100);
+//        add(scrollPane2);
     }
 
     private void onProductChanged() {
         lvEshopsWithProduct.reloadData();
         showProductPriceInfo();
 
-        table.reload();
+//        table.reload();
     }
 
     private void showProductPriceInfo() {
@@ -145,17 +140,24 @@ public class EshopsPerProductListPage extends JPanel {
         //FIXME tabulku so sortovanim a paging :-)
         StringBuilder sb = new StringBuilder();
         for (ProductInEshopPriceResultListDto eshopProductPriceDto : result) {
-            sb.append(eshopProductPriceDto.getEshopName()).append("\t").append(" ");
-            sb.append(eshopProductPriceDto.getPriceForUnit()).append(" ");
-            sb.append("€ za jednotku, ").append("\t");
-            sb.append(eshopProductPriceDto.getPriceForPackage()).append(" ");
-            sb.append("€ za balenie, ").append("\t");
-            sb.append("akt.: ");
+            // nazov eshopu
+            sb.append(eshopProductPriceDto.getEshopName());
+            // cena za jednotku
+            sb.append("\t ").append(eshopProductPriceDto.getPriceForUnit()).append(" € za jednotku");
+            // cena za balenie
+            sb.append("\t ").append(eshopProductPriceDto.getPriceForPackage()).append(" € za balenie");
+            // akcia
+            sb.append("\t ").append(eshopProductPriceDto.getProductAction().name());
+            // akcia platna do
+            if (eshopProductPriceDto.getActionValidTo() != null) {
+                sb.append(" ").append(dateFormater.format(eshopProductPriceDto.getActionValidTo()));
+            }
+            // aktualizovane o
+            sb.append("\takt.: ");
             if (eshopProductPriceDto.getLastUpdatedPrice() == null) {
                 sb.append("---").append("\t");
-
             } else {
-                sb.append(sdf.format(eshopProductPriceDto.getLastUpdatedPrice())).append("\t");
+                sb.append(dateTimeFormater.format(eshopProductPriceDto.getLastUpdatedPrice())).append("\t");
             }
             sb.append(eshopProductPriceDto.getProductEshopPage()).append(" ");
 

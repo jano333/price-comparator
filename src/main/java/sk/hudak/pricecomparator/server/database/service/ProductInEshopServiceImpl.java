@@ -116,4 +116,6 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
         List<ProductInEshopEntity> productInEshopEntities = productInEshopDao.findPriceInfoInEshopsForProduct(productId);
         return productInEshopAssembler.transformToListOfProductInEshopEntity(productInEshopEntities);
     }
+
+
 }

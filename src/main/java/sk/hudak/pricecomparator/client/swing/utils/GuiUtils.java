@@ -28,6 +28,9 @@ public class GuiUtils {
      * Defaultna sirka pre spinner.
      */
     public static final int SPINNER_WIDTH = 50;
+    public static final int LIST_VIEW_SELECTOR_WIDTH = 800;
+
+
 
     public static final Cursor HAND_CURSOR = new Cursor(Cursor.HAND_CURSOR);
 

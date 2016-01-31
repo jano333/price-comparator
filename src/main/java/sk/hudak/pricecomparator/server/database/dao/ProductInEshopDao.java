@@ -112,4 +112,14 @@ public class ProductInEshopDao extends JefDao<ProductInEshopEntity> {
         addAscOrder(crit, ProductInEshopEntity.AT_PRICE_FOR_UNIT);
         return crit.list();
     }
+
+    public List<ProductInEshopEntity> findProductsInEshopByProductsIds(List<Long> productsId, String orderBy) {
+        Criteria crit = createCriteria(ProductInEshopEntity.class);
+        crit.add(Restrictions.in(ProductInEshopEntity.AT_PRODUCT + "." + ProductEntity.AT_ID, productsId));
+        // iba take, ktore mame cenu !!!,
+        crit.add(Restrictions.ne(ProductInEshopEntity.AT_PRICE_FOR_UNIT, new BigDecimal(-1)));
+        // od najnizsej po najvyssiu
+        addAscOrder(crit, orderBy);
+        return crit.list();
+    }
 }

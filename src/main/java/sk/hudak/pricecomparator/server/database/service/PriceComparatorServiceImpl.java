@@ -209,20 +209,29 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<ProductListDto> getProductsInGroup(Long groupOfProductId) {
-        return groupOfProductService.getProductsInGroup(groupOfProductId);
+    public List<ProductListDto> findProductsInGroup(Long groupOfProductId) {
+        return groupOfProductService.findProductsInGroup(groupOfProductId);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public List<ProductListDto> getProductsNotInGroup(Long groupOfProductId) {
-        return groupOfProductService.getProductsNotInGroup(groupOfProductId);
+    public List<ProductListDto> findProductsNotInGroup(Long groupOfProductId) {
+        return groupOfProductService.findProductsNotInGroup(groupOfProductId);
     }
 
     @Override
     @Transactional
     public void addProductsToGroup(Set<Long> productsIdToBeAdded, Long groupOfProductId) {
         groupOfProductService.addProductsToGroup(productsIdToBeAdded, groupOfProductId);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<ProductInEshopPriceResultListDto> findPriceInfoInEshopsForGroup(Long groupId) {
+        System.out.println(">> findPriceInfoInEshopsForGroup");
+        List<ProductInEshopPriceResultListDto> result = groupOfProductService.findPriceInfoInEshopsForGroup(groupId);
+        System.out.println("<< findPriceInfoInEshopsForGroup");
+        return result;
     }
 
 

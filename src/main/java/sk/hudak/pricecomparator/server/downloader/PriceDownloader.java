@@ -23,7 +23,7 @@ public class PriceDownloader {
     public GroupPriceListDto downloadProductInfoForGroup(Long groupOfProductId) {
         GroupOfProductDto groupOfProduct = service.getGroupOfProduct(groupOfProductId);
         // ziskam produkty v danej skupine
-        List<ProductListDto> productsInGroup = service.getProductsInGroup(groupOfProductId);
+        List<ProductListDto> productsInGroup = service.findProductsInGroup(groupOfProductId);
 
         List<EshopProductPriceDto> eshopProductPriceDtos = new ArrayList<>();
         for (ProductListDto productListDto : productsInGroup) {

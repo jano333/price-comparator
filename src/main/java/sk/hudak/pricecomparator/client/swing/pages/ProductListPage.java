@@ -35,7 +35,7 @@ public class ProductListPage extends JPanel {
         lvProduct.setBounds(
                 GuiUtils.LEFT_BORDER + GuiUtils.LABEL_WIDTH + GuiUtils.GAP_AFTER_LABEL,
                 GuiUtils.TOP_BORDER + ((rowNumber - 1) * GuiUtils.ROW_HEIGHT + ((rowNumber - 1) * GuiUtils.GAP_BEETWEN_ROWS)),
-                600,
+                GuiUtils.LIST_VIEW_SELECTOR_WIDTH,
                 250);
         add(lvProduct);
 

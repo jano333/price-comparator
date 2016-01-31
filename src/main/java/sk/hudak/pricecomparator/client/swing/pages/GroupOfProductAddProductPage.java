@@ -55,7 +55,7 @@ public class GroupOfProductAddProductPage extends JPanel {
                 if (lvGroup.getSelectedEntity() == null) {
                     return Collections.emptyList();
                 }
-                List<ProductListDto> fromServer = ServiceLocator.getService().getProductsInGroup(lvGroup.getSelectedEntity().getId());
+                List<ProductListDto> fromServer = ServiceLocator.getService().findProductsInGroup(lvGroup.getSelectedEntity().getId());
                 List<ProductListDto> result = new ArrayList<>();
                 result.addAll(addProducts);
                 result.addAll(fromServer);
@@ -78,7 +78,7 @@ public class GroupOfProductAddProductPage extends JPanel {
                 if (lvGroup.getSelectedEntity() == null) {
                     return Collections.emptyList();
                 }
-                List<ProductListDto> fromServer = ServiceLocator.getService().getProductsNotInGroup(lvGroup.getSelectedEntity().getId());
+                List<ProductListDto> fromServer = ServiceLocator.getService().findProductsNotInGroup(lvGroup.getSelectedEntity().getId());
                 List<ProductListDto> result = new ArrayList<>();
                 result.addAll(fromServer);
                 result.removeAll(addProducts);

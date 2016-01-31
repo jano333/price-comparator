@@ -24,8 +24,6 @@ public class PriceComparatorJFrame extends JFrame {
     private ProductCreatePage productCreatePage = new ProductCreatePage();
     private ProductInEshopCreatePage productInEshopCreatePage = new ProductInEshopCreatePage();
 
-    private ProductInEshopListPage productInEshopListPage = new ProductInEshopListPage();
-
     private GroupOfProductListPage groupOfProductListPage = new GroupOfProductListPage();
     private GroupOfProductsCreatePage groupOfProductsCreatePage = new GroupOfProductsCreatePage();
     private GroupOfProductAddProductPage groupOfProductAddProductPage = new GroupOfProductAddProductPage();
@@ -46,7 +44,7 @@ public class PriceComparatorJFrame extends JFrame {
             }
         });
 
-        setSize(800, 600);
+        setSize(1000, 600);
 
         createMenu();
 

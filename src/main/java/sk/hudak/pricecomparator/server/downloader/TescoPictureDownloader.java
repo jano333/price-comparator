@@ -34,7 +34,9 @@ public class TescoPictureDownloader {
 //    public static final String PRODUCT_FILE_INPUT = "C:\\price-comparator\\tesco\\Maslá, tuky a nátierky.txt";
 //    public static final String PRODUCT_FILE_INPUT = "C:\\price-comparator\\tesco\\Mlieka a smotany.txt";
 //    public static final String PRODUCT_FILE_INPUT = "C:\\price-comparator\\tesco\\Vajcia a droždie.txt";
-    public static final String PRODUCT_FILE_INPUT = "C:\\price-comparator\\tesco\\Drogéria a kozmetika.txt";
+
+    //public static final String PRODUCT_FILE_INPUT = "C:\\price-comparator\\tesco\\Drogéria a kozmetika.txt";
+    public static final String PRODUCT_FILE_INPUT = "C:\\price-comparator\\tesco\\Nápoje.txt";
 
 
     public void start() {
@@ -71,25 +73,22 @@ public class TescoPictureDownloader {
                 Thread.sleep(waitingTimeInSecond * 1000);
 
                 i++;
-                if (i == 1000) {
-                    break;
-                }
-
-                Connection connection = Jsoup.connect(productUrl);
-                connection.userAgent(MOZILLA_USER_AGENT_DEFAULT);
-                connection.timeout(DEFAULT_TIMEOUT);
-                Document document = connection.get();
-
-                Elements elements = document.select("div[class=productImage]");
-                if (elements.isEmpty()) {
-                    //TODO totoje stav ked produkt uz nie dostupny na danej adrese
-                    System.err.println("div elements is empty");
-                    continue;
-                }
-                Element imgElement = elements.get(0).child(0);
-                String src = imgElement.attr("src");
 
                 try {
+                    Connection connection = Jsoup.connect(productUrl);
+                    connection.userAgent(MOZILLA_USER_AGENT_DEFAULT);
+                    connection.timeout(DEFAULT_TIMEOUT);
+                    Document document = connection.get();
+
+                    Elements elements = document.select("div[class=productImage]");
+                    if (elements.isEmpty()) {
+                        //TODO totoje stav ked produkt uz nie dostupny na danej adrese
+                        System.err.println("div elements is empty");
+                        continue;
+                    }
+                    Element imgElement = elements.get(0).child(0);
+                    String src = imgElement.attr("src");
+
                     downloadPictureAndSave(src, pictureFileOnLocal);
 
                 } catch (Exception e) {

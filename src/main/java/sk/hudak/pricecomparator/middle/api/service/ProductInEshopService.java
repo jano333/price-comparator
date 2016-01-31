@@ -67,4 +67,6 @@ public interface ProductInEshopService {
      * @return zoznam informacii o produkte v jednotlivych eshopoch
      */
     List<ProductInEshopPriceResultListDto> findPriceInfoInEshopsForProduct(Long productId);
+
+
 }

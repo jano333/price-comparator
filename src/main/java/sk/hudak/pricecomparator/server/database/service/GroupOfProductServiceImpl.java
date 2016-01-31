@@ -1,14 +1,15 @@
 package sk.hudak.pricecomparator.server.database.service;
 
 import sk.hudak.pricecomparator.middle.api.service.GroupOfProductService;
-import sk.hudak.pricecomparator.middle.api.to.GroupOfProductCreateDto;
-import sk.hudak.pricecomparator.middle.api.to.GroupOfProductDto;
-import sk.hudak.pricecomparator.middle.api.to.GroupOfProductListDto;
-import sk.hudak.pricecomparator.middle.api.to.ProductListDto;
+import sk.hudak.pricecomparator.middle.api.to.*;
 import sk.hudak.pricecomparator.server.database.assembler.GroupOfProductAssembler;
 import sk.hudak.pricecomparator.server.database.assembler.ProductAssembler;
+import sk.hudak.pricecomparator.server.database.assembler.ProductInEshopAssembler;
 import sk.hudak.pricecomparator.server.database.dao.GroupOfProductDao;
 import sk.hudak.pricecomparator.server.database.facade.GroupOfProductFacade;
+import sk.hudak.pricecomparator.server.database.model.GroupOfProductEntity;
+import sk.hudak.pricecomparator.server.database.model.ProductEntity;
+import sk.hudak.pricecomparator.server.database.model.ProductInEshopEntity;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -33,34 +34,48 @@ public class GroupOfProductServiceImpl implements GroupOfProductService {
     @Inject
     private ProductAssembler productAssembler;
 
+    @Inject
+    private ProductInEshopAssembler productInEshopAssembler;
+
+
     @Override
     public Long createGroupOfProduct(GroupOfProductCreateDto dto) {
         return groupOfProductFacade.createGroupOfProduct(dto);
     }
 
     @Override
-    public void addProductsToGroup(Set<Long> productsIdToBeAdded, Long groupOfProductId) {
-        groupOfProductFacade.addProductsToGroup(productsIdToBeAdded, groupOfProductId);
+    public void addProductsToGroup(Set<Long> productsIdToBeAdded, Long groupId) {
+        groupOfProductFacade.addProductsToGroup(productsIdToBeAdded, groupId);
     }
 
     @Override
-    public GroupOfProductDto getGroupOfProduct(Long groupOfProductId) {
-        return groupOfProductAssembler.transformToGroupOfProductDto(groupOfProductDao.readMandatory(groupOfProductId));
+    public GroupOfProductDto getGroupOfProduct(Long groupId) {
+        GroupOfProductEntity groupOfProductEntity = groupOfProductDao.readMandatory(groupId);
+        return groupOfProductAssembler.transformToGroupOfProductDto(groupOfProductEntity);
     }
 
     @Override
     public List<GroupOfProductListDto> findAllGroupsOfProducts() {
-        return groupOfProductAssembler.transformToGroupOfProductListDto(groupOfProductDao.findAllGroupsOfProducts());
+        List<GroupOfProductEntity> allGroupsOfProducts = groupOfProductDao.findAllGroupsOfProducts();
+        return groupOfProductAssembler.transformToGroupOfProductListDto(allGroupsOfProducts);
     }
 
     @Override
-    public List<ProductListDto> getProductsInGroup(Long groupOfProductId) {
-        return productAssembler.transformToListOfProductListDto(groupOfProductDao.getProductsInGroup(groupOfProductId));
+    public List<ProductListDto> findProductsInGroup(Long groupId) {
+        List<ProductEntity> productsInGroup = groupOfProductDao.findProductsInGroup(groupId);
+        return productAssembler.transformToListOfProductListDto(productsInGroup);
     }
 
     @Override
-    public List<ProductListDto> getProductsNotInGroup(Long groupOfProductId) {
-        return productAssembler.transformToListOfProductListDto(groupOfProductDao.getProductsNotInGroup(groupOfProductId));
+    public List<ProductListDto> findProductsNotInGroup(Long groupId) {
+        List<ProductEntity> productsNotInGroup = groupOfProductDao.findProductsNotInGroup(groupId);
+        return productAssembler.transformToListOfProductListDto(productsNotInGroup);
+    }
+
+    @Override
+    public List<ProductInEshopPriceResultListDto> findPriceInfoInEshopsForGroup(Long groupId) {
+        List<ProductInEshopEntity> productInEshopEntities = groupOfProductDao.findPriceInfoInEshopsForGroup(groupId);
+        return productInEshopAssembler.transformToListOfProductInEshopEntity(productInEshopEntities);
     }
 
 
