@@ -138,34 +138,9 @@ public class EshopsPerProductListPage extends JPanel {
         List<ProductInEshopPriceResultListDto> result = ServiceLocator.getService().findPriceInfoInEshopsForProduct(productId);
 
         //FIXME tabulku so sortovanim a paging :-)
-        StringBuilder sb = new StringBuilder();
-        for (ProductInEshopPriceResultListDto eshopProductPriceDto : result) {
-            // nazov eshopu
-            sb.append(eshopProductPriceDto.getEshopName());
-            // cena za jednotku
-            sb.append("\t ").append(eshopProductPriceDto.getPriceForUnit()).append(" € za jednotku");
-            // cena za balenie
-            sb.append("\t ").append(eshopProductPriceDto.getPriceForPackage()).append(" € za balenie");
-            // akcia
-            sb.append("\t ").append(eshopProductPriceDto.getProductAction().name());
-            // akcia platna do
-            if (eshopProductPriceDto.getActionValidTo() != null) {
-                sb.append(" ").append(dateFormater.format(eshopProductPriceDto.getActionValidTo()));
-            }
-            // aktualizovane o
-            sb.append("\takt.: ");
-            if (eshopProductPriceDto.getLastUpdatedPrice() == null) {
-                sb.append("---").append("\t");
-            } else {
-                sb.append(dateTimeFormater.format(eshopProductPriceDto.getLastUpdatedPrice())).append("\t");
-            }
-            sb.append(eshopProductPriceDto.getProductEshopPage()).append(" ");
+        String text = PriceFormaterUtils.createText(result);
 
-//            sb.append("image path: ");
-//            sb.append(eshopProductPriceDto.getEshopProductInfo().getProductImageUrl());
-            sb.append(System.lineSeparator());
-        }
-        taPriceInfo.setText(sb.toString());
+        taPriceInfo.setText(text);
     }
 
     public void init() {

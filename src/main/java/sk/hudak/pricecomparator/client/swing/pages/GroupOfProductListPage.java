@@ -6,9 +6,6 @@ import sk.hudak.pricecomparator.client.swing.panel.ProductSelectionListView;
 import sk.hudak.pricecomparator.client.swing.utils.GuiUtils;
 import sk.hudak.pricecomparator.middle.api.to.ProductInEshopPriceResultListDto;
 import sk.hudak.pricecomparator.middle.api.to.ProductListDto;
-import sk.hudak.pricecomparator.server.downloader.EshopProductPriceDto;
-import sk.hudak.pricecomparator.server.downloader.GroupPriceListDto;
-import sk.hudak.pricecomparator.server.downloader.PriceDownloader;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -70,10 +67,10 @@ public class GroupOfProductListPage extends JPanel {
                 GuiUtils.LEFT_BORDER + GuiUtils.LABEL_WIDTH + GuiUtils.GAP_AFTER_LABEL,
                 GuiUtils.TOP_BORDER + ((rowNumber - 1) * GuiUtils.ROW_HEIGHT + ((rowNumber - 1) * GuiUtils.GAP_BEETWEN_ROWS)),
                 600,
-                6 * 17);
+                12 * 17);
         add(productListView);
 
-        rowNumber = rowNumber + 4;
+        rowNumber = rowNumber + 8;
         add(GuiUtils.label("Vysledne ceny: ", rowNumber));
         taPriceInfo = new JTextArea();
         taPriceInfo.setEditable(false);
@@ -103,48 +100,29 @@ public class GroupOfProductListPage extends JPanel {
                 //TODO
                 Long groupId = groupListView.getSelectedEntity().getId();
 
-                StringBuilder sb = new StringBuilder();
-                for (ProductInEshopPriceResultListDto eshopProductPriceDto : ServiceLocator.getService().findPriceInfoInEshopsForGroup(groupId)) {
-                    // nazov eshopu
-                    sb.append(eshopProductPriceDto.getEshopName());
-                    // cena za jednotku
-                    sb.append("\t ").append(eshopProductPriceDto.getPriceForUnit()).append(" € za jednotku");
-                    // cena za balenie
-                    sb.append("\t ").append(eshopProductPriceDto.getPriceForPackage()).append(" € za balenie");
-                    // akcia
-                    sb.append("\t ").append(eshopProductPriceDto.getProductAction().name());
-                    // akcia platna do
-                    if (eshopProductPriceDto.getActionValidTo() != null) {
-                        sb.append(" ").append(dateFormater.format(eshopProductPriceDto.getActionValidTo()));
-                    }
-                    // aktualizovane o
-                    sb.append("\takt.: ");
-                    if (eshopProductPriceDto.getLastUpdatedPrice() == null) {
-                        sb.append("---").append("\t");
-                    } else {
-                        sb.append(dateTimeFormater.format(eshopProductPriceDto.getLastUpdatedPrice())).append("\t");
-                    }
-                    sb.append(eshopProductPriceDto.getProductEshopPage()).append(" ");
-                    sb.append(System.lineSeparator());
-                }
-                System.out.println(sb.toString());
+                List<ProductInEshopPriceResultListDto> result = ServiceLocator.getService().findPriceInfoInEshopsForGroup(groupId);
+
+                String text = PriceFormaterUtils.createText(result);
+//                System.out.println(text);
+
+                taPriceInfo.setText(text);
 
                 // ---------------------------
-                PriceDownloader priceDownloader = new PriceDownloader();
-                GroupPriceListDto groupPriceListDto = priceDownloader.downloadProductInfoForGroup(groupListView.getSelectedEntity().getId());
-
-                sb = new StringBuilder();
-                java.util.List<EshopProductPriceDto> eshopProductPriceDtos = groupPriceListDto.getEshopProductPriceDtos();
-                for (EshopProductPriceDto eshopProductPriceDto : eshopProductPriceDtos) {
-                    sb.append(eshopProductPriceDto.getEshopName()).append("\t").append(" ");
-                    sb.append(eshopProductPriceDto.getEshopProductInfo().getPriceForUnit()).append(" ");
-                    sb.append("€ za jednotku, ").append("\t");
-                    sb.append(eshopProductPriceDto.getEshopProductInfo().getPriceForPackage()).append(" ");
-                    sb.append("€ za balenie, ");
-                    sb.append(eshopProductPriceDto.getProductEshopPage()).append(" ");
-                    sb.append(System.lineSeparator());
-                }
-                taPriceInfo.setText(sb.toString());
+//                PriceDownloader priceDownloader = new PriceDownloader();
+//                GroupPriceListDto groupPriceListDto = priceDownloader.downloadProductInfoForGroup(groupListView.getSelectedEntity().getId());
+//
+//                StringBuilder sb = new StringBuilder();
+//                java.util.List<EshopProductPriceDto> eshopProductPriceDtos = groupPriceListDto.getEshopProductPriceDtos();
+//                for (EshopProductPriceDto eshopProductPriceDto : eshopProductPriceDtos) {
+//                    sb.append(eshopProductPriceDto.getEshopName()).append("\t").append(" ");
+//                    sb.append(eshopProductPriceDto.getEshopProductInfo().getPriceForUnit()).append(" ");
+//                    sb.append("€ za jednotku, ").append("\t");
+//                    sb.append(eshopProductPriceDto.getEshopProductInfo().getPriceForPackage()).append(" ");
+//                    sb.append("€ za balenie, ");
+//                    sb.append(eshopProductPriceDto.getProductEshopPage()).append(" ");
+//                    sb.append(System.lineSeparator());
+//                }
+//                taPriceInfo.setText(sb.toString());
             }
         });
         add(btbtDownloadPrices);
