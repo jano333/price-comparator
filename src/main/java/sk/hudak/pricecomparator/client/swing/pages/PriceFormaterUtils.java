@@ -1,7 +1,10 @@
 package sk.hudak.pricecomparator.client.swing.pages;
 
+import org.apache.commons.lang3.StringUtils;
 import sk.hudak.pricecomparator.middle.api.to.ProductInEshopPriceResultListDto;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -20,9 +23,9 @@ public class PriceFormaterUtils {
             // nazov eshopu
             sb.append(eshopProductPriceDto.getEshopName());
             // cena za jednotku
-            sb.append("\t ").append(eshopProductPriceDto.getPriceForUnit()).append(" € za jednotku");
+            sb.append("\t ").append(removeDotAtTheEndIfExist(removeZerosAtTheEnd(eshopProductPriceDto.getPriceForUnit()))).append(" € za jednotku");
             // cena za balenie
-            sb.append("\t ").append(eshopProductPriceDto.getPriceForPackage()).append(" € za balenie");
+            sb.append("\t ").append(formatDecimal(eshopProductPriceDto.getPriceForPackage(), 2)).append(" € za balenie");
             // akcia
             sb.append("\t ").append(eshopProductPriceDto.getProductAction().name());
             // akcia platna do
@@ -43,5 +46,26 @@ public class PriceFormaterUtils {
             sb.append(System.lineSeparator());
         }
         return sb.toString();
+    }
+
+    private static BigDecimal formatDecimal(BigDecimal value, int countOfDecimal) {
+        if (value == null) {
+            return null;
+        }
+        return value.setScale(countOfDecimal, RoundingMode.HALF_UP);
+    }
+
+    private static String removeDotAtTheEndIfExist(String value) {
+        if (value.endsWith(".")) {
+            return value.substring(0, value.length() - 1);
+        }
+        return value;
+    }
+
+    private static String removeZerosAtTheEnd(BigDecimal value) {
+        if (value == null) {
+            return "";
+        }
+        return StringUtils.stripEnd(value.toString(), "0");
     }
 }

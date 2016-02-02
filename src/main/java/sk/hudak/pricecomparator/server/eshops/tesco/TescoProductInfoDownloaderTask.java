@@ -1,9 +1,10 @@
-package sk.hudak.pricecomparator.server.tasks;
+package sk.hudak.pricecomparator.server.eshops.tesco;
 
 import sk.hudak.pricecomparator.middle.api.EshopProductParser;
 import sk.hudak.pricecomparator.middle.api.EshopType;
 import sk.hudak.pricecomparator.middle.api.service.PriceComparatorService;
 import sk.hudak.pricecomparator.server.parser.TescoEshopProductParser;
+import sk.hudak.pricecomparator.server.tasks.EshopProductInfoDownloaderTask;
 
 /**
  * Created by jan on 4. 1. 2016.

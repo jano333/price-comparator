@@ -2,6 +2,7 @@ package sk.hudak.pricecomparator.client.swing.components;
 
 import sk.hudak.pricecomparator.client.ServiceLocator;
 import sk.hudak.pricecomparator.middle.api.service.PriceComparatorService;
+import sk.hudak.pricecomparator.server.eshops.tesco.TescoProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.tasks.*;
 
 import java.util.ArrayList;
