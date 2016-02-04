@@ -1,6 +1,6 @@
 package sk.hudak.pricecomparator.client.swing.components;
 
-import sk.hudak.pricecomparator.middle.api.to.ProductListDto;
+import sk.hudak.pricecomparator.middle.to.ProductListDto;
 
 import javax.swing.*;
 import java.util.ArrayList;

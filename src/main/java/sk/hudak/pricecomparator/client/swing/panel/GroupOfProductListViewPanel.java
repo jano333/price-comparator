@@ -2,7 +2,7 @@ package sk.hudak.pricecomparator.client.swing.panel;
 
 import sk.hudak.pricecomparator.client.ServiceLocator;
 import sk.hudak.pricecomparator.client.swing.components.BasicSelectionListViewPanel;
-import sk.hudak.pricecomparator.middle.api.to.GroupOfProductListDto;
+import sk.hudak.pricecomparator.middle.to.GroupOfProductListDto;
 
 import javax.swing.*;
 import java.awt.*;

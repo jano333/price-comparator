@@ -1,9 +1,9 @@
 package sk.hudak.pricecomparator.server.core;
 
-import sk.hudak.pricecomparator.middle.api.canonical.ParserInputData;
-import sk.hudak.pricecomparator.middle.api.exeption.PriceComparatorException;
-import sk.hudak.pricecomparator.middle.api.model.EshopProductInfo;
-import sk.hudak.pricecomparator.middle.api.model.ProductAction;
+import sk.hudak.pricecomparator.middle.canonical.ParserInputData;
+import sk.hudak.pricecomparator.middle.exeption.PriceComparatorException;
+import sk.hudak.pricecomparator.middle.model.EshopProductInfo;
+import sk.hudak.pricecomparator.middle.model.ProductAction;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

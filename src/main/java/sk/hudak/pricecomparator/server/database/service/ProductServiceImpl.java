@@ -1,13 +1,13 @@
 package sk.hudak.pricecomparator.server.database.service;
 
-import sk.hudak.pricecomparator.middle.api.service.ProductService;
-import sk.hudak.pricecomparator.middle.api.to.ProductCreateDto;
-import sk.hudak.pricecomparator.middle.api.to.ProductDto;
-import sk.hudak.pricecomparator.middle.api.to.ProductEditDto;
-import sk.hudak.pricecomparator.middle.api.to.ProductListDto;
-import sk.hudak.pricecomparator.server.database.assembler.ProductAssembler;
-import sk.hudak.pricecomparator.server.database.dao.ProductDao;
-import sk.hudak.pricecomparator.server.database.facade.ProductFacade;
+import sk.hudak.pricecomparator.middle.service.ProductService;
+import sk.hudak.pricecomparator.middle.to.ProductCreateDto;
+import sk.hudak.pricecomparator.middle.to.ProductDto;
+import sk.hudak.pricecomparator.middle.to.ProductEditDto;
+import sk.hudak.pricecomparator.middle.to.ProductListDto;
+import sk.hudak.pricecomparator.server.assembler.ProductAssembler;
+import sk.hudak.pricecomparator.server.dao.ProductDao;
+import sk.hudak.pricecomparator.server.facade.ProductFacade;
 
 import javax.inject.Inject;
 import javax.inject.Named;

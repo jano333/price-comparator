@@ -4,7 +4,7 @@ import sk.hudak.pricecomparator.client.ServiceLocator;
 import sk.hudak.pricecomparator.client.swing.panel.EshopSelectionListViewPanel;
 import sk.hudak.pricecomparator.client.swing.panel.ProductInEshopSelectionListView;
 import sk.hudak.pricecomparator.client.swing.utils.GuiUtils;
-import sk.hudak.pricecomparator.middle.api.to.ProductInEshopCustomListDto;
+import sk.hudak.pricecomparator.middle.to.ProductInEshopCustomListDto;
 
 import javax.swing.*;
 import java.util.Collections;

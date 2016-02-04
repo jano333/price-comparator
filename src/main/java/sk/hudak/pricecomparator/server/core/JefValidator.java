@@ -1,7 +1,7 @@
 package sk.hudak.pricecomparator.server.core;
 
 import org.apache.commons.lang3.StringUtils;
-import sk.hudak.pricecomparator.middle.api.exeption.PriceComparatorException;
+import sk.hudak.pricecomparator.middle.exeption.PriceComparatorException;
 
 import javax.inject.Named;
 

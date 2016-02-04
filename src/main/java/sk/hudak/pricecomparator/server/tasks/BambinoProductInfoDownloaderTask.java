@@ -1,8 +1,8 @@
 package sk.hudak.pricecomparator.server.tasks;
 
-import sk.hudak.pricecomparator.middle.api.EshopProductParser;
-import sk.hudak.pricecomparator.middle.api.EshopType;
-import sk.hudak.pricecomparator.middle.api.service.PriceComparatorService;
+import sk.hudak.pricecomparator.middle.EshopProductParser;
+import sk.hudak.pricecomparator.middle.EshopType;
+import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
 import sk.hudak.pricecomparator.server.parser.BambinoEshopProductParser;
 
 /**

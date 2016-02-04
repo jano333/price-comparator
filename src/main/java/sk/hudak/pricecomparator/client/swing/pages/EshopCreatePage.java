@@ -2,7 +2,7 @@ package sk.hudak.pricecomparator.client.swing.pages;
 
 import sk.hudak.pricecomparator.client.ServiceLocator;
 import sk.hudak.pricecomparator.client.swing.utils.GuiUtils;
-import sk.hudak.pricecomparator.middle.api.to.EshopCreateDto;
+import sk.hudak.pricecomparator.middle.to.EshopCreateDto;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

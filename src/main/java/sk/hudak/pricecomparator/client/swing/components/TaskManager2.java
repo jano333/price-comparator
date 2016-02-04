@@ -1,7 +1,10 @@
 package sk.hudak.pricecomparator.client.swing.components;
 
 import sk.hudak.pricecomparator.client.ServiceLocator;
-import sk.hudak.pricecomparator.middle.api.service.PriceComparatorService;
+import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
+import sk.hudak.pricecomparator.server.eshops.alza.AlzaProductInfoDownloaderTask;
+import sk.hudak.pricecomparator.server.eshops.andrea.AndreaEshopProductInfoDownloaderTask;
+import sk.hudak.pricecomparator.server.eshops.feedo.FeedoProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.tesco.TescoProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.tasks.*;
 

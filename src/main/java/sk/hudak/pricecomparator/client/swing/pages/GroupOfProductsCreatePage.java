@@ -3,8 +3,8 @@ package sk.hudak.pricecomparator.client.swing.pages;
 import sk.hudak.pricecomparator.client.ServiceLocator;
 import sk.hudak.pricecomparator.client.swing.panel.ProductSelectionListView;
 import sk.hudak.pricecomparator.client.swing.utils.GuiUtils;
-import sk.hudak.pricecomparator.middle.api.to.GroupOfProductCreateDto;
-import sk.hudak.pricecomparator.middle.api.to.ProductListDto;
+import sk.hudak.pricecomparator.middle.to.GroupOfProductCreateDto;
+import sk.hudak.pricecomparator.middle.to.ProductListDto;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

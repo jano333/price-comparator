@@ -1,9 +1,9 @@
 package sk;
 
 import sk.hudak.pricecomparator.client.ProductInfoToString;
-import sk.hudak.pricecomparator.middle.api.canonical.ParserInputData;
-import sk.hudak.pricecomparator.middle.api.canonical.Unit;
-import sk.hudak.pricecomparator.middle.api.model.EshopProductInfo;
+import sk.hudak.pricecomparator.middle.canonical.ParserInputData;
+import sk.hudak.pricecomparator.middle.canonical.Unit;
+import sk.hudak.pricecomparator.middle.model.EshopProductInfo;
 import sk.hudak.pricecomparator.server.parser.HravoZdravoProductParser;
 
 import java.math.BigDecimal;

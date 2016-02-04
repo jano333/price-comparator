@@ -1,7 +1,7 @@
 package sk.hudak.pricecomparator.server.database;
 
-import sk.hudak.pricecomparator.middle.api.service.TescoService;
-import sk.hudak.pricecomparator.middle.api.to.TescoProductInfoDto;
+import sk.hudak.pricecomparator.middle.service.TescoService;
+import sk.hudak.pricecomparator.middle.to.TescoProductInfoDto;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;

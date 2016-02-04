@@ -2,7 +2,7 @@ package sk.hudak.pricecomparator.server.parser;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
-import sk.hudak.pricecomparator.middle.api.model.EshopProductInfo;
+import sk.hudak.pricecomparator.middle.model.EshopProductInfo;
 import sk.hudak.pricecomparator.server.core.AbstractEshopProductInfo;
 import sk.hudak.pricecomparator.server.core.AbstractEshopProductParser;
 import sk.hudak.pricecomparator.server.factory.ProductInfoFactory;

@@ -4,9 +4,9 @@ import org.apache.commons.lang3.StringUtils;
 import sk.hudak.pricecomparator.client.ServiceLocator;
 import sk.hudak.pricecomparator.client.swing.components.ActionLabelPanel;
 import sk.hudak.pricecomparator.client.swing.utils.GuiUtils;
-import sk.hudak.pricecomparator.middle.api.canonical.Unit;
-import sk.hudak.pricecomparator.middle.api.to.ProductDto;
-import sk.hudak.pricecomparator.middle.api.to.ProductEditDto;
+import sk.hudak.pricecomparator.middle.canonical.Unit;
+import sk.hudak.pricecomparator.middle.to.ProductDto;
+import sk.hudak.pricecomparator.middle.to.ProductEditDto;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;

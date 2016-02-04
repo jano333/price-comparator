@@ -4,9 +4,9 @@ import org.jsoup.Connection;
 import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import sk.hudak.pricecomparator.middle.api.EshopProductParser;
-import sk.hudak.pricecomparator.middle.api.canonical.ParserInputData;
-import sk.hudak.pricecomparator.middle.api.model.EshopProductInfo;
+import sk.hudak.pricecomparator.middle.EshopProductParser;
+import sk.hudak.pricecomparator.middle.canonical.ParserInputData;
+import sk.hudak.pricecomparator.middle.model.EshopProductInfo;
 import sk.hudak.pricecomparator.server.factory.ProductInfoFactory;
 
 import java.util.Collections;

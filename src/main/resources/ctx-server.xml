@@ -35,12 +35,12 @@
         </property>
         <property name="annotatedClasses">
             <list>
-                <value>sk.hudak.pricecomparator.server.database.model.EshopEntity</value>
-                <value>sk.hudak.pricecomparator.server.database.model.ProductEntity</value>
-                <value>sk.hudak.pricecomparator.server.database.model.CategoryEntity</value>
-                <value>sk.hudak.pricecomparator.server.database.model.ProductInEshopEntity</value>
-                <value>sk.hudak.pricecomparator.server.database.model.GroupOfProductEntity</value>
-                <value>sk.hudak.pricecomparator.server.database.model.GroupOfProductFindEntity</value>
+                <value>sk.hudak.pricecomparator.server.model.EshopEntity</value>
+                <value>sk.hudak.pricecomparator.server.model.ProductEntity</value>
+                <value>sk.hudak.pricecomparator.server.model.CategoryEntity</value>
+                <value>sk.hudak.pricecomparator.server.model.ProductInEshopEntity</value>
+                <value>sk.hudak.pricecomparator.server.model.GroupOfProductEntity</value>
+                <value>sk.hudak.pricecomparator.server.model.GroupOfProductFindEntity</value>
             </list>
         </property>
     </bean>

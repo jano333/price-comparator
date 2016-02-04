@@ -1,12 +1,12 @@
 package sk.hudak.pricecomparator.server.database.service;
 
-import sk.hudak.pricecomparator.middle.api.service.EshopService;
-import sk.hudak.pricecomparator.middle.api.to.EshopCreateDto;
-import sk.hudak.pricecomparator.middle.api.to.EshopDto;
-import sk.hudak.pricecomparator.middle.api.to.EshopListDto;
-import sk.hudak.pricecomparator.server.database.assembler.EshopAssembler;
-import sk.hudak.pricecomparator.server.database.dao.EshopDao;
-import sk.hudak.pricecomparator.server.database.facade.EshopFacade;
+import sk.hudak.pricecomparator.middle.service.EshopService;
+import sk.hudak.pricecomparator.middle.to.EshopCreateDto;
+import sk.hudak.pricecomparator.middle.to.EshopDto;
+import sk.hudak.pricecomparator.middle.to.EshopListDto;
+import sk.hudak.pricecomparator.server.assembler.EshopAssembler;
+import sk.hudak.pricecomparator.server.dao.EshopDao;
+import sk.hudak.pricecomparator.server.facade.EshopFacade;
 
 import javax.inject.Inject;
 import javax.inject.Named;

@@ -1,7 +1,7 @@
 package sk.hudak.pricecomparator.server.core;
 
-import sk.hudak.pricecomparator.middle.api.model.EshopProductInfo;
-import sk.hudak.pricecomparator.middle.api.model.ProductAction;
+import sk.hudak.pricecomparator.middle.model.EshopProductInfo;
+import sk.hudak.pricecomparator.middle.model.ProductAction;
 
 import java.math.BigDecimal;
 import java.util.Date;

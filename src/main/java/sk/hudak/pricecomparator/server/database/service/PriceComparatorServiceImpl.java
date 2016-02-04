@@ -1,9 +1,9 @@
 package sk.hudak.pricecomparator.server.database.service;
 
 import org.springframework.transaction.annotation.Transactional;
-import sk.hudak.pricecomparator.middle.api.EshopType;
-import sk.hudak.pricecomparator.middle.api.service.*;
-import sk.hudak.pricecomparator.middle.api.to.*;
+import sk.hudak.pricecomparator.middle.EshopType;
+import sk.hudak.pricecomparator.middle.service.*;
+import sk.hudak.pricecomparator.middle.to.*;
 
 import javax.inject.Inject;
 import javax.inject.Named;

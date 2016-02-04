@@ -1,13 +1,13 @@
 package sk.hudak.pricecomparator.server.tasks;
 
-import sk.hudak.pricecomparator.middle.api.EshopProductParser;
-import sk.hudak.pricecomparator.middle.api.EshopType;
-import sk.hudak.pricecomparator.middle.api.canonical.ParserInputData;
-import sk.hudak.pricecomparator.middle.api.model.EshopProductInfo;
-import sk.hudak.pricecomparator.middle.api.service.PriceComparatorService;
-import sk.hudak.pricecomparator.middle.api.to.ProductDto;
-import sk.hudak.pricecomparator.middle.api.to.ProductInEshopDto;
-import sk.hudak.pricecomparator.middle.api.to.ProductInEshopPriceUpdateDto;
+import sk.hudak.pricecomparator.middle.EshopProductParser;
+import sk.hudak.pricecomparator.middle.EshopType;
+import sk.hudak.pricecomparator.middle.canonical.ParserInputData;
+import sk.hudak.pricecomparator.middle.model.EshopProductInfo;
+import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
+import sk.hudak.pricecomparator.middle.to.ProductDto;
+import sk.hudak.pricecomparator.middle.to.ProductInEshopDto;
+import sk.hudak.pricecomparator.middle.to.ProductInEshopPriceUpdateDto;
 import sk.hudak.pricecomparator.server.core.ServerConfig;
 
 import java.util.Random;

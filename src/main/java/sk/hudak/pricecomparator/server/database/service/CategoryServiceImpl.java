@@ -1,8 +1,8 @@
 package sk.hudak.pricecomparator.server.database.service;
 
-import sk.hudak.pricecomparator.middle.api.service.CategoryService;
-import sk.hudak.pricecomparator.middle.api.to.CategoryCreateDto;
-import sk.hudak.pricecomparator.server.database.facade.CategoryFactory;
+import sk.hudak.pricecomparator.middle.service.CategoryService;
+import sk.hudak.pricecomparator.middle.to.CategoryCreateDto;
+import sk.hudak.pricecomparator.server.facade.CategoryFactory;
 
 import javax.inject.Inject;
 import javax.inject.Named;

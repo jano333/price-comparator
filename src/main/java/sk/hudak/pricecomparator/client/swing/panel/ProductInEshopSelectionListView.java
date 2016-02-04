@@ -1,7 +1,7 @@
 package sk.hudak.pricecomparator.client.swing.panel;
 
 import sk.hudak.pricecomparator.client.swing.components.BasicSelectionListViewPanel;
-import sk.hudak.pricecomparator.middle.api.to.ProductInEshopCustomListDto;
+import sk.hudak.pricecomparator.middle.to.ProductInEshopCustomListDto;
 
 import javax.swing.*;
 import java.awt.*;

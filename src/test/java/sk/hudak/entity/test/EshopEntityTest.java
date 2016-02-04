@@ -4,9 +4,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import sk.hudak.pricecomparator.middle.api.service.PriceComparatorService;
-import sk.hudak.pricecomparator.middle.api.to.EshopCreateDto;
-import sk.hudak.pricecomparator.middle.api.to.EshopListDto;
+import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
+import sk.hudak.pricecomparator.middle.to.EshopCreateDto;
+import sk.hudak.pricecomparator.middle.to.EshopListDto;
 
 import javax.inject.Inject;
 import java.util.List;

@@ -1,7 +1,7 @@
 package sk;
 
-import sk.hudak.pricecomparator.middle.api.canonical.ParserInputData;
-import sk.hudak.pricecomparator.middle.api.canonical.Unit;
+import sk.hudak.pricecomparator.middle.canonical.ParserInputData;
+import sk.hudak.pricecomparator.middle.canonical.Unit;
 import sk.hudak.pricecomparator.server.core.AbstractEshopProductInfo;
 
 import java.math.BigDecimal;
