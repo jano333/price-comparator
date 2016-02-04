@@ -2,7 +2,7 @@ package sk.hudak.pricecomparator.client.swing.panel;
 
 import sk.hudak.pricecomparator.client.swing.components.BasicSelectionListViewPanel;
 import sk.hudak.pricecomparator.middle.to.TescoProductInfoDto;
-import sk.hudak.pricecomparator.server.database.TescoServiceImpl;
+import sk.hudak.pricecomparator.server.service.internal.TescoServiceImpl;
 
 import javax.swing.*;
 import java.awt.*;

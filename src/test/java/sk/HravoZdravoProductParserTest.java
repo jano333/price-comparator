@@ -4,7 +4,7 @@ import sk.hudak.pricecomparator.client.ProductInfoToString;
 import sk.hudak.pricecomparator.middle.canonical.ParserInputData;
 import sk.hudak.pricecomparator.middle.canonical.Unit;
 import sk.hudak.pricecomparator.middle.model.EshopProductInfo;
-import sk.hudak.pricecomparator.server.parser.HravoZdravoProductParser;
+import sk.hudak.pricecomparator.server.eshops.hravozdravo.HravoZdravoProductParser;
 
 import java.math.BigDecimal;
 

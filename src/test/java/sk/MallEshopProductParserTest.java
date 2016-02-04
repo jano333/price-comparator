@@ -3,7 +3,7 @@ package sk;
 import sk.hudak.pricecomparator.middle.canonical.ParserInputData;
 import sk.hudak.pricecomparator.middle.canonical.Unit;
 import sk.hudak.pricecomparator.middle.model.EshopProductInfo;
-import sk.hudak.pricecomparator.server.parser.MallEshopProductParser;
+import sk.hudak.pricecomparator.server.eshops.mall.MallEshopProductParser;
 
 import java.math.BigDecimal;
 

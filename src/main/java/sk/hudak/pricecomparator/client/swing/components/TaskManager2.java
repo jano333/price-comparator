@@ -2,11 +2,22 @@ package sk.hudak.pricecomparator.client.swing.components;
 
 import sk.hudak.pricecomparator.client.ServiceLocator;
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
+import sk.hudak.pricecomparator.server.core.EshopProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.alza.AlzaProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.andrea.AndreaEshopProductInfoDownloaderTask;
+import sk.hudak.pricecomparator.server.eshops.bambino.BambinoProductInfoDownloaderTask;
+import sk.hudak.pricecomparator.server.eshops.drmax.DrMaxProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.feedo.FeedoProductInfoDownloaderTask;
+import sk.hudak.pricecomparator.server.eshops.hej.HejProductInfoDownloaderTask;
+import sk.hudak.pricecomparator.server.eshops.hravozdravo.HravoZdravoProductInfoDownloaderTask;
+import sk.hudak.pricecomparator.server.eshops.internetovalekaren.InternetovaLekarenProductInfoDownloaderTask;
+import sk.hudak.pricecomparator.server.eshops.k24.K24ProductInfoDownloaderTask;
+import sk.hudak.pricecomparator.server.eshops.mall.MallProductInfoDownloaderTask;
+import sk.hudak.pricecomparator.server.eshops.metro.MetroProductInfoDownloaderTask;
+import sk.hudak.pricecomparator.server.eshops.perinbaba.PerinbabaProductInfoDownloaderTask;
+import sk.hudak.pricecomparator.server.eshops.pilulka.PilulkaProductInfoDownloaderTask;
+import sk.hudak.pricecomparator.server.eshops.semistor.SemistorProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.tesco.TescoProductInfoDownloaderTask;
-import sk.hudak.pricecomparator.server.tasks.*;
 
 import java.util.ArrayList;
 import java.util.List;

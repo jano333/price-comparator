@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.server.eshops.feedo;
+package sk.hudak.pricecomparator.server.eshops.bambino;
 
 import sk.hudak.pricecomparator.middle.EshopProductParser;
 import sk.hudak.pricecomparator.middle.EshopType;
@@ -8,19 +8,19 @@ import sk.hudak.pricecomparator.server.core.EshopProductInfoDownloaderTask;
 /**
  * Created by jan on 13. 1. 2016.
  */
-public class FeedoProductInfoDownloaderTask extends EshopProductInfoDownloaderTask {
+public class BambinoProductInfoDownloaderTask extends EshopProductInfoDownloaderTask {
 
-    public FeedoProductInfoDownloaderTask(PriceComparatorService service) {
+    public BambinoProductInfoDownloaderTask(PriceComparatorService service) {
         super(service);
     }
 
     @Override
     public EshopType getEshopType() {
-        return EshopType.FEEDO;
+        return EshopType.BAMBINO;
     }
 
     @Override
     protected EshopProductParser getEshopParser() {
-        return new FeedoEshopProductParser();
+        return new BambinoEshopProductParser();
     }
 }
