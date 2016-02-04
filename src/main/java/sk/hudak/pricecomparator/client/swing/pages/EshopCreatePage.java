@@ -14,11 +14,7 @@ import java.awt.event.ActionListener;
 public class EshopCreatePage extends JPanel {
 
     private JTextField tfName;
-
     private JTextField tfHomePage;
-
-    private JLabel lbParserClassName;
-    private JTextField tfParserClassName;
 
     private final JButton btCreate;
     private final JButton btReset;
@@ -33,10 +29,6 @@ public class EshopCreatePage extends JPanel {
         int rowNumber = 1;
         add(GuiUtils.labelRequired("Názov: ", rowNumber));
         add(tfName = GuiUtils.textField(rowNumber));
-
-        rowNumber++;
-        add(lbParserClassName = GuiUtils.labelRequired("Parser implementacia: ", rowNumber));
-        add(tfParserClassName = GuiUtils.textField(rowNumber));
 
         rowNumber++;
         add(GuiUtils.label("www stránka: ", rowNumber));
@@ -78,7 +70,6 @@ public class EshopCreatePage extends JPanel {
     private void onCreateAction() {
         createDto.setName(tfName.getText());
         createDto.setHomePage(tfHomePage.getText());
-        createDto.setParserClassName(tfParserClassName.getText());
 
         ServiceLocator.getService().createEshop(createDto);
 
@@ -90,7 +81,6 @@ public class EshopCreatePage extends JPanel {
 
         tfName.setText("");
         tfHomePage.setText("");
-        tfParserClassName.setText("");
 
         //focus
         tfName.requestFocus();

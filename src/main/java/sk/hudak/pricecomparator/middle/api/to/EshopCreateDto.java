@@ -8,8 +8,6 @@ import java.io.Serializable;
 public class EshopCreateDto implements Serializable {
 
     private String name; // povinne
-    private String parserClassName; // povinne
-
     private String homePage; // nepovinne
 
     public String getName() {
@@ -26,13 +24,5 @@ public class EshopCreateDto implements Serializable {
 
     public void setHomePage(String homePage) {
         this.homePage = homePage;
-    }
-
-    public String getParserClassName() {
-        return parserClassName;
-    }
-
-    public void setParserClassName(String parserClassName) {
-        this.parserClassName = parserClassName;
     }
 }

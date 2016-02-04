@@ -84,7 +84,6 @@ public class XmlEntityToDbEntityConverter {
             EshopCreateDto createDto = new EshopCreateDto();
             createDto.setHomePage(xmlEntity.getHomePage());
             createDto.setName(xmlEntity.getName());
-            createDto.setParserClassName(xmlEntity.getParserClassName());
 
             final Long eshopId = dbService.createEshop(createDto);
 

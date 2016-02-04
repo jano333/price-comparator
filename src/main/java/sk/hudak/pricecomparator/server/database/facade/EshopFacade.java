@@ -23,7 +23,6 @@ public class EshopFacade extends JefFacade {
 
         EshopEntity eshop = new EshopEntity();
         eshop.setName(createDto.getName());
-        eshop.setParserClassName(createDto.getParserClassName());
         eshop.setHomePage(createDto.getHomePage());
 
         return eshopDao.create(eshop);
@@ -33,14 +32,9 @@ public class EshopFacade extends JefFacade {
         val.notNull(dto, "dto is null");
         val.notNullAndNotEmpty(dto.getName(), "name is null or empty");
         //TODO validacia na max dlzku 255 ?
-        val.notNullAndNotEmpty(dto.getParserClassName(), "parser class name is null or empty");
-        //TODO validacia na max dlzku 255 ?
 
         if (eshopDao.existWithName(dto.getName())) {
             throw new PriceComparatorException("Eshop s nazvom " + dto.getName() + " uz existuje.");
-        }
-        if (eshopDao.existWithParserClassName(dto.getParserClassName())) {
-            throw new PriceComparatorException("Eshop s danym parser class name " + dto.getParserClassName() + " uz existuje.");
         }
     }
 }

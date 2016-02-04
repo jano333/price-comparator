@@ -46,12 +46,6 @@ public class EshopDao extends JefDao<EshopEntity> {
         return !cr.list().isEmpty();
     }
 
-    public boolean existWithParserClassName(String parserClassName) {
-        Criteria cr = createCriteria(EshopEntity.class);
-        cr.add(Restrictions.eq(EshopEntity.AT_PARSER_CLASS_NAME, parserClassName));
-        return !cr.list().isEmpty();
-    }
-
     public List<EshopEntity> getAllEshops() {
         Criteria crit = createCriteria(EshopEntity.class);
         addAscOrder(crit, EshopEntity.AT_NAME);

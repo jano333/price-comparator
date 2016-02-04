@@ -2,10 +2,6 @@ package sk;
 
 import sk.hudak.pricecomparator.middle.api.service.PriceComparatorService;
 import sk.hudak.pricecomparator.middle.api.to.EshopCreateDto;
-import sk.hudak.pricecomparator.server.parser.FeedoEshopProductParser;
-import sk.hudak.pricecomparator.server.parser.HejEshopProductParser;
-import sk.hudak.pricecomparator.server.parser.MetroEshopProductParser;
-import sk.hudak.pricecomparator.server.parser.TescoEshopProductParser;
 import sk.hudak.pricecomparator.server.xml.service.PriceComparatorXmlService;
 
 /**
@@ -26,17 +22,16 @@ public class TestService {
 
 
     private void createEshops() {
-        createEshop("Metro", MetroEshopProductParser.class.getName(), "www.metro.sk");
-        createEshop("Tesco", TescoEshopProductParser.class.getName(), "http://potravinydomov.itesco.sk/");
-        createEshop("Feedo", FeedoEshopProductParser.class.getName(), "www.feedo.sk");
-        createEshop("Hej", HejEshopProductParser.class.getName(), "www.hej.sk");
+        createEshop("Metro", "www.metro.sk");
+        createEshop("Tesco", "http://potravinydomov.itesco.sk/");
+        createEshop("Feedo", "www.feedo.sk");
+        createEshop("Hej", "www.hej.sk");
     }
 
 
-    private void createEshop(String name, String parserClassName, String homePage) {
+    private void createEshop(String name, String homePage) {
         EshopCreateDto dto = new EshopCreateDto();
         dto.setName(name);
-        dto.setParserClassName(parserClassName);
         dto.setHomePage(homePage);
         service.createEshop(dto);
     }

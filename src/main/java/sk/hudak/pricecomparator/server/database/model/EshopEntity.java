@@ -12,7 +12,6 @@ import javax.persistence.*;
 public class EshopEntity extends BasicEntity {
 
     public static final transient String AT_NAME = "name";
-    public static final transient String AT_PARSER_CLASS_NAME = "parserClassName";
     public static final transient String AT_ESHOP_TYPE = "eshopType";
 
     @Id
@@ -23,9 +22,6 @@ public class EshopEntity extends BasicEntity {
 
     @Column(name = "NAME", nullable = false, unique = true)
     private String name;
-
-    @Column(name = "PARSER_CLASS_NAME", nullable = false, unique = true)
-    private String parserClassName;
 
     @Column(name = "HOME_PAGE")
     private String homePage;
@@ -46,10 +42,6 @@ public class EshopEntity extends BasicEntity {
         this.homePage = homePage;
     }
 
-    public void setParserClassName(String parserClassName) {
-        this.parserClassName = parserClassName;
-    }
-
     public Long getId() {
         return id;
     }
@@ -60,10 +52,6 @@ public class EshopEntity extends BasicEntity {
 
     public String getHomePage() {
         return homePage;
-    }
-
-    public String getParserClassName() {
-        return parserClassName;
     }
 
     public EshopType getEshopType() {

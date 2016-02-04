@@ -24,7 +24,6 @@ public class EshopAssembler {
         dto.setId(eshopEntity.getId());
         dto.setName(eshopEntity.getName());
         dto.setHomePage(eshopEntity.getHomePage());
-        dto.setParserClassName(eshopEntity.getParserClassName());
         return dto;
     }
 

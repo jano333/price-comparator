@@ -28,7 +28,6 @@ public class ProductInEshopEntityTest extends AbstractTestNGSpringContextTests {
 
         EshopCreateDto eshopCreateDto = new EshopCreateDto();
         eshopCreateDto.setName("Tesco");
-        eshopCreateDto.setParserClassName("sk.hudak.TescoParser");
         eshopCreateDto.setHomePage("TestHomePage");
         Long eshopId = service.createEshop(eshopCreateDto);
 

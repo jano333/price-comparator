@@ -26,7 +26,6 @@ public class EshopEntityTest extends AbstractTestNGSpringContextTests {
 
         EshopCreateDto dto = new EshopCreateDto();
         dto.setName("TestName");
-        dto.setParserClassName("sk.hudak.TescoParser");
         dto.setHomePage("TestHomePage");
         Long eshop = service.createEshop(dto);
         Assert.assertNotNull(eshop);

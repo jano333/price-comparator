@@ -8,6 +8,7 @@ public class EshopDto {
     private Long id;
     private String name;
     private String homePage;
+    @Deprecated
     private String parserClassName;
 
     public Long getId() {

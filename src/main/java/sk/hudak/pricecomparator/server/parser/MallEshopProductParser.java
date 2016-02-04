@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import sk.hudak.pricecomparator.middle.api.model.EshopProductInfo;
+import sk.hudak.pricecomparator.middle.api.model.ProductAction;
 import sk.hudak.pricecomparator.server.core.AbstractEshopProductInfo;
 import sk.hudak.pricecomparator.server.core.AbstractEshopProductParser;
 import sk.hudak.pricecomparator.server.factory.ProductInfoFactory;
@@ -26,7 +27,6 @@ public class MallEshopProductParser extends AbstractEshopProductParser {
         // vratit ako nedostupne
 
 
-        //TODO aj akcia... tam je
         Elements elements2 = document.select("b[class=pro-price con-emphasize font-primary--bold lay-inline-block mr-5]");
         if (elements2.isEmpty()) {
             return ProductInfoFactory.createUnaviable();
@@ -45,11 +45,25 @@ public class MallEshopProductParser extends AbstractEshopProductParser {
             return ProductInfoFactory.createUnaviable();
         }
 
+        // akcia
+        final ProductAction productAction;
+        Elements elements3 = document.select("em[class=label label--action");
+        if (!elements3.isEmpty()) {
+            productAction = ProductAction.IN_ACTION;
+        } else {
+            productAction = ProductAction.NON_ACTION;
+        }
+
         return new AbstractEshopProductInfo(parserInputData) {
 
             @Override
             public BigDecimal getPriceForPackage() {
                 return new BigDecimal(cenaZaBalenie);
+            }
+
+            @Override
+            public ProductAction getAction() {
+                return productAction;
             }
         };
     }
