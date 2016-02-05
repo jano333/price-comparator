@@ -62,6 +62,7 @@ public abstract class BasicSelectionListViewPanel<T> extends JPanel implements L
             @Override
             public void keyPressed(KeyEvent evt) {
                 JList list = (JList) evt.getSource();
+                onKeyPressed(evt.getKeyCode(), (T) list.getSelectedValue());
                 if (evt.getKeyCode() == KeyEvent.VK_DELETE) {
                     onDeleteKeyPressed((T) list.getSelectedValue());
                 }
@@ -72,6 +73,14 @@ public abstract class BasicSelectionListViewPanel<T> extends JPanel implements L
         JScrollPane pane = new JScrollPane(jList);
         // roztiahne sa na celu plochu
         add(pane, BorderLayout.CENTER);
+    }
+
+    /**
+     * @param keyCode
+     * @param selectedValue
+     */
+    protected void onKeyPressed(int keyCode, T selectedValue) {
+
     }
 
     protected Color getForegroundColor() {

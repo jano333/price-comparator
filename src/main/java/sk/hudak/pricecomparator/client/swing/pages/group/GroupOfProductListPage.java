@@ -1,9 +1,10 @@
-package sk.hudak.pricecomparator.client.swing.pages;
+package sk.hudak.pricecomparator.client.swing.pages.group;
 
 import sk.hudak.pricecomparator.client.ServiceLocator;
 import sk.hudak.pricecomparator.client.swing.panel.GroupOfProductListViewPanel;
 import sk.hudak.pricecomparator.client.swing.panel.ProductSelectionListView;
 import sk.hudak.pricecomparator.client.swing.utils.GuiUtils;
+import sk.hudak.pricecomparator.client.utils.PriceFormaterUtils;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopPriceResultListDto;
 import sk.hudak.pricecomparator.middle.to.ProductListDto;
 

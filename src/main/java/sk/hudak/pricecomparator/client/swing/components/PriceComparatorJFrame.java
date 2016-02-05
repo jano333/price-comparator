@@ -1,6 +1,16 @@
 package sk.hudak.pricecomparator.client.swing.components;
 
-import sk.hudak.pricecomparator.client.swing.pages.*;
+import sk.hudak.pricecomparator.client.swing.pages.EshopsPerProductListPage;
+import sk.hudak.pricecomparator.client.swing.pages.ProductInEshopCreatePage;
+import sk.hudak.pricecomparator.client.swing.pages.ProductsInEshopListPage;
+import sk.hudak.pricecomparator.client.swing.pages.eshop.EshopCreatePage;
+import sk.hudak.pricecomparator.client.swing.pages.eshop.EshopListPage;
+import sk.hudak.pricecomparator.client.swing.pages.group.GroupOfProductAddProductPage;
+import sk.hudak.pricecomparator.client.swing.pages.group.GroupOfProductListPage;
+import sk.hudak.pricecomparator.client.swing.pages.group.GroupOfProductsCreatePage;
+import sk.hudak.pricecomparator.client.swing.pages.product.ProductCreatePage;
+import sk.hudak.pricecomparator.client.swing.pages.product.ProductListPage;
+import sk.hudak.pricecomparator.client.swing.pages.tesco.TescoSelectionPage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,6 +38,7 @@ public class PriceComparatorJFrame extends JFrame {
     private GroupOfProductsCreatePage groupOfProductsCreatePage = new GroupOfProductsCreatePage();
     private GroupOfProductAddProductPage groupOfProductAddProductPage = new GroupOfProductAddProductPage();
 //    private GroupOfProductListPage2 groupOfProductListPage = new GroupOfProductListPage2();
+private TescoSelectionPage tescoSelectionPage = new TescoSelectionPage();
 
 
     public PriceComparatorJFrame(TaskManager taskManager) throws HeadlessException {
@@ -65,12 +76,17 @@ public class PriceComparatorJFrame extends JFrame {
         cardContainer.add(groupOfProductsCreatePage.getClass().getSimpleName(), groupOfProductsCreatePage);
         cardContainer.add(groupOfProductAddProductPage.getClass().getSimpleName(), groupOfProductAddProductPage);
 
+        cardContainer.add(tescoSelectionPage.getClass().getSimpleName(), tescoSelectionPage);
+
         getContentPane().add(cardContainer);
 
         //zabezpocim zobprazenie stranky eshopsPerProductListPage:
         CardLayout cl = (CardLayout) (cardContainer.getLayout());
+        //TODO odkomentovat
         cl.show(cardContainer, eshopsPerProductListPage.getClass().getSimpleName());
         eshopsPerProductListPage.init();
+//          cl.show(cardContainer, tescoSelectionPage.getClass().getSimpleName());
+
 
         setVisible(true);
     }

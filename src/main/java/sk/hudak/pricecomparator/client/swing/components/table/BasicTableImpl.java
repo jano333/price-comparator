@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.client.swing.components;
+package sk.hudak.pricecomparator.client.swing.components.table;
 
 import sk.hudak.pricecomparator.middle.to.ProductListDto;
 

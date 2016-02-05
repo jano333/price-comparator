@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.client.swing.pages;
+package sk.hudak.pricecomparator.client.swing.pages.product;
 
 import org.apache.commons.lang3.StringUtils;
 import sk.hudak.pricecomparator.client.ServiceLocator;

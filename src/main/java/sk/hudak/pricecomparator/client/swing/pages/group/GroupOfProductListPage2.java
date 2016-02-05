@@ -1,4 +1,6 @@
-package sk.hudak.pricecomparator.client.swing.pages;
+package sk.hudak.pricecomparator.client.swing.pages.group;
+
+import sk.hudak.pricecomparator.client.swing.pages.BasicPage;
 
 import javax.swing.*;
 import java.awt.*;

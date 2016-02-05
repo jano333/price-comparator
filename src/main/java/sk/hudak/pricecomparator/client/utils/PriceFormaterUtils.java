@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.client.swing.pages;
+package sk.hudak.pricecomparator.client.utils;
 
 import org.apache.commons.lang3.StringUtils;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopPriceResultListDto;

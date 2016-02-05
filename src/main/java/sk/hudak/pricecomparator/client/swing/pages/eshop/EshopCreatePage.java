@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.client.swing.pages;
+package sk.hudak.pricecomparator.client.swing.pages.eshop;
 
 import sk.hudak.pricecomparator.client.ServiceLocator;
 import sk.hudak.pricecomparator.client.swing.utils.GuiUtils;

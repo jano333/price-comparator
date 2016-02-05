@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.client.swing.components;
+package sk.hudak.pricecomparator.client.swing.components.table;
 
 import org.apache.commons.beanutils.PropertyUtils;
 
