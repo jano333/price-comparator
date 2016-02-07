@@ -64,7 +64,6 @@ public class ProductInEshopAssembler {
         result.setEshopId(entity.getEshop().getId());
         result.setProductId(entity.getProduct().getId());
         result.setEshopProductPage(entity.getProductPageInEshop());
-        //TODO dalsie
 
         return result;
     }

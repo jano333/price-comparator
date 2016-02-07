@@ -37,8 +37,8 @@ public class PriceComparatorJFrame extends JFrame {
     private GroupOfProductListPage groupOfProductListPage = new GroupOfProductListPage();
     private GroupOfProductsCreatePage groupOfProductsCreatePage = new GroupOfProductsCreatePage();
     private GroupOfProductAddProductPage groupOfProductAddProductPage = new GroupOfProductAddProductPage();
-//    private GroupOfProductListPage2 groupOfProductListPage = new GroupOfProductListPage2();
-private TescoSelectionPage tescoSelectionPage = new TescoSelectionPage();
+    //    private GroupOfProductListPage2 groupOfProductListPage = new GroupOfProductListPage2();
+    private TescoSelectionPage tescoSelectionPage = new TescoSelectionPage();
 
 
     public PriceComparatorJFrame(TaskManager taskManager) throws HeadlessException {
@@ -106,20 +106,45 @@ private TescoSelectionPage tescoSelectionPage = new TescoSelectionPage();
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
 
+
+        // Eshop Menu
+        createEshopMenus(menuBar);
+
+
+        // Produkt Menu
+        createProductMenu(menuBar);
+
+
+        // Skupina MENU
+        createSkupinaMenu(menuBar);
+
+        createAdminMenu(menuBar);
+
+    }
+
+    private void createAdminMenu(JMenuBar menuBar) {
+        JMenu mnSpravaAdmin = new JMenu("Admin");
+        mnSpravaAdmin.setMnemonic(KeyEvent.VK_A);
+        menuBar.add(mnSpravaAdmin);
+
+        JMenuItem mnTesctoSelectCareProducts = new JMenuItem("Tesco care products");
+        mnSpravaAdmin.add(mnTesctoSelectCareProducts);
+        mnTesctoSelectCareProducts.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CardLayout cl = (CardLayout) (cardContainer.getLayout());
+                cl.show(cardContainer, tescoSelectionPage.getClass().getSimpleName());
+                tescoSelectionPage.init();
+            }
+        });
+    }
+
+    private void createEshopMenus(JMenuBar menuBar) {
         JMenu mnSpravaEshop = new JMenu("Eshopy");
         mnSpravaEshop.setMnemonic(KeyEvent.VK_E);
         menuBar.add(mnSpravaEshop);
 
-        JMenu mnSpravaProductov = new JMenu("Produkty");
-        mnSpravaProductov.setMnemonic(KeyEvent.VK_P);
-        menuBar.add(mnSpravaProductov);
 
-        JMenu mnSpravaGroupOfProducts = new JMenu("Skupina produktov");
-        mnSpravaGroupOfProducts.setMnemonic(KeyEvent.VK_S);
-        menuBar.add(mnSpravaGroupOfProducts);
-
-
-        // Eshop Menu
         JMenuItem mnzoznamEshop = new JMenuItem("Zoznam eshopov");
         mnSpravaEshop.add(mnzoznamEshop);
         mnzoznamEshop.addActionListener(new ActionListener() {
@@ -141,9 +166,14 @@ private TescoSelectionPage tescoSelectionPage = new TescoSelectionPage();
                 eshopCreatePage.init();
             }
         });
+    }
+
+    private void createProductMenu(JMenuBar menuBar) {
+        JMenu mnSpravaProductov = new JMenu("Produkty");
+        mnSpravaProductov.setMnemonic(KeyEvent.VK_P);
+        menuBar.add(mnSpravaProductov);
 
 
-        // Produkt Menu
         JMenuItem mnzoznamProdukt = new JMenuItem("Zoznam produktov");
         mnSpravaProductov.add(mnzoznamProdukt);
         mnzoznamProdukt.addActionListener(new ActionListener() {
@@ -166,7 +196,6 @@ private TescoSelectionPage tescoSelectionPage = new TescoSelectionPage();
             }
         });
 
-//        productsInEshopListPage
         JMenuItem mnProductsPerEshopListPage = new JMenuItem("Zoznam produktov v eshope");
         mnSpravaProductov.add(mnProductsPerEshopListPage);
         mnProductsPerEshopListPage.addActionListener(new ActionListener() {
@@ -199,9 +228,14 @@ private TescoSelectionPage tescoSelectionPage = new TescoSelectionPage();
                 productInEshopCreatePage.init();
             }
         });
+    }
 
+    private void createSkupinaMenu(JMenuBar menuBar) {
 
-        // skupina produktov
+        JMenu mnSpravaGroupOfProducts = new JMenu("Skupina produktov");
+        mnSpravaGroupOfProducts.setMnemonic(KeyEvent.VK_S);
+        menuBar.add(mnSpravaGroupOfProducts);
+
         JMenuItem mnListGroupOfProdukt = new JMenuItem("Zoznam skupiny");
         mnSpravaGroupOfProducts.add(mnListGroupOfProdukt);
         mnListGroupOfProdukt.addActionListener(new ActionListener() {
@@ -234,7 +268,5 @@ private TescoSelectionPage tescoSelectionPage = new TescoSelectionPage();
                 groupOfProductAddProductPage.init();
             }
         });
-
-
     }
 }

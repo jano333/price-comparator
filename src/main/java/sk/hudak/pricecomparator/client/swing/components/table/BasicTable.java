@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.util.List;
 
@@ -12,9 +13,9 @@ import java.util.List;
  */
 public abstract class BasicTable<T> extends JPanel {
 
-
     private final MyTableModel myTableModel;
     private final JTable table;
+    private final JScrollPane scrollPane;
 
     private List<T> data;
     private List<? extends BasicColumn> columns;
@@ -26,12 +27,14 @@ public abstract class BasicTable<T> extends JPanel {
         myTableModel = new MyTableModel();
         table = new JTable(myTableModel);
 
-        //TODO dimenzion ako metodu s moznostou override
+        //TODO dimenzion ako metodu naco to vlastne je... ???
         table.setPreferredScrollableViewportSize(new Dimension(500, 70));
         table.setFillsViewportHeight(true);
 
+        table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
         //Create the scroll pane and add the table to it.
-        JScrollPane scrollPane = new JScrollPane(table);
+        scrollPane = new JScrollPane(table);
 
 //        initColumnSizes(table);
         initColumn(table);
@@ -41,14 +44,16 @@ public abstract class BasicTable<T> extends JPanel {
     }
 
     private void initColumn(JTable table) {
-        //nastavim vlastny cell render
+        TableColumnModel columnModel = table.getColumnModel();
+
         for (int i = 0; i < columns.size(); i++) {
-            TableColumn column = table.getColumnModel().getColumn(i);
-
+            TableColumn column = columnModel.getColumn(i);
             BasicColumn basicColumn = columns.get(i);
-
+            //nastavim vlastny cell render
             column.setCellRenderer(basicColumn.getTableCellRenderer());
-            column.setPreferredWidth(basicColumn.getWidth());
+            // nastavim sirku stlpca
+//            column.setPreferredWidth(basicColumn.getWidth());
+            column.setMinWidth(basicColumn.getWidth());
         }
     }
 
@@ -61,12 +66,12 @@ public abstract class BasicTable<T> extends JPanel {
         return data;
     }
 
+
     public void reload() {
         data = null;
-        table.invalidate();
-        table.repaint();
+        internalData();
+        myTableModel.fireTableDataChanged();
     }
-
 
     class MyTableModel extends AbstractTableModel {
 

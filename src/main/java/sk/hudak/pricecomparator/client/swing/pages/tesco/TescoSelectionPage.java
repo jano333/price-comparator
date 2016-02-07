@@ -128,10 +128,18 @@ public class TescoSelectionPage extends JPanel {
     }
 
 
+    public void init() {
+        lvUnporocessed.reloadData();
+        lvUnporocessed.setFirstSelected();
+        lvUnporocessed.requestFocus();
+
+    }
+
     private void onNacitajData() {
         try {
 //            tfVstupnySubor.setText("C:\\price-comparator\\tesco\\Starostlivosť o dieťa.txt");
-            tfVstupnySubor.setText("C:\\price-comparator\\tesco\\Nápoje.txt");
+//            tfVstupnySubor.setText("C:\\price-comparator\\tesco\\Nápoje.txt");
+            tfVstupnySubor.setText("C:\\price-comparator\\tesco\\Mlieka a smotany.txt");
 
             String path = tfVstupnySubor.getText();
             File careFile = new File(CARE_PATH);
@@ -166,6 +174,7 @@ public class TescoSelectionPage extends JPanel {
 
     }
 
+
     private List<TescoProductInfoDto> createList(List<String> unprocessed) {
         List<TescoProductInfoDto> result = new ArrayList<>();
         int count = 0;
@@ -196,6 +205,4 @@ public class TescoSelectionPage extends JPanel {
         }
         return result;
     }
-
-
 }

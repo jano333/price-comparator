@@ -40,7 +40,7 @@ public class MallEshopProductParser extends AbstractEshopProductParser {
             }
 
         } catch (Exception e) {
-            //TODO log
+            //FIXME ulozit do DB integracny log
             e.printStackTrace();
             return ProductInfoFactory.createUnaviable();
         }
