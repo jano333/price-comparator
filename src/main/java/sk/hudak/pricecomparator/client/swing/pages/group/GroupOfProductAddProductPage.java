@@ -41,7 +41,7 @@ public class GroupOfProductAddProductPage extends JPanel {
         lvGroup.setBounds(
                 GuiUtils.LEFT_BORDER + GuiUtils.LABEL_WIDTH + GuiUtils.GAP_AFTER_LABEL,
                 GuiUtils.TOP_BORDER + ((rowNumber - 1) * GuiUtils.ROW_HEIGHT + ((rowNumber - 1) * GuiUtils.GAP_BEETWEN_ROWS)),
-                400,
+                GuiUtils.LIST_VIEW_SELECTOR_WIDTH,
                 6 * 17);
         add(lvGroup);
 
@@ -65,7 +65,7 @@ public class GroupOfProductAddProductPage extends JPanel {
         lvProductsInGroup.setBounds(
                 GuiUtils.LEFT_BORDER + GuiUtils.LABEL_WIDTH + GuiUtils.GAP_AFTER_LABEL,
                 GuiUtils.TOP_BORDER + ((rowNumber - 1) * GuiUtils.ROW_HEIGHT + ((rowNumber - 1) * GuiUtils.GAP_BEETWEN_ROWS)),
-                400,
+                GuiUtils.LIST_VIEW_SELECTOR_WIDTH,
                 6 * 17);
         lvProductsInGroup.setReadOnly();
         add(lvProductsInGroup);
@@ -96,7 +96,7 @@ public class GroupOfProductAddProductPage extends JPanel {
         lvProductsNotInGroup.setBounds(
                 GuiUtils.LEFT_BORDER + GuiUtils.LABEL_WIDTH + GuiUtils.GAP_AFTER_LABEL,
                 GuiUtils.TOP_BORDER + ((rowNumber - 1) * GuiUtils.ROW_HEIGHT + ((rowNumber - 1) * GuiUtils.GAP_BEETWEN_ROWS)),
-                400,
+                GuiUtils.LIST_VIEW_SELECTOR_WIDTH,
                 6 * 17);
         add(lvProductsNotInGroup);
 
