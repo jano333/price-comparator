@@ -1,13 +1,18 @@
 package sk.hudak.pricecomparator.client.swing.pages;
 
 import sk.hudak.pricecomparator.client.ServiceLocator;
+import sk.hudak.pricecomparator.client.swing.components.table.*;
 import sk.hudak.pricecomparator.client.swing.panel.EshopSelectionListViewPanel;
 import sk.hudak.pricecomparator.client.swing.panel.ProductInEshopSelectionListView;
 import sk.hudak.pricecomparator.client.swing.utils.GuiUtils;
+import sk.hudak.pricecomparator.middle.to.EshopListDto;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopCustomListDto;
+import sk.hudak.pricecomparator.middle.to.ProductInEshopPriceInfoListDto;
 
 import javax.swing.*;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by jan on 20. 12. 2015.
@@ -16,6 +21,7 @@ public class ProductsInEshopListPage extends JPanel {
 
     private EshopSelectionListViewPanel lvEshops;
     private ProductInEshopSelectionListView lvProductsInEshop;
+    private BasicTable<ProductInEshopPriceInfoListDto> table;
 
     public ProductsInEshopListPage() {
         setLayout(null);
@@ -63,14 +69,47 @@ public class ProductsInEshopListPage extends JPanel {
                 GuiUtils.LIST_VIEW_SELECTOR_WIDTH,
                 12 * 17); // je pocet vyditelnych riadkov
         add(lvProductsInEshop);
+
+        rowNumber = rowNumber + 8;
+
+        List<BasicColumn> columns = new ArrayList<>();
+        //TODO obrazok produktu
+        columns.add(new TextColumn("productName", "Názov", 400));
+        columns.add(new EuroColumn("priceForPackage", 2, "Cena(€)", 80));
+        columns.add(new TextColumn("priceForUnit", "Jednotková cena(€)", 120));
+        columns.add(new ProductActionColumn("productAction", "Akcia", 50));
+        columns.add(new DateTimeColumn("lastUpdatedPrice", "Aktualizovane o", 120));
+        columns.add(new TextColumn("productEshopPage", "Stránka produktu", 400));
+
+        table = new BasicTable<ProductInEshopPriceInfoListDto>(columns) {
+            @Override
+            protected List<ProductInEshopPriceInfoListDto> loadData() {
+                EshopListDto selectedEntity = lvEshops.getSelectedEntity();
+                if (selectedEntity == null) {
+                    return new ArrayList<>();
+                }
+                return ServiceLocator.getService().findProductInEshopPriceInfoForEshop(
+                        selectedEntity.getId());
+            }
+        };
+
+        table.setBounds(
+                GuiUtils.LEFT_BORDER + GuiUtils.LABEL_WIDTH + GuiUtils.GAP_AFTER_LABEL,
+                GuiUtils.TOP_BORDER + ((rowNumber - 1) * GuiUtils.ROW_HEIGHT + ((rowNumber - 1) * GuiUtils.GAP_BEETWEN_ROWS)),
+                GuiUtils.LIST_VIEW_SELECTOR_WIDTH,
+                8 * 17);
+        add(table);
     }
 
     private void onEshopChanged() {
         lvProductsInEshop.reloadData();
+        table.reload();
     }
 
     public void init() {
         lvEshops.reloadData();
         lvEshops.setFirstSelected();
+
+
     }
 }

@@ -69,4 +69,11 @@ public interface ProductInEshopService {
     List<ProductInEshopPriceResultListDto> findPriceInfoInEshopsForProduct(Long productId);
 
 
+    /**
+     * Pre eshop eshopId vyhlada vsetky produkty v danom eshope.
+     *
+     * @param eshopId id eshop-u
+     * @return
+     */
+    List<ProductInEshopPriceInfoListDto> findProductInEshopPriceInfoForEshop(Long eshopId);
 }

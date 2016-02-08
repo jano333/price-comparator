@@ -183,6 +183,15 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
         return result;
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public List<ProductInEshopPriceInfoListDto> findProductInEshopPriceInfoForEshop(Long eshopId) {
+        System.out.println(">> findProductInEshopPriceInfoForEshop");
+        List<ProductInEshopPriceInfoListDto> result = productInEshopService.findProductInEshopPriceInfoForEshop(eshopId);
+        System.out.println("<< findProductInEshopPriceInfoForEshop");
+        return result;
+    }
+
 
     // --------- GROUP_OF_PRODUCTS ------------
 

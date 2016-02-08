@@ -61,6 +61,12 @@ public class ProductInEshopDao extends JefDao<ProductInEshopEntity> {
         return crit.list();
     }
 
+    /**
+     * Vsetky produkty v danom eshop-e. Ordering podla nazvu produktu.
+     *
+     * @param eshopId
+     * @return
+     */
     public List<ProductInEshopEntity> findProductsInEshop(Long eshopId) {
         Criteria crit = createCriteria(ProductInEshopEntity.class);
         crit.add(Restrictions.eq(ProductInEshopEntity.AT_ESHOP + "." + EshopEntity.AT_ID, eshopId));
@@ -122,4 +128,6 @@ public class ProductInEshopDao extends JefDao<ProductInEshopEntity> {
         addAscOrder(crit, orderBy);
         return crit.list();
     }
+
+
 }

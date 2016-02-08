@@ -1,9 +1,6 @@
 package sk.hudak.pricecomparator.server.assembler;
 
-import sk.hudak.pricecomparator.middle.to.ProductInEshopCustomListDto;
-import sk.hudak.pricecomparator.middle.to.ProductInEshopDto;
-import sk.hudak.pricecomparator.middle.to.ProductInEshopListDto;
-import sk.hudak.pricecomparator.middle.to.ProductInEshopPriceResultListDto;
+import sk.hudak.pricecomparator.middle.to.*;
 import sk.hudak.pricecomparator.server.model.ProductInEshopEntity;
 
 import javax.inject.Inject;
@@ -115,6 +112,38 @@ public class ProductInEshopAssembler {
         result.setProductEshopPage(entity.getProductPageInEshop());
         result.setEshopName(entity.getEshop().getName());
         result.setLastUpdatedPrice(entity.getLastUpdatedPrice());
+
+        return result;
+    }
+
+    public List<ProductInEshopPriceInfoListDto> transformToListOfProductInEshopPriceInfoListDto(List<ProductInEshopEntity> entities) {
+        if (entities == null) {
+            return null;
+        }
+        List<ProductInEshopPriceInfoListDto> result = new ArrayList<>(entities.size());
+        for (ProductInEshopEntity entity : entities) {
+            result.add(transformToProductInEshopPriceInfoListDto(entity));
+        }
+        return result;
+    }
+
+    private ProductInEshopPriceInfoListDto transformToProductInEshopPriceInfoListDto(ProductInEshopEntity entity) {
+        if (entity == null) {
+            return null;
+        }
+        ProductInEshopPriceInfoListDto result = new ProductInEshopPriceInfoListDto();
+        result.setId(entity.getId());
+        result.setProductAction(entity.getProductAction());
+        result.setPriceForUnit(entity.getPriceForUnit());
+        result.setActionValidTo(entity.getActionValidTo());
+        result.setPriceForOneItemInPackage(entity.getPriceForOneItemInPackage());
+        result.setPriceForPackage(entity.getPriceForPackage());
+        result.setProductEshopPage(entity.getProductPageInEshop());
+        result.setProductName(entity.getProduct().getName());
+        result.setLastUpdatedPrice(entity.getLastUpdatedPrice());
+
+        //FIXME url na obrazok
+
 
         return result;
     }

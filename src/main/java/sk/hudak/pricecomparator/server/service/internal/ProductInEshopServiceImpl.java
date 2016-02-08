@@ -114,7 +114,14 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
     public List<ProductInEshopPriceResultListDto> findPriceInfoInEshopsForProduct(Long productId) {
         //FIXME vstup dat finDto aby bola moznost nastavovat filtrovanie, vraciat paging nie list
         List<ProductInEshopEntity> productInEshopEntities = productInEshopDao.findPriceInfoInEshopsForProduct(productId);
+        //FIXME premenovat transform metodu
         return productInEshopAssembler.transformToListOfProductInEshopEntity(productInEshopEntities);
+    }
+
+    @Override
+    public List<ProductInEshopPriceInfoListDto> findProductInEshopPriceInfoForEshop(Long eshopId) {
+        List<ProductInEshopEntity> productInEshopEntities = productInEshopDao.findProductsInEshop(eshopId);
+        return productInEshopAssembler.transformToListOfProductInEshopPriceInfoListDto(productInEshopEntities);
     }
 
 
