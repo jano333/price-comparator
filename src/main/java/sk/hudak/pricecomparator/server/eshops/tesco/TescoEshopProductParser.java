@@ -6,6 +6,7 @@ import sk.hudak.pricecomparator.middle.model.EshopProductInfo;
 import sk.hudak.pricecomparator.middle.model.ProductAction;
 import sk.hudak.pricecomparator.server.core.AbstractEshopProductInfo;
 import sk.hudak.pricecomparator.server.core.AbstractEshopProductParser;
+import sk.hudak.pricecomparator.server.factory.ProductInfoFactory;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
@@ -19,8 +20,21 @@ public class TescoEshopProductParser extends AbstractEshopProductParser {
 
     @Override
     protected EshopProductInfo parsePrice(Document document) {
+        // overenie ci je produkt dostupny
+        // nebol dostupny:
+        //http://potravinydomov.itesco.sk/sk-SK/ProductDetail/ProductDetail/2002121104955
+        Elements elements = document.select("p[class=addToBasketNotForSale]");
+        if (elements.size() > 0) {
+            System.err.println("produkt nie je dostupny: " + parserInputData.getEshopProductPage());
+            return ProductInfoFactory.createUnaviable();
+        }
+
+//        <p xmlns="http://www.w3.org/1999/xhtml" class="addToBasketNotForSale">
+//                Produkt nie je dostupný</p>
+
+
         //cena
-        Elements elements = document.select("span[class=linePrice]");
+        elements = document.select("span[class=linePrice]");
         StringBuffer sb = new StringBuffer(elements.get(0).text());
         sb = sb.deleteCharAt(sb.length() - 1);
         sb = sb.deleteCharAt(sb.length() - 1);
