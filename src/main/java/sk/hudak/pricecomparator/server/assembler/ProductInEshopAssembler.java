@@ -5,6 +5,7 @@ import sk.hudak.pricecomparator.server.model.ProductInEshopEntity;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -142,7 +143,11 @@ public class ProductInEshopAssembler {
         result.setProductName(entity.getProduct().getName());
         result.setLastUpdatedPrice(entity.getLastUpdatedPrice());
 
-        //FIXME url na obrazok
+        //FIXME aspon konstanty na dany adresar... do server config dat...
+        File pictureFile = new File("C:\\price-comparator\\images\\" + entity.getProduct().getId() + ".jpg");
+        if (pictureFile.exists()) {
+            result.setPictureFullPath(pictureFile.getAbsolutePath());
+        }
 
 
         return result;

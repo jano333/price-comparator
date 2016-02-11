@@ -42,17 +42,15 @@ public class ProductsInEshopListPage extends JPanel {
         add(lvEshops);
 
         rowNumber = rowNumber + 4;
-        JLabel lbEshopWithProducts = GuiUtils.label("Produkty v eshope: ", rowNumber);
-        add(lbEshopWithProducts);
-
+        add(GuiUtils.label("Produkty v eshope: ", rowNumber));
         lvProductsInEshop = new ProductInEshopSelectionListView() {
             @Override
-            public java.util.List<ProductInEshopCustomListDto> readData() {
-                if (lvEshops.getSelectedEntity() != null) {
-                    return ServiceLocator.getService().findProductsInEshop(lvEshops.getSelectedEntity().getId());
-                } else {
+            public List<ProductInEshopCustomListDto> readData() {
+                EshopListDto selectedEshop = lvEshops.getSelectedEntity();
+                if (selectedEshop == null) {
                     return Collections.emptyList();
                 }
+                return ServiceLocator.getService().findProductsInEshop(selectedEshop.getId());
             }
 
             @Override
@@ -73,7 +71,7 @@ public class ProductsInEshopListPage extends JPanel {
         rowNumber = rowNumber + 8;
 
         List<BasicColumn> columns = new ArrayList<>();
-        //TODO obrazok produktu
+        columns.add(new PictureColumn("pictureFullPath", "Obrázok", 100));
         columns.add(new TextColumn("productName", "Názov", 400));
         columns.add(new EuroColumn("priceForPackage", 2, "Cena(€)", 80));
         columns.add(new TextColumn("priceForUnit", "Jednotková cena(€)", 120));

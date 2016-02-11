@@ -33,6 +33,9 @@ public abstract class BasicTable<T> extends JPanel {
 
         table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
+        //FIXME pozri http://stackoverflow.com/questions/1783607/auto-adjust-the-height-of-rows-in-a-jtable
+        table.setRowHeight(85);
+
         //Create the scroll pane and add the table to it.
         scrollPane = new JScrollPane(table);
 
