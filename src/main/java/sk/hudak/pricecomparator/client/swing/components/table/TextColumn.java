@@ -5,6 +5,8 @@ import org.apache.commons.beanutils.PropertyUtils;
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * Created by jan on 24. 1. 2016.
@@ -23,7 +25,24 @@ public class TextColumn extends BasicColumn {
         return new TableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+
+
+                //TODO osetring NPE
                 JLabel label = new JLabel(value.toString());
+                //FIXME nefunguje
+//                label.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                label.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseEntered(MouseEvent e) {
+                        System.out.println("mouseEntered");
+                    }
+
+                    @Override
+                    public void mouseExited(MouseEvent e) {
+                        System.out.println("mouseExited");
+                    }
+                });
+
                 label.setFont(table.getFont());
                 return label;
             }

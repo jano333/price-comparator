@@ -12,10 +12,9 @@ import javax.swing.*;
 public class MainSwing {
 
     public static void main(String[] args) {
+
         final TaskManager taskManager = new TaskManager();
-        //tasky pre stahovanie
         taskManager.initTaks();
-        //TODO odkomentovat
         taskManager.startDownloading();
 
         // nakopiruj obrazky ak su neake nove...

@@ -1,10 +1,14 @@
 package sk.hudak.pricecomparator.server.dao;
 
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import sk.hudak.jef.JefDao;
 import sk.hudak.pricecomparator.middle.EshopType;
+import sk.hudak.pricecomparator.middle.exeption.PriceComparatorException;
+import sk.hudak.pricecomparator.middle.model.ProductAction;
+import sk.hudak.pricecomparator.middle.to.ProductInEshopFindDto;
 import sk.hudak.pricecomparator.server.model.EshopEntity;
 import sk.hudak.pricecomparator.server.model.ProductEntity;
 import sk.hudak.pricecomparator.server.model.ProductInEshopEntity;
@@ -130,4 +134,30 @@ public class ProductInEshopDao extends JefDao<ProductInEshopEntity> {
     }
 
 
+    public List<ProductInEshopEntity> findProductsInEshop(ProductInEshopFindDto findDto) {
+        if (findDto == null) {
+            throw new PriceComparatorException("Find dto is null");
+        }
+        Criteria crit = createCriteria(ProductInEshopEntity.class);
+        // budem podla toho sortovat
+        Criteria critProd = crit.createCriteria(ProductInEshopEntity.AT_PRODUCT);
+
+        //eshopId
+        if (findDto.getEshopId() != null) {
+            crit.add(Restrictions.eq(ProductInEshopEntity.AT_ESHOP + "." + EshopEntity.AT_ID, findDto.getEshopId()));
+        }
+        //productName
+        if (StringUtils.isNotBlank(findDto.getProductName())) {
+            critProd.add(Restrictions.ilike(ProductEntity.AT_NAME, "%" + findDto.getProductName() + "%"));
+        }
+        // onlyInAction
+        if (findDto.isOnlyInAction()) {
+            crit.add(Restrictions.eq(ProductInEshopEntity.AT_PRODUCT_ACTION, ProductAction.IN_ACTION));
+        }
+        //TODO sortovanie zobrazt z find dto
+        //zosrotovane podla nazvu produktu
+        addAscOrder(critProd, ProductEntity.AT_NAME);
+
+        return crit.list();
+    }
 }

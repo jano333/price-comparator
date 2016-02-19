@@ -9,7 +9,6 @@ import sk.hudak.pricecomparator.server.eshops.bambino.BambinoProductInfoDownload
 import sk.hudak.pricecomparator.server.eshops.drmax.DrMaxProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.feedo.FeedoProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.hej.HejProductInfoDownloaderTask;
-import sk.hudak.pricecomparator.server.eshops.hravozdravo.HravoZdravoProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.internetovalekaren.InternetovaLekarenProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.k24.K24ProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.mall.MallProductInfoDownloaderTask;
@@ -42,7 +41,8 @@ public class TaskManager {
         taskList.add(new DrMaxProductInfoDownloaderTask(service));
         taskList.add(new FeedoProductInfoDownloaderTask(service));
         taskList.add(new HejProductInfoDownloaderTask(service));
-        taskList.add(new HravoZdravoProductInfoDownloaderTask(service));
+        // hravo zdravo je nedostupne
+//        taskList.add(new HravoZdravoProductInfoDownloaderTask(service));
         taskList.add(new InternetovaLekarenProductInfoDownloaderTask(service));
         taskList.add(new K24ProductInfoDownloaderTask(service));
         taskList.add(new MallProductInfoDownloaderTask(service));

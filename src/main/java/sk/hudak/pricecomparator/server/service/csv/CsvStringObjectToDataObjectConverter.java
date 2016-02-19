@@ -5,8 +5,10 @@ import sk.hudak.pricecomparator.middle.canonical.Unit;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorException;
 import sk.hudak.pricecomparator.middle.to.CsvInputStringDto;
 import sk.hudak.pricecomparator.middle.to.CsvProductInEshopDto;
-import sk.hudak.pricecomparator.server.ProductInEshopValidator;
+import sk.hudak.pricecomparator.server.validator.ProductInEshopValidator;
 
+import javax.inject.Inject;
+import javax.inject.Named;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,12 +17,12 @@ import java.util.StringTokenizer;
 /**
  * Created by hudak on 18.2.2016.
  */
-//@Name
+@Named
 public class CsvStringObjectToDataObjectConverter {
 
     public static final String CSV_DELIMITER = "|";
 
-    //    @Inject
+    @Inject
     private ProductInEshopValidator productInEshopValidator;
 
     /**

@@ -124,5 +124,10 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
         return productInEshopAssembler.transformToListOfProductInEshopPriceInfoListDto(productInEshopEntities);
     }
 
+    @Override
+    public List<ProductInEshopPriceInfoListDto> findProductsInEshopPriceInfo(ProductInEshopFindDto findDto) {
+        List<ProductInEshopEntity> productInEshopEntities = productInEshopDao.findProductsInEshop(findDto);
+        return productInEshopAssembler.transformToListOfProductInEshopPriceInfoListDto(productInEshopEntities);
+    }
 
 }

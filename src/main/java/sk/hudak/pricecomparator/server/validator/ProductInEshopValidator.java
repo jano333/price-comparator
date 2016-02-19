@@ -1,9 +1,10 @@
-package sk.hudak.pricecomparator.server;
+package sk.hudak.pricecomparator.server.validator;
 
 import sk.hudak.pricecomparator.middle.EshopType;
 import sk.hudak.pricecomparator.middle.canonical.Unit;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorException;
 
+import javax.inject.Named;
 import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -12,7 +13,7 @@ import java.util.EnumSet;
 /**
  * Created by hudak on 18.2.2016.
  */
-//@Name
+@Named
 public class ProductInEshopValidator {
 
     public void validateEshopType(String eshopType) throws PriceComparatorException {

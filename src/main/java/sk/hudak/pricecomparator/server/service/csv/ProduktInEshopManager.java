@@ -1,7 +1,10 @@
 package sk.hudak.pricecomparator.server.service.csv;
 
-import sk.hudak.pricecomparator.middle.service.ProductInEshopService;
+import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
 import sk.hudak.pricecomparator.middle.to.CsvProductInEshopDto;
+
+import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  * <pre>
@@ -31,15 +34,15 @@ import sk.hudak.pricecomparator.middle.to.CsvProductInEshopDto;
  * Created by hudak on 18.2.2016.
  */
 
-//@Name
+@Named
 public class ProduktInEshopManager {
 
 
-    //@Inject
+    @Inject
     private CsvStringObjectToDataObjectConverter csvStringObjectToDataObjectConverter;
 
-    //    @Inject
-    private ProductInEshopService productInEshopService;
+    @Inject
+    private PriceComparatorService priceComparatorService;
 
 
     public void importProduct(String productFromCsvFile) {

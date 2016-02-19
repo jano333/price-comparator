@@ -18,6 +18,8 @@ public interface ProductInEshopService {
      */
     Long createProductInEshop(ProductInEshopCreateDto dto);
 
+    void updateProductInEshopPrice(ProductInEshopPriceUpdateDto updateDto);
+
     List<ProductInEshopListDto> findAllProductInEshop();
 
     /**
@@ -45,8 +47,8 @@ public interface ProductInEshopService {
 
     List<ProductInEshopListDto> findProductsInEshopByProductId(Long productId);
 
-    List<ProductInEshopDto> findProductsInEshopForDownloaderByProductId(Long productId);
 
+    List<ProductInEshopDto> findProductsInEshopForDownloaderByProductId(Long productId);
 
     /**
      * @param eshopId id eshop-u
@@ -55,8 +57,6 @@ public interface ProductInEshopService {
     List<ProductInEshopCustomListDto> findProductsInEshop(Long eshopId);
 
     ProductInEshopDto findProductForPriceUpdate(EshopType eshopType);
-
-    void updateProductInEshopPrice(ProductInEshopPriceUpdateDto updateDto);
 
     /**
      * Pre produkt <code>productId</code>  vyhlada ceny a dalsie informacie vo vsetkych ehopoch,
@@ -76,4 +76,8 @@ public interface ProductInEshopService {
      * @return
      */
     List<ProductInEshopPriceInfoListDto> findProductInEshopPriceInfoForEshop(Long eshopId);
+
+
+    //FIXME vraciat paging
+    List<ProductInEshopPriceInfoListDto> findProductsInEshopPriceInfo(ProductInEshopFindDto findDto);
 }
