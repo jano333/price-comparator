@@ -23,6 +23,7 @@ import java.nio.file.Paths;
 /**
  * Created by jan on 22. 11. 2015.
  */
+@Deprecated
 public class ProductEditDialog extends BasicDialog {
 
     private JTextField tfName;

@@ -10,6 +10,7 @@ import java.math.BigDecimal;
  */
 public class ProductEditDto implements Serializable {
 
+    private Long id;
     private String name;
     private int countOfItemInOnePackage;
     private Unit unit;
@@ -18,6 +19,14 @@ public class ProductEditDto implements Serializable {
 
     private String imageLocalPath;
     private byte[] imageContent;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
