@@ -32,8 +32,8 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
 
     @Override
     @Transactional
-    public Long createEshop(EshopCreateDto dto) {
-        return eshopService.createEshop(dto);
+    public Long createEshop(EshopCreateDto createDto) {
+        return eshopService.createEshop(createDto);
     }
 
     @Override
@@ -51,14 +51,14 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
     // -------------- PRODUCT -----------
     @Override
     @Transactional
-    public Long createProduct(ProductCreateDto dto) {
-        return productService.createProduct(dto);
+    public Long createProduct(ProductCreateDto createDto) {
+        return productService.createProduct(createDto);
     }
 
     @Override
     @Transactional
-    public void updateProduct(ProductEditDto editDto) {
-        productService.updateProduct(editDto);
+    public void updateProduct(ProductUpdateDto updateDto) {
+        productService.updateProduct(updateDto);
     }
 
     @Override

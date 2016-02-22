@@ -6,7 +6,7 @@ import sk.hudak.pricecomparator.client.swing.components.ActionLabelPanel;
 import sk.hudak.pricecomparator.client.swing.utils.GuiUtils;
 import sk.hudak.pricecomparator.middle.canonical.Unit;
 import sk.hudak.pricecomparator.middle.to.ProductDto;
-import sk.hudak.pricecomparator.middle.to.ProductEditDto;
+import sk.hudak.pricecomparator.middle.to.ProductUpdateDto;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
@@ -302,7 +302,7 @@ public class ProductEditDialog extends BasicDialog {
 
 
     private void onCreateAction() {
-        ProductEditDto editDto = new ProductEditDto();
+        ProductUpdateDto editDto = new ProductUpdateDto();
 
         editDto.setName(tfName.getText());
         editDto.setCountOfItemInOnePackage((Integer) spAmountInPackage.getValue());

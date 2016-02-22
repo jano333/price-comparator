@@ -2,7 +2,6 @@ package sk.hudak.pricecomparator.client.swing.pages.product;
 
 import sk.hudak.pricecomparator.client.swing.panel.ProductSelectionListView;
 import sk.hudak.pricecomparator.client.swing.utils.GuiUtils;
-import sk.hudak.pricecomparator.middle.to.ProductListDto;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -13,26 +12,14 @@ import java.awt.event.ActionListener;
  */
 public class ProductListPage extends JPanel {
 
-    private final JLabel lbProducts;
-    private final ProductSelectionListView lvProduct;
+    private ProductSelectionListView lvProduct;
 
     public ProductListPage() {
         setLayout(null);
 
-        // 1 riadok
         int rowNumber = 1;
-
-        lbProducts = GuiUtils.label("Zoznam produktov: ", rowNumber);
-        add(lbProducts);
-
-        lvProduct = new ProductSelectionListView() {
-            @Override
-            protected void onMouseDoubleClick(ProductListDto entity) {
-                //TODO
-                super.onMouseDoubleClick(entity);
-            }
-        };
-
+        add(GuiUtils.label("Zoznam produktov: ", rowNumber));
+        lvProduct = new ProductSelectionListView();
         lvProduct.setBounds(
                 GuiUtils.LEFT_BORDER + GuiUtils.LABEL_WIDTH + GuiUtils.GAP_AFTER_LABEL,
                 GuiUtils.TOP_BORDER + ((rowNumber - 1) * GuiUtils.ROW_HEIGHT + ((rowNumber - 1) * GuiUtils.GAP_BEETWEN_ROWS)),
@@ -41,22 +28,21 @@ public class ProductListPage extends JPanel {
         add(lvProduct);
 
         rowNumber = rowNumber + 9;
-
-        JButton btEdit = GuiUtils.button("edit product");
-        btEdit.addActionListener(new ActionListener() {
+        JButton btUpdate = GuiUtils.button("Uprava produktu");
+        btUpdate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ProductCreateEditDialog dialog = new ProductCreateEditDialog(1L);
-                dialog.setSize(600, 400);
+                ProductCreateUpdateDialog dialog = new ProductCreateUpdateDialog(lvProduct.getSelectedEntity().getId());
+
                 dialog.setVisible(true);
             }
         });
-        btEdit.setBounds(
+        btUpdate.setBounds(
                 GuiUtils.LEFT_BORDER + GuiUtils.LABEL_WIDTH + GuiUtils.GAP_AFTER_LABEL,
                 GuiUtils.TOP_BORDER + ((rowNumber - 1) * GuiUtils.ROW_HEIGHT + ((rowNumber - 1) * GuiUtils.GAP_BEETWEN_ROWS)),
-                btEdit.getPreferredSize().width,
+                btUpdate.getPreferredSize().width,
                 GuiUtils.ROW_HEIGHT);
-        add(btEdit);
+        add(btUpdate);
 
     }
 

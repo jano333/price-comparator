@@ -3,8 +3,8 @@ package sk.hudak.pricecomparator.server.service.internal;
 import sk.hudak.pricecomparator.middle.service.ProductService;
 import sk.hudak.pricecomparator.middle.to.ProductCreateDto;
 import sk.hudak.pricecomparator.middle.to.ProductDto;
-import sk.hudak.pricecomparator.middle.to.ProductEditDto;
 import sk.hudak.pricecomparator.middle.to.ProductListDto;
+import sk.hudak.pricecomparator.middle.to.ProductUpdateDto;
 import sk.hudak.pricecomparator.server.assembler.ProductAssembler;
 import sk.hudak.pricecomparator.server.dao.ProductDao;
 import sk.hudak.pricecomparator.server.facade.ProductFacade;
@@ -29,13 +29,13 @@ public class ProductServiceImpl implements ProductService {
     private ProductAssembler productAssembler;
 
     @Override
-    public Long createProduct(ProductCreateDto dto) {
-        return productFacade.createProduct(dto);
+    public Long createProduct(ProductCreateDto createDto) {
+        return productFacade.createProduct(createDto);
     }
 
     @Override
-    public void updateProduct(ProductEditDto editDto) {
-        productFacade.updateProduct(editDto);
+    public void updateProduct(ProductUpdateDto updateDto) {
+        productFacade.updateProduct(updateDto);
     }
 
     @Override

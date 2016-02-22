@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 /**
  * Created by jan on 22. 11. 2015.
  */
-public class ProductEditDto implements Serializable {
+public class ProductUpdateDto implements Serializable {
 
     private Long id;
     private String name;
