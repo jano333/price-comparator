@@ -5,6 +5,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import sk.hudak.pricecomparator.middle.model.EshopProductInfo;
+import sk.hudak.pricecomparator.middle.model.ProductAction;
 import sk.hudak.pricecomparator.server.core.AbstractEshopProductInfo;
 import sk.hudak.pricecomparator.server.core.AbstractEshopProductParser;
 import sk.hudak.pricecomparator.server.factory.ProductInfoFactory;
@@ -34,19 +35,24 @@ public class FeedoEshopProductParser extends AbstractEshopProductParser {
             return ProductInfoFactory.createUnaviable();
         }
 
+        boolean inAction = false;
 
         // skusim -> premim cena
         Elements select = document.select("div[class=price-premium]");
-        // ak sa nenajde tak skusim -> akcna cena
-        if (select.isEmpty()) {
+        if (!select.isEmpty()) {
+            inAction = true;
+        } else {
+            // ak sa nenajde tak skusim -> akcna cena
             select = document.select("div[class=price-discount]");
-        }
-        // ak sa nenajde tak skusim -> normalna cena
-        if (select.isEmpty()) {
-            select = document.select("div[class=price]");
-        }
-        if (select.isEmpty()) {
-            return ProductInfoFactory.createUnaviable();
+            if (!select.isEmpty()) {
+                inAction = true;
+            } else {
+                // ak sa nenajde tak skusim -> normalna cena
+                select = document.select("div[class=price]");
+                if (select.isEmpty()) {
+                    return ProductInfoFactory.createUnaviable();
+                }
+            }
         }
 
         Element element1 = select.get(0);
@@ -64,14 +70,25 @@ public class FeedoEshopProductParser extends AbstractEshopProductParser {
         try {
             cenaZaBalenie = html.substring(0, html.indexOf("&nbsp;")).replace(",", ".");
         } catch (Exception e) {
+            //TODO error
             e.printStackTrace();
             return ProductInfoFactory.createUnaviable();
         }
 
+        final boolean finalInAction = inAction;
         return new AbstractEshopProductInfo(parserInputData) {
             @Override
             public BigDecimal getPriceForPackage() {
                 return new BigDecimal(cenaZaBalenie);
+            }
+
+            @Override
+            public ProductAction getAction() {
+                if (finalInAction) {
+                    return ProductAction.IN_ACTION;
+                } else {
+                    return ProductAction.NON_ACTION;
+                }
             }
         };
 
