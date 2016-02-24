@@ -37,19 +37,53 @@ import javax.inject.Named;
 @Named
 public class ProduktInEshopManager {
 
+    public static final String DEFAULT_CSV_DELIMITER = "|";
 
-    @Inject
-    private CsvStringObjectToDataObjectConverter csvStringObjectToDataObjectConverter;
+    //@Inject
+    private CsvProductInEshopConverter csvProductInEshopConverter;
 
     @Inject
     private PriceComparatorService priceComparatorService;
 
+    public void importProductsFromCsvFile(File csvFile) {
+        importProductsFromCsvFile(csvFile, DEFAULT_CSV_DELIMITER);
+    }
 
-    public void importProduct(String productFromCsvFile) {
+    public void importProductsFromCsvFile(File csvFile, String csvDelimiter) {
+        List<String> csvLines;
+        try {
+            csvLines = Files.readAllLines(csvFile.toPath(), StandardCharsets.UTF_8);
 
-        CsvProductInEshopDto csvProductInEshopDto = csvStringObjectToDataObjectConverter.validateAndConvert(productFromCsvFile);
+        } catch (IOException e) {
+            throw new PriceComparatorException("Error while reading from file " + csvFile.getAbsolutePath(), e);
+        }
+        importProductsFromString(csvLines, csvDelimiter);
+    }
 
 
+    public void importProductFromString(String productFromCsvFile) {
+        importProductFromString(productFromCsvFile, "|");
+    }
+
+    public void importProductFromString(String productFromCsvFile, String csvDelimiter) {
+        List<String> result = new ArrayList<>(1);
+        result.add(productFromCsvFile);
+        importProductsFromString(result, csvDelimiter);
+
+    }
+
+    public void importProductsFromString(List<String> productsFromCsvFile) {
+        importProductsFromString(productsFromCsvFile, "|");
+    }
+
+    public void importProductsFromString(List<String> productsFromCsvFile, String csvDelimiter) {
+        List<CsvProductInEshopDto> csvProductInEshopDtoList = csvProductInEshopConverter.validateAndConvert(productsFromCsvFile, csvDelimiter);
+        //TODO impl
+
+    }
+
+    public void importProdutFromExcelFile(File excelFile) {
+        //TODO
     }
 
 

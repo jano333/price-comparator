@@ -30,13 +30,13 @@ public class CsvStringObjectToDataObjectConverter {
      * @return
      * @throws PriceComparatorException
      */
-    public List<CsvProductInEshopDto> validateAndConvert(List<String> productFromCsvFile) throws PriceComparatorException {
+    public List<CsvProductInEshopDto> validateAndConvert(List<String> productFromCsvFile, String csvDelimiter) throws PriceComparatorException {
         if (productFromCsvFile == null || productFromCsvFile.isEmpty()) {
             throw new PriceComparatorException("Input params is null or empty");
         }
         List<CsvProductInEshopDto> result = new ArrayList<>(productFromCsvFile.size());
         for (String csvLine : productFromCsvFile) {
-            result.add(validateAndConvert(csvLine));
+            result.add(validateAndConvert(csvLine, csvDelimiter));
         }
         return result;
     }
@@ -44,16 +44,17 @@ public class CsvStringObjectToDataObjectConverter {
 
     /**
      * @param productFromCsvFile jeden riadok z csv suboru
+     * @param csvDelimiter
      * @return objekt ktorych obsahuje validne data z csv suboru
      * @throws PriceComparatorException ak vstupny parameter je null alebo prazdny
      *                                  alebo ak pocet parametrov vo vstupe ktore su oddelene znakom | nie je 6
      *                                  TODO dalsie informacie alebo dat len jeden ze ked je nieco neplatne :-)
      */
-    public CsvProductInEshopDto validateAndConvert(String productFromCsvFile) throws PriceComparatorException {
+    public CsvProductInEshopDto validateAndConvert(String productFromCsvFile, String csvDelimiter) throws PriceComparatorException {
         if (productFromCsvFile == null || productFromCsvFile.trim().isEmpty()) {
             throw new PriceComparatorException("input is null or empty");
         }
-        StringTokenizer st = new StringTokenizer(productFromCsvFile, CSV_DELIMITER, false);
+        StringTokenizer st = new StringTokenizer(productFromCsvFile, csvDelimiter, false);
 
         List<String> values = new ArrayList<>();
         while (st.hasMoreTokens()) {
