@@ -15,10 +15,10 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 /**
- * Created by hudak on 18.2.2016.
+ * Created by jan on 24. 2. 2016.
  */
 @Named
-public class CsvStringObjectToDataObjectConverter {
+public class CsvProductInEshopConverter {
 
     public static final String CSV_DELIMITER = "|";
 
@@ -87,6 +87,4 @@ public class CsvStringObjectToDataObjectConverter {
         result.setUrlOfProduct(stringDto.getUrlOfProduct());
         return result;
     }
-
-
 }
