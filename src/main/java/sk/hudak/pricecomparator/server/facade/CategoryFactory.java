@@ -22,6 +22,7 @@ public class CategoryFactory extends JefFacade {
         val.notNullAndNotEmpty(dto.getName(), "name is null or empty");
 
         //TODO kontorola na unikatnost name a persar class
+        // hahahf
         if (categoryDao.existWithName(dto.getName())) {
             throw new PriceComparatorException("Categoria s nazvom " + dto.getName() + " uz existuje.");
         }
