@@ -3,12 +3,12 @@ package sk.hudak.pricecomparator.client.swing.pages.product;
 import sk.hudak.pricecomparator.client.ServiceLocator;
 import sk.hudak.pricecomparator.client.swing.components.ActionLabelPanel;
 import sk.hudak.pricecomparator.client.swing.utils.GuiUtils;
-import sk.hudak.pricecomparator.middle.JefStringUtils;
 import sk.hudak.pricecomparator.middle.canonical.Unit;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorException;
 import sk.hudak.pricecomparator.middle.to.ProductCreateDto;
 import sk.hudak.pricecomparator.middle.to.ProductDto;
 import sk.hudak.pricecomparator.middle.to.ProductUpdateDto;
+import sk.hudak.pricecomparator.middle.utils.JefStringUtils;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
