@@ -66,6 +66,7 @@ public abstract class EshopProductInfoDownloaderTask implements Runnable {
         ProductInEshopDto productForUpdate = service.findProductForPriceUpdate(getEshopType());
         if (productForUpdate == null) {
             System.out.println("nic nenaslo -> vsetko je aktualne");
+            downloadOnePictureOfProduct();
             stopTask();
             return;
         }
@@ -82,6 +83,14 @@ public abstract class EshopProductInfoDownloaderTask implements Runnable {
 
         // 5. ulozenie do DB
         service.updateProductInEshopPrice(updateDto);
+    }
+
+    /**
+     * Metoda stiahne jeden obrazok pre product, ktory este nema obrazok...
+     */
+    protected void downloadOnePictureOfProduct() {
+        //TODO
+
     }
 
     private ProductInEshopPriceUpdateDto transfromToProductInEshopPriceUpdateDto(Long id, EshopProductInfo productInfo) {

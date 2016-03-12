@@ -27,7 +27,9 @@ public class EuroColumn extends TextColumn {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                 String result;
-                if (value instanceof BigDecimal) {
+                if (value == null) {
+                    result = "-";
+                } else if (value instanceof BigDecimal) {
                     result = convertTo((BigDecimal) value);
 
                 } else if (value instanceof Double) {
@@ -37,6 +39,7 @@ public class EuroColumn extends TextColumn {
                     result = value.toString();
                 }
                 JLabel label = new JLabel(result + " €");
+                label.setHorizontalAlignment(alignment.getAligment());
                 label.setFont(table.getFont());
                 return label;
             }

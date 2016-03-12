@@ -89,12 +89,6 @@ public class ProductInEshopDao extends JefDao<ProductInEshopEntity> {
         return (ProductInEshopEntity) crit.uniqueResult();
     }
 
-    public ProductInEshopEntity findProductInEshopByType(EshopType eshopType) {
-        Criteria crit = createCriteria(ProductInEshopEntity.class);
-        crit.add(Restrictions.eq(ProductInEshopEntity.AT_ESHOP + "." + EshopEntity.AT_ESHOP_TYPE, eshopType));
-        //FIXME pridat unique constrain na eshop type, a povinnost !!!
-        return (ProductInEshopEntity) crit.uniqueResult();
-    }
 
     public ProductInEshopEntity findProductForPriceUpdate(EshopType eshopType, Date maxOlderDate) {
         Criteria crit = createCriteria(ProductInEshopEntity.class);
@@ -160,4 +154,13 @@ public class ProductInEshopDao extends JefDao<ProductInEshopEntity> {
 
         return crit.list();
     }
+
+    public List<ProductInEshopEntity> findProductsInEshopByType(EshopType eshopType) {
+        Criteria crit = createCriteria(ProductInEshopEntity.class);
+        Criteria critEshop = crit.createCriteria(ProductInEshopEntity.AT_ESHOP);
+        critEshop.add(Restrictions.eq(EshopEntity.AT_ESHOP_TYPE, eshopType));
+
+        return crit.list();
+    }
+
 }

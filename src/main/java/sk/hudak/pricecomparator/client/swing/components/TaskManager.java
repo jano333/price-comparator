@@ -63,6 +63,7 @@ public class TaskManager {
 //            }
 //        };
         ExecutorService executorService = Executors.newFixedThreadPool(taskList.size()/*, tf*/);
+//        ExecutorService executorService = Executors.newFixedThreadPool(1);
 
         for (EshopProductInfoDownloaderTask infoDownloaderTask : taskList) {
             executorService.execute(infoDownloaderTask);

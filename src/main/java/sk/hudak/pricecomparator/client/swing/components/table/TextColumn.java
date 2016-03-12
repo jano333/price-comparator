@@ -13,6 +13,7 @@ import java.awt.event.MouseEvent;
  */
 public class TextColumn extends BasicColumn {
 
+
     private String propertyName;
 
     public TextColumn(String propertyName, String headerName, int width) {
@@ -29,6 +30,7 @@ public class TextColumn extends BasicColumn {
 
                 //TODO osetring NPE
                 JLabel label = new JLabel(value.toString());
+                label.setHorizontalAlignment(alignment.getAligment());
                 //FIXME nefunguje
 //                label.setCursor(new Cursor(Cursor.HAND_CURSOR));
                 label.addMouseListener(new MouseAdapter() {
@@ -40,6 +42,11 @@ public class TextColumn extends BasicColumn {
                     @Override
                     public void mouseExited(MouseEvent e) {
                         System.out.println("mouseExited");
+                    }
+
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        System.out.println("mouseClicked");
                     }
                 });
 

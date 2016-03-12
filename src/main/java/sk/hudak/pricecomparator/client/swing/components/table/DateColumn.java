@@ -12,6 +12,7 @@ import java.util.Date;
  * Created by jan on 7. 2. 2016.
  */
 public class DateColumn extends TextColumn {
+
     public static final String DATE_FORMAT = "dd.MM.yyyy";
     public static final String DATE_TIME_FORMAT = "dd.MM.yyyy HH:mm:ss";
 
@@ -31,11 +32,16 @@ public class DateColumn extends TextColumn {
         return new TableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                if (!(value instanceof Date)) {
+                final String strValue;
+                if (value == null) {
+                    strValue = "-";
+                } else if (!(value instanceof Date)) {
                     throw new PriceComparatorException("Value is not type of Date");
+                } else {
+                    strValue = sdf.format((Date) value);
                 }
-                Date dateValue = (Date) value;
-                JLabel label = new JLabel(sdf.format(dateValue));
+                JLabel label = new JLabel(strValue);
+                label.setHorizontalAlignment(alignment.getAligment());
                 label.setFont(table.getFont());
                 return label;
             }

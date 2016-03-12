@@ -48,6 +48,7 @@ public class ProductActionColumn extends TextColumn {
                 }
 
                 JLabel label = new JLabel(result);
+                label.setHorizontalAlignment(alignment.getAligment());
                 label.setFont(table.getFont());
                 label.setForeground(color);
                 return label;

@@ -76,10 +76,27 @@ public class ProductsInEshopListPage extends JPanel {
         List<BasicColumn> columns = new ArrayList<>();
         columns.add(new PictureColumn("pictureFullPath", "Obrázok", 100));
         columns.add(new TextColumn("productName", "Názov", 400));
-        columns.add(new EuroColumn("priceForPackage", 2, "Cena(€)", 80));
-        columns.add(new TextColumn("priceForUnit", "Jednotková cena(€)", 120));
-        columns.add(new ProductActionColumn("productAction", "Akcia", 50));
-        columns.add(new DateTimeColumn("lastUpdatedPrice", "Aktualizovane o", 120));
+
+        EuroColumn clPriceForPackage = new EuroColumn("priceForPackage", 2, "Cena(€)", 80);
+        clPriceForPackage.setAlignment(EuroColumn.TEXT_ALIGNMENT.CENTER);
+        columns.add(clPriceForPackage);
+
+        EuroColumn clPriceForUnit = new EuroColumn("priceForUnit", 5, "Jednotková cena(€)", 120);
+        clPriceForUnit.setAlignment(EuroColumn.TEXT_ALIGNMENT.CENTER);
+        columns.add(clPriceForUnit);
+
+        ProductActionColumn clProductActionColumn = new ProductActionColumn("productAction", "Akcia", 50);
+        clProductActionColumn.setAlignment(ProductActionColumn.TEXT_ALIGNMENT.CENTER);
+        columns.add(clProductActionColumn);
+
+        DateColumn clActionValidTo = new DateColumn("actionValidTo", "Platnosť akcie", 100);
+        clActionValidTo.setAlignment(EuroColumn.TEXT_ALIGNMENT.CENTER);
+        columns.add(clActionValidTo);
+
+        DateTimeColumn clLastUpdatedPrice = new DateTimeColumn("lastUpdatedPrice", "Aktualizovane o", 120);
+        clActionValidTo.setAlignment(EuroColumn.TEXT_ALIGNMENT.CENTER);
+        columns.add(clLastUpdatedPrice);
+
         columns.add(new TextColumn("productEshopPage", "Stránka produktu", 400));
 
         table = new BasicTable<ProductInEshopPriceInfoListDto>(columns) {

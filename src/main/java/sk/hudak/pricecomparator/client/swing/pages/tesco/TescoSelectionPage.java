@@ -141,6 +141,7 @@ public class TescoSelectionPage extends JPanel {
 //            tfVstupnySubor.setText("C:\\price-comparator\\tesco\\Nápoje.txt");
 //            tfVstupnySubor.setText("C:\\price-comparator\\tesco\\Mlieka a smotany.txt");
 //            tfVstupnySubor.setText("C:\\price-comparator\\tesco\\Jogurty a dezerty.txt");
+//            tfVstupnySubor.setText("C:\\price-comparator\\tesco\\Vajcia a droždie.txt");
 
             String path = tfVstupnySubor.getText();
             File careFile = new File(CARE_PATH);

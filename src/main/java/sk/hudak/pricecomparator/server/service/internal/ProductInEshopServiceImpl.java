@@ -9,7 +9,9 @@ import sk.hudak.pricecomparator.server.core.JefValidator;
 import sk.hudak.pricecomparator.server.dao.ProductInEshopDao;
 import sk.hudak.pricecomparator.server.facade.ProductInEshopFacade;
 import sk.hudak.pricecomparator.server.model.EshopEntity;
+import sk.hudak.pricecomparator.server.model.ProductEntity;
 import sk.hudak.pricecomparator.server.model.ProductInEshopEntity;
+import sk.hudak.pricecomparator.server.utils.ImageUtils;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -128,6 +130,29 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
     public List<ProductInEshopPriceInfoListDto> findProductsInEshopPriceInfo(ProductInEshopFindDto findDto) {
         List<ProductInEshopEntity> productInEshopEntities = productInEshopDao.findProductsInEshop(findDto);
         return productInEshopAssembler.transformToListOfProductInEshopPriceInfoListDto(productInEshopEntities);
+    }
+
+    @Override
+    public ProductInEshopForPictureDownloadInfoDto findUrlOfProductsInEshopWithoutPicture(EshopType eshopType) {
+
+        List<ProductInEshopEntity> productInEshopEntities = productInEshopDao.findProductsInEshopByType(eshopType);
+
+        for (ProductInEshopEntity productInEshopEntity : productInEshopEntities) {
+            ProductEntity product = productInEshopEntity.getProduct();
+            //FIXME
+            String productImage = ImageUtils.findProductImage("C:\\price-comparator\\feedo\\pictures\\", product.getId());
+            if (productImage == null) {
+                return productInEshopAssembler.transformToProductInEshopForPictureDownloadInfoDto(productInEshopEntity);
+            }
+        }
+        return null;
+
+//        //TODO impl
+//        ProductInEshopForPictureDownloadInfoDto result = new ProductInEshopForPictureDownloadInfoDto();
+//        result.setProductId(2l);
+//        result.setProductInEshopUrl("https://www.feedo.sk/2x-lovela-sensitive-5-l-darcek-lovela-avivaz-2l-zadarmo/");
+//
+//        return result;
     }
 
 }

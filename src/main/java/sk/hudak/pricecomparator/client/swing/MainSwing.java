@@ -20,6 +20,8 @@ public class MainSwing {
         // nakopiruj obrazky ak su neake nove...
         TescoPictureLocalFinder.main(args);
 
+//        ServiceLocator.startFeedoPictureDownloading();
+
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 new PriceComparatorJFrame(taskManager);

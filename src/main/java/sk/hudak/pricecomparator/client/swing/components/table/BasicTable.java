@@ -6,6 +6,8 @@ import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 
 /**
@@ -27,6 +29,39 @@ public abstract class BasicTable<T> extends JPanel {
         myTableModel = new MyTableModel();
         table = new JTable(myTableModel);
 
+        table.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+//                int row = table.getSelectedRow();
+//                int col = table.getSelectedColumn();
+//                System.out.println("row "+row );
+//                System.out.println("col "+col );
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                System.out.println("mouseEntered " + e.getPoint());
+            }
+
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                System.out.println("mouseMoved " + e.getPoint());
+                int row = table.getSelectedRow();
+                int col = table.getSelectedColumn();
+
+                System.out.println("row " + row);
+                System.out.println("col " + col);
+                System.out.println("point " + e.getPoint().toString());
+            }
+
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                super.mouseDragged(e);
+            }
+        });
+
+//        System.out.println(table.getCellEditor(1,1).);
+
         //TODO dimenzion ako metodu naco to vlastne je... ???
         table.setPreferredScrollableViewportSize(new Dimension(500, 70));
         table.setFillsViewportHeight(true);
@@ -35,6 +70,8 @@ public abstract class BasicTable<T> extends JPanel {
 
         //FIXME pozri http://stackoverflow.com/questions/1783607/auto-adjust-the-height-of-rows-in-a-jtable
         table.setRowHeight(85);
+
+//        table.getRow
 
         //Create the scroll pane and add the table to it.
         scrollPane = new JScrollPane(table);

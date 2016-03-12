@@ -201,6 +201,12 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
         return result;
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public ProductInEshopForPictureDownloadInfoDto findUrlOfProductsInEshopWithoutPicture(EshopType eshopType) {
+        return productInEshopService.findUrlOfProductsInEshopWithoutPicture(eshopType);
+    }
+
 
     // --------- GROUP_OF_PRODUCTS ------------
 

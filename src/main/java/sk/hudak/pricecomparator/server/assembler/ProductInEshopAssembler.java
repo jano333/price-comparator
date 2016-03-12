@@ -152,4 +152,15 @@ public class ProductInEshopAssembler {
 
         return result;
     }
+
+    public ProductInEshopForPictureDownloadInfoDto transformToProductInEshopForPictureDownloadInfoDto(ProductInEshopEntity entity) {
+        if (entity == null) {
+            return null;
+        }
+        ProductInEshopForPictureDownloadInfoDto result = new ProductInEshopForPictureDownloadInfoDto();
+        result.setProductId(entity.getProduct().getId());
+        result.setProductInEshopUrl(entity.getProductPageInEshop());
+
+        return result;
+    }
 }

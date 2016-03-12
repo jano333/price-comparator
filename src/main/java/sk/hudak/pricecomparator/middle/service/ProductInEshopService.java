@@ -80,4 +80,10 @@ public interface ProductInEshopService {
 
     //FIXME vraciat paging
     List<ProductInEshopPriceInfoListDto> findProductsInEshopPriceInfo(ProductInEshopFindDto findDto);
+
+    /**
+     * @param feedo
+     * @return null, ak ziaden taky neexistuje
+     */
+    ProductInEshopForPictureDownloadInfoDto findUrlOfProductsInEshopWithoutPicture(EshopType feedo);
 }

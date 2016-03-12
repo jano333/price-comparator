@@ -10,8 +10,8 @@ import java.io.FileFilter;
  */
 public class ImageUtils {
 
-    public static String findProductImage(final Long productId) {
-        File tmp = new File(ServerConfig.getImagesRootDirectory());
+    public static String findProductImage(String pictureRootDir, final Long productId) {
+        File tmp = new File(pictureRootDir);
         File[] list = tmp.listFiles(new FileFilter() {
             @Override
             public boolean accept(File pathname) {
@@ -25,4 +25,9 @@ public class ImageUtils {
             return list[0].getAbsolutePath();
         }
     }
+
+    public static String findProductImage(final Long productId) {
+        return findProductImage(ServerConfig.getImagesRootDirectory(), productId);
+    }
+
 }
