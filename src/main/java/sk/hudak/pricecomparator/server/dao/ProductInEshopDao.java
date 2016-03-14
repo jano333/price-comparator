@@ -5,6 +5,8 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import sk.hudak.jef.JefDao;
+import sk.hudak.jef.PageList;
+import sk.hudak.jef.ServerPaging;
 import sk.hudak.pricecomparator.middle.EshopType;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorException;
 import sk.hudak.pricecomparator.middle.model.ProductAction;
@@ -128,6 +130,7 @@ public class ProductInEshopDao extends JefDao<ProductInEshopEntity> {
     }
 
 
+    @Deprecated
     public List<ProductInEshopEntity> findProductsInEshop(ProductInEshopFindDto findDto) {
         if (findDto == null) {
             throw new PriceComparatorException("Find dto is null");
@@ -163,4 +166,31 @@ public class ProductInEshopDao extends JefDao<ProductInEshopEntity> {
         return crit.list();
     }
 
+    public PageList<ProductInEshopEntity> findProductsInEshopJh(ProductInEshopFindDto findDto) {
+        if (findDto == null) {
+            throw new PriceComparatorException("Find dto is null");
+        }
+        Criteria crit = createCriteria(ProductInEshopEntity.class);
+        // budem podla toho sortovat
+        Criteria critProd = crit.createCriteria(ProductInEshopEntity.AT_PRODUCT);
+
+        //eshopId
+        if (findDto.getEshopId() != null) {
+            crit.add(Restrictions.eq(ProductInEshopEntity.AT_ESHOP + "." + EshopEntity.AT_ID, findDto.getEshopId()));
+        }
+        //productName
+        if (StringUtils.isNotBlank(findDto.getProductName())) {
+            critProd.add(Restrictions.ilike(ProductEntity.AT_NAME, "%" + findDto.getProductName() + "%"));
+        }
+        // onlyInAction
+        if (findDto.isOnlyInAction()) {
+            crit.add(Restrictions.eq(ProductInEshopEntity.AT_PRODUCT_ACTION, ProductAction.IN_ACTION));
+        }
+
+        ServerPaging pagging = createPaging(findDto, crit);
+        //TODO sortovanie zobrazt z find dto
+        //zosrotovane podla nazvu produktu
+        addAscOrder(critProd, ProductEntity.AT_NAME);
+        return new PageList<>(crit.list(), pagging.getCurrentPage(), pagging.getAllPage());
+    }
 }

@@ -10,5 +10,7 @@ public interface PriceComparatorService extends
         ProductInEshopService,
         GroupOfProductService {
 
+        String SERVICE_NAME = "PriceComparatorService";
+
 
 }

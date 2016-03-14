@@ -1,6 +1,7 @@
 package sk.hudak.pricecomparator.server.service;
 
 import org.springframework.transaction.annotation.Transactional;
+import sk.hudak.jef.PageList;
 import sk.hudak.pricecomparator.middle.EshopType;
 import sk.hudak.pricecomparator.middle.service.*;
 import sk.hudak.pricecomparator.middle.to.*;
@@ -13,7 +14,7 @@ import java.util.Set;
 /**
  * Created by jan on 29. 11. 2015.
  */
-@Named
+@Named(value = PriceComparatorService.SERVICE_NAME)
 public class PriceComparatorServiceImpl implements PriceComparatorService {
 
     @Inject
@@ -192,6 +193,7 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
         return result;
     }
 
+
     @Override
     @Transactional(readOnly = true)
     public List<ProductInEshopPriceInfoListDto> findProductsInEshopPriceInfo(ProductInEshopFindDto findDto) {
@@ -199,6 +201,12 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
         List<ProductInEshopPriceInfoListDto> result = productInEshopService.findProductsInEshopPriceInfo(findDto);
         System.out.println("<< findProductsInEshopPriceInfo");
         return result;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public PageList<ProductInEshopPriceInfoListDto> findProductsInEshopPriceInfoJh(ProductInEshopFindDto findDto) {
+        return productInEshopService.findProductsInEshopPriceInfoJh(findDto);
     }
 
     @Override

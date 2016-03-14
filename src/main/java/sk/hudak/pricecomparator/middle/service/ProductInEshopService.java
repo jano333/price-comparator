@@ -1,5 +1,6 @@
 package sk.hudak.pricecomparator.middle.service;
 
+import sk.hudak.jef.PageList;
 import sk.hudak.pricecomparator.middle.EshopType;
 import sk.hudak.pricecomparator.middle.to.*;
 
@@ -9,6 +10,8 @@ import java.util.List;
  * Created by jan on 14. 10. 2015.
  */
 public interface ProductInEshopService {
+
+    // TODO vsetko nizsie prejst
 
     /**
      * Priradenie existujuceho produktu do eshopu.
@@ -78,12 +81,20 @@ public interface ProductInEshopService {
     List<ProductInEshopPriceInfoListDto> findProductInEshopPriceInfoForEshop(Long eshopId);
 
 
-    //FIXME vraciat paging
-    List<ProductInEshopPriceInfoListDto> findProductsInEshopPriceInfo(ProductInEshopFindDto findDto);
-
     /**
      * @param feedo
      * @return null, ak ziaden taky neexistuje
      */
     ProductInEshopForPictureDownloadInfoDto findUrlOfProductsInEshopWithoutPicture(EshopType feedo);
+
+
+    // OK
+    PageList<ProductInEshopPriceInfoListDto> findProductsInEshopPriceInfoJh(ProductInEshopFindDto findDto);
+
+    //TODO vsetko nizsie remove
+
+    @Deprecated
+    List<ProductInEshopPriceInfoListDto> findProductsInEshopPriceInfo(ProductInEshopFindDto findDto);
+
+
 }

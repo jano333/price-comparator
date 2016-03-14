@@ -1,5 +1,6 @@
 package sk.hudak.pricecomparator.server.service.internal;
 
+import sk.hudak.jef.PageList;
 import sk.hudak.pricecomparator.middle.EshopType;
 import sk.hudak.pricecomparator.middle.service.ProductInEshopService;
 import sk.hudak.pricecomparator.middle.to.*;
@@ -130,6 +131,12 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
     public List<ProductInEshopPriceInfoListDto> findProductsInEshopPriceInfo(ProductInEshopFindDto findDto) {
         List<ProductInEshopEntity> productInEshopEntities = productInEshopDao.findProductsInEshop(findDto);
         return productInEshopAssembler.transformToListOfProductInEshopPriceInfoListDto(productInEshopEntities);
+    }
+
+    @Override
+    public PageList<ProductInEshopPriceInfoListDto> findProductsInEshopPriceInfoJh(ProductInEshopFindDto findDto) {
+        PageList<ProductInEshopEntity> productInEshopEntities = productInEshopDao.findProductsInEshopJh(findDto);
+        return productInEshopAssembler.transformToPageListOfProductInEshopPriceInfoListDto(productInEshopEntities);
     }
 
     @Override
