@@ -11,6 +11,8 @@ import java.util.Date;
  */
 public class ProductInEshopPriceInfoListDto implements Serializable {
 
+    public static final String AT_PRODUCT_NAME = "productName";
+
     // product in eshop
     private Long id;
     private String pictureFullPath;

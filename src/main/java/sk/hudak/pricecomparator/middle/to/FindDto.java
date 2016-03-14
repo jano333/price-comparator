@@ -1,5 +1,6 @@
 package sk.hudak.pricecomparator.middle.to;
 
+import sk.hudak.jef.BasicFilter;
 import sk.hudak.jef.paging.OrderBy;
 import sk.hudak.jef.paging.Paging;
 
@@ -9,7 +10,8 @@ import java.util.List;
 /**
  * Created by jan on 27. 12. 2015.
  */
-public class FindDto implements Serializable {
+//TODO remove extend BasicFilter
+public class FindDto extends BasicFilter implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

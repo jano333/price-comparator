@@ -7,6 +7,8 @@ import java.io.Serializable;
  */
 public class ProductListDto implements Serializable {
 
+    public static final String AT_NAME = "name";
+
     private Long id;
     private String name;
     //TODO toto nahradit aj byte resp domysliet ako to dostat na klienta
