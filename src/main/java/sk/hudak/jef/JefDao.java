@@ -4,6 +4,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import sk.hudak.jef.paging.PageData;
 import sk.hudak.jef.paging.Paging;
 import sk.hudak.pricecomparator.middle.to.FindDto;
@@ -98,4 +99,33 @@ public abstract class JefDao<T extends LongIdEntity> {
     }
 
 
+    protected ServerPaging createPaging(BasicFilter basicFilter, Criteria criteria) {
+        criteria.setProjection(Projections.rowCount());
+        int allCount = ((Long) criteria.uniqueResult()).intValue();
+        criteria.setProjection(null);
+        int offset = basicFilter.getOffset();
+        int count = basicFilter.getCount();
+        if (offset > allCount) {
+            offset = allCount - count;
+        }
+        if (offset == BasicFilter.OFFSET_OF_LAST_ENTRIES) {
+            offset = computeLastOffset(allCount, count);
+        }
+        if (offset < 0) {
+            offset = BasicFilter.OFFSET_OF_FIRST_ENTRIES;
+        }
+        criteria.setFirstResult(offset);
+        criteria.setMaxResults(count);
+        return new ServerPaging(offset, count, allCount);
+    }
+
+    protected int computeLastOffset(int allCount, int count) {
+        int tmpModulo = allCount % count;
+        if (tmpModulo == 0) {
+            return allCount - count;
+        } else {
+            int tmp = (int) (allCount / count);
+            return tmp * count;
+        }
+    }
 }
