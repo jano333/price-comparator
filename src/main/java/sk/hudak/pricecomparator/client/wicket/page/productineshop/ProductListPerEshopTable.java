@@ -35,10 +35,21 @@ public class ProductListPerEshopTable extends Panel {
 
                 PriceComparatorService api = PriceComparatorApplication.getApi();
 
-                return api.findProductsInEshopPriceInfoJh(filter);
+                PageList<ProductInEshopPriceInfoListDto> result = api.findProductsInEshopPriceInfoJh(filter);
+                return result;
             }
 
         };
+
+        // mesage line
+        Label allPageCount = new Label("allPageCount", new PropertyModel<String>(productsInEshop, PageList.AT_ALL_PAGE_COUNT));
+        add(allPageCount);
+
+        Label currentPage = new Label("currentPage", new PropertyModel<String>(productsInEshop, PageList.AT_CURRENT_PAGE));
+        add(currentPage);
+
+        //currentPage
+
 
         Table<ProductInEshopPriceInfoListDto> table = new Table<ProductInEshopPriceInfoListDto>("table", filter, productsInEshop) {
             private static final long serialVersionUID = 1L;
@@ -59,10 +70,15 @@ public class ProductListPerEshopTable extends Panel {
                 IModel<ProductInEshopPriceInfoListDto> product = item.getModel();
 
                 Label productName = new Label("productName", new PropertyModel<String>(product, ProductInEshopPriceInfoListDto.AT_PRODUCT_NAME));
+                Label priceForPackage = new Label("priceForPackage", new PropertyModel<String>(product, ProductInEshopPriceInfoListDto.AT_PRICE_FOR_PACKAGE));
+                Label priceForUnit = new Label("priceForUnit", new PropertyModel<String>(product, ProductInEshopPriceInfoListDto.AT_PRICE_FOR_UNIT));
+                Label productAction = new Label("productAction", new PropertyModel<String>(product, ProductInEshopPriceInfoListDto.AT_PRODUCT_ACTION));
+                Label actionValidTo = new Label("actionValidTo", new PropertyModel<String>(product, ProductInEshopPriceInfoListDto.AT_ACTION_VALID_TO));
+                Label lastUpdatedPrice = new Label("lastUpdatedPrice", new PropertyModel<String>(product, ProductInEshopPriceInfoListDto.AT_LAST_UPDATED_PRICE));
 
 
                 WebMarkupContainer tr = new WebMarkupContainer("tr");
-                tr.add(productName);
+                tr.add(productName, priceForPackage, priceForUnit, productAction, actionValidTo, lastUpdatedPrice);
 
                 item.add(tr);
             }

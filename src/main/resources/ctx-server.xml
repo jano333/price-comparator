@@ -17,9 +17,9 @@
 
     <!-- WICKET BEGIN -->
 
-    <!--<bean id="wicketApplication" class="sk.hudak.pricecomparator.client.wicket.PriceComparatorApplication">
+    <bean id="wicketApplication" class="sk.hudak.pricecomparator.client.wicket.PriceComparatorApplication">
         <property name="service" ref="PriceComparatorService"/>
-    </bean>-->
+    </bean>
 
     <!-- WICKET END -->
 

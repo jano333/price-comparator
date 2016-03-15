@@ -133,42 +133,68 @@
                 <button type="button" class="btn btn-default">Reset</button>
             </div>
         </div>
-    </form>
 
+        <div class="form-group">
 
-    <div class="row">
-        <div class="col-sm-4">
-            <span class="pagination-info">Zobrazujem 1 až 10 z 800 záznamov.</span>
-        </div>
+            <div class="col-sm-3">
+                <span class="pagination-info">Zobrazujem <span>1</span> až <span>10</span> z <span>800</span> záznamov.</span>
+            </div>
 
-        <div class="col-sm-offset-5 col-sm-3">
-           <span class="page-list">
-                <span class="btn-group dropup">
-                    <button type="button" class="btn btn-default  dropdown-toggle" data-toggle="dropdown">
-                        <span class="page-size">10</span>
-                        <span class="caret"/>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
+            <!-- PAGING -->
+            <div class="col-sm-6">
+                <nav>
+                    <ul class="pagination">
+                        <li><a href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span></a>
+                        </li>
                         <li class="active">
-                            <a href="javascript:void(0)">10</a>
+                            <a href="#">1<span class="sr-only">(current)</span></a>
                         </li>
+                        <li><a href="#">2</a></li>
+                        <li class="disabled"><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
                         <li>
-                            <a href="javascript:void(0)">25</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)">50</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)">100</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)">All</a>
+                            <a href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
                         </li>
                     </ul>
-			    </span> záznamov na stranu
-           </span>
+                </nav>
+
+
+            </div>
+
+            <div class="col-sm-3">
+                <span class="page-list">
+                    <span class="btn-group">
+                        <button type="button" class="btn btn-default  dropdown-toggle" data-toggle="dropdown">
+                            <span class="page-size">10</span>
+                            <span class="caret"/>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li class="active">
+                                <a href="javascript:void(0)">10</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">25</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">50</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">100</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">All</a>
+                            </li>
+                        </ul>
+                    </span> záznamov na stranu
+                </span>
+            </div>
+
         </div>
-    </div>
+    </form>
 
     <table class="table table-striped table-bordered table-hover">
         <thead>
@@ -176,47 +202,35 @@
             <th>Obázok</th>
             <th>Názov</th>
             <th>Cena</th>
+            <th>Jednotková cena</th>
+            <th>Akcia</th>
         </tr>
         </thead>
         <tbody>
         <tr>
-            <td>John</td>
-            <td>Doe</td>
-            <td>john@example.com</td>
+            <td>obr1</td>
+            <td>NUtrilon 1</td>
+            <td>14,99</td>
+            <td>0,658</td>
+            <td>Ano</td>
         </tr>
         <tr>
-            <td>Mary</td>
-            <td>Moe</td>
-            <td>mary@example.com</td>
+            <td>obr2</td>
+            <td>NUtrilon 2</td>
+            <td>14,99</td>
+            <td>0,658</td>
+            <td>Nie</td>
         </tr>
         <tr>
-            <td>July</td>
-            <td>Dooley</td>
-            <td>july@example.com</td>
+            <td>obr3</td>
+            <td>NUtrilon 3</td>
+            <td>14,99</td>
+            <td>0,658</td>
+            <td>Ano</td>
         </tr>
+
         </tbody>
     </table>
-
-    <!-- PAGING-->
-    <nav>
-        <ul class="pagination">
-            <li><a href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span></a>
-            </li>
-            <li class="active">
-                <a href="#">1<span class="sr-only">(current)</span></a>
-            </li>
-            <li><a href="#">2</a></li>
-            <li class="disabled"><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li>
-                <a href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
 
 
 </div>

@@ -12,6 +12,12 @@ import java.util.Date;
 public class ProductInEshopPriceInfoListDto implements Serializable {
 
     public static final String AT_PRODUCT_NAME = "productName";
+    public static final String AT_PRICE_FOR_UNIT = "priceForUnit";
+    public static final String AT_PRICE_FOR_PACKAGE = "priceForPackage";
+    public static final String AT_PRICE_FOR_ONE_ITEM_IN_PACKAGE = "priceForOneItemInPackage";
+    public static final String AT_PRODUCT_ACTION = "productAction";
+    public static final String AT_ACTION_VALID_TO = "actionValidTo";
+    public static final String AT_LAST_UPDATED_PRICE = "lastUpdatedPrice";
 
     // product in eshop
     private Long id;
