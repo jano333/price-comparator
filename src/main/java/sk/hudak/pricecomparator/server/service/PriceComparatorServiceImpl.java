@@ -49,6 +49,12 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
         return eshopService.getAllEshops();
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public List<EshopIdNameDto> getAllEshopsForSelection() {
+        return eshopService.getAllEshopsForSelection();
+    }
+
     // -------------- PRODUCT -----------
     @Override
     @Transactional

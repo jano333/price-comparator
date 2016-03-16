@@ -2,6 +2,7 @@ package sk.hudak.pricecomparator.client.wicket.page.productineshop;
 
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.form.*;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
@@ -10,11 +11,12 @@ import sk.hudak.jef.PageList;
 import sk.hudak.pricecomparator.client.wicket.PriceComparatorApplication;
 import sk.hudak.pricecomparator.client.wicket.component.common.IdListView;
 import sk.hudak.pricecomparator.client.wicket.component.table.Table;
-import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
+import sk.hudak.pricecomparator.middle.to.EshopIdNameDto;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopFindDto;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopPriceInfoListDto;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by jan on 13. 3. 2016.
@@ -23,35 +25,61 @@ public class ProductListPerEshopTable extends Panel {
 
     private ProductInEshopFindDto filter = new ProductInEshopFindDto();
 
+    //TODO prednastaveny eshop...
+    private EshopIdNameDto selectedEshop = new EshopIdNameDto(1l, "Tesco");
+
     public ProductListPerEshopTable(String id) {
         super(id);
 
-        IModel<PageList<ProductInEshopPriceInfoListDto>> productsInEshop = new LoadableDetachableModel<PageList<ProductInEshopPriceInfoListDto>>() {
+        IModel<PageList<ProductInEshopPriceInfoListDto>> tableModel = new LoadableDetachableModel<PageList<ProductInEshopPriceInfoListDto>>() {
 
             private static final long serialVersionUID = 1L;
 
             @Override
             protected PageList<ProductInEshopPriceInfoListDto> load() {
-
-                PriceComparatorService api = PriceComparatorApplication.getApi();
-
-                PageList<ProductInEshopPriceInfoListDto> result = api.findProductsInEshopPriceInfoJh(filter);
-                return result;
+                return PriceComparatorApplication.getApi().findProductsInEshopPriceInfoJh(filter);
             }
-
         };
 
+        // filter
+        Form<Void> filterForm = new Form<Void>("filterForm") {
+            @Override
+            protected void onSubmit() {
+                //FIXME skusit inak poriesit
+                filter.setEshopId(selectedEshop.getId());
+            }
+        };
+        add(filterForm);
+
+        DropDownChoice<EshopIdNameDto> eshopFilter = new DropDownChoice<>(
+                "eshop",
+                new PropertyModel<EshopIdNameDto>(this, "selectedEshop"),
+                new LoadableDetachableModel<List<EshopIdNameDto>>() {
+                    @Override
+                    protected List<EshopIdNameDto> load() {
+                        return PriceComparatorApplication.getApi().getAllEshopsForSelection();
+                    }
+                },
+                new ChoiceRenderer<EshopIdNameDto>(EshopIdNameDto.AT_NAME)
+        );
+        filterForm.add(eshopFilter);
+
+        TextField<String> productNameFilter = new TextField<>("productName", new PropertyModel<String>(filter, ProductInEshopFindDto.AT_PRODUCT_NAME));
+        filterForm.add(productNameFilter);
+
+        CheckBox onlyInActionFilter = new CheckBox("onlyInAction", new PropertyModel<Boolean>(filter, ProductInEshopFindDto.AT_ONLY_IN_ACTION));
+        filterForm.add(onlyInActionFilter);
+
+
         // mesage line
-        Label allPageCount = new Label("allPageCount", new PropertyModel<String>(productsInEshop, PageList.AT_ALL_PAGE_COUNT));
-        add(allPageCount);
 
-        Label currentPage = new Label("currentPage", new PropertyModel<String>(productsInEshop, PageList.AT_CURRENT_PAGE));
-        add(currentPage);
+        Label allPageCount = new Label("allPageCount", new PropertyModel<String>(tableModel, PageList.AT_ALL_PAGE_COUNT));
+        filterForm.add(allPageCount);
 
-        //currentPage
+        Label currentPage = new Label("currentPage", new PropertyModel<String>(tableModel, PageList.AT_CURRENT_PAGE));
+        filterForm.add(currentPage);
 
-
-        Table<ProductInEshopPriceInfoListDto> table = new Table<ProductInEshopPriceInfoListDto>("table", filter, productsInEshop) {
+        Table<ProductInEshopPriceInfoListDto> table = new Table<ProductInEshopPriceInfoListDto>("table", filter, tableModel) {
             private static final long serialVersionUID = 1L;
 
             @Override
@@ -76,7 +104,6 @@ public class ProductListPerEshopTable extends Panel {
                 Label actionValidTo = new Label("actionValidTo", new PropertyModel<String>(product, ProductInEshopPriceInfoListDto.AT_ACTION_VALID_TO));
                 Label lastUpdatedPrice = new Label("lastUpdatedPrice", new PropertyModel<String>(product, ProductInEshopPriceInfoListDto.AT_LAST_UPDATED_PRICE));
 
-
                 WebMarkupContainer tr = new WebMarkupContainer("tr");
                 tr.add(productName, priceForPackage, priceForUnit, productAction, actionValidTo, lastUpdatedPrice);
 
@@ -93,5 +120,13 @@ public class ProductListPerEshopTable extends Panel {
 
     public void setFilter(ProductInEshopFindDto filter) {
         this.filter = filter;
+    }
+
+    public EshopIdNameDto getSelectedEshop() {
+        return selectedEshop;
+    }
+
+    public void setSelectedEshop(EshopIdNameDto selectedEshop) {
+        this.selectedEshop = selectedEshop;
     }
 }

@@ -3,6 +3,7 @@ package sk.hudak.pricecomparator.server.service.internal;
 import sk.hudak.pricecomparator.middle.service.EshopService;
 import sk.hudak.pricecomparator.middle.to.EshopCreateDto;
 import sk.hudak.pricecomparator.middle.to.EshopDto;
+import sk.hudak.pricecomparator.middle.to.EshopIdNameDto;
 import sk.hudak.pricecomparator.middle.to.EshopListDto;
 import sk.hudak.pricecomparator.server.assembler.EshopAssembler;
 import sk.hudak.pricecomparator.server.dao.EshopDao;
@@ -40,5 +41,10 @@ public class EshopServiceImpl implements EshopService {
     @Override
     public List<EshopListDto> getAllEshops() {
         return eshopAssembler.transformToListOfEshopListDto(eshopDao.getAllEshops());
+    }
+
+    @Override
+    public List<EshopIdNameDto> getAllEshopsForSelection() {
+        return eshopAssembler.transformToListOfEshopIdNameDto(eshopDao.getAllEshops());
     }
 }

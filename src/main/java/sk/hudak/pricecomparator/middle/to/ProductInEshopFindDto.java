@@ -5,6 +5,9 @@ package sk.hudak.pricecomparator.middle.to;
  */
 public class ProductInEshopFindDto extends FindDto {
 
+    public static final String AT_PRODUCT_NAME = "productName";
+    public static final String AT_ONLY_IN_ACTION = "onlyInAction";
+
     private Long eshopId;
     private String productName;
     private boolean onlyInAction;

@@ -2,7 +2,7 @@
 <wicket:panel>
 
     <!-- FILTER -->
-    <form class="form-horizontal" role="form">
+    <form class="form-horizontal" role="form" wicket:id="filterForm">
         <div class="panel panel-primary">
             <!-- FILTER HEADER -->
             <div class="panel-heading">
@@ -13,28 +13,25 @@
             <div id="collapse1" class="panel-collapse collapse in">
                 <div class="panel-body">
                     <div class="form-group">
-                        <label class="control-label col-sm-1" for="eshop">Eshop:</label>
 
+                        <label class="control-label col-sm-1" for="eshop">Eshop:</label>
                         <div class="col-sm-2">
-                            <!--<input type="email" class="form-control" id="eshop" placeholder="Zadaj eshop">-->
-                            <select class="form-control" id="eshop">
+                            <select class="form-control" id="eshop" wicket:id="eshop">
                                 <option>Metro</option>
                                 <option>Tesco</option>
                                 <option>Feedo</option>
-                                <option>...</option>
                             </select>
                         </div>
 
                         <label class="control-label col-sm-2" for="nazov_produktu">Názov produktu:</label>
-
                         <div class="col-sm-4">
                             <input type="text" class="form-control" id="nazov_produktu"
-                                   placeholder="Zadaj názov produktu">
+                                   placeholder="Zadaj názov produktu" wicket:id="productName">
                         </div>
 
                         <div class="col-sm-3">
                             <div class="checkbox">
-                                <label><input type="checkbox"> Len v akcii</label>
+                                <label><input type="checkbox" wicket:id="onlyInAction"> Len v akcii</label>
                             </div>
                         </div>
                     </div>
