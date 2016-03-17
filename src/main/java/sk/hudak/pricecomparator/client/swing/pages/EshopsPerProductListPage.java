@@ -93,7 +93,7 @@ public class EshopsPerProductListPage extends JPanel {
                 if (selectedEntity == null) {
                     return new ArrayList<>();
                 }
-                return ServiceLocator.getService().findPriceInfoInEshopsForProduct(selectedEntity.getId());
+                return ServiceLocator.getService().old_findPriceInfoInEshopsForProduct(selectedEntity.getId());
             }
         };
 

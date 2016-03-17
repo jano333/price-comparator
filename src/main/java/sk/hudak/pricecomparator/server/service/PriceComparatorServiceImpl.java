@@ -45,14 +45,20 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<EshopListDto> getAllEshops() {
-        return eshopService.getAllEshops();
+    public List<EshopListDto> findAllEshops() {
+        return eshopService.findAllEshops();
     }
 
     @Override
     @Transactional(readOnly = true)
-    public List<EshopIdNameDto> getAllEshopsForSelection() {
-        return eshopService.getAllEshopsForSelection();
+    public List<EshopIdNameDto> findAllEshopsForSelection() {
+        return eshopService.findAllEshopsForSelection();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<ProductIdNameDto> findAllProductForSelection() {
+        return productService.findAllProductForSelection();
     }
 
     // -------------- PRODUCT -----------
@@ -183,9 +189,9 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<ProductInEshopPriceResultListDto> findPriceInfoInEshopsForProduct(Long productId) {
+    public List<ProductInEshopPriceResultListDto> old_findPriceInfoInEshopsForProduct(Long productId) {
         System.out.println(">> findPriceInfoInEshopsForProduct");
-        List<ProductInEshopPriceResultListDto> result = productInEshopService.findPriceInfoInEshopsForProduct(productId);
+        List<ProductInEshopPriceResultListDto> result = productInEshopService.old_findPriceInfoInEshopsForProduct(productId);
         System.out.println("<< findPriceInfoInEshopsForProduct");
         return result;
     }
@@ -202,17 +208,23 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<ProductInEshopPriceInfoListDto> findProductsInEshopPriceInfo(ProductInEshopFindDto findDto) {
+    public List<ProductInEshopPriceInfoListDto> old_findProductsInEshopPriceInfo(ProductInEshopFindDto findDto) {
         System.out.println(">> findProductsInEshopPriceInfo");
-        List<ProductInEshopPriceInfoListDto> result = productInEshopService.findProductsInEshopPriceInfo(findDto);
+        List<ProductInEshopPriceInfoListDto> result = productInEshopService.old_findProductsInEshopPriceInfo(findDto);
         System.out.println("<< findProductsInEshopPriceInfo");
         return result;
     }
 
     @Override
     @Transactional(readOnly = true)
-    public PageList<ProductInEshopPriceInfoListDto> findProductsInEshopPriceInfoJh(ProductInEshopFindDto findDto) {
-        return productInEshopService.findProductsInEshopPriceInfoJh(findDto);
+    public PageList<ProductInEshopPriceInfoListDto> findProductsInEshopPriceInfo(ProductInEshopFindDto findDto) {
+        return productInEshopService.findProductsInEshopPriceInfo(findDto);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public PageList<ProductInEshopPriceResultListDto> findPriceInfoInEshopsForProduct(ProductFindDto findDto) {
+        return productInEshopService.findPriceInfoInEshopsForProduct(findDto);
     }
 
     @Override

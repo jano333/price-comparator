@@ -10,6 +10,7 @@ import sk.hudak.jef.ServerPaging;
 import sk.hudak.pricecomparator.middle.EshopType;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorException;
 import sk.hudak.pricecomparator.middle.model.ProductAction;
+import sk.hudak.pricecomparator.middle.to.ProductFindDto;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopFindDto;
 import sk.hudak.pricecomparator.server.model.EshopEntity;
 import sk.hudak.pricecomparator.server.model.ProductEntity;
@@ -30,6 +31,58 @@ public class ProductInEshopDao extends JefDao<ProductInEshopEntity> {
     public ProductInEshopEntity readMandatory(Long id) {
         return read(id, ProductInEshopEntity.class);
     }
+
+    public PageList<ProductInEshopEntity> findProductsInEshop(ProductInEshopFindDto findDto) {
+        if (findDto == null) {
+            throw new PriceComparatorException("Find dto is null");
+        }
+        Criteria crit = createCriteria(ProductInEshopEntity.class);
+        // budem podla toho sortovat
+        Criteria critProd = crit.createCriteria(ProductInEshopEntity.AT_PRODUCT);
+
+        //eshopId
+        if (findDto.getEshopId() != null) {
+            crit.add(Restrictions.eq(ProductInEshopEntity.AT_ESHOP + "." + EshopEntity.AT_ID, findDto.getEshopId()));
+        }
+        //productName
+        if (StringUtils.isNotBlank(findDto.getProductName())) {
+            critProd.add(Restrictions.ilike(ProductEntity.AT_NAME, "%" + findDto.getProductName() + "%"));
+        }
+        // onlyInAction
+        if (findDto.isOnlyInAction()) {
+            crit.add(Restrictions.eq(ProductInEshopEntity.AT_PRODUCT_ACTION, ProductAction.IN_ACTION));
+        }
+
+        ServerPaging pagging = createPaging(findDto, crit);
+        //TODO sortovanie zobrazt z find dto
+        //zosrotovane podla nazvu produktu
+        addAscOrder(critProd, ProductEntity.AT_NAME);
+        return new PageList<>(crit.list(), pagging.getCurrentPage(), pagging.getAllPage());
+    }
+
+
+    public PageList<ProductInEshopEntity> findPriceInfoInEshopsForProduct(ProductFindDto findDto) {
+        if (findDto == null) {
+            throw new PriceComparatorException("Find dto is null");
+        }
+        Criteria crit = createCriteria(ProductInEshopEntity.class);
+        if (findDto.getProductId() != null) {
+            crit.add(Restrictions.eq(ProductInEshopEntity.AT_PRODUCT + "." + ProductEntity.AT_ID, findDto.getProductId()));
+        }
+        // FIXME dat null do DB alebo neako inak ako -1... riesit
+        // iba take, ktore mame cenu !!!,
+        crit.add(Restrictions.ne(ProductInEshopEntity.AT_PRICE_FOR_UNIT, new BigDecimal(-1)));
+
+
+        ServerPaging pagging = createPaging(findDto, crit);
+        //TODO sortovanie zobrazt z find dto
+        // od najnizsej po najvyssiu
+        addAscOrder(crit, ProductInEshopEntity.AT_PRICE_FOR_UNIT);
+
+        return new PageList<>(crit.list(), pagging.getCurrentPage(), pagging.getAllPage());
+    }
+
+    //TODO vsetko nizie prejst ------------------
 
     public List<ProductInEshopEntity> findAllProductInEshop() {
         Criteria crit = createCriteria(ProductInEshopEntity.class);
@@ -73,7 +126,7 @@ public class ProductInEshopDao extends JefDao<ProductInEshopEntity> {
      * @param eshopId
      * @return
      */
-    public List<ProductInEshopEntity> findProductsInEshop(Long eshopId) {
+    public List<ProductInEshopEntity> old_findProductsInEshop(Long eshopId) {
         Criteria crit = createCriteria(ProductInEshopEntity.class);
         crit.add(Restrictions.eq(ProductInEshopEntity.AT_ESHOP + "." + EshopEntity.AT_ID, eshopId));
 
@@ -83,6 +136,7 @@ public class ProductInEshopDao extends JefDao<ProductInEshopEntity> {
         return crit.list();
     }
 
+
     public ProductInEshopEntity findProductInEshop(Long productId, Long eshopId) {
         Criteria crit = createCriteria(ProductInEshopEntity.class);
         //FIXME pridat do bazovej triedy metodu na spajanie...
@@ -90,7 +144,6 @@ public class ProductInEshopDao extends JefDao<ProductInEshopEntity> {
         crit.add(Restrictions.eq(ProductInEshopEntity.AT_PRODUCT + "." + ProductEntity.AT_ID, productId));
         return (ProductInEshopEntity) crit.uniqueResult();
     }
-
 
     public ProductInEshopEntity findProductForPriceUpdate(EshopType eshopType, Date maxOlderDate) {
         Criteria crit = createCriteria(ProductInEshopEntity.class);
@@ -108,17 +161,6 @@ public class ProductInEshopDao extends JefDao<ProductInEshopEntity> {
         return (ProductInEshopEntity) crit.uniqueResult();
     }
 
-    public List<ProductInEshopEntity> findPriceInfoInEshopsForProduct(Long productId) {
-        Criteria crit = createCriteria(ProductInEshopEntity.class);
-        crit.add(Restrictions.eq(ProductInEshopEntity.AT_PRODUCT + "." + ProductEntity.AT_ID, productId));
-        // FIXME dat null do DB alebo neako inak ako -1... riesit
-        // iba take, ktore mame cenu !!!,
-        crit.add(Restrictions.ne(ProductInEshopEntity.AT_PRICE_FOR_UNIT, new BigDecimal(-1)));
-        // od najnizsej po najvyssiu
-        addAscOrder(crit, ProductInEshopEntity.AT_PRICE_FOR_UNIT);
-        return crit.list();
-    }
-
     public List<ProductInEshopEntity> findProductsInEshopByProductsIds(List<Long> productsId, String orderBy) {
         Criteria crit = createCriteria(ProductInEshopEntity.class);
         crit.add(Restrictions.in(ProductInEshopEntity.AT_PRODUCT + "." + ProductEntity.AT_ID, productsId));
@@ -130,34 +172,6 @@ public class ProductInEshopDao extends JefDao<ProductInEshopEntity> {
     }
 
 
-    @Deprecated
-    public List<ProductInEshopEntity> findProductsInEshop(ProductInEshopFindDto findDto) {
-        if (findDto == null) {
-            throw new PriceComparatorException("Find dto is null");
-        }
-        Criteria crit = createCriteria(ProductInEshopEntity.class);
-        // budem podla toho sortovat
-        Criteria critProd = crit.createCriteria(ProductInEshopEntity.AT_PRODUCT);
-
-        //eshopId
-        if (findDto.getEshopId() != null) {
-            crit.add(Restrictions.eq(ProductInEshopEntity.AT_ESHOP + "." + EshopEntity.AT_ID, findDto.getEshopId()));
-        }
-        //productName
-        if (StringUtils.isNotBlank(findDto.getProductName())) {
-            critProd.add(Restrictions.ilike(ProductEntity.AT_NAME, "%" + findDto.getProductName() + "%"));
-        }
-        // onlyInAction
-        if (findDto.isOnlyInAction()) {
-            crit.add(Restrictions.eq(ProductInEshopEntity.AT_PRODUCT_ACTION, ProductAction.IN_ACTION));
-        }
-        //TODO sortovanie zobrazt z find dto
-        //zosrotovane podla nazvu produktu
-        addAscOrder(critProd, ProductEntity.AT_NAME);
-
-        return crit.list();
-    }
-
     public List<ProductInEshopEntity> findProductsInEshopByType(EshopType eshopType) {
         Criteria crit = createCriteria(ProductInEshopEntity.class);
         Criteria critEshop = crit.createCriteria(ProductInEshopEntity.AT_ESHOP);
@@ -166,7 +180,23 @@ public class ProductInEshopDao extends JefDao<ProductInEshopEntity> {
         return crit.list();
     }
 
-    public PageList<ProductInEshopEntity> findProductsInEshopJh(ProductInEshopFindDto findDto) {
+    @Deprecated
+    public List<ProductInEshopEntity> old_findPriceInfoInEshopsForProduct(Long productId) {
+        Criteria crit = createCriteria(ProductInEshopEntity.class);
+        crit.add(Restrictions.eq(ProductInEshopEntity.AT_PRODUCT + "." + ProductEntity.AT_ID, productId));
+        // FIXME dat null do DB alebo neako inak ako -1... riesit
+        // iba take, ktore mame cenu !!!,
+        crit.add(Restrictions.ne(ProductInEshopEntity.AT_PRICE_FOR_UNIT, new BigDecimal(-1)));
+        // od najnizsej po najvyssiu
+        addAscOrder(crit, ProductInEshopEntity.AT_PRICE_FOR_UNIT);
+        return crit.list();
+    }
+
+    //-----------
+
+
+    @Deprecated
+    public List<ProductInEshopEntity> old_findProductsInEshop(ProductInEshopFindDto findDto) {
         if (findDto == null) {
             throw new PriceComparatorException("Find dto is null");
         }
@@ -186,11 +216,11 @@ public class ProductInEshopDao extends JefDao<ProductInEshopEntity> {
         if (findDto.isOnlyInAction()) {
             crit.add(Restrictions.eq(ProductInEshopEntity.AT_PRODUCT_ACTION, ProductAction.IN_ACTION));
         }
-
-        ServerPaging pagging = createPaging(findDto, crit);
         //TODO sortovanie zobrazt z find dto
         //zosrotovane podla nazvu produktu
         addAscOrder(critProd, ProductEntity.AT_NAME);
-        return new PageList<>(crit.list(), pagging.getCurrentPage(), pagging.getAllPage());
+
+        return crit.list();
     }
+
 }

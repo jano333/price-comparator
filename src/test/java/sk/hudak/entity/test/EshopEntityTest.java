@@ -30,7 +30,7 @@ public class EshopEntityTest extends AbstractTestNGSpringContextTests {
         Long eshop = service.createEshop(dto);
         Assert.assertNotNull(eshop);
 
-        List<EshopListDto> allEshops = service.getAllEshops();
+        List<EshopListDto> allEshops = service.findAllEshops();
         Assert.assertNotNull(allEshops);
         Assert.assertTrue(allEshops.get(0) != null);
     }

@@ -16,9 +16,9 @@ public interface EshopService {
 
     EshopDto getEshopById(Long eshopId);
 
-    List<EshopListDto> getAllEshops();
+    List<EshopListDto> findAllEshops();
 
-    List<EshopIdNameDto> getAllEshopsForSelection();
+    List<EshopIdNameDto> findAllEshopsForSelection();
 
 
 }

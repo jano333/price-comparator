@@ -35,7 +35,7 @@ public class ProductsInEshopListPage extends JPanel {
         JPanel compozite = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
         compozite.add(new JLabel("Eshop:"));
-        compozite.add(cbEshops = new JComboBox<>(ServiceLocator.getService().getAllEshops().toArray(new EshopListDto[0])));
+        compozite.add(cbEshops = new JComboBox<>(ServiceLocator.getService().findAllEshops().toArray(new EshopListDto[0])));
 
         compozite.add(new JLabel("Názov produktu:"));
         compozite.add(tfProductName = new JTextField("", 20));
@@ -103,7 +103,7 @@ public class ProductsInEshopListPage extends JPanel {
             @Override
             protected List<ProductInEshopPriceInfoListDto> loadData() {
                 //TODO eshop musi byt povinny teda vyber eshopu
-                return ServiceLocator.getService().findProductsInEshopPriceInfo(createFindDto());
+                return ServiceLocator.getService().old_findProductsInEshopPriceInfo(createFindDto());
             }
         };
 

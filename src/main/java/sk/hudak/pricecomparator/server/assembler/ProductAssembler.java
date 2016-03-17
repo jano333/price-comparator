@@ -1,6 +1,7 @@
 package sk.hudak.pricecomparator.server.assembler;
 
 import sk.hudak.pricecomparator.middle.to.ProductDto;
+import sk.hudak.pricecomparator.middle.to.ProductIdNameDto;
 import sk.hudak.pricecomparator.middle.to.ProductListDto;
 import sk.hudak.pricecomparator.server.model.CategoryEntity;
 import sk.hudak.pricecomparator.server.model.ProductEntity;
@@ -54,6 +55,27 @@ public class ProductAssembler {
         result.setName(product.getName());
         result.setImagePath(ImageUtils.findProductImage(product.getId()));
 
+        return result;
+    }
+
+    public List<ProductIdNameDto> transformToListOfProductIdNameDto(List<ProductEntity> allProducts) {
+        if (allProducts == null) {
+            return null;
+        }
+        List<ProductIdNameDto> result = new ArrayList<>(allProducts.size());
+        for (ProductEntity productEntity : allProducts) {
+            result.add(transformToProductIdNameDto(productEntity));
+        }
+        return result;
+    }
+
+    private ProductIdNameDto transformToProductIdNameDto(ProductEntity productEntity) {
+        if (productEntity == null) {
+            return null;
+        }
+        ProductIdNameDto result = new ProductIdNameDto();
+        result.setId(productEntity.getId());
+        result.setName(productEntity.getName());
         return result;
     }
 }

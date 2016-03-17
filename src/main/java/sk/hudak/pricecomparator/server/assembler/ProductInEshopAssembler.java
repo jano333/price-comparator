@@ -167,7 +167,9 @@ public class ProductInEshopAssembler {
 
 
     //----- DONE :
-    public PageList<ProductInEshopPriceInfoListDto> transformToPageListOfProductInEshopPriceInfoListDto(PageList<ProductInEshopEntity> productInEshopEntities) {
+    public PageList<ProductInEshopPriceInfoListDto> transformToPageListOfProductInEshopPriceInfoListDto(
+            PageList<ProductInEshopEntity> productInEshopEntities) {
+
         List<ProductInEshopPriceInfoListDto> versions = new ArrayList<>(productInEshopEntities.getEntries().size());
         for (ProductInEshopEntity entity : productInEshopEntities.getEntries()) {
             versions.add(transformToProductInEshopPriceInfoListDto(entity));
@@ -176,4 +178,13 @@ public class ProductInEshopAssembler {
     }
 
 
+    public PageList<ProductInEshopPriceResultListDto> transformToPageListOfProductInEshopPriceResultListDto(
+            PageList<ProductInEshopEntity> productInEshopEntities) {
+
+        List<ProductInEshopPriceResultListDto> versions = new ArrayList<>(productInEshopEntities.getEntries().size());
+        for (ProductInEshopEntity entity : productInEshopEntities.getEntries()) {
+            versions.add(transformToProductInEshopPriceResultListDto(entity));
+        }
+        return new PageList<>(versions, productInEshopEntities.getCurrentPage(), productInEshopEntities.getAllPageCount());
+    }
 }

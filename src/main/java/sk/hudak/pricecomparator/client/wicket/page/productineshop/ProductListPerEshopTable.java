@@ -37,7 +37,7 @@ public class ProductListPerEshopTable extends Panel {
 
             @Override
             protected PageList<ProductInEshopPriceInfoListDto> load() {
-                return PriceComparatorApplication.getApi().findProductsInEshopPriceInfoJh(filter);
+                return PriceComparatorApplication.getApi().findProductsInEshopPriceInfo(filter);
             }
         };
 
@@ -57,7 +57,7 @@ public class ProductListPerEshopTable extends Panel {
                 new LoadableDetachableModel<List<EshopIdNameDto>>() {
                     @Override
                     protected List<EshopIdNameDto> load() {
-                        return PriceComparatorApplication.getApi().getAllEshopsForSelection();
+                        return PriceComparatorApplication.getApi().findAllEshopsForSelection();
                     }
                 },
                 new ChoiceRenderer<EshopIdNameDto>(EshopIdNameDto.AT_NAME)

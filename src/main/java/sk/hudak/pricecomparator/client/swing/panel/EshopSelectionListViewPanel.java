@@ -16,7 +16,7 @@ public class EshopSelectionListViewPanel extends BasicSelectionListViewPanel<Esh
 
     @Override
     public List<EshopListDto> readData() {
-        return ServiceLocator.getService().getAllEshops();
+        return ServiceLocator.getService().findAllEshops();
     }
 
     @Override

@@ -42,6 +42,20 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
     private JefValidator val;
 
     @Override
+    public PageList<ProductInEshopPriceInfoListDto> findProductsInEshopPriceInfo(ProductInEshopFindDto findDto) {
+        PageList<ProductInEshopEntity> productInEshopEntities = productInEshopDao.findProductsInEshop(findDto);
+        return productInEshopAssembler.transformToPageListOfProductInEshopPriceInfoListDto(productInEshopEntities);
+    }
+
+    @Override
+    public PageList<ProductInEshopPriceResultListDto> findPriceInfoInEshopsForProduct(ProductFindDto findDto) {
+        PageList<ProductInEshopEntity> productInEshopEntities = productInEshopDao.findPriceInfoInEshopsForProduct(findDto);
+        return productInEshopAssembler.transformToPageListOfProductInEshopPriceResultListDto(productInEshopEntities);
+    }
+
+    //------------------------------------------------------
+
+    @Override
     public Long createProductInEshop(ProductInEshopCreateDto dto) {
         return productInEshopFacade.createProductInEshop(dto);
     }
@@ -97,7 +111,7 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
     public List<ProductInEshopCustomListDto> findProductsInEshop(Long eshopId) {
         val.notNull(eshopId, "eshopId is null");
 
-        List<ProductInEshopEntity> productsInEshop = productInEshopDao.findProductsInEshop(eshopId);
+        List<ProductInEshopEntity> productsInEshop = productInEshopDao.old_findProductsInEshop(eshopId);
         return productInEshopAssembler.transformToListOfProductInEshopCustomListDto(productsInEshop);
     }
 
@@ -114,30 +128,26 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
     }
 
     @Override
-    public List<ProductInEshopPriceResultListDto> findPriceInfoInEshopsForProduct(Long productId) {
+    public List<ProductInEshopPriceResultListDto> old_findPriceInfoInEshopsForProduct(Long productId) {
         //FIXME vstup dat finDto aby bola moznost nastavovat filtrovanie, vraciat paging nie list
-        List<ProductInEshopEntity> productInEshopEntities = productInEshopDao.findPriceInfoInEshopsForProduct(productId);
+        List<ProductInEshopEntity> productInEshopEntities = productInEshopDao.old_findPriceInfoInEshopsForProduct(productId);
         //FIXME premenovat transform metodu
         return productInEshopAssembler.transformToListOfProductInEshopEntity(productInEshopEntities);
     }
 
     @Override
     public List<ProductInEshopPriceInfoListDto> findProductInEshopPriceInfoForEshop(Long eshopId) {
-        List<ProductInEshopEntity> productInEshopEntities = productInEshopDao.findProductsInEshop(eshopId);
+        List<ProductInEshopEntity> productInEshopEntities = productInEshopDao.old_findProductsInEshop(eshopId);
         return productInEshopAssembler.transformToListOfProductInEshopPriceInfoListDto(productInEshopEntities);
     }
 
     @Override
-    public List<ProductInEshopPriceInfoListDto> findProductsInEshopPriceInfo(ProductInEshopFindDto findDto) {
-        List<ProductInEshopEntity> productInEshopEntities = productInEshopDao.findProductsInEshop(findDto);
+    @Deprecated
+    public List<ProductInEshopPriceInfoListDto> old_findProductsInEshopPriceInfo(ProductInEshopFindDto findDto) {
+        List<ProductInEshopEntity> productInEshopEntities = productInEshopDao.old_findProductsInEshop(findDto);
         return productInEshopAssembler.transformToListOfProductInEshopPriceInfoListDto(productInEshopEntities);
     }
 
-    @Override
-    public PageList<ProductInEshopPriceInfoListDto> findProductsInEshopPriceInfoJh(ProductInEshopFindDto findDto) {
-        PageList<ProductInEshopEntity> productInEshopEntities = productInEshopDao.findProductsInEshopJh(findDto);
-        return productInEshopAssembler.transformToPageListOfProductInEshopPriceInfoListDto(productInEshopEntities);
-    }
 
     @Override
     public ProductInEshopForPictureDownloadInfoDto findUrlOfProductsInEshopWithoutPicture(EshopType eshopType) {

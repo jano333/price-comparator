@@ -13,8 +13,19 @@ import java.util.Date;
  */
 public class ProductInEshopPriceResultListDto implements Serializable {
 
+    public static final String AT_ESHOP_NAME = "eshopName";
+
+    public static final String AT_PRICE_FOR_UNIT = "priceForUnit";
+    public static final String AT_PRICE_FOR_PACKAGE = "priceForPackage";
+    public static final String AT_PRICE_FOR_ONE_ITEM_IN_PACKAGE = "priceForOneItemInPackage";
+    public static final String AT_PRODUCT_ACTION = "productAction";
+    public static final String AT_ACTION_VALID_TO = "actionValidTo";
+    public static final String AT_LAST_UPDATED_PRICE = "lastUpdatedPrice";
+
+
     private Long id;
     private String eshopName;
+
     private BigDecimal priceForUnit;
     private BigDecimal priceForPackage;
     private BigDecimal priceForOneItemInPackage;

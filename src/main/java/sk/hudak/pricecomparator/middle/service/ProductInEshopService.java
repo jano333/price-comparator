@@ -11,6 +11,11 @@ import java.util.List;
  */
 public interface ProductInEshopService {
 
+    // OK
+    PageList<ProductInEshopPriceInfoListDto> findProductsInEshopPriceInfo(ProductInEshopFindDto findDto);
+
+    PageList<ProductInEshopPriceResultListDto> findPriceInfoInEshopsForProduct(ProductFindDto findDto);
+
     // TODO vsetko nizsie prejst
 
     /**
@@ -61,15 +66,7 @@ public interface ProductInEshopService {
 
     ProductInEshopDto findProductForPriceUpdate(EshopType eshopType);
 
-    /**
-     * Pre produkt <code>productId</code>  vyhlada ceny a dalsie informacie vo vsetkych ehopoch,
-     * ktore poskytuju dany produkt. <br/>
-     * Vysledok je sortovany od najnizsej ceny za jednotku po najvyssiu.
-     *
-     * @param productId id produktu
-     * @return zoznam informacii o produkte v jednotlivych eshopoch
-     */
-    List<ProductInEshopPriceResultListDto> findPriceInfoInEshopsForProduct(Long productId);
+
 
 
     /**
@@ -88,13 +85,22 @@ public interface ProductInEshopService {
     ProductInEshopForPictureDownloadInfoDto findUrlOfProductsInEshopWithoutPicture(EshopType feedo);
 
 
-    // OK
-    PageList<ProductInEshopPriceInfoListDto> findProductsInEshopPriceInfoJh(ProductInEshopFindDto findDto);
-
     //TODO vsetko nizsie remove
 
     @Deprecated
-    List<ProductInEshopPriceInfoListDto> findProductsInEshopPriceInfo(ProductInEshopFindDto findDto);
+    List<ProductInEshopPriceInfoListDto> old_findProductsInEshopPriceInfo(ProductInEshopFindDto findDto);
+
+    /**
+     * Pre produkt <code>productId</code>  vyhlada ceny a dalsie informacie vo vsetkych ehopoch,
+     * ktore poskytuju dany produkt. <br/>
+     * Vysledok je sortovany od najnizsej ceny za jednotku po najvyssiu.
+     *
+     * @param productId id produktu
+     * @return zoznam informacii o produkte v jednotlivych eshopoch
+     * TODO pouzivat paging
+     */
+    @Deprecated
+    List<ProductInEshopPriceResultListDto> old_findPriceInfoInEshopsForProduct(Long productId);
 
 
 }
