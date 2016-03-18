@@ -4,6 +4,9 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import sk.hudak.jef.JefDao;
+import sk.hudak.jef.PageList;
+import sk.hudak.pricecomparator.middle.to.ProductInEshopFindDto;
+import sk.hudak.pricecomparator.middle.to.ProductPriceInGroupFindDto;
 import sk.hudak.pricecomparator.server.model.GroupOfProductEntity;
 import sk.hudak.pricecomparator.server.model.GroupOfProductFindEntity;
 import sk.hudak.pricecomparator.server.model.ProductEntity;
@@ -28,6 +31,28 @@ public class GroupOfProductDao extends JefDao<GroupOfProductEntity> {
     public GroupOfProductEntity readMandatory(Long groupId) {
         return readMandatory(groupId, GroupOfProductEntity.class);
     }
+
+    public PageList<ProductInEshopEntity> findPriceInfoInEshopsForGroup(ProductPriceInGroupFindDto filter) {
+        // ziskam idecka vsetkych produktov v skupine
+        Criteria crit = createCriteria(GroupOfProductFindEntity.class);
+        if (filter.getGroupId() != null) {
+            crit.add(Restrictions.eq(GroupOfProductFindEntity.AT_GROUP_ID, filter.getGroupId()));
+        }
+        crit.setProjection(Projections.property(GroupOfProductFindEntity.AT_PRODUCT_ID));
+        List<Long> productInGroupIdList = crit.list();
+
+
+        ProductInEshopFindDto haha = new ProductInEshopFindDto();
+        haha.setOffset(filter.getOffset());
+        haha.setCount(filter.getCount());
+
+        haha.setProductId(productInGroupIdList);
+
+        PageList<ProductInEshopEntity> result = productInEshopDao.findProductsInEshopByProductsIdsJH(haha);
+        return result;
+    }
+
+    // -------------
 
     public List<GroupOfProductEntity> findAllGroupsOfProducts() {
         Criteria crit = createCriteria(GroupOfProductEntity.class);
@@ -58,6 +83,7 @@ public class GroupOfProductDao extends JefDao<GroupOfProductEntity> {
         return crit.list();
     }
 
+    @Deprecated
     public List<ProductInEshopEntity> findPriceInfoInEshopsForGroup(Long groupId) {
         // ziskam idecka vsetkych produktov v skupine
         Criteria crit = createCriteria(GroupOfProductFindEntity.class);

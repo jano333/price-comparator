@@ -1,5 +1,6 @@
 package sk.hudak.pricecomparator.server.service.internal;
 
+import sk.hudak.jef.PageList;
 import sk.hudak.pricecomparator.middle.service.GroupOfProductService;
 import sk.hudak.pricecomparator.middle.to.*;
 import sk.hudak.pricecomparator.server.assembler.GroupOfProductAssembler;
@@ -39,6 +40,12 @@ public class GroupOfProductServiceImpl implements GroupOfProductService {
 
 
     @Override
+    public PageList<ProductInEshopPriceResultListDto> findPriceInfoInEshopsForGroup(ProductPriceInGroupFindDto filter) {
+        PageList<ProductInEshopEntity> productInEshopEntities = groupOfProductDao.findPriceInfoInEshopsForGroup(filter);
+        return productInEshopAssembler.transformToPageListOfProductInEshopPriceResultListDto(productInEshopEntities);
+    }
+
+    @Override
     public Long createGroupOfProduct(GroupOfProductCreateDto dto) {
         return groupOfProductFacade.createGroupOfProduct(dto);
     }
@@ -76,6 +83,11 @@ public class GroupOfProductServiceImpl implements GroupOfProductService {
     public List<ProductInEshopPriceResultListDto> findPriceInfoInEshopsForGroup(Long groupId) {
         List<ProductInEshopEntity> productInEshopEntities = groupOfProductDao.findPriceInfoInEshopsForGroup(groupId);
         return productInEshopAssembler.transformToListOfProductInEshopEntity(productInEshopEntities);
+    }
+
+    @Override
+    public List<GroupIdNameDto> findAllProductGroupSelection() {
+        return groupOfProductAssembler.transformToListOfGroupIdNameDto(groupOfProductDao.findAllGroupsOfProducts());
     }
 
 

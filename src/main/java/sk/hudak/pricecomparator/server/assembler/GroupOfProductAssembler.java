@@ -1,5 +1,6 @@
 package sk.hudak.pricecomparator.server.assembler;
 
+import sk.hudak.pricecomparator.middle.to.GroupIdNameDto;
 import sk.hudak.pricecomparator.middle.to.GroupOfProductDto;
 import sk.hudak.pricecomparator.middle.to.GroupOfProductListDto;
 import sk.hudak.pricecomparator.server.model.GroupOfProductEntity;
@@ -46,6 +47,29 @@ public class GroupOfProductAssembler {
         result.setId(entity.getId());
         result.setName(entity.getName());
 
+        return result;
+    }
+
+    public List<GroupIdNameDto> transformToListOfGroupIdNameDto(List<GroupOfProductEntity> allGroupsOfProducts) {
+        if (allGroupsOfProducts == null) {
+            return null;
+        }
+        List<GroupIdNameDto> result = new ArrayList<>(allGroupsOfProducts.size());
+        for (GroupOfProductEntity groupOfProductEntity : allGroupsOfProducts) {
+            result.add(transformToGroupIdNameDto(groupOfProductEntity));
+        }
+        return result;
+    }
+
+
+
+    private GroupIdNameDto transformToGroupIdNameDto(GroupOfProductEntity groupOfProductEntity) {
+        if (groupOfProductEntity == null) {
+            return null;
+        }
+        GroupIdNameDto result = new GroupIdNameDto();
+        result.setId(groupOfProductEntity.getId());
+        result.setName(groupOfProductEntity.getName());
         return result;
     }
 }

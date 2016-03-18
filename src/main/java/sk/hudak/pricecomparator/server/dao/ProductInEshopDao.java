@@ -161,6 +161,7 @@ public class ProductInEshopDao extends JefDao<ProductInEshopEntity> {
         return (ProductInEshopEntity) crit.uniqueResult();
     }
 
+
     public List<ProductInEshopEntity> findProductsInEshopByProductsIds(List<Long> productsId, String orderBy) {
         Criteria crit = createCriteria(ProductInEshopEntity.class);
         crit.add(Restrictions.in(ProductInEshopEntity.AT_PRODUCT + "." + ProductEntity.AT_ID, productsId));
@@ -172,6 +173,23 @@ public class ProductInEshopDao extends JefDao<ProductInEshopEntity> {
     }
 
 
+    public PageList<ProductInEshopEntity> findProductsInEshopByProductsIdsJH(ProductInEshopFindDto findDto) {
+        //TODO ostatne atributy hlavne pozriet odkial je to volane...
+        // TODO urobit univerzalne...
+
+        Criteria crit = createCriteria(ProductInEshopEntity.class);
+        crit.add(Restrictions.in(ProductInEshopEntity.AT_PRODUCT + "." + ProductEntity.AT_ID, findDto.getProductId()));
+        // iba take, ktore mame cenu !!!,
+        crit.add(Restrictions.ne(ProductInEshopEntity.AT_PRICE_FOR_UNIT, new BigDecimal(-1)));
+
+
+        ServerPaging pagging = createPaging(findDto, crit);
+        //TODO sortovanie zobrazt z find dto
+        //zosrotovane podla nazvu produktu
+        addAscOrder(crit, ProductInEshopEntity.AT_PRICE_FOR_UNIT);
+        return new PageList<>(crit.list(), pagging.getCurrentPage(), pagging.getAllPage());
+    }
+
     public List<ProductInEshopEntity> findProductsInEshopByType(EshopType eshopType) {
         Criteria crit = createCriteria(ProductInEshopEntity.class);
         Criteria critEshop = crit.createCriteria(ProductInEshopEntity.AT_ESHOP);
@@ -179,6 +197,9 @@ public class ProductInEshopDao extends JefDao<ProductInEshopEntity> {
 
         return crit.list();
     }
+
+    //-----------
+
 
     @Deprecated
     public List<ProductInEshopEntity> old_findPriceInfoInEshopsForProduct(Long productId) {
@@ -191,9 +212,6 @@ public class ProductInEshopDao extends JefDao<ProductInEshopEntity> {
         addAscOrder(crit, ProductInEshopEntity.AT_PRICE_FOR_UNIT);
         return crit.list();
     }
-
-    //-----------
-
 
     @Deprecated
     public List<ProductInEshopEntity> old_findProductsInEshop(ProductInEshopFindDto findDto) {
@@ -222,5 +240,4 @@ public class ProductInEshopDao extends JefDao<ProductInEshopEntity> {
 
         return crit.list();
     }
-
 }

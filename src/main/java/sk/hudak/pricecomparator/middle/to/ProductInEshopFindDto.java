@@ -1,5 +1,7 @@
 package sk.hudak.pricecomparator.middle.to;
 
+import java.util.List;
+
 /**
  * Created by jan on 19. 2. 2016.
  */
@@ -11,6 +13,8 @@ public class ProductInEshopFindDto extends FindDto {
     private Long eshopId;
     private String productName;
     private boolean onlyInAction;
+
+    private List<Long> productId;
 
     public Long getEshopId() {
         return eshopId;
@@ -34,5 +38,13 @@ public class ProductInEshopFindDto extends FindDto {
 
     public void setOnlyInAction(boolean onlyInAction) {
         this.onlyInAction = onlyInAction;
+    }
+
+    public List<Long> getProductId() {
+        return productId;
+    }
+
+    public void setProductId(List<Long> productId) {
+        this.productId = productId;
     }
 }

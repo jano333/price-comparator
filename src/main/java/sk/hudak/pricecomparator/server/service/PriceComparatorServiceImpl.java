@@ -237,6 +237,18 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
     // --------- GROUP_OF_PRODUCTS ------------
 
     @Override
+    @Transactional(readOnly = true)
+    public PageList<ProductInEshopPriceResultListDto> findPriceInfoInEshopsForGroup(ProductPriceInGroupFindDto filter) {
+        return groupOfProductService.findPriceInfoInEshopsForGroup(filter);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<GroupIdNameDto> findAllProductGroupSelection() {
+        return groupOfProductService.findAllProductGroupSelection();
+    }
+
+    @Override
     @Transactional
     public Long createGroupOfProduct(GroupOfProductCreateDto dto) {
         System.out.println(">> createGroupOfProduct");
