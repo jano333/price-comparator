@@ -1,9 +1,7 @@
 package sk.hudak.pricecomparator.middle.service;
 
-import sk.hudak.pricecomparator.middle.to.EshopCreateDto;
-import sk.hudak.pricecomparator.middle.to.EshopDto;
-import sk.hudak.pricecomparator.middle.to.EshopIdNameDto;
-import sk.hudak.pricecomparator.middle.to.EshopListDto;
+import sk.hudak.jef.PageList;
+import sk.hudak.pricecomparator.middle.to.*;
 
 import java.util.List;
 
@@ -12,13 +10,16 @@ import java.util.List;
  */
 public interface EshopService {
 
+    PageList<EshopListDto> findEshops(EshopFindDto filter);
+
+    //TODO prejset
+
     Long createEshop(EshopCreateDto dto);
 
     EshopDto getEshopById(Long eshopId);
 
     List<EshopListDto> findAllEshops();
 
+
     List<EshopIdNameDto> findAllEshopsForSelection();
-
-
 }

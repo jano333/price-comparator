@@ -10,6 +10,7 @@ import javax.swing.*;
  * <p/>
  * Created by jan on 24. 10. 2015.
  */
+@Deprecated
 public class EshopListPage extends JPanel {
 
     private EshopSelectionListViewPanel lvEshops;

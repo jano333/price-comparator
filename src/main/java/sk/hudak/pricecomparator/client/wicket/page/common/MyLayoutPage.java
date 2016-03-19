@@ -1,6 +1,7 @@
 package sk.hudak.pricecomparator.client.wicket.page.common;
 
 import org.apache.wicket.markup.html.link.Link;
+import sk.hudak.pricecomparator.client.wicket.page.eshop.EshopListPage;
 import sk.hudak.pricecomparator.client.wicket.page.group.ProductPricesPerGroupPage;
 import sk.hudak.pricecomparator.client.wicket.page.product.ProductPricesPerEshopsPage;
 import sk.hudak.pricecomparator.client.wicket.page.productineshop.ProductListPerEshopPage;
@@ -12,6 +13,16 @@ public class MyLayoutPage extends MyRootPage {
 
     public MyLayoutPage() {
         //TODO menu urobit ako samostatny panel
+
+        //Eshop
+        Link<Void> eshopList = new Link<Void>("eshopList") {
+            @Override
+            public void onClick() {
+                setResponsePage(EshopListPage.class);
+            }
+        };
+        add(eshopList);
+
 
         // Produkty
         Link<Void> productPricesPerEshops = new Link<Void>("productPricesPerEshops") {

@@ -32,6 +32,12 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
     // --------- ESHOP ----------
 
     @Override
+    @Transactional(readOnly = true)
+    public PageList<EshopListDto> findEshops(EshopFindDto filter) {
+        return eshopService.findEshops(filter);
+    }
+
+    @Override
     @Transactional
     public Long createEshop(EshopCreateDto createDto) {
         return eshopService.createEshop(createDto);

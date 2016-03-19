@@ -1,8 +1,11 @@
 package sk.hudak.pricecomparator.server.dao;
 
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import sk.hudak.jef.JefDao;
+import sk.hudak.jef.PageList;
+import sk.hudak.jef.ServerPaging;
 import sk.hudak.jef.paging.PageData;
 import sk.hudak.pricecomparator.middle.to.EshopFindDto;
 import sk.hudak.pricecomparator.server.model.EshopEntity;
@@ -20,6 +23,20 @@ public class EshopDao extends JefDao<EshopEntity> {
     public EshopEntity readMandatory(Long id) {
         return readMandatory(id, EshopEntity.class);
     }
+
+    public PageList<EshopEntity> findEshops(EshopFindDto filter) {
+        Criteria crit = createCriteria(EshopEntity.class);
+        if (StringUtils.isNotBlank(filter.getName())) {
+            crit.add(Restrictions.ilike(EshopEntity.AT_NAME, filter.getName() + "%"));
+        }
+        ServerPaging pagging = createPaging(filter, crit);
+        //TODO sortovanie zobrazt z find dto
+        //zosrotovane podla nazvu produktu
+        addAscOrder(crit, EshopEntity.AT_NAME);
+        return new PageList<>(crit.list(), pagging.getCurrentPage(), pagging.getAllPage());
+    }
+
+    //TODO ------------
 
     public PageData<EshopEntity> findByCriteria(EshopFindDto findDto) {
         val.notNull(findDto, "findDto dto is null");
@@ -46,6 +63,7 @@ public class EshopDao extends JefDao<EshopEntity> {
         return !cr.list().isEmpty();
     }
 
+    @Deprecated
     public List<EshopEntity> findAllEshops() {
         Criteria crit = createCriteria(EshopEntity.class);
         addAscOrder(crit, EshopEntity.AT_NAME);
