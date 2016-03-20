@@ -24,14 +24,14 @@ import java.util.List;
 /**
  * Created by jan on 18. 3. 2016.
  */
-public class ProductPricesPerGroupTable extends Panel {
+public class GroupProductPriceListTable extends Panel {
 
     private ProductPriceInGroupFindDto filter = new ProductPriceInGroupFindDto();
 
     //TODO FIXME
     private GroupIdNameDto selectedGroup = new GroupIdNameDto(1l, "haha");
 
-    public ProductPricesPerGroupTable(String id) {
+    public GroupProductPriceListTable(String id) {
         super(id);
 
         IModel<PageList<ProductInEshopPriceResultListDto>> tableModel = new LoadableDetachableModel<PageList<ProductInEshopPriceResultListDto>>() {

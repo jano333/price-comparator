@@ -1,5 +1,6 @@
 package sk.hudak.pricecomparator.server.assembler;
 
+import sk.hudak.jef.PageList;
 import sk.hudak.pricecomparator.middle.to.ProductDto;
 import sk.hudak.pricecomparator.middle.to.ProductIdNameDto;
 import sk.hudak.pricecomparator.middle.to.ProductListDto;
@@ -40,13 +41,13 @@ public class ProductAssembler {
         }
         List<ProductListDto> result = new ArrayList<>(listOfProductEntity.size());
         for (ProductEntity product : listOfProductEntity) {
-            result.add(transfomToProductListDto(product));
+            result.add(transformToProductListDto(product));
         }
 
         return result;
     }
 
-    public ProductListDto transfomToProductListDto(ProductEntity product) {
+    public ProductListDto transformToProductListDto(ProductEntity product) {
         if (product == null) {
             return null;
         }
@@ -77,5 +78,15 @@ public class ProductAssembler {
         result.setId(productEntity.getId());
         result.setName(productEntity.getName());
         return result;
+    }
+
+    public PageList<ProductListDto> transformToPageListOfProductListDto(PageList<ProductEntity> products) {
+
+        List<ProductListDto> versions = new ArrayList<>(products.getEntries().size());
+        for (ProductEntity entity : products.getEntries()) {
+            versions.add(transformToProductListDto(entity));
+
+        }
+        return new PageList<>(versions, products.getCurrentPage(), products.getAllPageCount());
     }
 }

@@ -11,6 +11,8 @@ import java.util.Set;
  */
 public interface GroupOfProductService {
 
+    PageList<GroupOfProductListDto> findGroupOfProduct(GroupOfProductFindDto filter);
+
     PageList<ProductInEshopPriceResultListDto> findPriceInfoInEshopsForGroup(ProductPriceInGroupFindDto filter);
 
     // TODO prejst

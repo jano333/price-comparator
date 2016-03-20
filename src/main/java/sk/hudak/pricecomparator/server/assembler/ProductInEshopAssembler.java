@@ -84,7 +84,7 @@ public class ProductInEshopAssembler {
         }
         ProductInEshopCustomListDto result = new ProductInEshopCustomListDto();
         result.setId(entity.getId());
-        result.setProductListDto(productAssembler.transfomToProductListDto(entity.getProduct()));
+        result.setProductListDto(productAssembler.transformToProductListDto(entity.getProduct()));
         result.setEshopProductPage(entity.getProductPageInEshop());
         return result;
     }

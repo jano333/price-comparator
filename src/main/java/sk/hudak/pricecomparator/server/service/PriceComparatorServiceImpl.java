@@ -67,6 +67,12 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
         return productService.findAllProductForSelection();
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public PageList<ProductListDto> findProducts(ProductFindDto filter) {
+        return productService.findProducts(filter);
+    }
+
     // -------------- PRODUCT -----------
     @Override
     @Transactional
@@ -241,6 +247,12 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
 
 
     // --------- GROUP_OF_PRODUCTS ------------
+
+    @Override
+    @Transactional(readOnly = true)
+    public PageList<GroupOfProductListDto> findGroupOfProduct(GroupOfProductFindDto filter) {
+        return groupOfProductService.findGroupOfProduct(filter);
+    }
 
     @Override
     @Transactional(readOnly = true)

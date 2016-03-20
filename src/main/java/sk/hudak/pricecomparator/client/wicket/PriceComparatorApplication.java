@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sk.hudak.pricecomparator.client.wicket.locale.ErrorScope;
 import sk.hudak.pricecomparator.client.wicket.locale.PageLocalize;
-import sk.hudak.pricecomparator.client.wicket.page.group.ProductPricesPerGroupPage;
+import sk.hudak.pricecomparator.client.wicket.page.group.GroupProductPriceListPage;
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
 
 import java.util.List;
@@ -24,7 +24,7 @@ public class PriceComparatorApplication extends AbstractPriComApplication {
     public Class<? extends Page> getHomePage() {
 //        return ProductListPerEshopPage.class;
 //        return ProductPricesPerEshopsPage.class;
-        return ProductPricesPerGroupPage.class;
+        return GroupProductPriceListPage.class;
     }
 
     @Override

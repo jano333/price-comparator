@@ -7,6 +7,8 @@ import java.io.Serializable;
  */
 public class GroupOfProductListDto implements Serializable {
 
+    public static final String AT_NAME = "name";
+
     private Long id;
     private String name;
 

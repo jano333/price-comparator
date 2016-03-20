@@ -1,10 +1,13 @@
 package sk.hudak.pricecomparator.server.dao;
 
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import sk.hudak.jef.JefDao;
 import sk.hudak.jef.PageList;
+import sk.hudak.jef.ServerPaging;
+import sk.hudak.pricecomparator.middle.to.GroupOfProductFindDto;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopFindDto;
 import sk.hudak.pricecomparator.middle.to.ProductPriceInGroupFindDto;
 import sk.hudak.pricecomparator.server.model.GroupOfProductEntity;
@@ -97,5 +100,17 @@ public class GroupOfProductDao extends JefDao<GroupOfProductEntity> {
 
 
         return result;
+    }
+
+    public PageList<GroupOfProductEntity> findGroupOfProduct(GroupOfProductFindDto filter) {
+        Criteria crit = createCriteria(GroupOfProductEntity.class);
+        if (StringUtils.isNotBlank(filter.getGroupName())) {
+            crit.add(Restrictions.ilike(GroupOfProductEntity.AT_NAME, filter.getGroupName() + "%"));
+        }
+        ServerPaging pagging = createPaging(filter, crit);
+        //TODO sortovanie zobrazt z find dto
+        //zosrotovane podla nazvu produktu
+        addAscOrder(crit, GroupOfProductEntity.AT_NAME);
+        return new PageList<>(crit.list(), pagging.getCurrentPage(), pagging.getAllPage());
     }
 }

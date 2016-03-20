@@ -1,5 +1,6 @@
 package sk.hudak.pricecomparator.middle.service;
 
+import sk.hudak.jef.PageList;
 import sk.hudak.pricecomparator.middle.to.*;
 
 import java.util.List;
@@ -10,6 +11,8 @@ import java.util.List;
 public interface ProductService {
 
     List<ProductIdNameDto> findAllProductForSelection();
+
+    PageList<ProductListDto> findProducts(ProductFindDto filter);
 
     //-------
 

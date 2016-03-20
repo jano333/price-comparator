@@ -1,5 +1,6 @@
 package sk.hudak.pricecomparator.server.service.internal;
 
+import sk.hudak.jef.PageList;
 import sk.hudak.pricecomparator.middle.service.ProductService;
 import sk.hudak.pricecomparator.middle.to.*;
 import sk.hudak.pricecomparator.server.assembler.ProductAssembler;
@@ -28,6 +29,11 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<ProductIdNameDto> findAllProductForSelection() {
         return productAssembler.transformToListOfProductIdNameDto(productDao.findAllProducts());
+    }
+
+    @Override
+    public PageList<ProductListDto> findProducts(ProductFindDto filter) {
+        return productAssembler.transformToPageListOfProductListDto(productDao.findProducts(filter));
     }
 
     @Override

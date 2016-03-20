@@ -40,6 +40,12 @@ public class GroupOfProductServiceImpl implements GroupOfProductService {
 
 
     @Override
+    public PageList<GroupOfProductListDto> findGroupOfProduct(GroupOfProductFindDto filter) {
+        PageList<GroupOfProductEntity> allGroupsOfProducts = groupOfProductDao.findGroupOfProduct(filter);
+        return groupOfProductAssembler.transformToPageListOfGroupOfProductListDto(allGroupsOfProducts);
+    }
+
+    @Override
     public PageList<ProductInEshopPriceResultListDto> findPriceInfoInEshopsForGroup(ProductPriceInGroupFindDto filter) {
         PageList<ProductInEshopEntity> productInEshopEntities = groupOfProductDao.findPriceInfoInEshopsForGroup(filter);
         return productInEshopAssembler.transformToPageListOfProductInEshopPriceResultListDto(productInEshopEntities);

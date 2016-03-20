@@ -1,5 +1,6 @@
 package sk.hudak.pricecomparator.server.assembler;
 
+import sk.hudak.jef.PageList;
 import sk.hudak.pricecomparator.middle.to.GroupIdNameDto;
 import sk.hudak.pricecomparator.middle.to.GroupOfProductDto;
 import sk.hudak.pricecomparator.middle.to.GroupOfProductListDto;
@@ -34,12 +35,12 @@ public class GroupOfProductAssembler {
         }
         List<GroupOfProductListDto> result = new ArrayList<>(allGroupsOfProducts.size());
         for (GroupOfProductEntity entity : allGroupsOfProducts) {
-            result.add(transformToListOfGroupOfProductListDto(entity));
+            result.add(transformToGroupOfProductListDto(entity));
         }
         return result;
     }
 
-    public GroupOfProductListDto transformToListOfGroupOfProductListDto(GroupOfProductEntity entity) {
+    public GroupOfProductListDto transformToGroupOfProductListDto(GroupOfProductEntity entity) {
         if (entity == null) {
             return null;
         }
@@ -71,5 +72,13 @@ public class GroupOfProductAssembler {
         result.setId(groupOfProductEntity.getId());
         result.setName(groupOfProductEntity.getName());
         return result;
+    }
+
+    public PageList<GroupOfProductListDto> transformToPageListOfGroupOfProductListDto(PageList<GroupOfProductEntity> allGroupsOfProducts) {
+        List<GroupOfProductListDto> versions = new ArrayList<>(allGroupsOfProducts.getEntries().size());
+        for (GroupOfProductEntity entity : allGroupsOfProducts.getEntries()) {
+            versions.add(transformToGroupOfProductListDto(entity));
+        }
+        return new PageList<>(versions, allGroupsOfProducts.getCurrentPage(), allGroupsOfProducts.getAllPageCount());
     }
 }
