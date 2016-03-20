@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.client.wicket.page.eshop;
+package sk.hudak.pricecomparator.client.wicket.page.product.components;
 
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
@@ -12,28 +12,27 @@ import sk.hudak.jef.PageList;
 import sk.hudak.pricecomparator.client.ServiceLocator;
 import sk.hudak.pricecomparator.client.wicket.component.common.IdListView;
 import sk.hudak.pricecomparator.client.wicket.component.table.Table;
-import sk.hudak.pricecomparator.middle.to.EshopFindDto;
-import sk.hudak.pricecomparator.middle.to.EshopListDto;
+import sk.hudak.pricecomparator.middle.to.ProductFindDto;
+import sk.hudak.pricecomparator.middle.to.ProductListDto;
 
 import java.io.Serializable;
 
 /**
  * Created by jan on 19. 3. 2016.
  */
-public class EshopListTable extends Panel {
+public class ProductListTable extends Panel {
 
-    private EshopFindDto filter = new EshopFindDto();
+    private ProductFindDto filter = new ProductFindDto();
 
-    public EshopListTable(String id) {
+    public ProductListTable(String id) {
         super(id);
-
-        IModel<PageList<EshopListDto>> tableModel = new LoadableDetachableModel<PageList<EshopListDto>>() {
+        IModel<PageList<ProductListDto>> tableModel = new LoadableDetachableModel<PageList<ProductListDto>>() {
 
             private static final long serialVersionUID = 1L;
 
             @Override
-            protected PageList<EshopListDto> load() {
-                return ServiceLocator.getService().findEshops(filter);
+            protected PageList<ProductListDto> load() {
+                return ServiceLocator.getService().findProducts(filter);
             }
         };
 
@@ -45,8 +44,8 @@ public class EshopListTable extends Panel {
         };
         add(filterForm);
 
-        TextField<String> eshopNameFilter = new TextField<>("eshopName", new PropertyModel<String>(filter, EshopFindDto.AT_ESHOP_NAME));
-        filterForm.add(eshopNameFilter);
+        TextField<String> productNameFilter = new TextField<>("productName", new PropertyModel<String>(filter, ProductFindDto.AT_NAME));
+        filterForm.add(productNameFilter);
 
         // mesage line
 
@@ -56,28 +55,27 @@ public class EshopListTable extends Panel {
         Label currentPage = new Label("currentPage", new PropertyModel<String>(tableModel, PageList.AT_CURRENT_PAGE));
         filterForm.add(currentPage);
 
-        Table<EshopListDto> table = new Table<EshopListDto>("table", filter, tableModel) {
+        Table<ProductListDto> table = new Table<ProductListDto>("table", filter, tableModel) {
 
             @Override
-            protected Serializable getObjectId(EshopListDto dto) {
+            protected Serializable getObjectId(ProductListDto dto) {
                 return dto.getId();
             }
 
             @Override
-            protected EshopListDto loadLazyById(Serializable id) {
+            protected ProductListDto loadLazyById(Serializable id) {
                 //TODO
-                return new EshopListDto();
+                return new ProductListDto();
             }
 
             @Override
-            protected void populateItem(IdListView.IdListItem<EshopListDto> item) {
-                IModel<EshopListDto> product = item.getModel();
+            protected void populateItem(IdListView.IdListItem<ProductListDto> item) {
+                IModel<ProductListDto> product = item.getModel();
 
-                Label eshopName = new Label("name", new PropertyModel<String>(product, EshopListDto.AT_NAME));
-                Label eshopHomePage = new Label("homePage", new PropertyModel<String>(product, EshopListDto.AT_HOME_PAGE));
+                Label productName = new Label("name", new PropertyModel<String>(product, ProductListDto.AT_NAME));
 
                 WebMarkupContainer tr = new WebMarkupContainer("tr");
-                tr.add(eshopName, eshopHomePage);
+                tr.add(productName);
 
                 item.add(tr);
             }
@@ -87,11 +85,11 @@ public class EshopListTable extends Panel {
 
     }
 
-    public EshopFindDto getFilter() {
+    public ProductFindDto getFilter() {
         return filter;
     }
 
-    public void setFilter(EshopFindDto filter) {
+    public void setFilter(ProductFindDto filter) {
         this.filter = filter;
     }
 }

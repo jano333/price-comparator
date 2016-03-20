@@ -11,7 +11,7 @@ import sk.hudak.pricecomparator.client.wicket.page.productineshop.ProductListPer
 /**
  * Created by jan on 12. 3. 2016.
  */
-public class LayoutPage extends MyRootPage {
+public class LayoutPage extends BasicPage {
 
     public LayoutPage() {
         //TODO menu urobit ako samostatny panel

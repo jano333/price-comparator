@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.client.wicket.page.group;
+package sk.hudak.pricecomparator.client.wicket.page.group.components;
 
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;

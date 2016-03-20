@@ -9,9 +9,9 @@ import org.apache.wicket.request.http.WebResponse;
 /**
  * Created by jan on 12. 3. 2016.
  */
-public class MyRootPage extends WebPage {
+public class BasicPage extends WebPage {
 
-    public MyRootPage() {
+    public BasicPage() {
         add(new Label("pagetitle", getTitleModel()));
     }
 
