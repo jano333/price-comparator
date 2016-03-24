@@ -29,9 +29,9 @@ public class FeedoEshopProductParser extends AbstractEshopProductParser {
         // lebo bol produkt kde bola cena ale uz bol nedostupny a zlozity text tam je,
         // tak idem radsej otestovat ci je tam button pre pridanie do kosika,
         // ak nie je, tak koncim
-        Elements elements = document.select("button[class=btn btn-danger btn-large]");
+        Elements elements = document.select("button[class=btn btn-danger btn-large cart]");
         if (elements.isEmpty()) {
-            System.err.println("produkt nedostupny");
+            logger.error("produkt nedostupny");
             return ProductInfoFactory.createUnaviable();
         }
 

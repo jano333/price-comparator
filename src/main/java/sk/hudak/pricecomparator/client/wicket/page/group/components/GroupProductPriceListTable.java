@@ -54,7 +54,7 @@ public class GroupProductPriceListTable extends Panel {
         };
         add(filterForm);
 
-        DropDownChoice<GroupIdNameDto> productFilter = new DropDownChoice<>(
+        DropDownChoice<GroupIdNameDto> groupFilter = new DropDownChoice<>(
                 "skupina",
                 new PropertyModel<GroupIdNameDto>(this, "selectedGroup"),
                 new LoadableDetachableModel<List<GroupIdNameDto>>() {
@@ -65,7 +65,7 @@ public class GroupProductPriceListTable extends Panel {
                 },
                 new ChoiceRenderer<GroupIdNameDto>(GroupIdNameDto.AT_NAME)
         );
-        filterForm.add(productFilter);
+        filterForm.add(groupFilter);
 
         // mesage line
 

@@ -1,9 +1,9 @@
 <configuration scan="true" scanPeriod="3 seconds">
     <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>[%-5p] [%d{dd.MM.yyyy HH:mm:ss.SSS}] [%X{USER_SESSION_ID}-%X{REQUEST_ID}]
-                [%X{PERSONAL}][%X{SYSTEM}][%X{COMPANY}] %logger: %m%n
-            </pattern>
+            <!--<pattern>[%-5p] [%d{dd.MM.yyyy HH:mm:ss.SSS}] [%thread] %logger: %m%n</pattern>-->
+            <!--<pattern>[%-5p] [%d{dd.MM.yyyy HH:mm:ss.SSS}] [%thread] %logger{5}: %m%n</pattern>-->
+            <pattern>[%-5p][%d{dd.MM HH:mm:ss}][%thread]%logger{5}: %m%n</pattern>
         </encoder>
     </appender>
 

@@ -113,4 +113,22 @@ public class GroupOfProductDao extends JefDao<GroupOfProductEntity> {
         addAscOrder(crit, GroupOfProductEntity.AT_NAME);
         return new PageList<>(crit.list(), pagging.getCurrentPage(), pagging.getAllPage());
     }
+
+    public PageList<ProductEntity> findProductsInGroup(GroupOfProductFindDto filter) {
+
+        // ziskam idecka vsetkych produktov v skupine
+        Criteria crit = createCriteria(GroupOfProductFindEntity.class);
+        if (filter.getGroupId() != null) {
+            crit.add(Restrictions.eq(GroupOfProductFindEntity.AT_GROUP_ID, filter.getGroupId()));
+        }
+
+        //TODO tu pokracovat  ze ako to vytiahnem z DB !!!
+//        crit.setProjection(Projections.property(GroupOfProductFindEntity.AT_PRODUCT_ID));
+//        List<Long> productInGroupIdList = crit.list();
+//        List<ProductInEshopEntity> result = productInEshopDao.findProductsInEshopByProductsIds(productInGroupIdList,
+//                ProductInEshopEntity.AT_PRICE_FOR_UNIT);
+//        return result;
+
+        return null;
+    }
 }

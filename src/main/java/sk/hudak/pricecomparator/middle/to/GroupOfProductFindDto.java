@@ -7,7 +7,17 @@ public class GroupOfProductFindDto extends FindDto {
 
     public static final String AT_GROUP_NAME = "groupName";
 
+    private Long groupId;
     private String groupName;
+
+
+    public Long getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
+    }
 
     public String getGroupName() {
         return groupName;

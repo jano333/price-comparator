@@ -33,4 +33,6 @@ public interface GroupOfProductService {
     List<ProductInEshopPriceResultListDto> findPriceInfoInEshopsForGroup(Long groupId);
 
     List<GroupIdNameDto> findAllProductGroupSelection();
+
+    PageList<ProductListDto> findProductsInGroup(GroupOfProductFindDto filter);
 }

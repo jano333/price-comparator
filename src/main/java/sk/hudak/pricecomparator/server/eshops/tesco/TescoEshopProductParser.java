@@ -25,7 +25,7 @@ public class TescoEshopProductParser extends AbstractEshopProductParser {
         //http://potravinydomov.itesco.sk/sk-SK/ProductDetail/ProductDetail/2002121104955
         Elements elements = document.select("p[class=addToBasketNotForSale]");
         if (elements.size() > 0) {
-            System.err.println("produkt nie je dostupny: " + parserInputData.getEshopProductPage());
+            logger.error("produkt nie je dostupny: " + parserInputData.getEshopProductPage());
             return ProductInfoFactory.createUnaviable();
         }
 

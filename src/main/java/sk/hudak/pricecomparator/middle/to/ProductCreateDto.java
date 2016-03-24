@@ -10,12 +10,18 @@ import java.math.BigDecimal;
  */
 public class ProductCreateDto implements Serializable {
 
+    public static final String AT_NAME = "name";
+    public static final String AT_UNIT = "unit";
+    public static final String AT_COUNT_OF_UNIT = "countOfUnit";
+    public static final String AT_COUNT_OF_ITEM_IN_ONE_PACKAGE = "countOfItemInOnePackage";
+
     private String name;
-    private int countOfItemInOnePackage;
     private Unit unit;
     private BigDecimal countOfUnit;
-    private Long categoryId;
+    private int countOfItemInOnePackage;
 
+    //nepouzivaju sa...
+    private Long categoryId;
     private String imageLocalPath;
     private byte[] imageContent;
 

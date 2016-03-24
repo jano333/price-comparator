@@ -96,5 +96,11 @@ public class GroupOfProductServiceImpl implements GroupOfProductService {
         return groupOfProductAssembler.transformToListOfGroupIdNameDto(groupOfProductDao.findAllGroupsOfProducts());
     }
 
+    @Override
+    public PageList<ProductListDto> findProductsInGroup(GroupOfProductFindDto filter) {
+        PageList<ProductEntity> productsInGroup = groupOfProductDao.findProductsInGroup(filter);
+        return productAssembler.transformToPageListOfProductListDto(productsInGroup);
+    }
+
 
 }

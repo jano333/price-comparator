@@ -19,7 +19,7 @@ public class MallEshopProductParser extends AbstractEshopProductParser {
     protected EshopProductInfo parsePrice(Document document) {
         Elements elements1 = document.select("em[class=label label--nostock]");
         if (!elements1.isEmpty()) {
-            System.err.println("Produkt sa uz nepredava");
+            logger.error("Produkt sa uz nepredava");
             return ProductInfoFactory.createUnaviable();
         }
 

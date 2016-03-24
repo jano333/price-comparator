@@ -1,5 +1,7 @@
 package sk.hudak.pricecomparator.server.core;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import sk.hudak.pricecomparator.middle.EshopProductParser;
 import sk.hudak.pricecomparator.middle.EshopType;
 import sk.hudak.pricecomparator.middle.canonical.ParserInputData;
@@ -16,6 +18,8 @@ import java.util.Random;
  */
 public abstract class EshopProductInfoDownloaderTask implements Runnable {
 
+    protected Logger logger = LoggerFactory.getLogger(getClass());
+
     private PriceComparatorService service;
 
     private Boolean stop = Boolean.FALSE;
@@ -28,7 +32,7 @@ public abstract class EshopProductInfoDownloaderTask implements Runnable {
 
     @Override
     public void run() {
-        System.out.println(">> zacinam " + getClass().getSimpleName() + " thread name " + Thread.currentThread().getName());
+        logger.debug(">> zacinam " + getClass().getSimpleName() + " thread name " + Thread.currentThread().getName());
 
         while (!shouldStopTask()) {
             doInOneCycle();
@@ -37,7 +41,7 @@ public abstract class EshopProductInfoDownloaderTask implements Runnable {
                 sleepFor();
             }
         }
-        System.out.println("<< koncim " + getClass().getSimpleName() + " thread name " + Thread.currentThread().getName());
+        logger.debug("<< koncim " + getClass().getSimpleName() + " thread name " + Thread.currentThread().getName());
     }
 
     private void sleepFor() {
@@ -47,9 +51,9 @@ public abstract class EshopProductInfoDownloaderTask implements Runnable {
         int result = new Random().nextInt((maxSecond - minSecond) + 1) + minSecond;
 
         try {
-            System.out.println("zacinam cakat " + result + " sekund");
+            logger.debug("zacinam cakat " + result + " sekund");
             Thread.currentThread().sleep(result * 1000);
-            System.out.println("skoncil som cakat");
+            logger.debug("skoncil som cakat");
 
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -59,13 +63,12 @@ public abstract class EshopProductInfoDownloaderTask implements Runnable {
     }
 
     private void doInOneCycle() {
-        System.out.println();
-        System.out.println("starting next round " + getClass().getSimpleName());
+        logger.debug("starting next round " + getClass().getSimpleName());
         // 1. ziskam jeden produkt, ktoremu sa vytvori/aktualizuje cena pre zvoleny eshop
         //FIXME, prerobit na jednot DTO (aby som to nacital v jednej transakcii)
         ProductInEshopDto productForUpdate = service.findProductForPriceUpdate(getEshopType());
         if (productForUpdate == null) {
-            System.out.println("nic nenaslo -> vsetko je aktualne");
+            logger.debug("nic nenaslo -> vsetko je aktualne");
             downloadOnePictureOfProduct();
             stopTask();
             return;
@@ -117,7 +120,7 @@ public abstract class EshopProductInfoDownloaderTask implements Runnable {
     protected abstract EshopProductParser getEshopParser();
 
     public void stopTask() {
-        System.out.println("marking task " + getClass().getSimpleName() + "as stop ");
+        logger.debug("marking task " + getClass().getSimpleName() + "as stop ");
         synchronized (stop) {
             this.stop = Boolean.TRUE;
         }
