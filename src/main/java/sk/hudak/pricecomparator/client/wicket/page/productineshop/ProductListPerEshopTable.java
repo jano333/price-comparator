@@ -10,6 +10,7 @@ import org.apache.wicket.model.PropertyModel;
 import sk.hudak.jef.PageList;
 import sk.hudak.pricecomparator.client.wicket.PriceComparatorApplication;
 import sk.hudak.pricecomparator.client.wicket.component.common.IdListView;
+import sk.hudak.pricecomparator.client.wicket.component.table.PagingInfoPanel;
 import sk.hudak.pricecomparator.client.wicket.component.table.Table;
 import sk.hudak.pricecomparator.middle.to.EshopIdNameDto;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopFindDto;
@@ -70,14 +71,8 @@ public class ProductListPerEshopTable extends Panel {
         CheckBox onlyInActionFilter = new CheckBox("onlyInAction", new PropertyModel<Boolean>(filter, ProductInEshopFindDto.AT_ONLY_IN_ACTION));
         filterForm.add(onlyInActionFilter);
 
-
-        // mesage line
-
-        Label allPageCount = new Label("allPageCount", new PropertyModel<String>(tableModel, PageList.AT_ALL_PAGE_COUNT));
-        filterForm.add(allPageCount);
-
-        Label currentPage = new Label("currentPage", new PropertyModel<String>(tableModel, PageList.AT_CURRENT_PAGE));
-        filterForm.add(currentPage);
+        // pagging
+        filterForm.add(new PagingInfoPanel("infoPaging", filter, tableModel));
 
         Table<ProductInEshopPriceInfoListDto> table = new Table<ProductInEshopPriceInfoListDto>("table", filter, tableModel) {
             private static final long serialVersionUID = 1L;

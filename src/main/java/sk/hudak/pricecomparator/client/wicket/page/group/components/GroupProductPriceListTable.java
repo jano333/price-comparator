@@ -13,6 +13,7 @@ import sk.hudak.jef.PageList;
 import sk.hudak.pricecomparator.client.ServiceLocator;
 import sk.hudak.pricecomparator.client.wicket.PriceComparatorApplication;
 import sk.hudak.pricecomparator.client.wicket.component.common.IdListView;
+import sk.hudak.pricecomparator.client.wicket.component.table.PagingInfoPanel;
 import sk.hudak.pricecomparator.client.wicket.component.table.Table;
 import sk.hudak.pricecomparator.middle.to.GroupIdNameDto;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopPriceResultListDto;
@@ -69,12 +70,9 @@ public class GroupProductPriceListTable extends Panel {
 
         // mesage line
 
-        //FIXME duplica vo vsetkych tabulkach
-        Label allPageCount = new Label("allPageCount", new PropertyModel<String>(tableModel, PageList.AT_ALL_PAGE_COUNT));
-        filterForm.add(allPageCount);
+        // pagging
+        filterForm.add(new PagingInfoPanel("infoPaging", filter, tableModel));
 
-        Label currentPage = new Label("currentPage", new PropertyModel<String>(tableModel, PageList.AT_CURRENT_PAGE));
-        filterForm.add(currentPage);
 
         Table<ProductInEshopPriceResultListDto> table = new Table<ProductInEshopPriceResultListDto>("table", filter, tableModel) {
 

@@ -11,6 +11,7 @@ import org.apache.wicket.model.PropertyModel;
 import sk.hudak.jef.PageList;
 import sk.hudak.pricecomparator.client.ServiceLocator;
 import sk.hudak.pricecomparator.client.wicket.component.common.IdListView;
+import sk.hudak.pricecomparator.client.wicket.component.table.PagingInfoPanel;
 import sk.hudak.pricecomparator.client.wicket.component.table.Table;
 import sk.hudak.pricecomparator.middle.to.GroupOfProductFindDto;
 import sk.hudak.pricecomparator.middle.to.GroupOfProductListDto;
@@ -48,13 +49,8 @@ public class GroupListTable extends Panel {
         TextField<String> groupNameFilter = new TextField<>("groupName", new PropertyModel<String>(filter, GroupOfProductFindDto.AT_GROUP_NAME));
         filterForm.add(groupNameFilter);
 
-        // mesage line
-
-        Label allPageCount = new Label("allPageCount", new PropertyModel<String>(tableModel, PageList.AT_ALL_PAGE_COUNT));
-        filterForm.add(allPageCount);
-
-        Label currentPage = new Label("currentPage", new PropertyModel<String>(tableModel, PageList.AT_CURRENT_PAGE));
-        filterForm.add(currentPage);
+        // pagging
+        filterForm.add(new PagingInfoPanel("infoPaging", filter, tableModel));
 
         Table<GroupOfProductListDto> table = new Table<GroupOfProductListDto>("table", filter, tableModel) {
 

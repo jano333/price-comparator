@@ -1,0 +1,47 @@
+<html xmlns:wicket="http://wicket.apache.org">
+<wicket:panel>
+
+    <div class="form-group">
+
+        <div class="col-sm-3 text-left">
+            Celkom <span>[TODO]</span> záznamov.
+        </div>
+
+        <div class="col-sm-6 text-center">
+            <ul class="pager">
+                <li><a wicket:id="firstLink">&lt&lt</a></li>
+                <li><a wicket:id="prevLink">&lt</a></li>
+                Zobrazujem
+                <span wicket:id="currentPage">1</span>
+                <span> z </span>
+                <span wicket:id="allPageCount">6</span>
+                stránok.
+                <li><a wicket:id="nextLink">&gt</a></li>
+                <li><a wicket:id="lastLink">&gt&gt</a></li>
+            </ul>
+        </div>
+
+        <div class="col-sm-3 text-right">
+            <div class="dropdown">
+                Počet záznamov:
+                <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">
+                    <span wicket:id="offset">[20]</span>
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right" >
+                    <li wicket:id="perPage"><a wicket:id="choice"><span wicket:id="choiceValue">[5]</span></a></li>
+<!--
+                    <li><a href="#">10</a></li>
+                    <li><a href="#">20</a></li>
+                    <li><a href="#">50</a></li>
+                    <li><a href="#">100</a></li>
+-->
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+
+</wicket:panel>
+</html>

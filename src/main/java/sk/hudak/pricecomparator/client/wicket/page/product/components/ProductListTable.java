@@ -12,6 +12,7 @@ import org.apache.wicket.model.PropertyModel;
 import sk.hudak.jef.PageList;
 import sk.hudak.pricecomparator.client.ServiceLocator;
 import sk.hudak.pricecomparator.client.wicket.component.common.IdListView;
+import sk.hudak.pricecomparator.client.wicket.component.table.PagingInfoPanel;
 import sk.hudak.pricecomparator.client.wicket.component.table.Table;
 import sk.hudak.pricecomparator.middle.to.ProductFindDto;
 import sk.hudak.pricecomparator.middle.to.ProductListDto;
@@ -49,13 +50,8 @@ public class ProductListTable extends Panel {
         TextField<String> productNameFilter = new TextField<>("productName", new PropertyModel<String>(filter, ProductFindDto.AT_NAME));
         filterForm.add(productNameFilter);
 
-        // mesage line
-
-        Label allPageCount = new Label("allPageCount", new PropertyModel<String>(tableModel, PageList.AT_ALL_PAGE_COUNT));
-        filterForm.add(allPageCount);
-
-        Label currentPage = new Label("currentPage", new PropertyModel<String>(tableModel, PageList.AT_CURRENT_PAGE));
-        filterForm.add(currentPage);
+        // pagging
+        filterForm.add(new PagingInfoPanel("infoPaging", filter, tableModel));
 
         Table<ProductListDto> table = new Table<ProductListDto>("table", filter, tableModel) {
 

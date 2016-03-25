@@ -11,6 +11,7 @@ import org.apache.wicket.model.PropertyModel;
 import sk.hudak.jef.PageList;
 import sk.hudak.pricecomparator.client.ServiceLocator;
 import sk.hudak.pricecomparator.client.wicket.component.common.IdListView;
+import sk.hudak.pricecomparator.client.wicket.component.table.PagingInfoPanel;
 import sk.hudak.pricecomparator.client.wicket.component.table.Table;
 import sk.hudak.pricecomparator.middle.to.EshopFindDto;
 import sk.hudak.pricecomparator.middle.to.EshopListDto;
@@ -48,14 +49,10 @@ public class EshopListTable extends Panel {
         TextField<String> eshopNameFilter = new TextField<>("eshopName", new PropertyModel<String>(filter, EshopFindDto.AT_ESHOP_NAME));
         filterForm.add(eshopNameFilter);
 
-        // mesage line
+        // pagging
+        filterForm.add(new PagingInfoPanel("infoPaging", filter, tableModel));
 
-        Label allPageCount = new Label("allPageCount", new PropertyModel<String>(tableModel, PageList.AT_ALL_PAGE_COUNT));
-        filterForm.add(allPageCount);
-
-        Label currentPage = new Label("currentPage", new PropertyModel<String>(tableModel, PageList.AT_CURRENT_PAGE));
-        filterForm.add(currentPage);
-
+        // table
         Table<EshopListDto> table = new Table<EshopListDto>("table", filter, tableModel) {
 
             @Override

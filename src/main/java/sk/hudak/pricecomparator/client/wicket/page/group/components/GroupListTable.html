@@ -37,71 +37,8 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <wicket:container wicket:id="infoPaging"></wicket:container>
 
-            <div class="col-sm-3">
-                <!--<span class="pagination-info">Zobrazujem <span>[1]</span> až <span>[10]</span> z <span wicket:id="allPageCount">[800]</span> záznamov.</span>-->
-                <span class="pagination-info">
-                    Zobrazujem stránku
-                    <span wicket:id="currentPage">[1]</span>
-                    z
-                    <span wicket:id="allPageCount">[19]</span>
-                    stránok.
-                </span>
-            </div>
-
-            <!-- PAGING -->
-            <div class="col-sm-6">
-                <nav>
-                    <ul class="pagination">
-                        <li><a href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span></a>
-                        </li>
-                        <li class="active">
-                            <a href="#">1<span class="sr-only">(current)</span></a>
-                        </li>
-                        <li><a href="#">2</a></li>
-                        <li class="disabled"><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li>
-                            <a href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-
-            <div class="col-sm-3">
-                <span class="page-list">
-                    <span class="btn-group">
-                        <button type="button" class="btn btn-default  dropdown-toggle" data-toggle="dropdown">
-                            <span class="page-size">10</span>
-                            <span class="caret"/>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li class="active">
-                                <a href="javascript:void(0)">10</a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)">25</a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)">50</a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)">100</a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)">All</a>
-                            </li>
-                        </ul>
-                    </span> záznamov na stranu
-                </span>
-            </div>
-
-        </div>
     </form>
 
     <wicket:container wicket:id="table">

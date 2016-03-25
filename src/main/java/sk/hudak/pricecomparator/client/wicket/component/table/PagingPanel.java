@@ -8,6 +8,7 @@ import sk.hudak.jef.BasicFilter;
 import sk.hudak.jef.PageList;
 import sk.hudak.pricecomparator.client.wicket.component.common.VisibilityModifier;
 
+@Deprecated
 public class PagingPanel<T> extends Panel {
 
     /**
