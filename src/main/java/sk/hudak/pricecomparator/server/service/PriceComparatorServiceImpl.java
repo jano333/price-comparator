@@ -234,47 +234,32 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
     @Override
     @Transactional(readOnly = true)
     public PageList<ProductInEshopPriceInfoListDto> findProductsInEshopPriceInfo(ProductInEshopFindDto findDto) {
-        return productInEshopService.findProductsInEshopPriceInfo(findDto);
+        logger.debug(">> findProductsInEshopPriceInfo");
+        PageList<ProductInEshopPriceInfoListDto> result = productInEshopService.findProductsInEshopPriceInfo(findDto);
+        logger.debug("<< findProductsInEshopPriceInfo");
+        return result;
     }
 
     @Override
     @Transactional(readOnly = true)
     public PageList<ProductInEshopPriceResultListDto> findPriceInfoInEshopsForProduct(ProductFindDto findDto) {
-        return productInEshopService.findPriceInfoInEshopsForProduct(findDto);
+        logger.debug(">> findPriceInfoInEshopsForProduct");
+        PageList<ProductInEshopPriceResultListDto> result = productInEshopService.findPriceInfoInEshopsForProduct(findDto);
+        logger.debug("<< findPriceInfoInEshopsForProduct");
+        return result;
     }
 
     @Override
     @Transactional(readOnly = true)
     public ProductInEshopForPictureDownloadInfoDto findUrlOfProductsInEshopWithoutPicture(EshopType eshopType) {
-        return productInEshopService.findUrlOfProductsInEshopWithoutPicture(eshopType);
+        logger.debug(">> findUrlOfProductsInEshopWithoutPicture");
+        ProductInEshopForPictureDownloadInfoDto result = productInEshopService.findUrlOfProductsInEshopWithoutPicture(eshopType);
+        logger.debug("<< findUrlOfProductsInEshopWithoutPicture");
+        return result;
     }
 
 
     // --------- GROUP_OF_PRODUCTS ------------
-
-    @Override
-    @Transactional(readOnly = true)
-    public PageList<GroupOfProductListDto> findGroupOfProduct(GroupOfProductFindDto filter) {
-        return groupOfProductService.findGroupOfProduct(filter);
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public PageList<ProductInEshopPriceResultListDto> findPriceInfoInEshopsForGroup(ProductPriceInGroupFindDto filter) {
-        return groupOfProductService.findPriceInfoInEshopsForGroup(filter);
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public List<GroupIdNameDto> findAllProductGroupSelection() {
-        return groupOfProductService.findAllProductGroupSelection();
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public PageList<ProductListDto> findProductsInGroup(GroupOfProductFindDto filter) {
-        return groupOfProductService.findProductsInGroup(filter);
-    }
 
     @Override
     @Transactional
@@ -287,8 +272,47 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
 
     @Override
     @Transactional(readOnly = true)
-    public GroupOfProductDto getGroupOfProduct(Long groupOfProductId) {
-        return groupOfProductService.getGroupOfProduct(groupOfProductId);
+    public GroupOfProductDto findGroupOfProductById(Long groupOfProductId) {
+        logger.debug(">> findGroupOfProductById");
+        GroupOfProductDto result = groupOfProductService.findGroupOfProductById(groupOfProductId);
+        logger.debug("<< findGroupOfProductById");
+        return result;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public PageList<GroupOfProductListDto> findGroupOfProductByFilter(GroupOfProductFindDto filter) {
+        logger.debug(">> findGroupOfProductByFilter");
+        PageList<GroupOfProductListDto> result = groupOfProductService.findGroupOfProductByFilter(filter);
+        logger.debug("<< findGroupOfProductByFilter");
+        return result;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public PageList<ProductInEshopPriceResultListDto> findPriceInfoInEshopsForGroup(ProductPriceInGroupFindDto filter) {
+        logger.debug(">> findPriceInfoInEshopsForGroup");
+        PageList<ProductInEshopPriceResultListDto> result = groupOfProductService.findPriceInfoInEshopsForGroup(filter);
+        logger.debug("<< findPriceInfoInEshopsForGroup");
+        return result;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<GroupIdNameDto> findAllProductGroupSelection() {
+        logger.debug(">> findAllProductGroupSelection");
+        List<GroupIdNameDto> result = groupOfProductService.findAllProductGroupSelection();
+        logger.debug("<< findAllProductGroupSelection");
+        return result;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public PageList<ProductListDto> findProductsInGroup(GroupOfProductFindDto filter) {
+        logger.debug(">> findProductsInGroup");
+        PageList<ProductListDto> result = groupOfProductService.findProductsInGroup(filter);
+        logger.debug("<< findProductsInGroup");
+        return result;
     }
 
     @Override

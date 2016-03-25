@@ -4,6 +4,7 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.image.ContextImage;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
@@ -15,6 +16,7 @@ import sk.hudak.pricecomparator.client.wicket.component.table.Table;
 import sk.hudak.pricecomparator.middle.to.ProductFindDto;
 import sk.hudak.pricecomparator.middle.to.ProductListDto;
 
+import java.io.File;
 import java.io.Serializable;
 
 /**
@@ -72,10 +74,26 @@ public class ProductListTable extends Panel {
             protected void populateItem(IdListView.IdListItem<ProductListDto> item) {
                 IModel<ProductListDto> product = item.getModel();
 
+
                 Label productName = new Label("name", new PropertyModel<String>(product, ProductListDto.AT_NAME));
 
+//                NonCachingImage image = new NonCachingImage("image", Model.of("/images/mypic" + item.getIndex() + ".png"));
+//                ContextImage image = new ContextImage("image", "/images/mypic" + item.getIndex() + ".png");
+
+//                ContextImage image = new ContextImage("image", "/images/mypic" + product.getObject().getId() + ".png");
+
+                String imagePath = product.getObject().getImagePath();
+                String imageName = null;
+                ContextImage image = null;
+                if (imagePath != null) {
+                    imageName = new File(imagePath).getName();
+                    image = new ContextImage("image", "/images/" + imageName);
+                } else {
+                    image = new ContextImage("image", "fake");
+                    image.setVisible(false);
+                }
                 WebMarkupContainer tr = new WebMarkupContainer("tr");
-                tr.add(productName);
+                tr.add(productName, image);
 
                 item.add(tr);
             }

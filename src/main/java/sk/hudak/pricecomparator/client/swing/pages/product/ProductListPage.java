@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 /**
  * Created by jan on 24. 10. 2015.
  */
+@Deprecated
 public class ProductListPage extends JPanel {
 
     private ProductSelectionListView lvProduct;

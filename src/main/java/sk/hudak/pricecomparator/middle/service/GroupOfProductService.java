@@ -11,7 +11,7 @@ import java.util.Set;
  */
 public interface GroupOfProductService {
 
-    PageList<GroupOfProductListDto> findGroupOfProduct(GroupOfProductFindDto filter);
+    PageList<GroupOfProductListDto> findGroupOfProductByFilter(GroupOfProductFindDto filter);
 
     PageList<ProductInEshopPriceResultListDto> findPriceInfoInEshopsForGroup(ProductPriceInGroupFindDto filter);
 
@@ -19,7 +19,7 @@ public interface GroupOfProductService {
 
     Long createGroupOfProduct(GroupOfProductCreateDto dto);
 
-    GroupOfProductDto getGroupOfProduct(Long groupOfProductId);
+    GroupOfProductDto findGroupOfProductById(Long groupOfProductId);
 
     List<GroupOfProductListDto> findAllGroupsOfProducts();
 

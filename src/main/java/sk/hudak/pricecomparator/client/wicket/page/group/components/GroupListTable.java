@@ -33,7 +33,7 @@ public class GroupListTable extends Panel {
 
             @Override
             protected PageList<GroupOfProductListDto> load() {
-                return ServiceLocator.getService().findGroupOfProduct(filter);
+                return ServiceLocator.getService().findGroupOfProductByFilter(filter);
             }
         };
 

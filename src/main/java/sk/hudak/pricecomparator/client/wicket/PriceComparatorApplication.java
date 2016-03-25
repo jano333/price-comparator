@@ -6,6 +6,7 @@ import org.apache.wicket.resource.loader.ClassStringResourceLoader;
 import org.apache.wicket.resource.loader.IStringResourceLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import sk.hudak.pricecomparator.client.wicket.component.ImageResourceReference;
 import sk.hudak.pricecomparator.client.wicket.locale.ErrorScope;
 import sk.hudak.pricecomparator.client.wicket.locale.PageLocalize;
 import sk.hudak.pricecomparator.client.wicket.page.group.GroupProductPriceListPage;
@@ -44,6 +45,8 @@ public class PriceComparatorApplication extends AbstractPriComApplication {
     @Override
     protected void init() {
         super.init();
+
+        mountResource("/images/${name}", new ImageResourceReference());
 
 //        mountBookmarkablePage("/logout", LogoutPage.class);
 //        mountBookmarkablePage("/manage/login", LoginPage.class);

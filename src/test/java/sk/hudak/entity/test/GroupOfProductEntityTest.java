@@ -54,7 +54,7 @@ public class GroupOfProductEntityTest extends AbstractTestNGSpringContextTests {
         productIdSet.add(productId1);
         service.addProductsToGroup(productIdSet, groupOfProductId);
 
-        GroupOfProductDto groupOfProduct = service.getGroupOfProduct(groupOfProductId);
+        GroupOfProductDto groupOfProduct = service.findGroupOfProductById(groupOfProductId);
         Assert.assertNotNull(groupOfProductId);
         List<Long> productIds = groupOfProduct.getProductIds();
         Assert.assertNotNull(groupOfProductId);

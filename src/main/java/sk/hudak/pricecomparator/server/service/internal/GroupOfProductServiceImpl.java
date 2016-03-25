@@ -40,7 +40,7 @@ public class GroupOfProductServiceImpl implements GroupOfProductService {
 
 
     @Override
-    public PageList<GroupOfProductListDto> findGroupOfProduct(GroupOfProductFindDto filter) {
+    public PageList<GroupOfProductListDto> findGroupOfProductByFilter(GroupOfProductFindDto filter) {
         PageList<GroupOfProductEntity> allGroupsOfProducts = groupOfProductDao.findGroupOfProduct(filter);
         return groupOfProductAssembler.transformToPageListOfGroupOfProductListDto(allGroupsOfProducts);
     }
@@ -62,7 +62,7 @@ public class GroupOfProductServiceImpl implements GroupOfProductService {
     }
 
     @Override
-    public GroupOfProductDto getGroupOfProduct(Long groupId) {
+    public GroupOfProductDto findGroupOfProductById(Long groupId) {
         GroupOfProductEntity groupOfProductEntity = groupOfProductDao.readMandatory(groupId);
         return groupOfProductAssembler.transformToGroupOfProductDto(groupOfProductEntity);
     }
