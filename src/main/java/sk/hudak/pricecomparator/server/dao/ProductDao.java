@@ -42,4 +42,23 @@ public class ProductDao extends JefDao<ProductEntity> {
         addAscOrder(crit, ProductEntity.AT_NAME);
         return new PageList<>(crit.list(), pagging.getCurrentPage(), pagging.getAllPage());
     }
+
+    public List<ProductEntity> findProductsByIds(List<Long> productIdList, String order) {
+        Criteria crit = createCriteria(ProductEntity.class);
+        crit.add(Restrictions.in(ProductEntity.AT_ID, productIdList));
+
+        if (order != null) {
+            addAscOrder(crit, order);
+        } else {
+            addAscOrder(crit, ProductEntity.AT_NAME);
+        }
+        return crit.list();
+    }
+
+    public boolean existWithName(String name) {
+        Criteria crit = createCriteria(ProductEntity.class);
+        crit.add(Restrictions.eq(ProductEntity.AT_NAME, name));
+        //FIXME optimalizaovat
+        return !crit.list().isEmpty();
+    }
 }

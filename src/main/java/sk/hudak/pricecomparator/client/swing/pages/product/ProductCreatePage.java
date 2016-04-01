@@ -21,6 +21,7 @@ import java.nio.file.Paths;
 /**
  * Created by jan on 15. 10. 2015.
  */
+@Deprecated
 public class ProductCreatePage extends JPanel {
 
 

@@ -8,6 +8,7 @@ import java.awt.*;
 /**
  * Created by jan on 9. 11. 2015.
  */
+@Deprecated
 public class GroupOfProductListPage2 extends BasicPage {
 
 

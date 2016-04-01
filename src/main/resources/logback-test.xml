@@ -7,6 +7,10 @@
         </encoder>
     </appender>
 
+    <logger name="org.apache.wicket">
+        <level value="DEBUG"/>
+    </logger>
+
     <logger name="sk.hudak">
         <level value="DEBUG"/>
     </logger>

@@ -6,6 +6,8 @@ import sk.hudak.pricecomparator.client.wicket.page.common.LayoutPage;
 import sk.hudak.pricecomparator.client.wicket.page.eshop.components.EshopListTable;
 
 /**
+ * Zoznam eshopov
+ * <p/>
  * Created by jan on 19. 3. 2016.
  */
 public class EshopListPage extends LayoutPage {

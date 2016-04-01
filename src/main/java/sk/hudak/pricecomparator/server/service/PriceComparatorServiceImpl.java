@@ -36,70 +36,103 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
     // --------- ESHOP ----------
 
     @Override
-    @Transactional(readOnly = true)
-    public PageList<EshopListDto> findEshops(EshopFindDto filter) {
-        return eshopService.findEshops(filter);
+    @Transactional
+    public Long createEshop(EshopCreateDto createDto) {
+        logger.debug(">> createEshop");
+        Long result = eshopService.createEshop(createDto);
+        logger.debug("<< createEshop");
+        return result;
     }
 
     @Override
-    @Transactional
-    public Long createEshop(EshopCreateDto createDto) {
-        return eshopService.createEshop(createDto);
+    @Transactional(readOnly = true)
+    public PageList<EshopListDto> findEshops(EshopFindDto filter) {
+        logger.debug(">> findEshops");
+        PageList<EshopListDto> result = eshopService.findEshops(filter);
+        logger.debug("<< findEshops");
+        return result;
     }
 
     @Override
     @Transactional(readOnly = true)
     public EshopDto getEshopById(Long eshopId) {
-        return eshopService.getEshopById(eshopId);
+        logger.debug(">> getEshopById");
+        EshopDto result = eshopService.getEshopById(eshopId);
+        logger.debug("<< getEshopById");
+        return result;
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<EshopListDto> findAllEshops() {
-        return eshopService.findAllEshops();
+        logger.debug(">> findAllEshops");
+        List<EshopListDto> result = eshopService.findAllEshops();
+        logger.debug(">> findAllEshops");
+        return result;
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<EshopIdNameDto> findAllEshopsForSelection() {
-        return eshopService.findAllEshopsForSelection();
+        logger.debug(">> findAllEshopsForSelection");
+        List<EshopIdNameDto> result = eshopService.findAllEshopsForSelection();
+        logger.debug("<< findAllEshopsForSelection");
+        return result;
+    }
+
+    // -------------- PRODUCT -----------
+
+    @Override
+    @Transactional
+    public Long createProduct(ProductCreateDto createDto) {
+        logger.debug(">> createProduct");
+        Long result = productService.createProduct(createDto);
+        logger.debug("<< createProduct");
+        return result;
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<ProductIdNameDto> findAllProductForSelection() {
-        return productService.findAllProductForSelection();
+        logger.debug(">> findAllProductForSelection");
+        List<ProductIdNameDto> result = productService.findAllProductForSelection();
+        logger.debug("<< findAllProductForSelection");
+        return result;
     }
 
     @Override
     @Transactional(readOnly = true)
     public PageList<ProductListDto> findProducts(ProductFindDto filter) {
-        return productService.findProducts(filter);
-    }
-
-    // -------------- PRODUCT -----------
-    @Override
-    @Transactional
-    public Long createProduct(ProductCreateDto createDto) {
-        return productService.createProduct(createDto);
+        logger.debug(">> findProducts");
+        PageList<ProductListDto> result = productService.findProducts(filter);
+        logger.debug("<< findProducts");
+        return result;
     }
 
     @Override
     @Transactional
     public void updateProduct(ProductUpdateDto updateDto) {
+        logger.debug(">> updateProduct");
         productService.updateProduct(updateDto);
+        logger.debug("<< updateProduct");
     }
 
     @Override
     @Transactional(readOnly = true)
     public ProductDto getProduct(Long productId) {
-        return productService.getProduct(productId);
+        logger.debug(">> getProduct");
+        ProductDto result = productService.getProduct(productId);
+        logger.debug("<< getProduct");
+        return result;
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<ProductListDto> getAllProduct() {
-        return productService.getAllProduct();
+        logger.debug(">> getAllProduct");
+        List<ProductListDto> result = productService.getAllProduct();
+        logger.debug("<< getAllProduct");
+        return result;
     }
 
 
@@ -243,7 +276,7 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
     @Override
     @Transactional(readOnly = true)
     public PageList<ProductInEshopPriceResultListDto> findPriceInfoInEshopsForProduct(ProductFindDto findDto) {
-        logger.debug(">> findPriceInfoInEshopsForProduct");
+        logger.debug(">> findPriceInfoInEshopsForProduct findDto {}", findDto);
         PageList<ProductInEshopPriceResultListDto> result = productInEshopService.findPriceInfoInEshopsForProduct(findDto);
         logger.debug("<< findPriceInfoInEshopsForProduct");
         return result;
@@ -318,25 +351,36 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
     @Override
     @Transactional(readOnly = true)
     public List<GroupOfProductListDto> findAllGroupsOfProducts() {
-        return groupOfProductService.findAllGroupsOfProducts();
+        logger.debug(">> findAllGroupsOfProducts");
+        List<GroupOfProductListDto> result = groupOfProductService.findAllGroupsOfProducts();
+        logger.debug("<< findAllGroupsOfProducts");
+        return result;
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<ProductListDto> findProductsInGroup(Long groupOfProductId) {
-        return groupOfProductService.findProductsInGroup(groupOfProductId);
+        logger.debug(">> findProductsInGroup");
+        List<ProductListDto> result = groupOfProductService.findProductsInGroup(groupOfProductId);
+        logger.debug("<< findProductsInGroup");
+        return result;
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<ProductListDto> findProductsNotInGroup(Long groupOfProductId) {
-        return groupOfProductService.findProductsNotInGroup(groupOfProductId);
+        logger.debug(">> findProductsNotInGroup");
+        List<ProductListDto> result = groupOfProductService.findProductsNotInGroup(groupOfProductId);
+        logger.debug("<< findProductsNotInGroup");
+        return result;
     }
 
     @Override
     @Transactional
     public void addProductsToGroup(Set<Long> productsIdToBeAdded, Long groupOfProductId) {
+        logger.debug(">> addProductsToGroup");
         groupOfProductService.addProductsToGroup(productsIdToBeAdded, groupOfProductId);
+        logger.debug("<< addProductsToGroup");
     }
 
     @Override

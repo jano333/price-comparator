@@ -18,6 +18,7 @@ import sk.hudak.pricecomparator.server.model.ProductInEshopEntity;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -25,6 +26,9 @@ import java.util.List;
  */
 @Named
 public class GroupOfProductDao extends JefDao<GroupOfProductEntity> {
+
+    @Inject
+    private ProductDao productDao;
 
     @Inject
     private ProductInEshopDao productInEshopDao;
@@ -115,20 +119,24 @@ public class GroupOfProductDao extends JefDao<GroupOfProductEntity> {
     }
 
     public PageList<ProductEntity> findProductsInGroup(GroupOfProductFindDto filter) {
+        //TODO pozor, poriesene len pre groupId... z filtra nie pre name ....
 
-        // ziskam idecka vsetkych produktov v skupine
-        Criteria crit = createCriteria(GroupOfProductFindEntity.class);
         if (filter.getGroupId() != null) {
+            // nacitam idecka vsetkych produktov v danej skupine
+            Criteria crit = createCriteria(GroupOfProductFindEntity.class);
             crit.add(Restrictions.eq(GroupOfProductFindEntity.AT_GROUP_ID, filter.getGroupId()));
+            ServerPaging serverPaging = createPaging(filter, crit);
+            crit.setProjection(Projections.property(GroupOfProductFindEntity.AT_PRODUCT_ID));
+            List<Long> productIdList = crit.list();
+
+            // nacitam dane produktu na zaklade id-cok
+            //TODO doriestit order
+            List<ProductEntity> result = productDao.findProductsByIds(productIdList, ProductEntity.AT_NAME);
+
+            return new PageList<>(result, serverPaging.getCurrentPage(), serverPaging.getAllPage());
         }
+        //TODO nazov
 
-        //TODO tu pokracovat  ze ako to vytiahnem z DB !!!
-//        crit.setProjection(Projections.property(GroupOfProductFindEntity.AT_PRODUCT_ID));
-//        List<Long> productInGroupIdList = crit.list();
-//        List<ProductInEshopEntity> result = productInEshopDao.findProductsInEshopByProductsIds(productInGroupIdList,
-//                ProductInEshopEntity.AT_PRICE_FOR_UNIT);
-//        return result;
-
-        return null;
+        return new PageList<>(Collections.<ProductEntity>emptyList(), 0, 0);
     }
 }

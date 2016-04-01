@@ -45,6 +45,6 @@ public class FindDto extends BasicFilter implements Serializable {
 
     @Override
     public String toString() {
-        return "FindDto [paging=" + paging + ", orders=" + orders + "]";
+        return "FindDto [paging=" + paging + ", orders=" + orders + "]" + super.toString();
     }
 }

@@ -3,6 +3,7 @@ package sk.hudak.pricecomparator.client.wicket.page.common;
 import org.apache.wicket.markup.html.link.Link;
 import sk.hudak.pricecomparator.client.wicket.page.eshop.EshopListPage;
 import sk.hudak.pricecomparator.client.wicket.page.group.GroupListPage;
+import sk.hudak.pricecomparator.client.wicket.page.group.GroupOfProductListPage;
 import sk.hudak.pricecomparator.client.wicket.page.group.GroupProductPriceListPage;
 import sk.hudak.pricecomparator.client.wicket.page.product.ProductCreatePage;
 import sk.hudak.pricecomparator.client.wicket.page.product.ProductListPage;
@@ -68,7 +69,7 @@ public class LayoutPage extends BasicPage {
         Link<Void> groupProductList = new Link<Void>("groupProductList") {
             @Override
             public void onClick() {
-                //TODO
+                setResponsePage(GroupOfProductListPage.class);
             }
         };
         Link<Void> groupProductPriceList = new Link<Void>("groupProductPriceList") {

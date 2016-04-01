@@ -56,4 +56,11 @@ public class BasicFilter implements Serializable {
         this.count = count;
     }
 
+    @Override
+    public String toString() {
+        return "BasicFilter{" +
+                "offset=" + offset +
+                ", count=" + count +
+                '}';
+    }
 }

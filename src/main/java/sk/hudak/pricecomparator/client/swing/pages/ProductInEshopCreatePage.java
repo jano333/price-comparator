@@ -17,6 +17,7 @@ import java.util.List;
 /**
  * Created by jan on 17. 10. 2015.
  */
+@Deprecated
 public class ProductInEshopCreatePage extends JPanel {
 
     private ProductSelectionListView lvProduct;

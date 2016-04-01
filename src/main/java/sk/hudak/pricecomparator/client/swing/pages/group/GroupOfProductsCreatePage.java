@@ -15,6 +15,7 @@ import java.util.List;
 /**
  * Created by jan on 3. 11. 2015.
  */
+@Deprecated
 public class GroupOfProductsCreatePage extends JPanel {
 
     private GroupOfProductCreateDto createDto;

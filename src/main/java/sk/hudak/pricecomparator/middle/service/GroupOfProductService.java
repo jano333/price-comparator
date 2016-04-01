@@ -15,6 +15,10 @@ public interface GroupOfProductService {
 
     PageList<ProductInEshopPriceResultListDto> findPriceInfoInEshopsForGroup(ProductPriceInGroupFindDto filter);
 
+    PageList<ProductListDto> findProductsInGroup(GroupOfProductFindDto filter);
+
+    List<GroupIdNameDto> findAllProductGroupSelection();
+
     // TODO prejst
 
     Long createGroupOfProduct(GroupOfProductCreateDto dto);
@@ -23,16 +27,13 @@ public interface GroupOfProductService {
 
     List<GroupOfProductListDto> findAllGroupsOfProducts();
 
-    List<ProductListDto> findProductsInGroup(Long groupOfProductId);
-
     List<ProductListDto> findProductsNotInGroup(Long groupOfProductId);
 
     void addProductsToGroup(Set<Long> productsIdToBeAdded, Long groupOfProductId);
 
     @Deprecated
+    List<ProductListDto> findProductsInGroup(Long groupOfProductId);
+
+    @Deprecated
     List<ProductInEshopPriceResultListDto> findPriceInfoInEshopsForGroup(Long groupId);
-
-    List<GroupIdNameDto> findAllProductGroupSelection();
-
-    PageList<ProductListDto> findProductsInGroup(GroupOfProductFindDto filter);
 }

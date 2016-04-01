@@ -26,4 +26,12 @@ public class ProductFindDto extends FindDto {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "ProductFindDto{" +
+                "productId=" + productId +
+                ", name='" + name + '\'' +
+                '}'+super.toString();
+    }
 }

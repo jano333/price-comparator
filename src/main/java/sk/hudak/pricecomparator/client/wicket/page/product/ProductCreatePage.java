@@ -4,11 +4,14 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.Radio;
 import org.apache.wicket.markup.html.form.RadioGroup;
 import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.model.ResourceModel;
+import sk.hudak.pricecomparator.client.ServiceLocator;
 import sk.hudak.pricecomparator.client.wicket.page.common.LayoutPage;
+import sk.hudak.pricecomparator.client.wicket.page.eshop.EshopListPage;
 import sk.hudak.pricecomparator.middle.canonical.Unit;
 import sk.hudak.pricecomparator.middle.to.ProductCreateDto;
 
@@ -23,21 +26,34 @@ public class ProductCreatePage extends LayoutPage {
 
     public ProductCreatePage() {
 
+        add(new FeedbackPanel("feedback"));
+
         // filter
-        Form<Void> createForm = new Form<Void>("form") {
+        Form<Void> form = new Form<Void>("form") {
             @Override
             protected void onSubmit() {
-                System.out.println("submit");
-                createDto = new ProductCreateDto();
+                try {
+                    Long productId = ServiceLocator.getService().createProduct(createDto);
+
+                    createDto = new ProductCreateDto();
+                    setResponsePage(ProductListPage.class);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
             }
         };
-        add(createForm);
+        add(form);
 
-        TextField<String> productName = new TextField<>("productName", new PropertyModel<String>(createDto, ProductCreateDto.AT_NAME));
-        createForm.add(productName);
+        TextField<String> productName = new TextField<>("productName",
+                new PropertyModel<String>(createDto, ProductCreateDto.AT_NAME));
+//        productName.setRequired(true);
+        form.add(productName);
 
-        RadioGroup<Unit> group = new RadioGroup<>("group", new PropertyModel<Unit>(createDto, ProductCreateDto.AT_UNIT));
-        createForm.add(group);
+        RadioGroup<Unit> group = new RadioGroup<>("group",
+                new PropertyModel<Unit>(createDto, ProductCreateDto.AT_UNIT));
+        form.add(group);
 
         Radio<Unit> kus = new Radio<>("kus", Model.of(Unit.KUS));
         Radio<Unit> vaha = new Radio<>("vaha", Model.of(Unit.KILOGRAM));
@@ -46,11 +62,15 @@ public class ProductCreatePage extends LayoutPage {
         Radio<Unit> davka = new Radio<>("davka", Model.of(Unit.DAVKA));
         group.add(kus, vaha, objem, dlzka, davka);
 
-        TextField<BigDecimal> countOfUnit = new TextField<>("countOfUnit", new PropertyModel<BigDecimal>(createDto, ProductCreateDto.AT_COUNT_OF_UNIT));
-        createForm.add(countOfUnit);
+        TextField<BigDecimal> countOfUnit = new TextField<>("countOfUnit",
+                new PropertyModel<BigDecimal>(createDto, ProductCreateDto.AT_COUNT_OF_UNIT));
+//        countOfUnit.setRequired(true);
+        form.add(countOfUnit);
 
-        TextField<Integer> countOfItemInOnePackage = new TextField<>("countOfItemInOnePackage", new PropertyModel<Integer>(createDto, ProductCreateDto.AT_COUNT_OF_ITEM_IN_ONE_PACKAGE));
-        createForm.add(countOfItemInOnePackage);
+        TextField<Integer> countOfItemInOnePackage = new TextField<>("countOfItemInOnePackage",
+                new PropertyModel<Integer>(createDto, ProductCreateDto.AT_COUNT_OF_ITEM_IN_ONE_PACKAGE));
+//        countOfItemInOnePackage.setRequired(true);
+        form.add(countOfItemInOnePackage);
 
     }
 

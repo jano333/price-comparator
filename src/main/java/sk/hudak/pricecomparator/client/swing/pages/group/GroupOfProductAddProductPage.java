@@ -14,6 +14,7 @@ import java.util.*;
 /**
  * Created by jan on 7. 11. 2015.
  */
+@Deprecated
 public class GroupOfProductAddProductPage extends JPanel {
 
     private GroupOfProductListViewPanel lvGroup;

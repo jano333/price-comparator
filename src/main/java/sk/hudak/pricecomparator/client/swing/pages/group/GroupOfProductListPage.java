@@ -15,6 +15,7 @@ import java.util.List;
 /**
  * Created by jan on 5. 11. 2015.
  */
+@Deprecated
 public class GroupOfProductListPage extends JPanel {
 
     private GroupOfProductListViewPanel groupListView;

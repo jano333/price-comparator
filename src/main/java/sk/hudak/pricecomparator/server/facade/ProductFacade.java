@@ -2,6 +2,7 @@ package sk.hudak.pricecomparator.server.facade;
 
 import org.apache.commons.lang3.StringUtils;
 import sk.hudak.jef.JefFacade;
+import sk.hudak.pricecomparator.middle.exeption.PriceComparatorException;
 import sk.hudak.pricecomparator.middle.to.ProductCreateDto;
 import sk.hudak.pricecomparator.middle.to.ProductUpdateDto;
 import sk.hudak.pricecomparator.server.core.ServerConfig;
@@ -32,12 +33,14 @@ public class ProductFacade extends JefFacade {
         val.notNull(createDto, "createDto is null");
         val.notNullAndNotEmpty(createDto.getName(), "name is null or empty");
         val.maxLength(createDto.getName(), 255, "name is longer than 255 chars");
-        //TODO unikatnost mena !!!
         val.notNull(createDto.getUnit(), "unit is null");
         val.notNull(createDto.getCountOfUnit(), "countOfUnit is null");
-//        val.gaterThanZero(createDto.getCountOfUnit(), "TODO");
-//        val.gaterThanZero(createDto.getCountOfItemInOnePackage(), "TODO");
-
+//        val.greaterThanZero(createDto.getCountOfUnit(), "TODO");
+//        val.greaterThanZero(createDto.getCountOfItemInOnePackage(), "TODO");
+        // unikatnost mena !!!
+        if(productDao.existWithName(createDto.getName())){
+            throw new PriceComparatorException("Product with name "+createDto.getName()+" allready exist.");
+        }
 
         ProductEntity product = new ProductEntity();
         product.setName(createDto.getName().trim());
@@ -50,7 +53,7 @@ public class ProductFacade extends JefFacade {
 
         Long productId = productDao.create(product);
 
-        // TODO spracovanie obrazku
+        // TODO spracovanie obrazku zrusit, pridavat bude iba server(resp. nie je doriesene)
         processImage(createDto, productId);
 
         return productId;

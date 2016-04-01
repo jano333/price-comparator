@@ -17,7 +17,6 @@ import sk.hudak.pricecomparator.client.wicket.component.table.Table;
 import sk.hudak.pricecomparator.middle.to.ProductFindDto;
 import sk.hudak.pricecomparator.middle.to.ProductListDto;
 
-import java.io.File;
 import java.io.Serializable;
 
 /**
@@ -74,20 +73,10 @@ public class ProductListTable extends Panel {
                 Label productName = new Label("name", new PropertyModel<String>(product, ProductListDto.AT_NAME));
 
 //                NonCachingImage image = new NonCachingImage("image", Model.of("/images/mypic" + item.getIndex() + ".png"));
-//                ContextImage image = new ContextImage("image", "/images/mypic" + item.getIndex() + ".png");
-
 //                ContextImage image = new ContextImage("image", "/images/mypic" + product.getObject().getId() + ".png");
 
-                String imagePath = product.getObject().getImagePath();
-                String imageName = null;
-                ContextImage image = null;
-                if (imagePath != null) {
-                    imageName = new File(imagePath).getName();
-                    image = new ContextImage("image", "/images/" + imageName);
-                } else {
-                    image = new ContextImage("image", "fake");
-                    image.setVisible(false);
-                }
+                ContextImage image = WU.productImage(product.getObject().getImagePath());
+
                 WebMarkupContainer tr = new WebMarkupContainer("tr");
                 tr.add(productName, image);
 

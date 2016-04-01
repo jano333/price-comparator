@@ -38,18 +38,19 @@ public class FeedoEshopProductParser extends AbstractEshopProductParser {
         boolean inAction = false;
 
         // skusim -> premim cena
-        Elements select = document.select("div[class=price-premium]");
+        Elements select = document.select("div[class=price price-premium]");
         if (!select.isEmpty()) {
             inAction = true;
         } else {
             // ak sa nenajde tak skusim -> akcna cena
-            select = document.select("div[class=price-discount]");
+            select = document.select("div[class=price price-discount]");
             if (!select.isEmpty()) {
                 inAction = true;
             } else {
                 // ak sa nenajde tak skusim -> normalna cena
-                select = document.select("div[class=price]");
+                select = document.select("div[class=price price-base]");
                 if (select.isEmpty()) {
+                    logger.error("cena pre dany produkt sa nenasla");
                     return ProductInfoFactory.createUnaviable();
                 }
             }
