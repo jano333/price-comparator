@@ -9,6 +9,7 @@ import sk.hudak.pricecomparator.server.eshops.feedo.FeedoPictureDownloader;
 /**
  * Created by jan on 16. 10. 2015.
  */
+@Deprecated
 public class ServiceLocator {
 
     private static PriceComparatorService service;

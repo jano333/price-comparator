@@ -11,7 +11,6 @@ import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.model.ResourceModel;
 import sk.hudak.pricecomparator.client.ServiceLocator;
 import sk.hudak.pricecomparator.client.wicket.page.common.LayoutPage;
-import sk.hudak.pricecomparator.client.wicket.page.eshop.EshopListPage;
 import sk.hudak.pricecomparator.middle.canonical.Unit;
 import sk.hudak.pricecomparator.middle.to.ProductCreateDto;
 
@@ -48,7 +47,7 @@ public class ProductCreatePage extends LayoutPage {
 
         TextField<String> productName = new TextField<>("productName",
                 new PropertyModel<String>(createDto, ProductCreateDto.AT_NAME));
-//        productName.setRequired(true);
+        productName.setRequired(true);
         form.add(productName);
 
         RadioGroup<Unit> group = new RadioGroup<>("group",
@@ -64,12 +63,12 @@ public class ProductCreatePage extends LayoutPage {
 
         TextField<BigDecimal> countOfUnit = new TextField<>("countOfUnit",
                 new PropertyModel<BigDecimal>(createDto, ProductCreateDto.AT_COUNT_OF_UNIT));
-//        countOfUnit.setRequired(true);
+        countOfUnit.setRequired(true);
         form.add(countOfUnit);
 
         TextField<Integer> countOfItemInOnePackage = new TextField<>("countOfItemInOnePackage",
                 new PropertyModel<Integer>(createDto, ProductCreateDto.AT_COUNT_OF_ITEM_IN_ONE_PACKAGE));
-//        countOfItemInOnePackage.setRequired(true);
+        countOfItemInOnePackage.setRequired(true);
         form.add(countOfItemInOnePackage);
 
     }

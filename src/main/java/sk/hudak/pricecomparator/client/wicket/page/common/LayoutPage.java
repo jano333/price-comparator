@@ -8,6 +8,7 @@ import sk.hudak.pricecomparator.client.wicket.page.group.GroupProductPriceListPa
 import sk.hudak.pricecomparator.client.wicket.page.product.ProductCreatePage;
 import sk.hudak.pricecomparator.client.wicket.page.product.ProductListPage;
 import sk.hudak.pricecomparator.client.wicket.page.product.ProductPricesPerEshopsPage;
+import sk.hudak.pricecomparator.client.wicket.page.productineshop.ProductInEshopCreatePage;
 import sk.hudak.pricecomparator.client.wicket.page.productineshop.ProductListPerEshopPage;
 
 /**
@@ -56,7 +57,14 @@ public class LayoutPage extends BasicPage {
             }
         };
 
-        add(productListPage, productPricesPerEshops, productListPerEshop, productCreateProdukt);
+        Link<Void> productInEshopCreate = new Link<Void>("productInEshopCreate") {
+            @Override
+            public void onClick() {
+                setResponsePage(ProductInEshopCreatePage.class);
+            }
+        };
+
+        add(productListPage, productPricesPerEshops, productListPerEshop, productCreateProdukt, productInEshopCreate);
 
         //Skupiny
         Link<Void> groupList = new Link<Void>("groupList") {

@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.client.wicket.page.productineshop;
+package sk.hudak.pricecomparator.client.wicket.page.productineshop.components;
 
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
@@ -27,7 +27,7 @@ public class ProductListPerEshopTable extends Panel {
     private ProductInEshopFindDto filter = new ProductInEshopFindDto();
 
     //TODO prednastaveny eshop...
-    private EshopIdNameDto selectedEshop = new EshopIdNameDto(1l, "Tesco");
+    private EshopIdNameDto selectedEshop;
 
     public ProductListPerEshopTable(String id) {
         super(id);
@@ -52,7 +52,7 @@ public class ProductListPerEshopTable extends Panel {
         };
         add(filterForm);
 
-        DropDownChoice<EshopIdNameDto> eshopFilter = new DropDownChoice<>(
+        DropDownChoice<EshopIdNameDto> eshopFilter = new DropDownChoice<EshopIdNameDto>(
                 "eshop",
                 new PropertyModel<EshopIdNameDto>(this, "selectedEshop"),
                 new LoadableDetachableModel<List<EshopIdNameDto>>() {
@@ -62,13 +62,21 @@ public class ProductListPerEshopTable extends Panel {
                     }
                 },
                 new ChoiceRenderer<EshopIdNameDto>(EshopIdNameDto.AT_NAME)
-        );
+        ) {
+            @Override
+            protected String getNullKey() {
+                //FIXME zatial dava 'Vyberte jeden'
+                return super.getNullKey();
+            }
+        };
         filterForm.add(eshopFilter);
 
-        TextField<String> productNameFilter = new TextField<>("productName", new PropertyModel<String>(filter, ProductInEshopFindDto.AT_PRODUCT_NAME));
+        TextField<String> productNameFilter = new TextField<>("productName",
+                new PropertyModel<String>(filter, ProductInEshopFindDto.AT_PRODUCT_NAME));
         filterForm.add(productNameFilter);
 
-        CheckBox onlyInActionFilter = new CheckBox("onlyInAction", new PropertyModel<Boolean>(filter, ProductInEshopFindDto.AT_ONLY_IN_ACTION));
+        CheckBox onlyInActionFilter = new CheckBox("onlyInAction",
+                new PropertyModel<Boolean>(filter, ProductInEshopFindDto.AT_ONLY_IN_ACTION));
         filterForm.add(onlyInActionFilter);
 
         // pagging

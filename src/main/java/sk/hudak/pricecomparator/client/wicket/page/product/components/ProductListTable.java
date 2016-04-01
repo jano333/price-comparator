@@ -10,7 +10,8 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.PropertyModel;
 import sk.hudak.jef.PageList;
-import sk.hudak.pricecomparator.client.ServiceLocator;
+import sk.hudak.pricecomparator.client.wicket.PriceComparatorApplication;
+import sk.hudak.pricecomparator.client.wicket.WU;
 import sk.hudak.pricecomparator.client.wicket.component.common.IdListView;
 import sk.hudak.pricecomparator.client.wicket.component.table.PagingInfoPanel;
 import sk.hudak.pricecomparator.client.wicket.component.table.Table;
@@ -34,7 +35,7 @@ public class ProductListTable extends Panel {
 
             @Override
             protected PageList<ProductListDto> load() {
-                return ServiceLocator.getService().findProducts(filter);
+                return PriceComparatorApplication.getApi().findProducts(filter);
             }
         };
 

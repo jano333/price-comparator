@@ -7,9 +7,9 @@
         </encoder>
     </appender>
 
-    <logger name="org.apache.wicket">
+    <!--<logger name="org.apache.wicket">
         <level value="DEBUG"/>
-    </logger>
+    </logger>-->
 
     <logger name="sk.hudak">
         <level value="DEBUG"/>

@@ -10,7 +10,6 @@ import sk.hudak.pricecomparator.client.wicket.component.ImageResourceReference;
 import sk.hudak.pricecomparator.client.wicket.locale.ErrorScope;
 import sk.hudak.pricecomparator.client.wicket.locale.PageLocalize;
 import sk.hudak.pricecomparator.client.wicket.page.group.GroupProductPriceListPage;
-import sk.hudak.pricecomparator.client.wicket.page.product.ProductCreatePage;
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
 
 import java.util.List;
@@ -24,8 +23,9 @@ public class PriceComparatorApplication extends AbstractPriComApplication {
 
     @Override
     public Class<? extends Page> getHomePage() {
-//        return GroupProductPriceListPage.class;
-        return ProductCreatePage.class;
+        return GroupProductPriceListPage.class;
+//        return ProductCreatePage.class;
+//        return ProductInEshopCreatePage.class;
     }
 
     @Override

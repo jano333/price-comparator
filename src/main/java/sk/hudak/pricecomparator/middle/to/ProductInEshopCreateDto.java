@@ -7,6 +7,8 @@ import java.io.Serializable;
  */
 public class ProductInEshopCreateDto implements Serializable {
 
+    public static final String AT_ESHOP_PRODUCT_PAGE = "eshopProductPage";
+
     private Long productId;
     private Long eshopId;
     private String eshopProductPage;

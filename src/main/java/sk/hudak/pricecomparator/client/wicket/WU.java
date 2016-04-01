@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.client.wicket.page.product.components;
+package sk.hudak.pricecomparator.client.wicket;
 
 import org.apache.wicket.markup.html.image.ContextImage;
 

@@ -29,7 +29,7 @@ public class ProductPricesPerEshopsTable extends Panel {
     private ProductFindDto filter = new ProductFindDto();
 
 
-    private ProductIdNameDto selectedProduct = new ProductIdNameDto(1l, "haha");
+    private ProductIdNameDto selectedProduct;
 
     public ProductPricesPerEshopsTable(String id) {
         super(id);
