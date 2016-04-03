@@ -11,7 +11,6 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.PropertyModel;
 import sk.hudak.jef.PageList;
-import sk.hudak.pricecomparator.client.ServiceLocator;
 import sk.hudak.pricecomparator.client.wicket.PriceComparatorApplication;
 import sk.hudak.pricecomparator.client.wicket.WU;
 import sk.hudak.pricecomparator.client.wicket.component.common.IdListView;
@@ -22,6 +21,7 @@ import sk.hudak.pricecomparator.middle.to.GroupOfProductFindDto;
 import sk.hudak.pricecomparator.middle.to.ProductListDto;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -31,19 +31,20 @@ public class GroupOfProductListTable extends Panel {
 
     private GroupOfProductFindDto filter = new GroupOfProductFindDto();
 
-    //TODO
-    private GroupIdNameDto selectedGroup = new GroupIdNameDto(1l, "haha");
+    private GroupIdNameDto selectedGroup;
 
     public GroupOfProductListTable(String id) {
         super(id);
 
         IModel<PageList<ProductListDto>> tableModel = new LoadableDetachableModel<PageList<ProductListDto>>() {
 
-            private static final long serialVersionUID = 1L;
-
             @Override
             protected PageList<ProductListDto> load() {
-                return ServiceLocator.getService().findProductsInGroup(filter);
+                if (filter.getGroupId() != null) {
+                    return PriceComparatorApplication.getApi().findProductsInGroup(filter);
+                } else {
+                    return new PageList<>(Collections.EMPTY_LIST, 0, 0);
+                }
             }
         };
 

@@ -10,6 +10,7 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.model.ResourceModel;
 import sk.hudak.pricecomparator.client.ServiceLocator;
+import sk.hudak.pricecomparator.client.wicket.page.CreatePageMarker;
 import sk.hudak.pricecomparator.client.wicket.page.common.LayoutPage;
 import sk.hudak.pricecomparator.middle.canonical.Unit;
 import sk.hudak.pricecomparator.middle.to.ProductCreateDto;
@@ -19,7 +20,7 @@ import java.math.BigDecimal;
 /**
  * Created by jan on 24. 3. 2016.
  */
-public class ProductCreatePage extends LayoutPage {
+public class ProductCreatePage extends LayoutPage implements CreatePageMarker {
 
     private ProductCreateDto createDto = new ProductCreateDto();
 

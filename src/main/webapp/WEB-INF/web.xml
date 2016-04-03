@@ -41,7 +41,7 @@
  	-->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:ctx-server.xml</param-value>
+        <param-value>classpath:ctx-client.xml</param-value>
     </context-param>
 
     <listener>

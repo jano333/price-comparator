@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 /**
  * Created by jan on 24. 10. 2015.
  */
-public class EshopCreatePage extends JPanel {
+public class EshopCreatePage extends JPanel  {
 
     private JTextField tfName;
     private JTextField tfHomePage;

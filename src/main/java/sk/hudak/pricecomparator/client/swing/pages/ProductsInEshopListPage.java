@@ -19,6 +19,7 @@ import java.util.List;
 /**
  * Created by jan on 20. 12. 2015.
  */
+@Deprecated
 public class ProductsInEshopListPage extends JPanel {
 
     private JComboBox<EshopListDto> cbEshops;

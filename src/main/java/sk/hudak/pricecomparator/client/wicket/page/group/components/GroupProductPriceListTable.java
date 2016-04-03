@@ -1,16 +1,17 @@
 package sk.hudak.pricecomparator.client.wicket.page.group.components;
 
+import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.ChoiceRenderer;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.PropertyModel;
 import sk.hudak.jef.PageList;
-import sk.hudak.pricecomparator.client.ServiceLocator;
 import sk.hudak.pricecomparator.client.wicket.PriceComparatorApplication;
 import sk.hudak.pricecomparator.client.wicket.component.common.IdListView;
 import sk.hudak.pricecomparator.client.wicket.component.table.PagingInfoPanel;
@@ -20,6 +21,7 @@ import sk.hudak.pricecomparator.middle.to.ProductInEshopPriceResultListDto;
 import sk.hudak.pricecomparator.middle.to.ProductPriceInGroupFindDto;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -29,8 +31,7 @@ public class GroupProductPriceListTable extends Panel {
 
     private ProductPriceInGroupFindDto filter = new ProductPriceInGroupFindDto();
 
-    //TODO FIXME
-    private GroupIdNameDto selectedGroup = new GroupIdNameDto(1l, "haha");
+    private GroupIdNameDto selectedGroup;
 
     public GroupProductPriceListTable(String id) {
         super(id);
@@ -41,7 +42,11 @@ public class GroupProductPriceListTable extends Panel {
 
             @Override
             protected PageList<ProductInEshopPriceResultListDto> load() {
-                return ServiceLocator.getService().findPriceInfoInEshopsForGroup(filter);
+                if (filter.getGroupId() != null) {
+                    return PriceComparatorApplication.getApi().findPriceInfoInEshopsForGroup(filter);
+                } else {
+                    return new PageList<>(Collections.EMPTY_LIST, 0, 0);
+                }
             }
         };
 
@@ -91,7 +96,12 @@ public class GroupProductPriceListTable extends Panel {
             protected void populateItem(IdListView.IdListItem<ProductInEshopPriceResultListDto> item) {
                 IModel<ProductInEshopPriceResultListDto> product = item.getModel();
 
-                Label eshopName = new Label("eshopName", new PropertyModel<String>(product, ProductInEshopPriceResultListDto.AT_ESHOP_NAME));
+                ExternalLink productInEshopPage = new ExternalLink("productInEshopPage",
+                        new PropertyModel<String>(product, ProductInEshopPriceResultListDto.AT_PRODUCT_ESHOP_PAGE),
+                        new PropertyModel<String>(product, ProductInEshopPriceResultListDto.AT_ESHOP_NAME)
+                );
+                productInEshopPage.add(new AttributeAppender("target", "_blank"));
+
                 Label priceForPackage = new Label("priceForPackage", new PropertyModel<String>(product, ProductInEshopPriceResultListDto.AT_PRICE_FOR_PACKAGE));
                 Label priceForUnit = new Label("priceForUnit", new PropertyModel<String>(product, ProductInEshopPriceResultListDto.AT_PRICE_FOR_UNIT));
                 Label productAction = new Label("productAction", new PropertyModel<String>(product, ProductInEshopPriceResultListDto.AT_PRODUCT_ACTION));
@@ -100,7 +110,7 @@ public class GroupProductPriceListTable extends Panel {
 
 
                 WebMarkupContainer tr = new WebMarkupContainer("tr");
-                tr.add(eshopName, priceForPackage, priceForUnit, productAction, actionValidTo, lastUpdatedPrice);
+                tr.add(productInEshopPage, priceForPackage, priceForUnit, productAction, actionValidTo, lastUpdatedPrice);
 
                 item.add(tr);
             }

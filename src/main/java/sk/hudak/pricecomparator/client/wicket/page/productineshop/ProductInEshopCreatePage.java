@@ -10,6 +10,7 @@ import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.model.ResourceModel;
 import sk.hudak.pricecomparator.client.wicket.PriceComparatorApplication;
+import sk.hudak.pricecomparator.client.wicket.page.CreatePageMarker;
 import sk.hudak.pricecomparator.client.wicket.page.common.LayoutPage;
 import sk.hudak.pricecomparator.middle.to.EshopIdNameDto;
 import sk.hudak.pricecomparator.middle.to.ProductIdNameDto;
@@ -20,7 +21,7 @@ import java.util.List;
 /**
  * Created by jan on 1. 4. 2016.
  */
-public class ProductInEshopCreatePage extends LayoutPage {
+public class ProductInEshopCreatePage extends LayoutPage implements CreatePageMarker {
 
     private ProductInEshopCreateDto createDto = new ProductInEshopCreateDto();
 
@@ -62,6 +63,7 @@ public class ProductInEshopCreatePage extends LayoutPage {
                 },
                 new ChoiceRenderer<ProductIdNameDto>(ProductIdNameDto.AT_NAME)
         );
+        product.setRequired(true);
         form.add(product);
 
         DropDownChoice<EshopIdNameDto> eshop = new DropDownChoice<>(
@@ -75,6 +77,7 @@ public class ProductInEshopCreatePage extends LayoutPage {
                 },
                 new ChoiceRenderer<EshopIdNameDto>(EshopIdNameDto.AT_NAME)
         );
+        eshop.setRequired(true);
         form.add(eshop);
 
         TextField<String> productEshopPageUrl = new TextField<>("productEshopPageUrl",

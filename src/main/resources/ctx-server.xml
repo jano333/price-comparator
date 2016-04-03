@@ -15,14 +15,6 @@
 
     <context:component-scan base-package="sk.hudak.pricecomparator.server"/>
 
-    <!-- WICKET BEGIN -->
-
-    <bean id="wicketApplication" class="sk.hudak.pricecomparator.client.wicket.PriceComparatorApplication">
-        <property name="service" ref="PriceComparatorService"/>
-    </bean>
-
-    <!-- WICKET END -->
-
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="${database.jdbc.driverClassName}"/>
         <property name="url" value="${database.jdbc.url}"/>

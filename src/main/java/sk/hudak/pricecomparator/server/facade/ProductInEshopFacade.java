@@ -2,6 +2,7 @@ package sk.hudak.pricecomparator.server.facade;
 
 import sk.hudak.jef.JefFacade;
 import sk.hudak.pricecomparator.middle.EshopType;
+import sk.hudak.pricecomparator.middle.exeption.PriceComparatorException;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopCreateDto;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopPriceUpdateDto;
 import sk.hudak.pricecomparator.server.dao.EshopDao;
@@ -35,6 +36,21 @@ public class ProductInEshopFacade extends JefFacade {
         val.notNull(createDto.getProductId(), "productId is null");
         val.notNullAndNotEmpty(createDto.getEshopProductPage(), "eshop product page is null or empty");
         // TODO ostatne a dlzky validovat
+
+        // kontola ci kombinacia produkt - eshop uz neexistuje
+        //TODO testunut !!!
+        if (productInEshopDao.existProductInEshop(createDto.getEshopId(), createDto.getProductId())) {
+            throw new PriceComparatorException("Dany produkt uz existuje");
+        }
+
+//        if (productInEshopDao.existProductInEshopWithEshopProductPage(createDto.getEshopProductPage())) {
+//            throw new PriceComparatorException("Produkt s danou url uz existuje.");
+//        }
+        //TODO
+
+        // kontrola ci product v eshope s takou url uz neexistuje
+        //TODO
+
 
         ProductInEshopEntity entity = new ProductInEshopEntity();
         entity.setEshop(eshopDao.readMandatory(createDto.getEshopId()));

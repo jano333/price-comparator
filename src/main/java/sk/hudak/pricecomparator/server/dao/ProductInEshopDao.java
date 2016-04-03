@@ -240,4 +240,16 @@ public class ProductInEshopDao extends JefDao<ProductInEshopEntity> {
 
         return crit.list();
     }
+
+    /**
+     * @param eshopId
+     * @param productId
+     * @return true, ak uz taky produkt v eshope existuje
+     */
+    public boolean existProductInEshop(Long eshopId, Long productId) {
+        Criteria crit = createCriteria(ProductInEshopEntity.class);
+        crit.add(Restrictions.eq(ProductInEshopEntity.AT_ESHOP + "." + EshopEntity.AT_ID, eshopId));
+        crit.add(Restrictions.eq(ProductInEshopEntity.AT_PRODUCT + "." + ProductEntity.AT_ID, productId));
+        return !crit.list().isEmpty();
+    }
 }
