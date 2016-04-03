@@ -103,6 +103,7 @@ public class GroupProductPriceListTable extends Panel {
                 productInEshopPage.add(new AttributeAppender("target", "_blank"));
 
                 Label priceForPackage = new Label("priceForPackage", new PropertyModel<String>(product, ProductInEshopPriceResultListDto.AT_PRICE_FOR_PACKAGE));
+                Label priceForOneItemInPackage = new Label("priceForOneItemInPackage", new PropertyModel<String>(product, ProductInEshopPriceResultListDto.AT_PRICE_FOR_ONE_ITEM_IN_PACKAGE));
                 Label priceForUnit = new Label("priceForUnit", new PropertyModel<String>(product, ProductInEshopPriceResultListDto.AT_PRICE_FOR_UNIT));
                 Label productAction = new Label("productAction", new PropertyModel<String>(product, ProductInEshopPriceResultListDto.AT_PRODUCT_ACTION));
                 Label actionValidTo = new Label("actionValidTo", new PropertyModel<String>(product, ProductInEshopPriceResultListDto.AT_ACTION_VALID_TO));
@@ -110,7 +111,10 @@ public class GroupProductPriceListTable extends Panel {
 
 
                 WebMarkupContainer tr = new WebMarkupContainer("tr");
-                tr.add(productInEshopPage, priceForPackage, priceForUnit, productAction, actionValidTo, lastUpdatedPrice);
+                tr.add(productInEshopPage,
+                        priceForPackage, priceForOneItemInPackage, priceForUnit,
+                        productAction, actionValidTo,
+                        lastUpdatedPrice);
 
                 item.add(tr);
             }
