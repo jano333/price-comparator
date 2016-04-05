@@ -72,10 +72,8 @@ public class ProductListTable extends Panel {
 
 
                 Label productName = new Label("name", new PropertyModel<String>(product, ProductListDto.AT_NAME));
-
 //                NonCachingImage image = new NonCachingImage("image", Model.of("/images/mypic" + item.getIndex() + ".png"));
-//                ContextImage image = new ContextImage("image", "/images/mypic" + product.getObject().getId() + ".png");
-
+                //TODO nacitavat to cez property model nie takto:
                 ContextImage image = WU.productImage(product.getObject().getImagePath());
 
                 WebMarkupContainer tr = new WebMarkupContainer("tr");

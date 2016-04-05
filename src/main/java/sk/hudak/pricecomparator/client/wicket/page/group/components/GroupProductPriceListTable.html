@@ -48,6 +48,7 @@
 
             <thead>
             <tr>
+                <th>Obrázok</th>
                 <th>Eshop</th>
                 <th>Cena za balenie</th>
                 <th>Cena za 1 kus</th>
@@ -61,7 +62,7 @@
             <wicket:container wicket:id="list">
 
                 <tr wicket:id="tr">
-                    <!--<td class="datum"><span wicket:id="eshopName"></span></td>-->
+                    <td class="datum"><a wicket:id="productImageLink"><img wicket:id="image"/></a></td>
                     <td class="datum"><a wicket:id="productInEshopPage"></a></td>
                     <td class="datum"><span wicket:id="priceForPackage"></span></td>
                     <td class="datum"><span wicket:id="priceForOneItemInPackage"></span></td>

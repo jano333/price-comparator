@@ -6,6 +6,8 @@ import sk.hudak.pricecomparator.client.wicket.page.common.LayoutPage;
 import sk.hudak.pricecomparator.client.wicket.page.group.components.GroupProductPriceListTable;
 
 /**
+ * Zoznam cien produktov v skupine
+ * <p/>
  * Created by jan on 18. 3. 2016.
  */
 public class GroupProductPriceListPage extends LayoutPage {

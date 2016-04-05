@@ -3,6 +3,7 @@ package sk.hudak.pricecomparator.server.assembler;
 import sk.hudak.jef.PageList;
 import sk.hudak.pricecomparator.middle.to.*;
 import sk.hudak.pricecomparator.server.model.ProductInEshopEntity;
+import sk.hudak.pricecomparator.server.utils.ImageUtils;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -114,6 +115,7 @@ public class ProductInEshopAssembler {
         result.setProductEshopPage(entity.getProductPageInEshop());
         result.setEshopName(entity.getEshop().getName());
         result.setLastUpdatedPrice(entity.getLastUpdatedPrice());
+        result.setImagePath(ImageUtils.findProductImage(entity.getProduct().getId()));
 
         return result;
     }

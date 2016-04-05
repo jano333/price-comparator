@@ -11,7 +11,6 @@ public class ProductListDto implements Serializable {
 
     private Long id;
     private String name;
-    //TODO toto nahradit aj byte resp domysliet ako to dostat na klienta
     private String imagePath;
 
     public Long getId() {
