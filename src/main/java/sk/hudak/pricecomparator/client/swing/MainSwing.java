@@ -1,5 +1,6 @@
 package sk.hudak.pricecomparator.client.swing;
 
+import sk.hudak.pricecomparator.client.ServiceLocator;
 import sk.hudak.pricecomparator.client.swing.components.PriceComparatorJFrame;
 import sk.hudak.pricecomparator.client.swing.components.TaskManager;
 import sk.hudak.pricecomparator.server.eshops.tesco.TescoPictureLocalFinder;
@@ -14,7 +15,7 @@ public class MainSwing {
     public static void main(String[] args) {
 
         final TaskManager taskManager = new TaskManager();
-        taskManager.initTaks();
+        taskManager.initTaks(ServiceLocator.getService());
         taskManager.startDownloading();
 
         // nakopiruj obrazky ak su neake nove...

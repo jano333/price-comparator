@@ -1,6 +1,5 @@
 package sk.hudak.pricecomparator.client.swing.components;
 
-import sk.hudak.pricecomparator.client.ServiceLocator;
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
 import sk.hudak.pricecomparator.server.core.EshopProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.alza.AlzaProductInfoDownloaderTask;
@@ -31,8 +30,8 @@ public class TaskManager {
     private PriceComparatorService service;
     private List<EshopProductInfoDownloaderTask> taskList;
 
-    public void initTaks() {
-        service = ServiceLocator.getService();
+    public void initTaks(PriceComparatorService service) {
+        this.service = service;
 
         taskList = new ArrayList<>();
         taskList.add(new AlzaProductInfoDownloaderTask(service));
