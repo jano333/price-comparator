@@ -29,7 +29,6 @@ public class ProductListPerEshopTable extends Panel {
 
     private ProductInEshopFindDto filter = new ProductInEshopFindDto();
 
-    //TODO prednastaveny eshop...
     private EshopIdNameDto selectedEshop;
 
     public ProductListPerEshopTable(String id) {
@@ -54,8 +53,9 @@ public class ProductListPerEshopTable extends Panel {
         Form<Void> filterForm = new Form<Void>("filterForm") {
             @Override
             protected void onSubmit() {
-                //FIXME skusit inak poriesit
-                filter.setEshopId(selectedEshop.getId());
+                if (selectedEshop != null) {
+                    filter.setEshopId(selectedEshop.getId());
+                }
             }
         };
         add(filterForm);
@@ -73,8 +73,7 @@ public class ProductListPerEshopTable extends Panel {
         ) {
             @Override
             protected String getNullKey() {
-                //FIXME zatial dava 'Vyberte jeden'
-                return super.getNullKey();
+                return "core.dropdown.nullValue.eshop";
             }
         };
         filterForm.add(eshopFilter);

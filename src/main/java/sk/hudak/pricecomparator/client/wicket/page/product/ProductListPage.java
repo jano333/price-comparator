@@ -1,8 +1,6 @@
 package sk.hudak.pricecomparator.client.wicket.page.product;
 
-import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.ResourceModel;
-import sk.hudak.pricecomparator.client.wicket.page.common.LayoutPage;
+import sk.hudak.pricecomparator.client.wicket.page.TableWithFilterPage;
 import sk.hudak.pricecomparator.client.wicket.page.product.components.ProductListTable;
 
 /**
@@ -10,14 +8,10 @@ import sk.hudak.pricecomparator.client.wicket.page.product.components.ProductLis
  * <p/>
  * Created by jan on 19. 3. 2016.
  */
-public class ProductListPage extends LayoutPage {
+public class ProductListPage extends TableWithFilterPage {
 
     public ProductListPage() {
         add(new ProductListTable("table"));
     }
 
-    @Override
-    protected IModel<String> getTitleModel() {
-        return new ResourceModel("ProductListPage.title");
-    }
 }

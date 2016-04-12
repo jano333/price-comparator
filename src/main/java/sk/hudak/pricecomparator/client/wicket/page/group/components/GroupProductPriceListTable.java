@@ -56,13 +56,12 @@ public class GroupProductPriceListTable extends Panel {
         Form<Void> filterForm = new Form<Void>("filterForm") {
             @Override
             protected void onSubmit() {
-                //FIXME skusit inak poriesit
                 filter.setGroupId(selectedGroup.getId());
             }
         };
         add(filterForm);
 
-        DropDownChoice<GroupIdNameDto> groupFilter = new DropDownChoice<>(
+        DropDownChoice<GroupIdNameDto> groupFilter = new DropDownChoice<GroupIdNameDto>(
                 "skupina",
                 new PropertyModel<GroupIdNameDto>(this, "selectedGroup"),
                 new LoadableDetachableModel<List<GroupIdNameDto>>() {
@@ -72,7 +71,12 @@ public class GroupProductPriceListTable extends Panel {
                     }
                 },
                 new ChoiceRenderer<GroupIdNameDto>(GroupIdNameDto.AT_NAME)
-        );
+        ){
+            @Override
+            protected String getNullKey() {
+                return "core.dropdown.nullValue.group";
+            }
+        };
         filterForm.add(groupFilter);
 
         // mesage line

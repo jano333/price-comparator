@@ -2,17 +2,11 @@ package sk.hudak.pricecomparator.client.wicket;
 
 import org.apache.wicket.Application;
 import org.apache.wicket.Page;
-import org.apache.wicket.resource.loader.ClassStringResourceLoader;
-import org.apache.wicket.resource.loader.IStringResourceLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sk.hudak.pricecomparator.client.wicket.component.ImageResourceReference;
-import sk.hudak.pricecomparator.client.wicket.locale.ErrorScope;
-import sk.hudak.pricecomparator.client.wicket.locale.PageLocalize;
 import sk.hudak.pricecomparator.client.wicket.page.group.GroupProductPriceListPage;
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
-
-import java.util.List;
 
 /**
  * Created by jan on 8. 3. 2016.
@@ -35,10 +29,10 @@ public class PriceComparatorApplication extends AbstractPriComApplication {
 //        getResourceSettings().addStringResourceLoader(new ClassStringResourceLoader(ErrorScope.class));
 
         //TODO zatila nefunguje, lebo nenajde v resoursoch
-        List<IStringResourceLoader> resourceLoaders = getResourceSettings().getStringResourceLoaders();
-        //TODO
-        resourceLoaders.add(new ClassStringResourceLoader(PageLocalize.class));
-        resourceLoaders.add(new ClassStringResourceLoader(ErrorScope.class));
+//        List<IStringResourceLoader> resourceLoaders = getResourceSettings().getStringResourceLoaders();
+//        //TODO
+//        resourceLoaders.add(new ClassStringResourceLoader(PageLocalize.class));
+//        resourceLoaders.add(new ClassStringResourceLoader(ErrorScope.class));
 
     }
 

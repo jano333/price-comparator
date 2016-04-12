@@ -5,10 +5,8 @@ import org.apache.wicket.markup.html.form.Radio;
 import org.apache.wicket.markup.html.form.RadioGroup;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
-import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
-import org.apache.wicket.model.ResourceModel;
 import sk.hudak.pricecomparator.client.ServiceLocator;
 import sk.hudak.pricecomparator.client.wicket.page.CreatePageMarker;
 import sk.hudak.pricecomparator.client.wicket.page.common.LayoutPage;
@@ -74,8 +72,4 @@ public class ProductCreatePage extends LayoutPage implements CreatePageMarker {
 
     }
 
-    @Override
-    protected IModel<String> getTitleModel() {
-        return new ResourceModel("ProductCreatePage.title");
-    }
 }

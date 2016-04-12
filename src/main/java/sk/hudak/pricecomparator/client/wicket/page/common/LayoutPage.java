@@ -1,13 +1,15 @@
 package sk.hudak.pricecomparator.client.wicket.page.common;
 
 import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.ResourceModel;
 import sk.hudak.pricecomparator.client.wicket.page.eshop.EshopListPage;
 import sk.hudak.pricecomparator.client.wicket.page.group.GroupListPage;
 import sk.hudak.pricecomparator.client.wicket.page.group.GroupOfProductListPage;
 import sk.hudak.pricecomparator.client.wicket.page.group.GroupProductPriceListPage;
 import sk.hudak.pricecomparator.client.wicket.page.product.ProductCreatePage;
 import sk.hudak.pricecomparator.client.wicket.page.product.ProductListPage;
-import sk.hudak.pricecomparator.client.wicket.page.product.ProductPricesPerEshopsPage;
+import sk.hudak.pricecomparator.client.wicket.page.product.ProductPricesPerEshopsListPage;
 import sk.hudak.pricecomparator.client.wicket.page.productineshop.ProductInEshopCreatePage;
 import sk.hudak.pricecomparator.client.wicket.page.productineshop.ProductListPerEshopPage;
 
@@ -40,7 +42,7 @@ public class LayoutPage extends BasicPage {
         Link<Void> productPricesPerEshops = new Link<Void>("productPricesPerEshops") {
             @Override
             public void onClick() {
-                setResponsePage(ProductPricesPerEshopsPage.class);
+                setResponsePage(ProductPricesPerEshopsListPage.class);
             }
         };
 
@@ -95,5 +97,11 @@ public class LayoutPage extends BasicPage {
     public boolean isVersioned() {
         return false;
     }
+
+    @Override
+    protected IModel<String> getTitleModel() {
+        return new ResourceModel(getClass().getSimpleName() + ".title");
+    }
+
 
 }

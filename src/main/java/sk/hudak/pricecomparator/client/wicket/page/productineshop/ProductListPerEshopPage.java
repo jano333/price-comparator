@@ -1,23 +1,14 @@
 package sk.hudak.pricecomparator.client.wicket.page.productineshop;
 
-import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.ResourceModel;
-import sk.hudak.pricecomparator.client.wicket.page.common.LayoutPage;
+import sk.hudak.pricecomparator.client.wicket.page.TableWithFilterPage;
 import sk.hudak.pricecomparator.client.wicket.page.productineshop.components.ProductListPerEshopTable;
 
 /**
  * Created by jan on 13. 3. 2016.
  */
-public class ProductListPerEshopPage extends LayoutPage {
+public class ProductListPerEshopPage extends TableWithFilterPage {
 
     public ProductListPerEshopPage() {
         add(new ProductListPerEshopTable("table"));
     }
-
-    @Override
-    protected IModel<String> getTitleModel() {
-        //TODO
-        return new ResourceModel("paymentHistory.title");
-    }
-
 }
