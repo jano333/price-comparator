@@ -98,6 +98,8 @@ public class GroupOfProductDao extends JefDao<GroupOfProductEntity> {
         crit.setProjection(Projections.property(GroupOfProductFindEntity.AT_PRODUCT_ID));
         List<Long> productInGroupIdList = crit.list();
 
+        //TODO metro pre lovelu mi nedava do zoznamu cien produktov pre skupinu a neviem preco.l...
+
 
         List<ProductInEshopEntity> result = productInEshopDao.findProductsInEshopByProductsIds(productInGroupIdList,
                 ProductInEshopEntity.AT_PRICE_FOR_UNIT);

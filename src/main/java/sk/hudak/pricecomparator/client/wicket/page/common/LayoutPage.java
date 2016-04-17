@@ -4,6 +4,7 @@ import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import sk.hudak.pricecomparator.client.wicket.page.eshop.EshopListPage;
+import sk.hudak.pricecomparator.client.wicket.page.group.GroupAddingProductPage;
 import sk.hudak.pricecomparator.client.wicket.page.group.GroupListPage;
 import sk.hudak.pricecomparator.client.wicket.page.group.GroupOfProductListPage;
 import sk.hudak.pricecomparator.client.wicket.page.group.GroupProductPriceListPage;
@@ -88,7 +89,13 @@ public class LayoutPage extends BasicPage {
                 setResponsePage(GroupProductPriceListPage.class);
             }
         };
-        add(groupList, groupProductList, groupProductPriceList);
+        Link<Void> groupAddingProduct = new Link<Void>("groupAddingProduct") {
+            @Override
+            public void onClick() {
+                setResponsePage(GroupAddingProductPage.class);
+            }
+        };
+        add(groupList, groupProductList, groupProductPriceList, groupAddingProduct);
 
     }
 

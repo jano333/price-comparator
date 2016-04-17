@@ -5,10 +5,8 @@ import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
-import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.PropertyModel;
-import org.apache.wicket.model.ResourceModel;
 import sk.hudak.pricecomparator.client.wicket.PriceComparatorApplication;
 import sk.hudak.pricecomparator.client.wicket.page.CreatePageMarker;
 import sk.hudak.pricecomparator.client.wicket.page.common.LayoutPage;
@@ -84,11 +82,6 @@ public class ProductInEshopCreatePage extends LayoutPage implements CreatePageMa
                 new PropertyModel<String>(createDto, ProductInEshopCreateDto.AT_ESHOP_PRODUCT_PAGE));
         productEshopPageUrl.setRequired(true);
         form.add(productEshopPageUrl);
-    }
-
-    @Override
-    protected IModel<String> getTitleModel() {
-        return new ResourceModel("ProductInEshopCreatePage.title");
     }
 
     public ProductIdNameDto getSelectedProduct() {

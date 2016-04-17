@@ -7,7 +7,7 @@ import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
-import sk.hudak.pricecomparator.client.ServiceLocator;
+import sk.hudak.pricecomparator.client.wicket.PriceComparatorApplication;
 import sk.hudak.pricecomparator.client.wicket.page.CreatePageMarker;
 import sk.hudak.pricecomparator.client.wicket.page.common.LayoutPage;
 import sk.hudak.pricecomparator.middle.canonical.Unit;
@@ -31,7 +31,7 @@ public class ProductCreatePage extends LayoutPage implements CreatePageMarker {
             @Override
             protected void onSubmit() {
                 try {
-                    Long productId = ServiceLocator.getService().createProduct(createDto);
+                    PriceComparatorApplication.getApi().createProduct(createDto);
 
                     createDto = new ProductCreateDto();
                     setResponsePage(ProductListPage.class);

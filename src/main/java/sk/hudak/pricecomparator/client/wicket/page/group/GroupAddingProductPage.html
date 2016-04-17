@@ -1,0 +1,49 @@
+<html xmlns:wicket="http://wicket.apache.org">
+<wicket:extend>
+
+    <!-- PAGE NAVIGATOR-->
+    <ol class="breadcrumb">
+        <li><a href="#">Skupina produktov</a></li>
+        <li class="active">Pridanie produktu do skupiny</li>
+    </ol>
+
+    <div wicket:id="feedback"></div>
+
+    <form role="form" wicket:id="form">
+        <div class="form-group row">
+            <label for="skupina" class="col-sm-2 form-control-label text-right">Skupina:</label>
+
+            <div class="col-sm-10">
+                <select wicket:id="skupina" id="skupina" class="form-control">
+                    <option>Tesco</option>
+                    <option>Metro</option>
+                    <option>Feedo</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="product" class="col-sm-2 form-control-label text-right">Produkt:</label>
+
+            <div class="col-sm-10">
+                <select wicket:id="product" id="product" class="form-control">
+                    <option>NUtrilon</option>
+                    <option>Maslo</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Uložiť</button>
+                <button type="button" class="btn btn-default">Zavrieť</button>
+            </div>
+        </div>
+
+
+    </form>
+
+</wicket:extend>
+
+</html>
