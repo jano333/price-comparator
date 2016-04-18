@@ -8,6 +8,9 @@ import java.util.List;
  * Created by jan on 3. 11. 2015.
  */
 public class GroupOfProductCreateDto implements Serializable {
+
+    public static final String AT_NAME = "name";
+
     //nazov
     private String name;
     // zoznam produktov v danej grupe

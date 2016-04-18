@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 /**
  * Created by jan on 24. 10. 2015.
  */
+@Deprecated
 public class EshopCreatePage extends JPanel  {
 
     private JTextField tfName;

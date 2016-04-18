@@ -26,7 +26,6 @@ public class ProductCreatePage extends LayoutPage implements CreatePageMarker {
 
         add(new FeedbackPanel("feedback"));
 
-        // filter
         Form<Void> form = new Form<Void>("form") {
             @Override
             protected void onSubmit() {
@@ -37,6 +36,7 @@ public class ProductCreatePage extends LayoutPage implements CreatePageMarker {
                     setResponsePage(ProductListPage.class);
 
                 } catch (Exception e) {
+                    //TODO
                     e.printStackTrace();
                 }
 
