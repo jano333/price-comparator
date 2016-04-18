@@ -59,7 +59,8 @@
             <tr>
                 <th>Obrázok</th>
                 <th>Názov</th>
-                <th>Cena</th>
+                <th>Cena za balenie</th>
+                <th>Cena za 1 kus</th>
                 <th>Cena za jednotku</th>
                 <th>Akcia</th>
                 <th>Platnosť akcie</th>
@@ -70,9 +71,10 @@
             <wicket:container wicket:id="list">
 
                 <tr wicket:id="tr">
-                    <td class="datum"><img wicket:id="image"/></td>
-                    <td class="datum"><span wicket:id="productName"></span></td>
+                    <td class="datum"><a wicket:id="productImageLink"><img wicket:id="image"/></a></td>
+                    <td class="datum"><a wicket:id="productName"></a></td>
                     <td class="datum"><span wicket:id="priceForPackage"></span></td>
+                    <td class="datum"><span wicket:id="priceForOneItemInPackage"></span></td>
                     <td class="datum"><span wicket:id="priceForUnit"></span></td>
                     <td class="datum"><span wicket:id="productAction"></span></td>
                     <td class="datum"><span wicket:id="actionValidTo"></span></td>

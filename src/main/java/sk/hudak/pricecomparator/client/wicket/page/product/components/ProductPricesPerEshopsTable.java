@@ -19,6 +19,7 @@ import sk.hudak.pricecomparator.middle.to.ProductIdNameDto;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopPriceResultListDto;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -34,15 +35,18 @@ public class ProductPricesPerEshopsTable extends Panel {
     public ProductPricesPerEshopsTable(String id) {
         super(id);
 
-
-//
         IModel<PageList<ProductInEshopPriceResultListDto>> tableModel = new LoadableDetachableModel<PageList<ProductInEshopPriceResultListDto>>() {
 
             private static final long serialVersionUID = 1L;
 
             @Override
             protected PageList<ProductInEshopPriceResultListDto> load() {
-                return PriceComparatorApplication.getApi().findPriceInfoInEshopsForProduct(filter);
+                if (filter.getProductId() != null) {
+                    return PriceComparatorApplication.getApi().findPriceInfoInEshopsForProduct(filter);
+                } else {
+                    return new PageList<>(Collections.EMPTY_LIST, 0, 0);
+                }
+
             }
         };
 
@@ -50,8 +54,9 @@ public class ProductPricesPerEshopsTable extends Panel {
         Form<Void> filterForm = new Form<Void>("filterForm") {
             @Override
             protected void onSubmit() {
-                //FIXME skusit inak poriesit
-                filter.setProductId(selectedProduct.getId());
+                if (selectedProduct != null) {
+                    filter.setProductId(selectedProduct.getId());
+                }
             }
         };
         add(filterForm);

@@ -1,9 +1,11 @@
 package sk.hudak.pricecomparator.client.wicket.page.productineshop.components;
 
+import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.*;
 import org.apache.wicket.markup.html.image.ContextImage;
+import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
@@ -107,17 +109,38 @@ public class ProductListPerEshopTable extends Panel {
             protected void populateItem(IdListView.IdListItem<ProductInEshopPriceInfoListDto> item) {
                 IModel<ProductInEshopPriceInfoListDto> product = item.getModel();
 
-                ContextImage image = WU.productImage(product.getObject().getPictureFullPath());
-                Label productName = new Label("productName", new PropertyModel<String>(product, ProductInEshopPriceInfoListDto.AT_PRODUCT_NAME));
-                Label priceForPackage = new Label("priceForPackage", new PropertyModel<String>(product, ProductInEshopPriceInfoListDto.AT_PRICE_FOR_PACKAGE));
+                ExternalLink productImageLink = new ExternalLink("productImageLink",
+                        new PropertyModel<String>(product, ProductInEshopPriceInfoListDto.AT_PRODUCT_ESHOP_PAGE));
+                ContextImage productImage = WU.productImage(product.getObject().getPictureFullPath());
+                productImageLink.add(productImage);
+
+//                Label productName = new Label("productName",
+//                        new PropertyModel<String>(product, ProductInEshopPriceInfoListDto.AT_PRODUCT_NAME));
+
+                ExternalLink productName = new ExternalLink("productName",
+                        new PropertyModel<String>(product, ProductInEshopPriceInfoListDto.AT_PRODUCT_ESHOP_PAGE),
+                        new PropertyModel<String>(product, ProductInEshopPriceInfoListDto.AT_PRODUCT_NAME)
+                );
+                productName.add(new AttributeAppender("target", "_blank"));
+
+
+                Label priceForPackage = new Label("priceForPackage",
+                        new PropertyModel<String>(product, ProductInEshopPriceInfoListDto.AT_PRICE_FOR_PACKAGE));
+
+                Label priceForOneItemInPackage = new Label("priceForOneItemInPackage",
+                        new PropertyModel<String>(product, ProductInEshopPriceInfoListDto.AT_PRICE_FOR_ONE_ITEM_IN_PACKAGE));
+
                 Label priceForUnit = new Label("priceForUnit", new PropertyModel<String>(product, ProductInEshopPriceInfoListDto.AT_PRICE_FOR_UNIT));
+
                 Label productAction = new Label("productAction", new PropertyModel<String>(product, ProductInEshopPriceInfoListDto.AT_PRODUCT_ACTION));
+
                 Label actionValidTo = new Label("actionValidTo", new PropertyModel<String>(product, ProductInEshopPriceInfoListDto.AT_ACTION_VALID_TO));
+
                 Label lastUpdatedPrice = new Label("lastUpdatedPrice", new PropertyModel<String>(product, ProductInEshopPriceInfoListDto.AT_LAST_UPDATED_PRICE));
 
                 WebMarkupContainer tr = new WebMarkupContainer("tr");
-                tr.add(image, productName,
-                        priceForPackage, priceForUnit,
+                tr.add(productImageLink, productName,
+                        priceForPackage, priceForOneItemInPackage, priceForUnit,
                         productAction, actionValidTo,
                         lastUpdatedPrice);
 

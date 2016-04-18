@@ -18,6 +18,7 @@ public class ProductInEshopPriceInfoListDto implements Serializable {
     public static final String AT_PRODUCT_ACTION = "productAction";
     public static final String AT_ACTION_VALID_TO = "actionValidTo";
     public static final String AT_LAST_UPDATED_PRICE = "lastUpdatedPrice";
+    public static final String AT_PRODUCT_ESHOP_PAGE = "productEshopPage";
 
     // product in eshop
     private Long id;
@@ -31,6 +32,7 @@ public class ProductInEshopPriceInfoListDto implements Serializable {
     private ProductAction productAction;
     private Date actionValidTo;
     private Date lastUpdatedPrice;
+
     private String productEshopPage;
 
     public Long getId() {

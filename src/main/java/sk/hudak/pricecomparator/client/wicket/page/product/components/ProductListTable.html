@@ -46,6 +46,7 @@
             <tr>
                 <th>Obrázok</th>
                 <th>Názov</th>
+                <th style="width: 50px"></th>
             </tr>
             </thead>
 
@@ -54,6 +55,24 @@
                 <tr wicket:id="tr">
                     <td class="datum"><img wicket:id="image"/></td>
                     <td class="datum"><span wicket:id="name"></span></td>
+                    <td>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li class="disabled"><a href="#">Upraviť</a></li>
+                                <li class="disabled"><a href="#">Zmazať</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li class="disabled"><a href="#">Zoznam eshopov</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li class="disabled"><a href="#">Pridat do eshopu</a></li>
+                                <li class="disabled"><a href="#">Pridat do skupiny</a></li>
+                            </ul>
+                        </div>
+                    </td>
+
                 </tr>
 
             </wicket:container>

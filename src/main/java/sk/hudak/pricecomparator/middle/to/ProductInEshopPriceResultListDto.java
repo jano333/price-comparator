@@ -33,6 +33,7 @@ public class ProductInEshopPriceResultListDto implements Serializable {
     private ProductAction productAction;
     private Date actionValidTo;
     private Date lastUpdatedPrice;
+
     private String productEshopPage;
     private String imagePath;
 
