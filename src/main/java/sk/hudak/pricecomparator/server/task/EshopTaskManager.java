@@ -1,6 +1,6 @@
 package sk.hudak.pricecomparator.server.task;
 
-import sk.hudak.pricecomparator.client.swing.components.TaskManager;
+import sk.hudak.pricecomparator.client.utils.TaskManager;
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
 
 import javax.annotation.PostConstruct;

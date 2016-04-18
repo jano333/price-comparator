@@ -1,8 +1,7 @@
 package sk.hudak.pricecomparator.client.swing;
 
 import sk.hudak.pricecomparator.client.ServiceLocator;
-import sk.hudak.pricecomparator.client.swing.components.PriceComparatorJFrame;
-import sk.hudak.pricecomparator.client.swing.components.TaskManager;
+import sk.hudak.pricecomparator.client.utils.TaskManager;
 import sk.hudak.pricecomparator.server.eshops.tesco.TescoPictureLocalFinder;
 
 import javax.swing.*;
@@ -25,7 +24,7 @@ public class MainSwing {
 
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                new PriceComparatorJFrame(taskManager);
+//                new PriceComparatorJFrame(taskManager);
             }
         });
     }

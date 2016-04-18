@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.client.swing.components;
+package sk.hudak.pricecomparator.client.utils;
 
 import sk.hudak.pricecomparator.client.ServiceLocator;
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
