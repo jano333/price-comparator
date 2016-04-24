@@ -13,6 +13,7 @@ public class EshopEntity extends BasicEntity {
 
     public static final transient String AT_NAME = "name";
     public static final transient String AT_ESHOP_TYPE = "eshopType";
+    public static final transient String AT_HOME_PAGE = "homePage";
 
     @Id
     @Column(name = "ID")

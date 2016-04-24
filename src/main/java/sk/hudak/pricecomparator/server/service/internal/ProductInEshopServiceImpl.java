@@ -116,6 +116,12 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
     }
 
     @Override
+    public List<ProductInEshopPriceInfoListDto> findProductInEshopPriceInfoForEshop(Long eshopId) {
+        List<ProductInEshopEntity> productInEshopEntities = productInEshopDao.old_findProductsInEshop(eshopId);
+        return productInEshopAssembler.transformToListOfProductInEshopPriceInfoListDto(productInEshopEntities);
+    }
+
+    @Override
     public ProductInEshopDto findProductForPriceUpdate(EshopType eshopType) {
         ProductInEshopEntity productInEshop = productInEshopFacade.findProductForPriceUpdate(eshopType);
         return productInEshopAssembler.transformToProductInEshopDto(productInEshop);
@@ -128,26 +134,9 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
     }
 
     @Override
-    public List<ProductInEshopPriceResultListDto> old_findPriceInfoInEshopsForProduct(Long productId) {
-        //FIXME vstup dat finDto aby bola moznost nastavovat filtrovanie, vraciat paging nie list
-        List<ProductInEshopEntity> productInEshopEntities = productInEshopDao.old_findPriceInfoInEshopsForProduct(productId);
-        //FIXME premenovat transform metodu
-        return productInEshopAssembler.transformToListOfProductInEshopEntity(productInEshopEntities);
+    public boolean existProductWithGivenUrl(String productUrl) {
+        return productInEshopFacade.existProductWithGivenUrl(productUrl);
     }
-
-    @Override
-    public List<ProductInEshopPriceInfoListDto> findProductInEshopPriceInfoForEshop(Long eshopId) {
-        List<ProductInEshopEntity> productInEshopEntities = productInEshopDao.old_findProductsInEshop(eshopId);
-        return productInEshopAssembler.transformToListOfProductInEshopPriceInfoListDto(productInEshopEntities);
-    }
-
-    @Override
-    @Deprecated
-    public List<ProductInEshopPriceInfoListDto> old_findProductsInEshopPriceInfo(ProductInEshopFindDto findDto) {
-        List<ProductInEshopEntity> productInEshopEntities = productInEshopDao.old_findProductsInEshop(findDto);
-        return productInEshopAssembler.transformToListOfProductInEshopPriceInfoListDto(productInEshopEntities);
-    }
-
 
     @Override
     public ProductInEshopForPictureDownloadInfoDto findUrlOfProductsInEshopWithoutPicture(EshopType eshopType) {
@@ -163,6 +152,15 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
             }
         }
         return null;
+    }
+
+
+    @Override
+    @Deprecated
+    public List<ProductInEshopPriceInfoListDto> old_findProductsInEshopPriceInfo(ProductInEshopFindDto findDto) {
+        List<ProductInEshopEntity> productInEshopEntities = productInEshopDao.old_findProductsInEshop(findDto);
+        return productInEshopAssembler.transformToListOfProductInEshopPriceInfoListDto(productInEshopEntities);
+    }
 
 //        //TODO impl
 //        ProductInEshopForPictureDownloadInfoDto result = new ProductInEshopForPictureDownloadInfoDto();
@@ -170,6 +168,13 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
 //        result.setProductInEshopUrl("https://www.feedo.sk/2x-lovela-sensitive-5-l-darcek-lovela-avivaz-2l-zadarmo/");
 //
 //        return result;
-    }
+//    }
+
+    //    @Override
+//    public List<ProductInEshopPriceResultListDto> old_findPriceInfoInEshopsForProduct(Long productId) {
+//        //FIXME vstup dat finDto aby bola moznost nastavovat filtrovanie, vraciat paging nie list
+//        List<ProductInEshopEntity> productInEshopEntities = productInEshopDao.old_findPriceInfoInEshopsForProduct(productId);
+//        //FIXME premenovat transform metodu
+//        return productInEshopAssembler.transformToListOfProductInEshopEntity(productInEshopEntities);
 
 }

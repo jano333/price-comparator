@@ -2,6 +2,7 @@ package sk.hudak.pricecomparator.server.dao;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import sk.hudak.jef.JefDao;
 import sk.hudak.jef.PageList;
@@ -63,10 +64,18 @@ public class EshopDao extends JefDao<EshopEntity> {
         return !cr.list().isEmpty();
     }
 
-    @Deprecated
     public List<EshopEntity> findAllEshops() {
         Criteria crit = createCriteria(EshopEntity.class);
         addAscOrder(crit, EshopEntity.AT_NAME);
+        return crit.list();
+    }
+
+    /**
+     * @return home pages csetkych eshopov
+     */
+    public List<String> findAllHomePages() {
+        Criteria crit = createCriteria(EshopEntity.class);
+        crit.setProjection(Projections.property(EshopEntity.AT_HOME_PAGE));
         return crit.list();
     }
 }

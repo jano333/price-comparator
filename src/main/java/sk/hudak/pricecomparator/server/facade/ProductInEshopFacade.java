@@ -102,4 +102,8 @@ public class ProductInEshopFacade extends JefFacade {
 
 
     }
+
+    public boolean existProductWithGivenUrl(String productUrl) {
+        return productInEshopDao.existProductWithGivenUrl(productUrl);
+    }
 }

@@ -55,6 +55,15 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
 
     @Override
     @Transactional(readOnly = true)
+    public List<EshopHomePageInfoDto> findAllHomePages() {
+        logger.debug(">> findAllHomePages");
+        List<EshopHomePageInfoDto> result = eshopService.findAllHomePages();
+        logger.debug("<< findAllHomePages");
+        return result;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public EshopDto getEshopById(Long eshopId) {
         logger.debug(">> getEshopById");
         EshopDto result = eshopService.getEshopById(eshopId);
@@ -236,14 +245,6 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
         logger.debug("<< updateProductInEshopPrice");
     }
 
-    @Override
-    @Transactional(readOnly = true)
-    public List<ProductInEshopPriceResultListDto> old_findPriceInfoInEshopsForProduct(Long productId) {
-        logger.debug(">> findPriceInfoInEshopsForProduct");
-        List<ProductInEshopPriceResultListDto> result = productInEshopService.old_findPriceInfoInEshopsForProduct(productId);
-        logger.debug("<< findPriceInfoInEshopsForProduct");
-        return result;
-    }
 
     @Override
     @Transactional(readOnly = true)
@@ -254,7 +255,6 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
         return result;
     }
 
-
     @Override
     @Transactional(readOnly = true)
     public List<ProductInEshopPriceInfoListDto> old_findProductsInEshopPriceInfo(ProductInEshopFindDto findDto) {
@@ -263,6 +263,7 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
         logger.debug("<< findProductsInEshopPriceInfo");
         return result;
     }
+
 
     @Override
     @Transactional(readOnly = true)
@@ -291,8 +292,8 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
         return result;
     }
 
-
     // --------- GROUP_OF_PRODUCTS ------------
+
 
     @Override
     @Transactional
@@ -391,6 +392,25 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
         logger.debug("<< findPriceInfoInEshopsForGroup");
         return result;
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public boolean existProductWithGivenUrl(String productUrl) {
+        logger.debug(">> existProductWithGivenUrl");
+        boolean result = productInEshopService.existProductWithGivenUrl(productUrl);
+        logger.debug("<< existProductWithGivenUrl");
+        return result;
+    }
+
+
+    //    @Override
+//    @Transactional(readOnly = true)
+//    public List<ProductInEshopPriceResultListDto> old_findPriceInfoInEshopsForProduct(Long productId) {
+//        logger.debug(">> findPriceInfoInEshopsForProduct");
+//        List<ProductInEshopPriceResultListDto> result = productInEshopService.old_findPriceInfoInEshopsForProduct(productId);
+//        logger.debug("<< findPriceInfoInEshopsForProduct");
+//        return result;
+//    }
 
 
 }

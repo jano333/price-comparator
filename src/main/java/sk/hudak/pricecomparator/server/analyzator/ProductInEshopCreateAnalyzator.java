@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.server.service;
+package sk.hudak.pricecomparator.server.analyzator;
 
 import org.apache.commons.lang3.StringUtils;
 import sk.hudak.pricecomparator.middle.canonical.Unit;
@@ -13,13 +13,13 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+//import javax.inject.Named;
+
 /**
  * Created by hudak on 25.2.2016.
  */
 @Named
 public class ProductInEshopCreateAnalyzator {
-
-    public static final int DEFAULT_COUNT_OF_ITEM_IN_PACKAGE = 1;
 
     public static void main(String[] args) {
 //        String productName = "Danone Fantasia 15 Sladený jogurt a jahody 22 g";
@@ -27,13 +27,13 @@ public class ProductInEshopCreateAnalyzator {
 //        String productName = "NUTRILON 2 ProNutra (350g) - dojčenské mlieko";
 //        String productName = "Vinea Biela nealkoholický hroznový nápoj sýtený 1,5 l";
 //        String productName = "Vinea Biela nealkoholický hroznový nápoj sýtený 15 l";
-//        String productName = "Vinea Biela nealkoholický hroznový nápoj sýtený 15 l";
 //        String productName = "Vinea Biela nealkoholický hroznový nápoj sýtený 1.5 l";
 //        String productName = "Pilsner Urquell Pivo svetlý ležiak 500 ml";
-//        String productName = "Hubert De Luxe Akostné aromatické šumivé víno biele sladké doux 0,75 l";
-//        String productName = "Tesco Čerstvé vajcia L 10 ks";
 //        String productName = "Karička Klasik MAXI 16 ks 250 g";
-        String productName = "6x NUTRILON 2 ProNutra (800g) - dojčenské mlieko";
+//        String productName = "6x NUTRILON 2 ProNutra (800g) - dojčenské mlieko";
+//        String productName = "Bepanthen Care Masť 1x100 g";
+//        String productName = "Tesco Čerstvé vajcia L 10 ks";
+        String productName = "Pampers Premium Care Plienky 3 Midi 60 ks";
 
 
         System.out.println(new ProductInEshopCreateAnalyzator().analyzeFromName(productName));
@@ -61,7 +61,8 @@ public class ProductInEshopCreateAnalyzator {
 
         kusUnitRegex.add("\\d+ ?ks");
 
-        countOfItemRegex.add("\\d+");
+        countOfItemRegex.add("\\d+ ?x");
+        countOfItemRegex.add("\\d+ ?ks");
     }
 
     public ProductAnalyzatorDto analyzeFromName(String productName) {
@@ -75,43 +76,53 @@ public class ProductInEshopCreateAnalyzator {
         return new ProductAnalyzatorDto()
                 .setUnit(unit)
                 .setCountOfUnit(countOfUnit)
-                .setCountOfItemInPackage(analyzePocetJednotiek(productName, unitDataResult));
+                .setCountOfItemInPackage(analyzeCountOfItemInPackage(productName, unitDataResult));
     }
 
-    private int analyzePocetJednotiek(String productName, UnitDataResult unitDataResult) {
-        if (unitDataResult == null) {
-            return DEFAULT_COUNT_OF_ITEM_IN_PACKAGE;
-        }
-
-        // TODO doplnit nech prioritne berie ak je naprcislo a napr. 6x alebo 4 ks ale nesmie to byt nieco
-        // co uz je v count of unit
-        // "6x NUTRILON 2 ProNutra (800g) - dojčenské mlieko"
-        // "Karička klasik 8 ks 125 g"
-
-        Set<String> numberValues = new HashSet<>();
+    private Integer analyzeCountOfItemInPackage(String productName, UnitDataResult unitDataResult) {
+        // pozor vstup unitDataResult moze byt null
         for (String countOfItemRegex : ProductInEshopCreateAnalyzator.countOfItemRegex) {
             Matcher matcher = Pattern.compile(countOfItemRegex).matcher(productName);
-            while (matcher.find()) {
-                numberValues.add(matcher.group());
+            if (matcher.find()) {
+                StringBuilder sb = new StringBuilder(matcher.group());
+                sb.deleteCharAt(sb.length() - 1);
+                if (-1 != sb.indexOf("k")) {
+                    sb.deleteCharAt(sb.length() - 1);
+                }
+
+
+                String value = sb.toString().trim();
+                boolean areSame = isCountOfItemInPackageSameAsCountOfUnit(value, unitDataResult);
+                if (areSame) {
+                    return null;
+                }
+
+                return Integer.valueOf(value);
             }
         }
-        if (numberValues.isEmpty()) {
-            return DEFAULT_COUNT_OF_ITEM_IN_PACKAGE;
+        return null;
+    }
+
+    private boolean isCountOfItemInPackageSameAsCountOfUnit(String value, UnitDataResult unitDataResult) {
+        if (unitDataResult == null) {
+            return false;
         }
-        String countOfUnit = unitDataResult.countOfUnit;
-        if (countOfUnit != null) {
-            numberValues.remove(countOfUnit);
+        // inba jednotka kus
+        if (!UnitInternal.KUS.equals(unitDataResult.unitInternal)) {
+            return false;
         }
-        if (numberValues.isEmpty()) {
-            return DEFAULT_COUNT_OF_ITEM_IN_PACKAGE;
+        if (unitDataResult.countOfUnit == null || unitDataResult.countOfUnit.isEmpty()) {
+            return false;
         }
-        return Integer.parseInt(numberValues.iterator().next());
+        return unitDataResult.countOfUnit.equalsIgnoreCase(value);
     }
 
     private BigDecimal convertToCountOfUnit(UnitDataResult unitDataResult) {
         if (unitDataResult.unitInternal == null || StringUtils.isBlank(unitDataResult.countOfUnit)) {
             return null;
         }
+
+
         switch (unitDataResult.unitInternal) {
             case GRAM:
                 return UnitConverterUtils.convertToKilogram(unitDataResult.countOfUnit);
@@ -130,6 +141,14 @@ public class ProductInEshopCreateAnalyzator {
     }
 
 
+    private String replaceCommaWithDot(String str) {
+        if (str == null || str.trim().isEmpty()) {
+            return str;
+        }
+        return str.replace(",", ".");
+
+    }
+
     private UnitDataResult analyzeUnitAndCountOfUnit(String productName) {
 
         // GRAM
@@ -143,7 +162,7 @@ public class ProductInEshopCreateAnalyzator {
 
                 UnitDataResult unitDataResult = new UnitDataResult();
                 unitDataResult.unitInternal = UnitInternal.GRAM;
-                unitDataResult.countOfUnit = countOfUnit;
+                unitDataResult.countOfUnit = replaceCommaWithDot(countOfUnit);
                 return unitDataResult;
             }
         }
@@ -160,7 +179,8 @@ public class ProductInEshopCreateAnalyzator {
 
                 UnitDataResult unitDataResult = new UnitDataResult();
                 unitDataResult.unitInternal = UnitInternal.KILOGRAM;
-                unitDataResult.countOfUnit = countOfUnit;
+                unitDataResult.countOfUnit = replaceCommaWithDot(countOfUnit);
+                ;
                 return unitDataResult;
             }
         }
@@ -177,7 +197,8 @@ public class ProductInEshopCreateAnalyzator {
 
                 UnitDataResult unitDataResult = new UnitDataResult();
                 unitDataResult.unitInternal = UnitInternal.MILILITER;
-                unitDataResult.countOfUnit = countOfUnit;
+                unitDataResult.countOfUnit = replaceCommaWithDot(countOfUnit);
+                ;
                 return unitDataResult;
             }
         }
@@ -193,7 +214,8 @@ public class ProductInEshopCreateAnalyzator {
 
                 UnitDataResult unitDataResult = new UnitDataResult();
                 unitDataResult.unitInternal = UnitInternal.LITER;
-                unitDataResult.countOfUnit = countOfUnit;
+                unitDataResult.countOfUnit = replaceCommaWithDot(countOfUnit);
+                ;
                 return unitDataResult;
             }
         }
@@ -210,7 +232,8 @@ public class ProductInEshopCreateAnalyzator {
 
                 UnitDataResult unitDataResult = new UnitDataResult();
                 unitDataResult.unitInternal = UnitInternal.KUS;
-                unitDataResult.countOfUnit = countOfUnit;
+                unitDataResult.countOfUnit = replaceCommaWithDot(countOfUnit);
+                ;
                 return unitDataResult;
             }
         }

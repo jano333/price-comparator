@@ -11,7 +11,7 @@ public class ProductAnalyzatorDto {
 
     private Unit unit;
     private BigDecimal countOfUnit;
-    private int countOfItemInPackage;
+    private Integer countOfItemInPackage;
 
     public BigDecimal getCountOfUnit() {
         return countOfUnit;
@@ -31,11 +31,11 @@ public class ProductAnalyzatorDto {
         return this;
     }
 
-    public int getCountOfItemInPackage() {
+    public Integer getCountOfItemInPackage() {
         return countOfItemInPackage;
     }
 
-    public ProductAnalyzatorDto setCountOfItemInPackage(int countOfItemInPackage) {
+    public ProductAnalyzatorDto setCountOfItemInPackage(Integer countOfItemInPackage) {
         this.countOfItemInPackage = countOfItemInPackage;
         return this;
     }

@@ -18,6 +18,7 @@ public class ProductInEshopEntity extends BasicEntity {
     public static final transient String AT_LAST_UPDATED_PRICE = "lastUpdatedPrice";
     public static final transient String AT_PRICE_FOR_UNIT = "priceForUnit";
     public static final transient String AT_PRODUCT_ACTION = "productAction";
+    public static final transient String AT_PRODUCT_PAGE_IN_ESHOP = "productPageInEshop";
 
     //TODO
     // urobit generovanie podla http://stackoverflow.com/questions/27314165/generate-ddl-script-at-maven-build-with-hibernate4-jpa-2-1

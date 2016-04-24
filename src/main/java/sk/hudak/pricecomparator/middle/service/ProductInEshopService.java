@@ -90,17 +90,18 @@ public interface ProductInEshopService {
     @Deprecated
     List<ProductInEshopPriceInfoListDto> old_findProductsInEshopPriceInfo(ProductInEshopFindDto findDto);
 
-    /**
-     * Pre produkt <code>productId</code>  vyhlada ceny a dalsie informacie vo vsetkych ehopoch,
-     * ktore poskytuju dany produkt. <br/>
-     * Vysledok je sortovany od najnizsej ceny za jednotku po najvyssiu.
-     *
-     * @param productId id produktu
-     * @return zoznam informacii o produkte v jednotlivych eshopoch
-     * TODO pouzivat paging
-     */
-    @Deprecated
-    List<ProductInEshopPriceResultListDto> old_findPriceInfoInEshopsForProduct(Long productId);
+//    /**
+//     * Pre produkt <code>productId</code>  vyhlada ceny a dalsie informacie vo vsetkych ehopoch,
+//     * ktore poskytuju dany produkt. <br/>
+//     * Vysledok je sortovany od najnizsej ceny za jednotku po najvyssiu.
+//     *
+//     * @param productId id produktu
+//     * @return zoznam informacii o produkte v jednotlivych eshopoch
+//     * TODO pouzivat paging
+//     */
+//    @Deprecated
+//    List<ProductInEshopPriceResultListDto> old_findPriceInfoInEshopsForProduct(Long productId);
 
 
+    boolean existProductWithGivenUrl(String productUrl);
 }

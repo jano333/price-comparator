@@ -12,14 +12,16 @@ public interface EshopService {
 
     PageList<EshopListDto> findEshops(EshopFindDto filter);
 
+    List<EshopHomePageInfoDto> findAllHomePages();
+
     //TODO prejset
 
     Long createEshop(EshopCreateDto dto);
 
     EshopDto getEshopById(Long eshopId);
 
-    List<EshopIdNameDto> findAllEshopsForSelection();
 
+    List<EshopIdNameDto> findAllEshopsForSelection();
 
     @Deprecated
     List<EshopListDto> findAllEshops();

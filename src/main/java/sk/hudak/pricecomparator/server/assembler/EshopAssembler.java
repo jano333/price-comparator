@@ -2,6 +2,7 @@ package sk.hudak.pricecomparator.server.assembler;
 
 import sk.hudak.jef.PageList;
 import sk.hudak.pricecomparator.middle.to.EshopDto;
+import sk.hudak.pricecomparator.middle.to.EshopHomePageInfoDto;
 import sk.hudak.pricecomparator.middle.to.EshopIdNameDto;
 import sk.hudak.pricecomparator.middle.to.EshopListDto;
 import sk.hudak.pricecomparator.server.model.EshopEntity;
@@ -80,5 +81,20 @@ public class EshopAssembler {
             versions.add(transformToEshopListDto(entity));
         }
         return new PageList<>(versions, eshops.getCurrentPage(), eshops.getAllPageCount());
+    }
+
+    public List<EshopHomePageInfoDto> transformToListOfEshopHomePageInfoDto(List<EshopEntity> allEshops) {
+        List<EshopHomePageInfoDto> versions = new ArrayList<>(allEshops.size());
+        for (EshopEntity entity : allEshops) {
+            versions.add(transformToEshopHomePageInfoDto(entity));
+        }
+        return versions;
+    }
+
+    private EshopHomePageInfoDto transformToEshopHomePageInfoDto(EshopEntity entity) {
+        EshopHomePageInfoDto dto = new EshopHomePageInfoDto();
+        dto.setEshopType(entity.getEshopType());
+        dto.setHomePage(entity.getHomePage());
+        return dto;
     }
 }

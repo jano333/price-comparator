@@ -32,6 +32,11 @@ public class EshopServiceImpl implements EshopService {
     }
 
     @Override
+    public List<EshopHomePageInfoDto> findAllHomePages() {
+        return eshopAssembler.transformToListOfEshopHomePageInfoDto(eshopDao.findAllEshops());
+    }
+
+    @Override
     public Long createEshop(EshopCreateDto dto) {
         return eshopFacade.createEshop(dto);
     }
