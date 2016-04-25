@@ -3,7 +3,7 @@ package sk.hudak.pricecomparator.server.analyzator;
 import org.apache.commons.lang3.StringUtils;
 import sk.hudak.pricecomparator.middle.canonical.Unit;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorException;
-import sk.hudak.pricecomparator.middle.to.ProductAnalyzatorDto;
+import sk.hudak.pricecomparator.middle.to.internal.ProductAnalyzatorResultDto;
 import sk.hudak.pricecomparator.middle.utils.UnitConverterUtils;
 
 import javax.inject.Named;
@@ -13,7 +13,6 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-//import javax.inject.Named;
 
 /**
  * Created by hudak on 25.2.2016.
@@ -21,6 +20,8 @@ import java.util.regex.Pattern;
 @Named
 public class ProductInEshopCreateAnalyzator {
 
+    //TODO remove
+    @Deprecated
     public static void main(String[] args) {
 //        String productName = "Danone Fantasia 15 Sladený jogurt a jahody 22 g";
 //        String productName = "Danone Fantasia Sladený jogurt a jahody 122 kg";
@@ -65,7 +66,7 @@ public class ProductInEshopCreateAnalyzator {
         countOfItemRegex.add("\\d+ ?ks");
     }
 
-    public ProductAnalyzatorDto analyzeFromName(String productName) {
+    public ProductAnalyzatorResultDto analyzeFromName(String productName) {
         UnitDataResult unitDataResult = analyzeUnitAndCountOfUnit(productName);
         Unit unit = null;
         BigDecimal countOfUnit = null;
@@ -73,7 +74,7 @@ public class ProductInEshopCreateAnalyzator {
             unit = convertToUnit(unitDataResult.unitInternal);
             countOfUnit = convertToCountOfUnit(unitDataResult);
         }
-        return new ProductAnalyzatorDto()
+        return new ProductAnalyzatorResultDto()
                 .setUnit(unit)
                 .setCountOfUnit(countOfUnit)
                 .setCountOfItemInPackage(analyzeCountOfItemInPackage(productName, unitDataResult));
@@ -150,6 +151,8 @@ public class ProductInEshopCreateAnalyzator {
     }
 
     private UnitDataResult analyzeUnitAndCountOfUnit(String productName) {
+
+        //TODO davka impl
 
         // GRAM
         for (String gramRegex : gramUnitRegex) {

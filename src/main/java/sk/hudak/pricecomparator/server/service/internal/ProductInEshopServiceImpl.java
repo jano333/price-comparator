@@ -2,8 +2,12 @@ package sk.hudak.pricecomparator.server.service.internal;
 
 import sk.hudak.jef.PageList;
 import sk.hudak.pricecomparator.middle.EshopType;
+import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
 import sk.hudak.pricecomparator.middle.service.ProductInEshopService;
 import sk.hudak.pricecomparator.middle.to.*;
+import sk.hudak.pricecomparator.middle.to.internal.StepOneRequestDto;
+import sk.hudak.pricecomparator.middle.to.internal.StepOneResponseDto;
+import sk.hudak.pricecomparator.server.analyzator.StepOneProcessor;
 import sk.hudak.pricecomparator.server.assembler.EshopAssembler;
 import sk.hudak.pricecomparator.server.assembler.ProductInEshopAssembler;
 import sk.hudak.pricecomparator.server.core.JefValidator;
@@ -40,6 +44,9 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
 
     @Inject
     private JefValidator val;
+
+    @Inject
+    private StepOneProcessor stepOneProcessor;
 
     @Override
     public PageList<ProductInEshopPriceInfoListDto> findProductsInEshopPriceInfo(ProductInEshopFindDto findDto) {
@@ -136,6 +143,11 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
     @Override
     public boolean existProductWithGivenUrl(String productUrl) {
         return productInEshopFacade.existProductWithGivenUrl(productUrl);
+    }
+
+    @Override
+    public StepOneResponseDto analyzeProductUrl(StepOneRequestDto stepOneRequestDto) throws PriceComparatorBusinesException {
+        return stepOneProcessor.process(stepOneRequestDto);
     }
 
     @Override

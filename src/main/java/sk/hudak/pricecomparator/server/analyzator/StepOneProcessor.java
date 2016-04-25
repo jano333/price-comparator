@@ -5,9 +5,9 @@ import sk.hudak.pricecomparator.middle.EshopType;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorException;
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
-import sk.hudak.pricecomparator.middle.to.ProductAnalyzatorDto;
-import sk.hudak.pricecomparator.middle.to.StepOneRequestDto;
-import sk.hudak.pricecomparator.middle.to.StepOneResponseDto;
+import sk.hudak.pricecomparator.middle.to.internal.ProductAnalyzatorResultDto;
+import sk.hudak.pricecomparator.middle.to.internal.StepOneRequestDto;
+import sk.hudak.pricecomparator.middle.to.internal.StepOneResponseDto;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -27,6 +27,8 @@ public class StepOneProcessor {
     @Inject
     private ProductNameDownloader productNameDownloader;
 
+    @Inject
+    private ProductInEshopCreateAnalyzator productDataAnalyzator;
 
     public StepOneResponseDto process(StepOneRequestDto requestDto) throws PriceComparatorBusinesException {
         // validacia
@@ -48,22 +50,20 @@ public class StepOneProcessor {
         }
         // 3. stiahnutie nazvu produktu z danej url...
         String productName = productNameDownloader.downloadProductName(eshopType, productUrl);
-
+        if (StringUtils.isBlank(productName)) {
+            throw new PriceComparatorBusinesException("Nepodarilo sa stiahnut nazov produktu.");
+        }
         // 4. analyza atributov
-        ProductAnalyzatorDto productAnalyzatorDto = new ProductInEshopCreateAnalyzator().analyzeFromName(productName);
+        ProductAnalyzatorResultDto productAnalyzatorResultDto = productDataAnalyzator.analyzeFromName(productName);
 
+        // vyskladanie odopovede
         StepOneResponseDto responseDto = new StepOneResponseDto();
         responseDto.setEshopType(eshopType);
         responseDto.setProductName(productName);
-        responseDto.setUnit(productAnalyzatorDto.getUnit());
-        responseDto.setCountOfUnit(productAnalyzatorDto.getCountOfUnit());
-        responseDto.setCountOfItemInPackage(productAnalyzatorDto.getCountOfItemInPackage());
+        responseDto.setUnit(productAnalyzatorResultDto.getUnit());
+        responseDto.setCountOfUnit(productAnalyzatorResultDto.getCountOfUnit());
+        responseDto.setCountOfItemInPackage(productAnalyzatorResultDto.getCountOfItemInPackage());
         return responseDto;
-    }
-
-    private boolean existProductWithGivenUrl(String productUrl) {
-        //TODO db overenie existencie daneho productu
-        return false;
     }
 
 }

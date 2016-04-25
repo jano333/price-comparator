@@ -1,14 +1,15 @@
-package sk.hudak.pricecomparator.middle.to;
+package sk.hudak.pricecomparator.middle.to.internal;
 
 import sk.hudak.pricecomparator.middle.EshopType;
 import sk.hudak.pricecomparator.middle.canonical.Unit;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
  * Created by hudak on 18.04.2016.
  */
-public class StepOneResponseDto extends BasicStepDto {
+public class StepOneResponseDto implements Serializable {
 
     private EshopType eshopType;
     private String productUrl;

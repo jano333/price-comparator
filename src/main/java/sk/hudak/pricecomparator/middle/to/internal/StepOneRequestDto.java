@@ -1,9 +1,13 @@
-package sk.hudak.pricecomparator.middle.to;
+package sk.hudak.pricecomparator.middle.to.internal;
+
+import java.io.Serializable;
 
 /**
  * Created by hudak on 18.04.2016.
  */
-public class StepOneRequestDto {
+public class StepOneRequestDto implements Serializable {
+
+    public static final String AT_PRODUCT_URL = "productUrl";
 
     private String productUrl;
 

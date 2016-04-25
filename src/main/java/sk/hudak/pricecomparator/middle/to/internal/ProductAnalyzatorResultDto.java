@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.middle.to;
+package sk.hudak.pricecomparator.middle.to.internal;
 
 import sk.hudak.pricecomparator.middle.canonical.Unit;
 
@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 /**
  * Created by hudak on 25.2.2016.
  */
-public class ProductAnalyzatorDto {
+public class ProductAnalyzatorResultDto {
 
     private Unit unit;
     private BigDecimal countOfUnit;
@@ -17,7 +17,7 @@ public class ProductAnalyzatorDto {
         return countOfUnit;
     }
 
-    public ProductAnalyzatorDto setCountOfUnit(BigDecimal countOfUnit) {
+    public ProductAnalyzatorResultDto setCountOfUnit(BigDecimal countOfUnit) {
         this.countOfUnit = countOfUnit;
         return this;
     }
@@ -26,7 +26,7 @@ public class ProductAnalyzatorDto {
         return unit;
     }
 
-    public ProductAnalyzatorDto setUnit(Unit unit) {
+    public ProductAnalyzatorResultDto setUnit(Unit unit) {
         this.unit = unit;
         return this;
     }
@@ -35,14 +35,14 @@ public class ProductAnalyzatorDto {
         return countOfItemInPackage;
     }
 
-    public ProductAnalyzatorDto setCountOfItemInPackage(Integer countOfItemInPackage) {
+    public ProductAnalyzatorResultDto setCountOfItemInPackage(Integer countOfItemInPackage) {
         this.countOfItemInPackage = countOfItemInPackage;
         return this;
     }
 
     @Override
     public String toString() {
-        return "ProductAnalyzatorDto{" +
+        return "ProductAnalyzatorResultDto{" +
                 "unit=" + unit +
                 ", countOfUnit=" + countOfUnit +
                 ", countOfItemInPackage=" + countOfItemInPackage +

@@ -6,6 +6,7 @@ import org.apache.wicket.model.ResourceModel;
 import sk.hudak.pricecomparator.client.wicket.page.eshop.EshopListPage;
 import sk.hudak.pricecomparator.client.wicket.page.group.*;
 import sk.hudak.pricecomparator.client.wicket.page.product.ProductCreatePage;
+import sk.hudak.pricecomparator.client.wicket.page.product.ProductInEshopCreateByUrlPage_1;
 import sk.hudak.pricecomparator.client.wicket.page.product.ProductListPage;
 import sk.hudak.pricecomparator.client.wicket.page.product.ProductPricesPerEshopsListPage;
 import sk.hudak.pricecomparator.client.wicket.page.productineshop.ProductInEshopCreatePage;
@@ -56,6 +57,14 @@ public class LayoutPage extends BasicPage {
                 setResponsePage(ProductCreatePage.class);
             }
         };
+        Link<Void> productCreateByURLProdukt = new Link<Void>("productCreateByURLProdukt") {
+            @Override
+            public void onClick() {
+                setResponsePage(ProductInEshopCreateByUrlPage_1.class);
+            }
+        };
+
+
 
         Link<Void> productInEshopCreate = new Link<Void>("productInEshopCreate") {
             @Override
@@ -64,7 +73,8 @@ public class LayoutPage extends BasicPage {
             }
         };
 
-        add(productListPage, productPricesPerEshops, productListPerEshop, productCreateProdukt, productInEshopCreate);
+        add(productListPage, productPricesPerEshops, productListPerEshop, productCreateProdukt,
+                productInEshopCreate, productCreateByURLProdukt);
 
         //Skupiny
         Link<Void> groupList = new Link<Void>("groupList") {

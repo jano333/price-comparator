@@ -60,6 +60,8 @@ public class TescoEshopProductParser extends AbstractEshopProductParser {
         }
         final Date finalActionTo = actionTo;
 
+        final String productName = parseProductName(document);
+
         return new AbstractEshopProductInfo(parserInputData) {
 
             @Override
@@ -77,8 +79,24 @@ public class TescoEshopProductParser extends AbstractEshopProductParser {
                 return new BigDecimal(cenaZaBalenie);
             }
 
-
+            @Override
+            public String getProductNameInEhop() {
+                return productName;
+            }
         };
+    }
+
+
+    private String parseProductName(Document document) {
+        Elements elements = document.select("div[class=description] h2");
+        if (elements.isEmpty()) {
+            return null;
+        }
+        String name = elements.get(0).text();
+
+
+        return name;
+
     }
 
 

@@ -45,6 +45,11 @@ public class ProductInfoFactory {
             public String getProductImageUrl() {
                 return null;
             }
+
+            @Override
+            public String getProductNameInEhop() {
+                return null;
+            }
         };
     }
 }

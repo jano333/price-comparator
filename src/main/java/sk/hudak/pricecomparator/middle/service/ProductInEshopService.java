@@ -2,7 +2,10 @@ package sk.hudak.pricecomparator.middle.service;
 
 import sk.hudak.jef.PageList;
 import sk.hudak.pricecomparator.middle.EshopType;
+import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
 import sk.hudak.pricecomparator.middle.to.*;
+import sk.hudak.pricecomparator.middle.to.internal.StepOneRequestDto;
+import sk.hudak.pricecomparator.middle.to.internal.StepOneResponseDto;
 
 import java.util.List;
 
@@ -67,8 +70,6 @@ public interface ProductInEshopService {
     ProductInEshopDto findProductForPriceUpdate(EshopType eshopType);
 
 
-
-
     /**
      * Pre eshop eshopId vyhlada vsetky produkty v danom eshope.
      *
@@ -83,6 +84,10 @@ public interface ProductInEshopService {
      * @return null, ak ziaden taky neexistuje
      */
     ProductInEshopForPictureDownloadInfoDto findUrlOfProductsInEshopWithoutPicture(EshopType feedo);
+
+    boolean existProductWithGivenUrl(String productUrl);
+
+    StepOneResponseDto analyzeProductUrl(StepOneRequestDto stepOneRequestDto) throws PriceComparatorBusinesException;
 
 
     //TODO vsetko nizsie remove
@@ -103,5 +108,4 @@ public interface ProductInEshopService {
 //    List<ProductInEshopPriceResultListDto> old_findPriceInfoInEshopsForProduct(Long productId);
 
 
-    boolean existProductWithGivenUrl(String productUrl);
 }

@@ -5,8 +5,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
 import sk.hudak.jef.PageList;
 import sk.hudak.pricecomparator.middle.EshopType;
+import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
 import sk.hudak.pricecomparator.middle.service.*;
 import sk.hudak.pricecomparator.middle.to.*;
+import sk.hudak.pricecomparator.middle.to.internal.StepOneRequestDto;
+import sk.hudak.pricecomparator.middle.to.internal.StepOneResponseDto;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -400,6 +403,15 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
         boolean result = productInEshopService.existProductWithGivenUrl(productUrl);
         logger.debug("<< existProductWithGivenUrl");
         return result;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public StepOneResponseDto analyzeProductUrl(StepOneRequestDto stepOneRequestDto) throws PriceComparatorBusinesException {
+        logger.debug(">> analyzeProductUrl");
+        StepOneResponseDto stepOneResponseDto = productInEshopService.analyzeProductUrl(stepOneRequestDto);
+        logger.debug("<< analyzeProductUrl");
+        return stepOneResponseDto;
     }
 
 

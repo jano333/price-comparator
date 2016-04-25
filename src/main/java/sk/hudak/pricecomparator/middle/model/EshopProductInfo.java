@@ -54,7 +54,6 @@ public interface EshopProductInfo {
     /**
      * @return nazov produktu v eshope
      */
-    //TODO
-//    String getProductNameInEhop();
+    String getProductNameInEhop();
 
 }

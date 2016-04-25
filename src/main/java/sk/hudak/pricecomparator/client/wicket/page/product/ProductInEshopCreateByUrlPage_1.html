@@ -1,0 +1,34 @@
+<html xmlns:wicket="http://wicket.apache.org">
+<wicket:extend>
+
+    <!-- PAGE NAVIGATOR-->
+    <ol class="breadcrumb">
+        <li><a href="#">Produkty</a></li>
+        <li class="active">Vytvorenie produktu cez URL</li>
+    </ol>
+
+    <div wicket:id="feedback"></div>
+
+    <form role="form" wicket:id="form">
+        <div class="form-group row">
+            <label for="strankaProduktu" class="col-sm-2 form-control-label text-right">Stránka produktu:</label>
+
+            <div class="col-sm-10">
+                <input type="text" wicket:id="productUrl" class="form-control" id="strankaProduktu"
+                       placeholder="Zadaj URL produktu">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">$gt$gt Ďalší</button>
+                <!--<button type="button" class="btn btn-default">Zavrieť</button>-->
+            </div>
+        </div>
+
+    </form>
+
+
+</wicket:extend>
+</html>

@@ -20,6 +20,12 @@ public abstract class AbstractEshopProductInfo implements EshopProductInfo {
         this.parserInputData = parserInputData;
     }
 
+
+    @Override
+    public String getProductNameInEhop() {
+        return null;
+    }
+
     @Override
     public ProductAction getAction() {
         return ProductAction.UNKNOWN;

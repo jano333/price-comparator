@@ -68,4 +68,9 @@ public class EshopProductInfoDefault implements EshopProductInfo {
         //TODO impl
         return null;
     }
+
+    @Override
+    public String getProductNameInEhop() {
+        return null;
+    }
 }
