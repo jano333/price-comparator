@@ -16,7 +16,6 @@ public class ProductInEshopCreateByUrlPage_1 extends LayoutPage {
 
     private StepOneRequestDto stepOneRequestDto = new StepOneRequestDto();
 
-
     public ProductInEshopCreateByUrlPage_1() {
         add(new FeedbackPanel("feedback"));
 

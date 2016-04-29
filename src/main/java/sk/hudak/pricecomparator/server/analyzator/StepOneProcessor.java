@@ -35,7 +35,7 @@ public class StepOneProcessor {
         if (requestDto == null) {
             throw new PriceComparatorException("request is null");
         }
-        final String productUrl = requestDto.getProductUrl();
+        String productUrl = requestDto.getProductUrl();
         if (StringUtils.isBlank(productUrl)) {
             throw new PriceComparatorException("product url is null or empty");
         }
@@ -58,6 +58,7 @@ public class StepOneProcessor {
 
         // vyskladanie odopovede
         StepOneResponseDto responseDto = new StepOneResponseDto();
+        responseDto.setProductUrl(productUrl);
         responseDto.setEshopType(eshopType);
         responseDto.setProductName(productName);
         responseDto.setUnit(productAnalyzatorResultDto.getUnit());
