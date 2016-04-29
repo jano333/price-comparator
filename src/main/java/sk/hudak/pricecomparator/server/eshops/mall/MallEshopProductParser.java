@@ -17,17 +17,15 @@ import java.math.BigDecimal;
 public class MallEshopProductParser extends AbstractEshopProductParser {
     @Override
     protected EshopProductInfo parsePrice(Document document) {
+        // ak tam je stitok "Už sa nepredáva"
+        // vratit ako nedostupne
         Elements elements1 = document.select("em[class=label label--nostock]");
         if (!elements1.isEmpty()) {
             logger.error("Produkt sa uz nepredava");
             return ProductInfoFactory.createUnaviable();
         }
 
-        // ak tam je stitok "Už sa nepredáva"
-        // vratit ako nedostupne
-
-
-        Elements elements2 = document.select("b[class=pro-price con-emphasize font-primary--bold lay-inline-block mr-5]");
+        Elements elements2 = document.select("b[class=pro-price con-emphasize font-primary--bold mr-5]");
         if (elements2.isEmpty()) {
             return ProductInfoFactory.createUnaviable();
         }
