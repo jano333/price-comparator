@@ -9,6 +9,10 @@ import java.io.File;
  */
 public class WU {
 
+    public static boolean isDevelopmentMode() {
+        return "development".equals(System.getProperty("wicket.configuration"));
+    }
+
     public static ContextImage productImage(String imagePath) {
         String imageName = null;
         ContextImage image = null;

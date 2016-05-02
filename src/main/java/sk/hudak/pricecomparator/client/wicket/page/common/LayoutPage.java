@@ -1,8 +1,11 @@
 package sk.hudak.pricecomparator.client.wicket.page.common;
 
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
+import sk.hudak.pricecomparator.client.wicket.WU;
 import sk.hudak.pricecomparator.client.wicket.page.eshop.EshopListPage;
 import sk.hudak.pricecomparator.client.wicket.page.group.*;
 import sk.hudak.pricecomparator.client.wicket.page.product.ProductCreatePage;
@@ -15,11 +18,16 @@ import sk.hudak.pricecomparator.client.wicket.page.productineshop.ProductListPer
 /**
  * Created by jan on 12. 3. 2016.
  */
-public class LayoutPage extends BasicPage {
+public abstract class LayoutPage extends BasicPage {
 
     public LayoutPage() {
-        //TODO menu urobit ako samostatny panel
 
+        // len v delepment mode zobrazenie nazvu impl stranky
+        Label pageClass = new Label("pageClass", new Model<>(getClass().getSimpleName()));
+        pageClass.setVisible(WU.isDevelopmentMode());
+        add(pageClass);
+
+        //TODO menu urobit ako samostatny panel
         //Eshop
         Link<Void> eshopList = new Link<Void>("eshopList") {
             @Override
