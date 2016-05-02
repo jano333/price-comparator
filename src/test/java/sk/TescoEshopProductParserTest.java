@@ -19,7 +19,8 @@ public class TescoEshopProductParserTest {
                 -1,
                 null,
                 null,
-                "http://potravinydomov.itesco.sk/sk-SK/ProductDetail/ProductDetail/2002006571537");
+//                "https://potravinydomov.itesco.sk/groceries/sk-SK/products/2002016675461");
+                "https://potravinydomov.itesco.sk/groceries/sk-SK/products/2002121104955");
 
         TescoEshopProductParser parser = new TescoEshopProductParser();
         EshopProductInfo productInfo = parser.getProductInfo(parserInputData);

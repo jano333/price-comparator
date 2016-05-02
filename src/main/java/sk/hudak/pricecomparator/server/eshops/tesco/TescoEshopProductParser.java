@@ -20,53 +20,29 @@ public class TescoEshopProductParser extends AbstractEshopProductParser {
 
     @Override
     protected EshopProductInfo parsePrice(Document document) {
-        // overenie ci je produkt dostupny
-        // nebol dostupny:
-        //http://potravinydomov.itesco.sk/sk-SK/ProductDetail/ProductDetail/2002121104955
-        Elements elements = document.select("p[class=addToBasketNotForSale]");
-        if (elements.size() > 0) {
+        if (isProductNedostupny(document)) {
             logger.error("produkt nie je dostupny: " + parserInputData.getEshopProductPage());
             return ProductInfoFactory.createUnaviable();
         }
 
-//        <p xmlns="http://www.w3.org/1999/xhtml" class="addToBasketNotForSale">
-//                Produkt nie je dostupný</p>
+        final String productName = parseProductName(document);
 
+        final String cenaZaBalenie = parseCenaZaBalenie(document);
 
-        //cena
-        elements = document.select("span[class=linePrice]");
-        StringBuffer sb = new StringBuffer(elements.get(0).text());
-        sb = sb.deleteCharAt(sb.length() - 1);
-        sb = sb.deleteCharAt(sb.length() - 1);
-        final String cenaZaBalenie = sb.toString().replace(",", ".");
+        final boolean isInAction = parseAction(document);
 
-        //akcia
-        Elements select = document.select("div[class=promo] p[class=promoUntil]");
-        final boolean action = select.size() > 0;
         Date actionTo = null;
-        if (action) {
-            // akcia platna do:
-            sb = new StringBuffer(select.text());
-            sb = sb.delete(0, "Cena je platná pri dodaní do ".length());
-            sb = sb.deleteCharAt(sb.length() - 1);
-            try {
-                SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-                actionTo = sdf.parse(sb.toString());
-            } catch (ParseException e) {
-                //TODO vynimka
-                e.printStackTrace();
-                actionTo = null;
-            }
+        if (isInAction) {
+            actionTo = parseActionValidity(document);
         }
         final Date finalActionTo = actionTo;
 
-        final String productName = parseProductName(document);
 
         return new AbstractEshopProductInfo(parserInputData) {
 
             @Override
             public ProductAction getAction() {
-                return action ? ProductAction.IN_ACTION : ProductAction.NON_ACTION;
+                return isInAction ? ProductAction.IN_ACTION : ProductAction.NON_ACTION;
             }
 
             @Override
@@ -86,17 +62,63 @@ public class TescoEshopProductParser extends AbstractEshopProductParser {
         };
     }
 
+    private boolean isProductNedostupny(Document document) {
+        Elements elements = document.select("button[class=amount-adjust-button quantity-adjust]");
+        return elements.isEmpty();
+    }
 
+    /**
+     * @param document
+     * @return null, ak sa nenajde
+     */
     private String parseProductName(Document document) {
-        Elements elements = document.select("div[class=description] h2");
+        Elements elements = document.select("h1[class=product-title]");
         if (elements.isEmpty()) {
             return null;
         }
-        String name = elements.get(0).text();
+        return elements.get(0).text();
+    }
 
+    /**
+     * @param document
+     * @return null ak sa nenajde
+     */
+    private String parseCenaZaBalenie(Document document) {
+        Elements elements = document.select("div[class=price-per-sellable-unit price-per-sellable-unit--price price-per-sellable-unit--price-per-item] div span span[class=value]");
+        if (elements.isEmpty()) {
+            return null;
+        }
+        return elements.get(0).text().replace(",", ".");
+    }
 
-        return name;
+    private boolean parseAction(Document document) {
+        Elements elements = document.select("div[class=icon-offer-flash-group] div[class=red-square] span[class=text-position]");
+        return !elements.isEmpty();
+    }
 
+    private Date parseActionValidity(Document document) {
+        StringBuilder htmlTree = new StringBuilder();
+        htmlTree.append("ul[class=product-promotions]").append(" ");
+        htmlTree.append("li[class=product-promotion]").append(" ");
+        htmlTree.append("a").append(" ");
+        htmlTree.append("div[class=list-item-content]").append(" ");
+        htmlTree.append("span[class=dates]");
+
+        Elements elements = document.select(htmlTree.toString());
+        if (elements.isEmpty()) {
+            return null;
+        }
+
+        StringBuilder sb = new StringBuilder(elements.get(0).text());
+        sb = sb.delete(0, "Cena je platná pri dodaní do ".length());
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+            return sdf.parse(sb.toString());
+        } catch (ParseException e) {
+            //TODO vynimka
+            e.printStackTrace();
+            return null;
+        }
     }
 
 
