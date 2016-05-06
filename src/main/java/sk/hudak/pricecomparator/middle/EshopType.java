@@ -9,6 +9,7 @@ public enum EshopType {
 
     ALZA,
     ANDREA_ESHOP,
+    AMD_DROGERIA,
 
     BAMBINO,
     DR_MAX,

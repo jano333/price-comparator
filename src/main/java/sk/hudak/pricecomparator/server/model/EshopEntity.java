@@ -24,10 +24,10 @@ public class EshopEntity extends BasicEntity {
     @Column(name = "NAME", nullable = false, unique = true)
     private String name;
 
-    @Column(name = "HOME_PAGE")
+    @Column(name = "HOME_PAGE") //TODO urobit povinne aj v DB
     private String homePage;
 
-    @Column(name = "ESHOP_TYPE")
+    @Column(name = "ESHOP_TYPE") //TODO urobit povinne aj v DB
     @Enumerated(EnumType.STRING)
     private EshopType eshopType;
 

@@ -1,5 +1,7 @@
 package sk.hudak.pricecomparator.middle.to;
 
+import sk.hudak.pricecomparator.middle.EshopType;
+
 import java.io.Serializable;
 
 /**
@@ -7,8 +9,21 @@ import java.io.Serializable;
  */
 public class EshopCreateDto implements Serializable {
 
+    public static final String AT_NAME = "name";
+    public static final String AT_HOME_PAGE = "homePage";
+    public static final String AT_ESHOP_TYPE = "eshopType";
+
     private String name; // povinne
-    private String homePage; // nepovinne
+    private String homePage; // povinne
+    private EshopType eshopType; // povinne
+
+    public EshopType getEshopType() {
+        return eshopType;
+    }
+
+    public void setEshopType(EshopType eshopType) {
+        this.eshopType = eshopType;
+    }
 
     public String getName() {
         return name;

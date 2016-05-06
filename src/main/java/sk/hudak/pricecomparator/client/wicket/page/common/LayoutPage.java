@@ -6,6 +6,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
 import sk.hudak.pricecomparator.client.wicket.WU;
+import sk.hudak.pricecomparator.client.wicket.page.eshop.EshopCreatePage;
 import sk.hudak.pricecomparator.client.wicket.page.eshop.EshopListPage;
 import sk.hudak.pricecomparator.client.wicket.page.group.*;
 import sk.hudak.pricecomparator.client.wicket.page.product.ProductCreatePage;
@@ -37,6 +38,13 @@ public abstract class LayoutPage extends BasicPage {
         };
         add(eshopList);
 
+        Link<Void> eshopCreate = new Link<Void>("eshopCreate") {
+            @Override
+            public void onClick() {
+                setResponsePage(EshopCreatePage.class);
+            }
+        };
+        add(eshopCreate);
 
         // Produkty
         Link<Void> productListPage = new Link<Void>("productList") {
