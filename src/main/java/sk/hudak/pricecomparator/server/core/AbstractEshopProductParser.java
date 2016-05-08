@@ -1,5 +1,6 @@
 package sk.hudak.pricecomparator.server.core;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Connection;
 import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
@@ -69,4 +70,26 @@ public abstract class AbstractEshopProductParser implements EshopProductParser {
         return Collections.emptyMap();
     }
 
+    protected boolean existElement(Document document, String cssQuery) {
+        return document.select(cssQuery).isEmpty();
+    }
+
+    /**
+     * Odstrani <code>count</code> znakov z konca retazca <code>str</code>.
+     *
+     * @param count
+     */
+    protected String removeLastCharacters(String str, int count) {
+        if (StringUtils.isBlank(str)) {
+            return str;
+        }
+        if (count < 1) {
+            return str;
+        }
+        StringBuffer sb = new StringBuffer(str);
+        for (int i = 0; i < count; i++) {
+            sb = sb.deleteCharAt(sb.length() - 1);
+        }
+        return sb.toString();
+    }
 }

@@ -3,6 +3,7 @@ package sk.hudak.pricecomparator.client.utils;
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
 import sk.hudak.pricecomparator.server.core.EshopProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.alza.AlzaProductInfoDownloaderTask;
+import sk.hudak.pricecomparator.server.eshops.amddrogeria.AmdDrogeriaProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.andrea.AndreaEshopProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.bambino.BambinoProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.drmax.DrMaxProductInfoDownloaderTask;
@@ -36,6 +37,7 @@ public class TaskManager {
         taskList = new ArrayList<>();
         taskList.add(new AlzaProductInfoDownloaderTask(service));
         taskList.add(new AndreaEshopProductInfoDownloaderTask(service));
+        taskList.add(new AmdDrogeriaProductInfoDownloaderTask(service));
         taskList.add(new BambinoProductInfoDownloaderTask(service));
         taskList.add(new DrMaxProductInfoDownloaderTask(service));
         taskList.add(new FeedoProductInfoDownloaderTask(service));
