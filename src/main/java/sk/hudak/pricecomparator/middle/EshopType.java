@@ -11,7 +11,9 @@ public enum EshopType {
     ANDREA_ESHOP,
     AMD_DROGERIA,
 
+    BABETKOVO,
     BAMBINO,
+
     DR_MAX,
     FEEDO,
 
