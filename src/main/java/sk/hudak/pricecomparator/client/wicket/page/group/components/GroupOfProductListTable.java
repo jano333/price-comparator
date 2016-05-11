@@ -1,5 +1,7 @@
 package sk.hudak.pricecomparator.client.wicket.page.group.components;
 
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.ChoiceRenderer;
@@ -88,7 +90,7 @@ public class GroupOfProductListTable extends Panel {
 
             @Override
             protected void populateItem(IdListView.IdListItem<ProductListDto> item) {
-                IModel<ProductListDto> product = item.getModel();
+                final IModel<ProductListDto> product = item.getModel();
 
 
                 Label productName = new Label("name", new PropertyModel<String>(product, ProductListDto.AT_NAME));
@@ -98,13 +100,28 @@ public class GroupOfProductListTable extends Panel {
 
                 ContextImage image = WU.productImage(product.getObject().getImagePath());
 
+                AjaxLink<Void> deleteProduct = new AjaxLink<Void>("deleteProduct") {
+                    @Override
+                    public void onClick(AjaxRequestTarget target) {
+                        Long id = product.getObject().getId();
+                        System.out.println("Produkt id je " + id);
+
+
+                    }
+                };
+
                 WebMarkupContainer tr = new WebMarkupContainer("tr");
-                tr.add(productName, image);
+                tr.add(productName, image, deleteProduct);
 
                 item.add(tr);
             }
         };
         add(table);
+
+
+//        add(new YesNoDialog("removeProductDialog",
+//                "Odstranenie produktu zo skupiny",
+//                "Skutocne si prajete odstranit produkt zo skupiny?"));
 
     }
 
