@@ -11,6 +11,12 @@ import java.math.BigDecimal;
  */
 public class StepOneResponseDto implements Serializable {
 
+    public static final String AT_PRODUCT_NAME = "productName";
+
+    public static final String AT_UNIT = "unit";
+    public static final String AT_COUNT_OF_UNIT = "countOfUnit";
+    public static final String AT_COUNT_OF_ITEM_IN_ONE_PACKAGE = "countOfItemInPackage";
+
     private EshopType eshopType;
     private String productUrl;
     private String productName;
