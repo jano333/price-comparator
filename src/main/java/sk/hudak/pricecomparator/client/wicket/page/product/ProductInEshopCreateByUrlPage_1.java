@@ -14,6 +14,7 @@ import sk.hudak.pricecomparator.client.wicket.page.common.LayoutPage;
 import sk.hudak.pricecomparator.middle.canonical.Unit;
 import sk.hudak.pricecomparator.middle.to.internal.StepOneRequestDto;
 import sk.hudak.pricecomparator.middle.to.internal.StepOneResponseDto;
+import sk.hudak.pricecomparator.middle.to.internal.StepTwoRequestDto;
 
 import java.math.BigDecimal;
 
@@ -26,7 +27,7 @@ public class ProductInEshopCreateByUrlPage_1 extends LayoutPage {
     private Form<Void> stepTwoForm;
 
     private StepOneRequestDto stepOneRequestDto = new StepOneRequestDto();
-    private StepOneResponseDto stepOneResponseDto = new StepOneResponseDto();
+    private StepTwoRequestDto stepTwoRequestDto = new StepTwoRequestDto();
 
     public ProductInEshopCreateByUrlPage_1() {
 
@@ -48,13 +49,23 @@ public class ProductInEshopCreateByUrlPage_1 extends LayoutPage {
         stepTwoForm.setVisible(false);
         add(stepTwoForm);
 
+        TextField<String> productUrlStep2 = new TextField<>("productUrlStep2",
+                new PropertyModel<String>(stepTwoRequestDto, StepTwoRequestDto.AT_PRODUCT_URL));
+        productUrlStep2.setRequired(true);
+        stepTwoForm.add(productUrlStep2);
+
+        TextField<String> eshopType = new TextField<>("eshopType",
+                new PropertyModel<String>(stepTwoRequestDto, StepTwoRequestDto.AT_ESHOP_TYPE));
+        eshopType.setRequired(true);
+        stepTwoForm.add(eshopType);
+
         TextField<String> productName = new TextField<>("productName",
-                new PropertyModel<String>(stepOneResponseDto, StepOneResponseDto.AT_PRODUCT_NAME));
+                new PropertyModel<String>(stepTwoRequestDto, StepTwoRequestDto.AT_PRODUCT_NAME));
         productName.setRequired(true);
         stepTwoForm.add(productName);
 
         RadioGroup<Unit> group = new RadioGroup<>("group",
-                new PropertyModel<Unit>(stepOneResponseDto, StepOneResponseDto.AT_UNIT));
+                new PropertyModel<Unit>(stepTwoRequestDto, StepTwoRequestDto.AT_UNIT));
         stepTwoForm.add(group);
 
         Radio<Unit> kus = new Radio<>("kus", Model.of(Unit.KUS));
@@ -65,12 +76,12 @@ public class ProductInEshopCreateByUrlPage_1 extends LayoutPage {
         group.add(kus, vaha, objem, dlzka, davka);
 
         TextField<BigDecimal> countOfUnit = new TextField<>("countOfUnit",
-                new PropertyModel<BigDecimal>(stepOneResponseDto, StepOneResponseDto.AT_COUNT_OF_UNIT));
+                new PropertyModel<BigDecimal>(stepTwoRequestDto, StepTwoRequestDto.AT_COUNT_OF_UNIT));
         countOfUnit.setRequired(true);
         stepTwoForm.add(countOfUnit);
 
         TextField<Integer> countOfItemInOnePackage = new TextField<>("countOfItemInOnePackage",
-                new PropertyModel<Integer>(stepOneResponseDto, StepOneResponseDto.AT_COUNT_OF_ITEM_IN_ONE_PACKAGE));
+                new PropertyModel<Integer>(stepTwoRequestDto, StepTwoRequestDto.AT_COUNT_OF_ITEM_IN_ONE_PACKAGE));
         countOfItemInOnePackage.setRequired(true);
         stepTwoForm.add(countOfItemInOnePackage);
 
@@ -85,8 +96,15 @@ public class ProductInEshopCreateByUrlPage_1 extends LayoutPage {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 try {
-                    stepOneResponseDto = PriceComparatorApplication.getApi().analyzeProductUrl(stepOneRequestDto);
-                    System.out.println(stepOneResponseDto);
+                    StepOneResponseDto tmp = PriceComparatorApplication.getApi().analyzeProductUrl(stepOneRequestDto);
+                    //TODO syso
+                    System.out.println(tmp);
+                    stepTwoRequestDto.setProductName(tmp.getProductName());
+                    stepTwoRequestDto.setEshopType(tmp.getEshopType());
+                    stepTwoRequestDto.setProductUrl(tmp.getProductUrl());
+                    stepTwoRequestDto.setCountOfUnit(tmp.getCountOfUnit());
+                    stepTwoRequestDto.setCountOfItemInPackage(tmp.getCountOfItemInPackage());
+                    stepTwoRequestDto.setUnit(tmp.getUnit());
 
                     stepOneForm.setVisible(false);
                     stepTwoForm.setVisible(true);
