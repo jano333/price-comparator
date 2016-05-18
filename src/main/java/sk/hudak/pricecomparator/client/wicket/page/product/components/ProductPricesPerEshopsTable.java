@@ -1,10 +1,12 @@
 package sk.hudak.pricecomparator.client.wicket.page.product.components;
 
+import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.ChoiceRenderer;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
@@ -95,7 +97,13 @@ public class ProductPricesPerEshopsTable extends Panel {
             protected void populateItem(IdListView.IdListItem<ProductInEshopPriceResultListDto> item) {
                 IModel<ProductInEshopPriceResultListDto> product = item.getModel();
 
-                Label eshopName = new Label("eshopName", new PropertyModel<String>(product, ProductInEshopPriceResultListDto.AT_ESHOP_NAME));
+                ExternalLink eshopName = new ExternalLink("eshopName",
+                        new PropertyModel<String>(product, ProductInEshopPriceResultListDto.AT_PRODUCT_ESHOP_PAGE),
+                        new PropertyModel<String>(product, ProductInEshopPriceResultListDto.AT_ESHOP_NAME)
+                );
+                eshopName.add(new AttributeAppender("target", "_blank"));
+
+
                 Label priceForPackage = new Label("priceForPackage", new PropertyModel<String>(product, ProductInEshopPriceResultListDto.AT_PRICE_FOR_PACKAGE));
                 Label priceForUnit = new Label("priceForUnit", new PropertyModel<String>(product, ProductInEshopPriceResultListDto.AT_PRICE_FOR_UNIT));
                 Label productAction = new Label("productAction", new PropertyModel<String>(product, ProductInEshopPriceResultListDto.AT_PRODUCT_ACTION));

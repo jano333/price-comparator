@@ -114,9 +114,6 @@ public class ProductListPerEshopTable extends Panel {
                 ContextImage productImage = WU.productImage(product.getObject().getPictureFullPath());
                 productImageLink.add(productImage);
 
-//                Label productName = new Label("productName",
-//                        new PropertyModel<String>(product, ProductInEshopPriceInfoListDto.AT_PRODUCT_NAME));
-
                 ExternalLink productName = new ExternalLink("productName",
                         new PropertyModel<String>(product, ProductInEshopPriceInfoListDto.AT_PRODUCT_ESHOP_PAGE),
                         new PropertyModel<String>(product, ProductInEshopPriceInfoListDto.AT_PRODUCT_NAME)
