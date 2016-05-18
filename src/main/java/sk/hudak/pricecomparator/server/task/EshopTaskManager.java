@@ -1,5 +1,6 @@
 package sk.hudak.pricecomparator.server.task;
 
+import sk.hudak.jef.ssl.JefSslManager;
 import sk.hudak.pricecomparator.client.utils.TaskManager;
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
 
@@ -22,6 +23,9 @@ public class EshopTaskManager  {
     @PostConstruct
     public void init(){
         System.out.println("init call");
+
+        // custom ssl to ignore SSL check for specific domains
+        JefSslManager.getInstance().init();
 
         taskManager = new TaskManager();
         taskManager.initTaks(service);

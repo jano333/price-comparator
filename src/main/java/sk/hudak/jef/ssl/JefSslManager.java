@@ -38,14 +38,14 @@ public class JefSslManager {
         try {
             SSLContext sslContext = SSLContext.getInstance("SSL");
 
-            TrustManager[] trustManagers = new TrustManager[]{getAmcCustomTrustManager()};
-            KeyManager[] keymanagers = new KeyManager[]{getAmcCustomKeyManager()};
+            TrustManager[] trustManagers = new TrustManager[]{getJefCustomTrustManager()};
+            KeyManager[] keymanagers = new KeyManager[]{getJefCustomKeyManager()};
 
             sslContext.init(keymanagers, trustManagers, null);
 
             HttpsURLConnection.setDefaultSSLSocketFactory(sslContext.getSocketFactory());
 
-            HttpsURLConnection.setDefaultHostnameVerifier(getAmcCustomHostnameVerifier());
+            HttpsURLConnection.setDefaultHostnameVerifier(getJefCustomHostnameVerifier());
 
             return sslContext;
 
@@ -69,10 +69,10 @@ public class JefSslManager {
 //            TLSClientParameters tlsParams = new TLSClientParameters();
 //            tlsParams.setDisableCNCheck(true);
 //
-//            TrustManager[] trustManagers = new TrustManager[]{getAmcCustomTrustManager()};
+//            TrustManager[] trustManagers = new TrustManager[]{getJefCustomTrustManager()};
 //            tlsParams.setTrustManagers(trustManagers);
 //
-//            KeyManager[] keymanagers = new KeyManager[]{getAmcCustomKeyManager()};
+//            KeyManager[] keymanagers = new KeyManager[]{getJefCustomKeyManager()};
 //            tlsParams.setKeyManagers(keymanagers);
 //
 //            httpConduit.setTlsClientParameters(tlsParams);
@@ -102,21 +102,21 @@ public class JefSslManager {
 		}
 	}*/
 
-    private X509TrustManager getAmcCustomTrustManager() throws Exception {
+    private X509TrustManager getJefCustomTrustManager() throws Exception {
         if (amcCustomTrustManager == null) {
             amcCustomTrustManager = new JefCustomTrustManager();
         }
         return amcCustomTrustManager;
     }
 
-    private X509KeyManager getAmcCustomKeyManager() throws Exception {
+    private X509KeyManager getJefCustomKeyManager() throws Exception {
         if (amcCustomKeyManager == null) {
             amcCustomKeyManager = new JefCustomKeyManager();
         }
         return amcCustomKeyManager;
     }
 
-    private HostnameVerifier getAmcCustomHostnameVerifier() {
+    private HostnameVerifier getJefCustomHostnameVerifier() {
         if (amcCustomHostnameVerifier == null) {
             amcCustomHostnameVerifier = new JefCustomHostnameVerifier();
         }

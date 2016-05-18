@@ -19,11 +19,7 @@ public class JefCustomHostnameVerifier implements HostnameVerifier {
 	 */
 	public JefCustomHostnameVerifier() {
 		logger.debug("inicializing");
-		this.javaDefaultHostnameVerifier = getJavaDefaultHostnameVerifier();
-	}
-
-	private HostnameVerifier getJavaDefaultHostnameVerifier() {
-		return HttpsURLConnection.getDefaultHostnameVerifier();
+		this.javaDefaultHostnameVerifier = HttpsURLConnection.getDefaultHostnameVerifier();
 	}
 
 	@Override
