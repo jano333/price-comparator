@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.server.eshops.amddrogeria;
+package sk.hudak.pricecomparator.server.eshops.bugy;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -10,9 +10,9 @@ import sk.hudak.pricecomparator.server.factory.ProductInfoFactory;
 import java.math.BigDecimal;
 
 /**
- * Created by jan on 7. 5. 2016.
+ * Created by jan on 19. 5. 2016.
  */
-public class AmdDrogeriaProductParser extends AbstractEshopProductParser {
+public class BugyEshopProductParser extends AbstractEshopProductParser {
 
     @Override
     protected EshopProductInfo parsePrice(Document document) {
@@ -24,7 +24,6 @@ public class AmdDrogeriaProductParser extends AbstractEshopProductParser {
         final String productName = parseProductName(document);
 
         final String cenaZaBalenie = parseCenaZaBalenie(document);
-
 
         return new AbstractEshopProductInfo(parserInputData) {
 
@@ -41,26 +40,21 @@ public class AmdDrogeriaProductParser extends AbstractEshopProductParser {
     }
 
     private boolean isProductNedostupny(Document document) {
-        return notExistElement(document, "input[class=addtocart-button]");
-    }
+        return notExistElement(document, "button[class=add_to_card]");    }
 
     private String parseProductName(Document document) {
-        Elements elements = document.select("div[class=productdetailsin] h1");
+        //div[id="product_text"] h1
+        //TODO impl
+        return null;
+    }
+
+    private String parseCenaZaBalenie(Document document) {
+        Elements elements = document.select("div[id=product_price] span");
         if (elements.isEmpty()) {
             return null;
         }
         String text = elements.get(0).text();
+        text = text.replace(",", ".");
         return text;
     }
-
-    private String parseCenaZaBalenie(Document document) {
-        Elements elements = document.select("span[class=PricesalesPrice]");
-        if (elements.isEmpty()) {
-            return null;
-        }
-        String str = removeLastCharacters(elements.get(0).text(), 2);
-        String replace = str.replace(",", ".");
-        return replace;
-    }
-
 }

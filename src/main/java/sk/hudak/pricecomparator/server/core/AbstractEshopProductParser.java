@@ -70,7 +70,7 @@ public abstract class AbstractEshopProductParser implements EshopProductParser {
         return Collections.emptyMap();
     }
 
-    protected boolean existElement(Document document, String cssQuery) {
+    protected boolean notExistElement(Document document, String cssQuery) {
         return document.select(cssQuery).isEmpty();
     }
 

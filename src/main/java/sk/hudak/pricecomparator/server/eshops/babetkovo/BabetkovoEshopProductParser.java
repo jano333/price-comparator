@@ -56,6 +56,6 @@ public class BabetkovoEshopProductParser extends AbstractEshopProductParser {
     }
 
     private boolean isProductNedostupny(Document document) {
-        return existElement(document, "input[id=button-cart]");
+        return notExistElement(document, "input[id=button-cart]");
     }
 }

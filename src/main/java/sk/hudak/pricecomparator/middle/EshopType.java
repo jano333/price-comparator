@@ -13,6 +13,7 @@ public enum EshopType {
 
     BABETKOVO,
     BAMBINO,
+    BUGY,
 
     DR_MAX,
     FEEDO,

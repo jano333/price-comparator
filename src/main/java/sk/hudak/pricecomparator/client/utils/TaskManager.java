@@ -7,6 +7,7 @@ import sk.hudak.pricecomparator.server.eshops.amddrogeria.AmdDrogeriaProductInfo
 import sk.hudak.pricecomparator.server.eshops.andrea.AndreaEshopProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.babetkovo.BabetkovoProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.bambino.BambinoProductInfoDownloaderTask;
+import sk.hudak.pricecomparator.server.eshops.bugy.BugyEshopProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.drmax.DrMaxProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.feedo.FeedoProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.hej.HejProductInfoDownloaderTask;
@@ -36,18 +37,25 @@ public class TaskManager {
         this.service = service;
 
         taskList = new ArrayList<>();
+
         taskList.add(new AlzaProductInfoDownloaderTask(service));
         taskList.add(new AndreaEshopProductInfoDownloaderTask(service));
         taskList.add(new AmdDrogeriaProductInfoDownloaderTask(service));
+
         taskList.add(new BabetkovoProductInfoDownloaderTask(service));
         taskList.add(new BambinoProductInfoDownloaderTask(service));
+        taskList.add(new BugyEshopProductInfoDownloaderTask(service));
+
         taskList.add(new DrMaxProductInfoDownloaderTask(service));
+
         taskList.add(new FeedoProductInfoDownloaderTask(service));
+
         taskList.add(new HejProductInfoDownloaderTask(service));
         // hravo zdravo je nedostupne
 //        taskList.add(new HravoZdravoProductInfoDownloaderTask(service));
         taskList.add(new InternetovaLekarenProductInfoDownloaderTask(service));
         taskList.add(new K24ProductInfoDownloaderTask(service));
+
         taskList.add(new MallProductInfoDownloaderTask(service));
         taskList.add(new MetroProductInfoDownloaderTask(service));
         taskList.add(new PerinbabaProductInfoDownloaderTask(service));
