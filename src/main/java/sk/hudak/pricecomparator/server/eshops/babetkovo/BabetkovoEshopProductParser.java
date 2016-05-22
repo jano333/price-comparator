@@ -46,7 +46,7 @@ public class BabetkovoEshopProductParser extends AbstractEshopProductParser {
         }
         String text = elements.get(0).text();
         text = text.substring(0, text.indexOf("€"));
-        text = text.replace(",", ".");
+        text = replaceAllCommaForDot(text);
         return text;
     }
 
