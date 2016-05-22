@@ -19,6 +19,7 @@ import sk.hudak.pricecomparator.server.eshops.metro.MetroProductInfoDownloaderTa
 import sk.hudak.pricecomparator.server.eshops.perinbaba.PerinbabaProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.pilulka.PilulkaProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.semistor.SemistorProductInfoDownloaderTask;
+import sk.hudak.pricecomparator.server.eshops.shoppie.ShoppieProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.tesco.TescoProductInfoDownloaderTask;
 
 import java.util.ArrayList;
@@ -69,6 +70,8 @@ public class TaskManager {
         taskList.add(new PilulkaProductInfoDownloaderTask(service));
 
         taskList.add(new SemistorProductInfoDownloaderTask(service));
+        taskList.add(new ShoppieProductInfoDownloaderTask(service));
+
 
         taskList.add(new TescoProductInfoDownloaderTask(service));
     }

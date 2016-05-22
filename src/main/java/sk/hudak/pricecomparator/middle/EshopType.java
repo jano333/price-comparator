@@ -33,6 +33,8 @@ public enum EshopType {
     PILULKA,
 
     SEMISTOR,
+    SHOPPIE,
+
     TESCO,
     ;
 }
