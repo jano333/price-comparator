@@ -25,6 +25,7 @@ import java.util.List;
 /**
  * Created by jan on 14. 1. 2016.
  */
+@Deprecated
 public class TaskManager2 {
     private PriceComparatorService service;
     private List<MyThread> taskList;
