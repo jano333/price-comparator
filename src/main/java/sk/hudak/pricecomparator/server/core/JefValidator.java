@@ -25,8 +25,16 @@ public class JefValidator {
         }
     }
 
+    public void maxLength255(String value, String errMsg) {
+        maxLength(value, 255, errMsg);
+    }
 
     public void maxLength(String value, int maxLength, String errMsg) {
-        //TODO impl  kontola na maximalnu dlzku
+        if (StringUtils.isBlank(value)) {
+            return;
+        }
+        if (value.length() > maxLength) {
+            throw new PriceComparatorException(errMsg);
+        }
     }
 }
