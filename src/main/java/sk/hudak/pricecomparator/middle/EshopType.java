@@ -15,6 +15,7 @@ public enum EshopType {
     BAMBINO,
     BUGY,
 
+    CKD_MARKET,
     DR_MAX,
     FEEDO,
 
@@ -32,5 +33,6 @@ public enum EshopType {
     PILULKA,
 
     SEMISTOR,
-    TESCO,;
+    TESCO,
+    ;
 }
