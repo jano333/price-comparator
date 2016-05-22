@@ -46,8 +46,9 @@ public abstract class AbstractEshopProductParser implements EshopProductParser {
             return parsePrice(doc);
 
         } catch (HttpStatusException e) {
-            // ak hodi napr 404 tak vratit ze je nedostupne
-            logger.error("http error  while conneting to: " + parserInputData.getEshopProductPage(), e);
+            int statusCode = e.getStatusCode();
+            logger.error("http status code: " + statusCode);
+            logger.error("error while conneting to: " + parserInputData.getEshopProductPage(), e);
             return ProductInfoFactory.createUnaviable();
 
         } catch (Exception e) {
@@ -91,5 +92,10 @@ public abstract class AbstractEshopProductParser implements EshopProductParser {
             sb = sb.deleteCharAt(sb.length() - 1);
         }
         return sb.toString();
+    }
+
+    protected String replaceAllCommaForDot(String text) {
+        text = text.replace(",", ".");
+        return text;
     }
 }
