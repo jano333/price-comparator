@@ -40,7 +40,7 @@ public class BugyEshopProductParser extends AbstractEshopProductParser {
     }
 
     private boolean isProductNedostupny(Document document) {
-        return notExistElement(document, "button[class=add_to_card]");    }
+        return notExistElement(document, "button[class=add_to_cart]");    }
 
     private String parseProductName(Document document) {
         //div[id="product_text"] h1
@@ -54,7 +54,7 @@ public class BugyEshopProductParser extends AbstractEshopProductParser {
             return null;
         }
         String text = elements.get(0).text();
-        text = text.replace(",", ".");
-        return text;
+        return removeLastCharacters(replaceAllCommaForDot(text), 2);
     }
+
 }
