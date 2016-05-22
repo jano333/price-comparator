@@ -84,8 +84,7 @@ public class GroupOfProductListTable extends Panel {
 
             @Override
             protected ProductListDto loadLazyById(Serializable id) {
-                //TODO
-                return new ProductListDto();
+                return PriceComparatorApplication.getApi().getProductListDtoById((Long) id);
             }
 
             @Override

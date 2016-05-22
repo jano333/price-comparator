@@ -14,6 +14,14 @@ public interface ProductService {
 
     PageList<ProductListDto> findProducts(ProductFindDto filter);
 
+    /**
+     * for lazy loading in table...
+     *
+     * @param productId
+     * @return
+     */
+    ProductListDto getProductListDtoById(Long productId);
+
     //-------
 
     Long createProduct(ProductCreateDto createDto);

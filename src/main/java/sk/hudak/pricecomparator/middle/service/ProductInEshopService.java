@@ -6,6 +6,7 @@ import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
 import sk.hudak.pricecomparator.middle.to.*;
 import sk.hudak.pricecomparator.middle.to.internal.StepOneRequestDto;
 import sk.hudak.pricecomparator.middle.to.internal.StepOneResponseDto;
+import sk.hudak.pricecomparator.middle.to.internal.StepTwoRequestDto;
 
 import java.util.List;
 
@@ -88,6 +89,8 @@ public interface ProductInEshopService {
     boolean existProductWithGivenUrl(String productUrl);
 
     StepOneResponseDto analyzeProductUrl(StepOneRequestDto stepOneRequestDto) throws PriceComparatorBusinesException;
+
+    void createNewProdutAndAddToEshop(StepTwoRequestDto stepTwoRequestDto) throws PriceComparatorBusinesException;
 
 
     //TODO vsetko nizsie remove

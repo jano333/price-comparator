@@ -6,6 +6,7 @@ import sk.hudak.pricecomparator.middle.to.*;
 import sk.hudak.pricecomparator.server.assembler.ProductAssembler;
 import sk.hudak.pricecomparator.server.dao.ProductDao;
 import sk.hudak.pricecomparator.server.facade.ProductFacade;
+import sk.hudak.pricecomparator.server.model.ProductEntity;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -34,6 +35,12 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public PageList<ProductListDto> findProducts(ProductFindDto filter) {
         return productAssembler.transformToPageListOfProductListDto(productDao.findProducts(filter));
+    }
+
+    @Override
+    public ProductListDto getProductListDtoById(Long productId) {
+        ProductEntity productEntity = productDao.readMandatory(productId);
+        return productAssembler.transformToProductListDto(productEntity);
     }
 
     @Override

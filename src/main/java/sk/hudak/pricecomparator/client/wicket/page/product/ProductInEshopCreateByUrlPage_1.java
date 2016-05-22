@@ -12,6 +12,8 @@ import org.apache.wicket.model.PropertyModel;
 import sk.hudak.pricecomparator.client.wicket.PriceComparatorApplication;
 import sk.hudak.pricecomparator.client.wicket.page.common.LayoutPage;
 import sk.hudak.pricecomparator.middle.canonical.Unit;
+import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
+import sk.hudak.pricecomparator.middle.service.ProductInEshopService;
 import sk.hudak.pricecomparator.middle.to.internal.StepOneRequestDto;
 import sk.hudak.pricecomparator.middle.to.internal.StepOneResponseDto;
 import sk.hudak.pricecomparator.middle.to.internal.StepTwoRequestDto;
@@ -23,10 +25,12 @@ import java.math.BigDecimal;
  */
 public class ProductInEshopCreateByUrlPage_1 extends LayoutPage {
 
+    private AjaxButton stepOneSubmitBt;
     private Form<Void> stepOneForm;
-    private Form<Void> stepTwoForm;
-
     private StepOneRequestDto stepOneRequestDto = new StepOneRequestDto();
+
+    private AjaxButton stepTwoSubmitBt;
+    private Form<Void> stepTwoForm;
     private StepTwoRequestDto stepTwoRequestDto = new StepTwoRequestDto();
 
     public ProductInEshopCreateByUrlPage_1() {
@@ -85,7 +89,7 @@ public class ProductInEshopCreateByUrlPage_1 extends LayoutPage {
         countOfItemInOnePackage.setRequired(true);
         stepTwoForm.add(countOfItemInOnePackage);
 
-        AjaxButton stepOneSubmitBt = new AjaxButton("stepOneSubmitBt", stepOneForm) {
+        stepOneSubmitBt = new AjaxButton("stepOneSubmitBt", stepOneForm) {
 
             @Override
             protected void onError(AjaxRequestTarget target, Form<?> form) {
@@ -107,11 +111,11 @@ public class ProductInEshopCreateByUrlPage_1 extends LayoutPage {
                     stepTwoRequestDto.setUnit(tmp.getUnit());
 
                     stepOneForm.setVisible(false);
+                    stepOneSubmitBt.setVisible(false);
+
                     stepTwoForm.setVisible(true);
 
-                    target.add(stepOneForm, stepTwoForm);
-
-//                    setResponsePage(ProductListPage.class);
+                    target.add(stepOneSubmitBt, stepOneForm, stepTwoForm);
 
                 } catch (Exception e) {
                     //TODO
@@ -123,6 +127,27 @@ public class ProductInEshopCreateByUrlPage_1 extends LayoutPage {
         stepOneSubmitBt.setOutputMarkupId(true);
         add(stepOneSubmitBt);
 
+        stepTwoSubmitBt = new AjaxButton("stepTwoSubmitBt", stepTwoForm) {
 
+            @Override
+            protected void onError(AjaxRequestTarget target, Form<?> form) {
+                super.onError(target, form);
+            }
+
+            @Override
+            protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
+                ProductInEshopService service = PriceComparatorApplication.getApi();
+                try {
+                    service.createNewProdutAndAddToEshop(stepTwoRequestDto);
+
+                } catch (PriceComparatorBusinesException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        };
+        stepTwoSubmitBt.setOutputMarkupId(true);
+        add(stepTwoSubmitBt);
     }
 }

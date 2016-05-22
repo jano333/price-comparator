@@ -10,6 +10,7 @@ import sk.hudak.pricecomparator.middle.service.*;
 import sk.hudak.pricecomparator.middle.to.*;
 import sk.hudak.pricecomparator.middle.to.internal.StepOneRequestDto;
 import sk.hudak.pricecomparator.middle.to.internal.StepOneResponseDto;
+import sk.hudak.pricecomparator.middle.to.internal.StepTwoRequestDto;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -118,6 +119,15 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
         logger.debug(">> findProducts");
         PageList<ProductListDto> result = productService.findProducts(filter);
         logger.debug("<< findProducts");
+        return result;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public ProductListDto getProductListDtoById(Long productId) {
+        logger.debug(">> getProductListDtoById");
+        ProductListDto result = productService.getProductListDtoById(productId);
+        logger.debug("<< getProductListDtoById");
         return result;
     }
 
@@ -412,6 +422,11 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
         StepOneResponseDto stepOneResponseDto = productInEshopService.analyzeProductUrl(stepOneRequestDto);
         logger.debug("<< analyzeProductUrl");
         return stepOneResponseDto;
+    }
+
+    @Override
+    public void createNewProdutAndAddToEshop(StepTwoRequestDto stepTwoRequestDto) throws PriceComparatorBusinesException {
+        //TODO
     }
 
 
