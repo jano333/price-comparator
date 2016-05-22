@@ -23,7 +23,11 @@ public class GroupOfProductFacade extends JefFacade {
     private ProductDao productDao;
 
     public Long createGroupOfProduct(GroupOfProductCreateDto createDto) {
-        validateDto(createDto);
+        val.notNull(createDto, "createDto is null");
+        val.notNullAndNotEmpty(createDto.getName(), "name of group is null or empty");
+        val.maxLength255(createDto.getName(), "name of group is longer than 255 chars");
+        // TODO na to aby sa do skupiny pridavali len produkty rovnakej UNIT, lebo inak neviem porovnavat...
+
 
         GroupOfProductEntity entity = new GroupOfProductEntity();
         entity.setName(createDto.getName().trim());
@@ -47,8 +51,5 @@ public class GroupOfProductFacade extends JefFacade {
         groupOfProductDao.update(entity);
     }
 
-    private void validateDto(GroupOfProductCreateDto createDto) {
-        val.notNull(createDto, "createDto is null");
-        val.notNullAndNotEmpty(createDto.getName(), "name of group is null or empty");
-    }
+
 }
