@@ -20,17 +20,20 @@ public class EshopFacade extends JefFacade {
 
     public Long createEshop(EshopCreateDto createDto) {
         val.notNull(createDto, "dto is null");
-        val.notNull(createDto.getEshopType(), "eshopTzpe is null");
-        val.notNullAndNotEmpty(createDto.getName(), "name is null or empty");
-        //TODO validacia na max dlzku 255 ?
-        val.notNullAndNotEmpty(createDto.getHomePage(), "homePage is null or empty");
-        //TODO validacia na max dlzku 255 ?
 
-        if (eshopDao.existWithName(createDto.getName())){
+        val.notNull(createDto.getEshopType(), "eshopTzpe is null");
+
+        val.notNullAndNotEmpty(createDto.getName(), "name is null or empty");
+        val.maxLength255(createDto.getName(), "name of eshop is longer than 255 chars");
+
+        val.notNullAndNotEmpty(createDto.getHomePage(), "homePage is null or empty");
+        val.maxLength255(createDto.getHomePage(), "home page of eshop is longer than 255 chars");
+
+        if (eshopDao.existWithName(createDto.getName())) {
             throw new PriceComparatorException("Eshop s nazvom " + createDto.getName() + " uz existuje.");
         }
 
-        //TODO kontrola na unikatnost home page
+        //TODO kontrola na unikatnost home page( pozor lebo dohliadac, ma rovnake takze neako inak...
         //TODO kontrola na unikatnost eshop type
 
         EshopEntity eshop = new EshopEntity();
