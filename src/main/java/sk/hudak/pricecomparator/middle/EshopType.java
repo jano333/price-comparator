@@ -16,7 +16,10 @@ public enum EshopType {
     BUGY,
 
     CKD_MARKET,
+
     DR_MAX,
+    DROGERIA_VMD,
+
     FEEDO,
 
 

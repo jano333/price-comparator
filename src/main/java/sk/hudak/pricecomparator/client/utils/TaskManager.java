@@ -10,6 +10,7 @@ import sk.hudak.pricecomparator.server.eshops.bambino.BambinoProductInfoDownload
 import sk.hudak.pricecomparator.server.eshops.bugy.BugyEshopProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.ckdmarket.CkdMarketProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.drmax.DrMaxProductInfoDownloaderTask;
+import sk.hudak.pricecomparator.server.eshops.drogeriavmd.DrogeriaVmdProductInfoDowlnoaderTask;
 import sk.hudak.pricecomparator.server.eshops.feedo.FeedoProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.hej.HejProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.internetovalekaren.InternetovaLekarenProductInfoDownloaderTask;
@@ -52,6 +53,7 @@ public class TaskManager {
         taskList.add(new CkdMarketProductInfoDownloaderTask(service));
 
         taskList.add(new DrMaxProductInfoDownloaderTask(service));
+        taskList.add(new DrogeriaVmdProductInfoDowlnoaderTask(service));
 
         taskList.add(new FeedoProductInfoDownloaderTask(service));
 
