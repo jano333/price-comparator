@@ -19,12 +19,15 @@ public enum EshopType {
     DR_MAX,
     FEEDO,
 
-    INTERNETOVA_LEKAREN,
 
     HEJ,
     HRAVO_ZDRAVO,
 
+    INTERNETOVA_LEKAREN,
+
     K24,
+
+    LEKAREN_BELLA,
 
     MALL,
     METRO,
