@@ -25,4 +25,6 @@ public interface EshopService {
 
     @Deprecated
     List<EshopListDto> findAllEshops();
+
+    EshopListDto getEshopListDtoById(Long eshopId);
 }

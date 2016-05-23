@@ -52,6 +52,11 @@ public class EshopServiceImpl implements EshopService {
     }
 
     @Override
+    public EshopListDto getEshopListDtoById(Long eshopId) {
+        return eshopAssembler.transformToEshopListDto(eshopDao.readMandatory(eshopId));
+    }
+
+    @Override
     public List<EshopIdNameDto> findAllEshopsForSelection() {
         return eshopAssembler.transformToListOfEshopIdNameDto(eshopDao.findAllEshops());
     }

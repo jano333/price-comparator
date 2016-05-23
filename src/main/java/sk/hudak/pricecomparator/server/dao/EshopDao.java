@@ -21,8 +21,8 @@ import java.util.List;
 public class EshopDao extends JefDao<EshopEntity> {
 
     @Override
-    public EshopEntity readMandatory(Long id) {
-        return readMandatory(id, EshopEntity.class);
+    public EshopEntity readMandatory(Long eshopId) {
+        return readMandatory(eshopId, EshopEntity.class);
     }
 
     public PageList<EshopEntity> findEshops(EshopFindDto filter) {
@@ -36,8 +36,6 @@ public class EshopDao extends JefDao<EshopEntity> {
         addAscOrder(crit, EshopEntity.AT_NAME);
         return new PageList<>(crit.list(), pagging.getCurrentPage(), pagging.getAllPage());
     }
-
-    //TODO ------------
 
     public PageData<EshopEntity> findByCriteria(EshopFindDto findDto) {
         val.notNull(findDto, "findDto dto is null");

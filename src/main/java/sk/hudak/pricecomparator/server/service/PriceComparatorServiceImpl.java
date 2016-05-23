@@ -86,6 +86,15 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
 
     @Override
     @Transactional(readOnly = true)
+    public EshopListDto getEshopListDtoById(Long eshopId) {
+        logger.debug(">> getEshopListDtoById");
+        EshopListDto result = eshopService.getEshopListDtoById(eshopId);
+        logger.debug("<< getEshopListDtoById");
+        return result;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public List<EshopIdNameDto> findAllEshopsForSelection() {
         logger.debug(">> findAllEshopsForSelection");
         List<EshopIdNameDto> result = eshopService.findAllEshopsForSelection();
@@ -426,7 +435,7 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
 
     @Override
     public void createNewProdutAndAddToEshop(StepTwoRequestDto stepTwoRequestDto) throws PriceComparatorBusinesException {
-        //TODO
+        //TODO impl
     }
 
 
