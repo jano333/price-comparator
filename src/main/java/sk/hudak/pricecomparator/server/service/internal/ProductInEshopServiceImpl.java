@@ -180,19 +180,5 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
         return productInEshopAssembler.transformToListOfProductInEshopPriceInfoListDto(productInEshopEntities);
     }
 
-//        //TODO impl
-//        ProductInEshopForPictureDownloadInfoDto result = new ProductInEshopForPictureDownloadInfoDto();
-//        result.setProductId(2l);
-//        result.setProductInEshopUrl("https://www.feedo.sk/2x-lovela-sensitive-5-l-darcek-lovela-avivaz-2l-zadarmo/");
-//
-//        return result;
-//    }
-
-    //    @Override
-//    public List<ProductInEshopPriceResultListDto> old_findPriceInfoInEshopsForProduct(Long productId) {
-//        //FIXME vstup dat finDto aby bola moznost nastavovat filtrovanie, vraciat paging nie list
-//        List<ProductInEshopEntity> productInEshopEntities = productInEshopDao.old_findPriceInfoInEshopsForProduct(productId);
-//        //FIXME premenovat transform metodu
-//        return productInEshopAssembler.transformToListOfProductInEshopEntity(productInEshopEntities);
 
 }
