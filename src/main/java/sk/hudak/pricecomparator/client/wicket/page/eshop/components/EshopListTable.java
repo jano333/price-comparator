@@ -17,6 +17,7 @@ import sk.hudak.pricecomparator.client.wicket.component.common.IdListView;
 import sk.hudak.pricecomparator.client.wicket.component.table.PagingInfoPanel;
 import sk.hudak.pricecomparator.client.wicket.component.table.Table;
 import sk.hudak.pricecomparator.client.wicket.page.productineshop.ProductInEshopCreatePage;
+import sk.hudak.pricecomparator.client.wicket.page.productineshop.ProductListPerEshopPage;
 import sk.hudak.pricecomparator.middle.to.EshopFindDto;
 import sk.hudak.pricecomparator.middle.to.EshopListDto;
 
@@ -76,7 +77,6 @@ public class EshopListTable extends Panel {
                 Label eshopName = new Label("name", new PropertyModel<String>(product, EshopListDto.AT_NAME));
                 Label eshopHomePage = new Label("homePage", new PropertyModel<String>(product, EshopListDto.AT_HOME_PAGE));
 
-                //
                 Link<EshopListDto> addProductToEshop = new Link<EshopListDto>("addProductToEshop", product) {
                     @Override
                     public void onClick() {
@@ -86,8 +86,20 @@ public class EshopListTable extends Panel {
                     }
                 };
 
+                Link<EshopListDto> listOfEshopProducts = new Link<EshopListDto>("listOfEshopProducts", product) {
+                    @Override
+                    public void onClick() {
+
+                        PageParameters params = WU.param(ProductListPerEshopPage.PARAM_ESHOP_ID, getModelObject().getId());
+                        setResponsePage(ProductListPerEshopPage.class, params);
+                    }
+                };
+
+
                 WebMarkupContainer tr = new WebMarkupContainer("tr");
-                tr.add(eshopName, eshopHomePage, addProductToEshop);
+                tr.add(eshopName, eshopHomePage,
+                        listOfEshopProducts,
+                        addProductToEshop);
 
                 item.add(tr);
             }

@@ -33,8 +33,12 @@ public class ProductListPerEshopTable extends Panel {
 
     private EshopIdNameDto selectedEshop;
 
-    public ProductListPerEshopTable(String id) {
+    public ProductListPerEshopTable(String id, Long selectedEshopId) {
         super(id);
+
+        if (selectedEshopId != null) {
+            selectedEshop = PriceComparatorApplication.getApi().getEshopIdNameDto(selectedEshopId);
+        }
 
         IModel<PageList<ProductInEshopPriceInfoListDto>> tableModel = new LoadableDetachableModel<PageList<ProductInEshopPriceInfoListDto>>() {
 
