@@ -4,15 +4,19 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.PropertyModel;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 import sk.hudak.jef.PageList;
 import sk.hudak.pricecomparator.client.wicket.PriceComparatorApplication;
+import sk.hudak.pricecomparator.client.wicket.WU;
 import sk.hudak.pricecomparator.client.wicket.component.common.IdListView;
 import sk.hudak.pricecomparator.client.wicket.component.table.PagingInfoPanel;
 import sk.hudak.pricecomparator.client.wicket.component.table.Table;
+import sk.hudak.pricecomparator.client.wicket.page.productineshop.ProductInEshopCreatePage;
 import sk.hudak.pricecomparator.middle.to.EshopFindDto;
 import sk.hudak.pricecomparator.middle.to.EshopListDto;
 
@@ -72,8 +76,18 @@ public class EshopListTable extends Panel {
                 Label eshopName = new Label("name", new PropertyModel<String>(product, EshopListDto.AT_NAME));
                 Label eshopHomePage = new Label("homePage", new PropertyModel<String>(product, EshopListDto.AT_HOME_PAGE));
 
+                //
+                Link<EshopListDto> addProductToEshop = new Link<EshopListDto>("addProductToEshop", product) {
+                    @Override
+                    public void onClick() {
+
+                        PageParameters params = WU.param(ProductInEshopCreatePage.PARAM_ESHOP_ID, getModelObject().getId());
+                        setResponsePage(ProductInEshopCreatePage.class, params);
+                    }
+                };
+
                 WebMarkupContainer tr = new WebMarkupContainer("tr");
-                tr.add(eshopName, eshopHomePage);
+                tr.add(eshopName, eshopHomePage, addProductToEshop);
 
                 item.add(tr);
             }

@@ -95,6 +95,12 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
 
     @Override
     @Transactional(readOnly = true)
+    public EshopIdNameDto getEshopIdNameDto(Long eshopId) {
+        return eshopService.getEshopIdNameDto(eshopId);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public List<EshopIdNameDto> findAllEshopsForSelection() {
         logger.debug(">> findAllEshopsForSelection");
         List<EshopIdNameDto> result = eshopService.findAllEshopsForSelection();

@@ -64,7 +64,7 @@ public class EshopAssembler {
 
     }
 
-    private EshopIdNameDto transformToEshopIdNameDto(EshopEntity eshopEntity) {
+    public EshopIdNameDto transformToEshopIdNameDto(EshopEntity eshopEntity) {
         if (eshopEntity == null) {
             return null;
         }

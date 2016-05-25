@@ -7,6 +7,7 @@ import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.PropertyModel;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 import sk.hudak.pricecomparator.client.wicket.PriceComparatorApplication;
 import sk.hudak.pricecomparator.client.wicket.page.CreatePageMarker;
 import sk.hudak.pricecomparator.client.wicket.page.common.LayoutPage;
@@ -21,13 +22,20 @@ import java.util.List;
  */
 public class ProductInEshopCreatePage extends LayoutPage implements CreatePageMarker {
 
+    public static final transient String PARAM_ESHOP_ID = "eshopId";
+
     private ProductInEshopCreateDto createDto = new ProductInEshopCreateDto();
 
-    private ProductIdNameDto selectedProduct;
     private EshopIdNameDto selectedEshop;
-
+    private ProductIdNameDto selectedProduct;
 
     public ProductInEshopCreatePage() {
+        this(new PageParameters());
+    }
+
+    public ProductInEshopCreatePage(PageParameters params) {
+        initSelectedEshop(params);
+        initSelectedProduct(params);
 
         add(new FeedbackPanel("feedback"));
 
@@ -82,6 +90,17 @@ public class ProductInEshopCreatePage extends LayoutPage implements CreatePageMa
                 new PropertyModel<String>(createDto, ProductInEshopCreateDto.AT_ESHOP_PRODUCT_PAGE));
         productEshopPageUrl.setRequired(true);
         form.add(productEshopPageUrl);
+    }
+
+    private void initSelectedEshop(PageParameters params) {
+        Long eshopId = params.get(PARAM_ESHOP_ID).toLongObject();
+        if (eshopId != null) {
+            selectedEshop = PriceComparatorApplication.getApi().getEshopIdNameDto(eshopId);
+        }
+    }
+
+    private void initSelectedProduct(PageParameters params) {
+        //TODO
     }
 
     public ProductIdNameDto getSelectedProduct() {
