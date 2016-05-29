@@ -21,7 +21,7 @@ public class EshopFacade extends JefFacade {
     public Long createEshop(EshopCreateDto createDto) {
         val.notNull(createDto, "dto is null");
 
-        val.notNull(createDto.getEshopType(), "eshopTzpe is null");
+        val.notNull(createDto.getEshopType(), "eshopType is null");
 
         val.notNullAndNotEmpty(createDto.getName(), "name is null or empty");
         val.maxLength255(createDto.getName(), "name of eshop is longer than 255 chars");
@@ -30,6 +30,7 @@ public class EshopFacade extends JefFacade {
         val.maxLength255(createDto.getHomePage(), "home page of eshop is longer than 255 chars");
 
         if (eshopDao.existWithName(createDto.getName())) {
+            //TODO toto musi byt bussines vynimka pre klienta...
             throw new PriceComparatorException("Eshop s nazvom " + createDto.getName() + " uz existuje.");
         }
 
