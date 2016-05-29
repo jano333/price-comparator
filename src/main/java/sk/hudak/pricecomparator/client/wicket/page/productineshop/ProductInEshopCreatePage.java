@@ -9,6 +9,7 @@ import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import sk.hudak.pricecomparator.client.wicket.PriceComparatorApplication;
+import sk.hudak.pricecomparator.client.wicket.WU;
 import sk.hudak.pricecomparator.client.wicket.page.CreatePageMarker;
 import sk.hudak.pricecomparator.client.wicket.page.common.LayoutPage;
 import sk.hudak.pricecomparator.middle.to.EshopIdNameDto;
@@ -93,7 +94,7 @@ public class ProductInEshopCreatePage extends LayoutPage implements CreatePageMa
     }
 
     private void initSelectedEshop(PageParameters params) {
-        Long eshopId = params.get(PARAM_ESHOP_ID).toLongObject();
+        Long eshopId = WU.paramAsLong(params, PARAM_ESHOP_ID);
         if (eshopId != null) {
             selectedEshop = PriceComparatorApplication.getApi().getEshopIdNameDto(eshopId);
         }
