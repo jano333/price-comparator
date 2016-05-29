@@ -20,6 +20,8 @@ public enum EshopType {
     DR_MAX,
     DROGERIA_VMD,
 
+    ESO_DROGERIA,
+
     FEEDO,
 
 
