@@ -1,5 +1,7 @@
 package sk.hudak.pricecomparator.client.wicket.page.product;
 
+import org.apache.wicket.request.mapper.parameter.PageParameters;
+import sk.hudak.pricecomparator.client.wicket.WU;
 import sk.hudak.pricecomparator.client.wicket.page.TableWithFilterPage;
 import sk.hudak.pricecomparator.client.wicket.page.product.components.ProductPricesPerEshopsTable;
 
@@ -10,7 +12,13 @@ import sk.hudak.pricecomparator.client.wicket.page.product.components.ProductPri
  */
 public class ProductPricesPerEshopsListPage extends TableWithFilterPage {
 
+    public static final transient String PARAM_PRODUCT_ID = "productId";
+
     public ProductPricesPerEshopsListPage() {
-        add(new ProductPricesPerEshopsTable("table"));
+        this(new PageParameters());
+    }
+
+    public ProductPricesPerEshopsListPage(PageParameters params) {
+        add(new ProductPricesPerEshopsTable("table", WU.paramAsLong(params, PARAM_PRODUCT_ID)));
     }
 }

@@ -62,4 +62,9 @@ public class ProductServiceImpl implements ProductService {
     public List<ProductListDto> getAllProduct() {
         return productAssembler.transformToListOfProductListDto(productDao.findAllProducts());
     }
+
+    @Override
+    public ProductIdNameDto getProductIdNameDto(Long productId) {
+        return productAssembler.transformToProductIdNameDto(productDao.readMandatory(productId));
+    }
 }

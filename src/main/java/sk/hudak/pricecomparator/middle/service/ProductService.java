@@ -31,4 +31,6 @@ public interface ProductService {
     ProductDto getProduct(Long productId);
 
     List<ProductListDto> getAllProduct();
+
+    ProductIdNameDto getProductIdNameDto(Long productId);
 }

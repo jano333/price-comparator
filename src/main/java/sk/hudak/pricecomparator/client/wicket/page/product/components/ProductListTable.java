@@ -5,16 +5,19 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.image.ContextImage;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.PropertyModel;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 import sk.hudak.jef.PageList;
 import sk.hudak.pricecomparator.client.wicket.PriceComparatorApplication;
 import sk.hudak.pricecomparator.client.wicket.WU;
 import sk.hudak.pricecomparator.client.wicket.component.common.IdListView;
 import sk.hudak.pricecomparator.client.wicket.component.table.PagingInfoPanel;
 import sk.hudak.pricecomparator.client.wicket.component.table.Table;
+import sk.hudak.pricecomparator.client.wicket.page.product.ProductPricesPerEshopsListPage;
 import sk.hudak.pricecomparator.middle.to.ProductFindDto;
 import sk.hudak.pricecomparator.middle.to.ProductListDto;
 
@@ -62,8 +65,7 @@ public class ProductListTable extends Panel {
 
             @Override
             protected ProductListDto loadLazyById(Serializable id) {
-                //TODO
-                return new ProductListDto();
+                return PriceComparatorApplication.getApi().getProductListDtoById((Long) id);
             }
 
             @Override
@@ -76,8 +78,19 @@ public class ProductListTable extends Panel {
                 //TODO nacitavat to cez property model nie takto:
                 ContextImage image = WU.productImage(product.getObject().getImagePath());
 
+                // actions
+                Link<ProductListDto> listOfEshopsPerProduct = new Link<ProductListDto>("listOfEshopsPerProduct", product) {
+                    @Override
+                    public void onClick() {
+
+                        PageParameters params = WU.param(ProductPricesPerEshopsListPage.PARAM_PRODUCT_ID, getModelObject().getId());
+                        setResponsePage(ProductPricesPerEshopsListPage.class, params);
+                    }
+                };
+
                 WebMarkupContainer tr = new WebMarkupContainer("tr");
                 tr.add(productName, image);
+                tr.add(listOfEshopsPerProduct);
 
                 item.add(tr);
             }

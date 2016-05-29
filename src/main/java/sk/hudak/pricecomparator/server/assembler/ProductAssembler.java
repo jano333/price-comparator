@@ -70,7 +70,7 @@ public class ProductAssembler {
         return result;
     }
 
-    private ProductIdNameDto transformToProductIdNameDto(ProductEntity productEntity) {
+    public ProductIdNameDto transformToProductIdNameDto(ProductEntity productEntity) {
         if (productEntity == null) {
             return null;
         }

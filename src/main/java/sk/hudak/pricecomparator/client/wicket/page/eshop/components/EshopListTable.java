@@ -77,6 +77,7 @@ public class EshopListTable extends Panel {
                 Label eshopName = new Label("name", new PropertyModel<String>(product, EshopListDto.AT_NAME));
                 Label eshopHomePage = new Label("homePage", new PropertyModel<String>(product, EshopListDto.AT_HOME_PAGE));
 
+                // actions
                 Link<EshopListDto> addProductToEshop = new Link<EshopListDto>("addProductToEshop", product) {
                     @Override
                     public void onClick() {

@@ -172,6 +172,12 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
         return result;
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public ProductIdNameDto getProductIdNameDto(Long productId) {
+        return productService.getProductIdNameDto(productId);
+    }
+
 
     // --------- CATEGORY ----------
 
