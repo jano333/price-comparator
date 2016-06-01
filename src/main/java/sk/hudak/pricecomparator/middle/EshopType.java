@@ -13,6 +13,7 @@ public enum EshopType {
 
     BABETKOVO,
     BAMBINO,
+    BEL_MEDIKA,
     BUGY,
 
     CKD_MARKET,

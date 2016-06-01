@@ -7,6 +7,7 @@ import sk.hudak.pricecomparator.server.eshops.amddrogeria.AmdDrogeriaProductInfo
 import sk.hudak.pricecomparator.server.eshops.andrea.AndreaEshopProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.babetkovo.BabetkovoProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.bambino.BambinoProductInfoDownloaderTask;
+import sk.hudak.pricecomparator.server.eshops.belmedika.BelmedikaEshopProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.bugy.BugyEshopProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.ckdmarket.CkdMarketProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.drmax.DrMaxProductInfoDownloaderTask;
@@ -49,6 +50,7 @@ public class TaskManager {
 
         taskList.add(new BabetkovoProductInfoDownloaderTask(service));
         taskList.add(new BambinoProductInfoDownloaderTask(service));
+        taskList.add(new BelmedikaEshopProductInfoDownloaderTask(service));
         taskList.add(new BugyEshopProductInfoDownloaderTask(service));
 
         taskList.add(new CkdMarketProductInfoDownloaderTask(service));
