@@ -153,7 +153,7 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
 
     @Override
     public void createNewProdutAndAddToEshop(StepTwoRequestDto stepTwoRequestDto) throws PriceComparatorBusinesException {
-        //TODO
+        //TODO impl
     }
 
     @Override
@@ -170,14 +170,6 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
             }
         }
         return null;
-    }
-
-
-    @Override
-    @Deprecated
-    public List<ProductInEshopPriceInfoListDto> old_findProductsInEshopPriceInfo(ProductInEshopFindDto findDto) {
-        List<ProductInEshopEntity> productInEshopEntities = productInEshopDao.old_findProductsInEshop(findDto);
-        return productInEshopAssembler.transformToListOfProductInEshopPriceInfoListDto(productInEshopEntities);
     }
 
 

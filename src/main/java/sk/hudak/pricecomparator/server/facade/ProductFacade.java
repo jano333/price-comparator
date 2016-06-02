@@ -99,7 +99,7 @@ public class ProductFacade extends JefFacade {
 
 
             } catch (IOException e) {
-                //TODO
+                //TODO ex
                 e.printStackTrace();
             }
         }

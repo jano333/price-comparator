@@ -291,16 +291,6 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<ProductInEshopPriceInfoListDto> old_findProductsInEshopPriceInfo(ProductInEshopFindDto findDto) {
-        logger.debug(">> findProductsInEshopPriceInfo");
-        List<ProductInEshopPriceInfoListDto> result = productInEshopService.old_findProductsInEshopPriceInfo(findDto);
-        logger.debug("<< findProductsInEshopPriceInfo");
-        return result;
-    }
-
-
-    @Override
-    @Transactional(readOnly = true)
     public PageList<ProductInEshopPriceInfoListDto> findProductsInEshopPriceInfo(ProductInEshopFindDto findDto) {
         logger.debug(">> findProductsInEshopPriceInfo");
         PageList<ProductInEshopPriceInfoListDto> result = productInEshopService.findProductsInEshopPriceInfo(findDto);
@@ -449,16 +439,4 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
     public void createNewProdutAndAddToEshop(StepTwoRequestDto stepTwoRequestDto) throws PriceComparatorBusinesException {
         //TODO impl
     }
-
-
-    //    @Override
-//    @Transactional(readOnly = true)
-//    public List<ProductInEshopPriceResultListDto> old_findPriceInfoInEshopsForProduct(Long productId) {
-//        logger.debug(">> findPriceInfoInEshopsForProduct");
-//        List<ProductInEshopPriceResultListDto> result = productInEshopService.old_findPriceInfoInEshopsForProduct(productId);
-//        logger.debug("<< findPriceInfoInEshopsForProduct");
-//        return result;
-//    }
-
-
 }

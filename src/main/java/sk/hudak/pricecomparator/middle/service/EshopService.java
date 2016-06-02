@@ -10,16 +10,15 @@ import java.util.List;
  */
 public interface EshopService {
 
-    PageList<EshopListDto> findEshops(EshopFindDto filter);
+    Long createEshop(EshopCreateDto dto);
 
-    List<EshopHomePageInfoDto> findAllHomePages();
+    PageList<EshopListDto> findEshops(EshopFindDto filter);
 
     //TODO prejset
 
-    Long createEshop(EshopCreateDto dto);
+    List<EshopHomePageInfoDto> findAllHomePages();
 
     EshopDto getEshopById(Long eshopId);
-
 
     List<EshopIdNameDto> findAllEshopsForSelection();
 
