@@ -25,7 +25,6 @@ public enum EshopType {
 
     FEEDO,
 
-
     HEJ,
     HRAVO_ZDRAVO,
 
@@ -37,6 +36,8 @@ public enum EshopType {
 
     MALL,
     METRO,
+
+    NOVA_LEKAREN,
 
     PERINBABA,
     PILULKA,
