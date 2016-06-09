@@ -5,7 +5,6 @@ import sk.hudak.pricecomparator.middle.canonical.ParserInputData;
 import sk.hudak.pricecomparator.middle.canonical.Unit;
 import sk.hudak.pricecomparator.middle.model.EshopProductInfo;
 import sk.hudak.pricecomparator.server.eshops.feedo.FeedoEshopProductParser;
-import sk.hudak.pricecomparator.server.eshops.pilulka.PilulkaEshopProductParser;
 
 import java.math.BigDecimal;
 
