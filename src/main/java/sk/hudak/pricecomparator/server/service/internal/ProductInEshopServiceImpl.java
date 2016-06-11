@@ -116,8 +116,8 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
     }
 
     @Override
-    public Long createProductInEshop(ProductInEshopCreateDto dto) {
-        return productInEshopFacade.createProductInEshop(dto);
+    public Long createProductInEshop(ProductInEshopCreateDto createDto) {
+        return productInEshopFacade.createProductInEshop(createDto);
     }
 
     @Override

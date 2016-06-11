@@ -11,22 +11,50 @@ import java.util.List;
  */
 public interface EshopService {
 
-    Long createEshop(EshopCreateDto dto) throws PriceComparatorBusinesException;
+    /**
+     * @param createDto
+     * @return
+     * @throws PriceComparatorBusinesException
+     */
+    Long createEshop(EshopCreateDto createDto) throws PriceComparatorBusinesException;
 
-    PageList<EshopListDto> findEshops(EshopFindDto filter);
-
-    //TODO prejset
-
-    List<EshopHomePageInfoDto> findAllHomePages();
-
+    /**
+     * @param eshopId
+     * @return
+     */
     EshopDto getEshopById(Long eshopId);
 
+    /**
+     * @param eshopId
+     * @return
+     */
+    EshopListDto getEshopListById(Long eshopId);
+
+    /**
+     * @param eshopId
+     * @return
+     */
+    EshopIdNameDto getEshopIdNameById(Long eshopId);
+
+    /**
+     * @param findDto
+     * @return
+     */
+    PageList<EshopListDto> findEshops(EshopFindDto findDto);
+
+    /**
+     * @return
+     */
+    List<EshopHomePageInfoDto> findAllHomePages();
+
+    /**
+     * @return
+     */
     List<EshopIdNameDto> findAllEshopsForSelection();
 
+    /**
+     * @return
+     */
     @Deprecated
     List<EshopListDto> findAllEshops();
-
-    EshopListDto getEshopListDtoById(Long eshopId);
-
-    EshopIdNameDto getEshopIdNameDto(Long eshopId);
 }

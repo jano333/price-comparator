@@ -5,6 +5,7 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import sk.hudak.pricecomparator.middle.canonical.Unit;
+import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
 import sk.hudak.pricecomparator.middle.to.GroupOfProductCreateDto;
 import sk.hudak.pricecomparator.middle.to.GroupOfProductDto;
@@ -34,14 +35,23 @@ public class GroupOfProductEntityTest extends AbstractTestNGSpringContextTests {
         productCreateDto.setCountOfUnit(new BigDecimal(2));
         productCreateDto.setUnit(Unit.KUS);
         productCreateDto.setCountOfItemInOnePackage(1);
-        Long productId1 = service.createProduct(productCreateDto);
+        Long productId1 = null;
+        try {
+            productId1 = service.createProduct(productCreateDto);
+        } catch (PriceComparatorBusinesException e) {
+            e.printStackTrace();
+        }
 
         productCreateDto = new ProductCreateDto();
         productCreateDto.setName("Palmex");
         productCreateDto.setCountOfUnit(new BigDecimal(9));
         productCreateDto.setUnit(Unit.KUS);
         productCreateDto.setCountOfItemInOnePackage(1);
-        Long productId2 = service.createProduct(productCreateDto);
+        try {
+            Long productId2 = service.createProduct(productCreateDto);
+        } catch (PriceComparatorBusinesException e) {
+            e.printStackTrace();
+        }
 
         System.out.println("-----------");
 

@@ -1,6 +1,7 @@
 package sk.hudak.pricecomparator.middle.service;
 
 import sk.hudak.jef.PageList;
+import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
 import sk.hudak.pricecomparator.middle.to.*;
 
 import java.util.List;
@@ -10,9 +11,28 @@ import java.util.List;
  */
 public interface ProductService {
 
-    List<ProductIdNameDto> findAllProductForSelection();
+    /**
+     * @param createDto
+     * @return
+     */
+    Long createProduct(ProductCreateDto createDto) throws PriceComparatorBusinesException;
 
-    PageList<ProductListDto> findProducts(ProductFindDto filter);
+    /**
+     * @param updateDto
+     */
+    void updateProduct(ProductUpdateDto updateDto)throws PriceComparatorBusinesException;
+
+    /**
+     * @param productId
+     * @return
+     */
+    ProductDto getProductById(Long productId);
+
+    /**
+     * @param productId
+     * @return
+     */
+    ProductIdNameDto getProductIdNameById(Long productId);
 
     /**
      * for lazy loading in table...
@@ -20,17 +40,22 @@ public interface ProductService {
      * @param productId
      * @return
      */
-    ProductListDto getProductListDtoById(Long productId);
+    ProductListDto getProductListById(Long productId);
 
-    //-------
+    /**
+     * @param filter
+     * @return
+     */
+    PageList<ProductListDto> findProducts(ProductFindDto filter);
 
-    Long createProduct(ProductCreateDto createDto);
+    /**
+     * @return
+     */
+    List<ProductIdNameDto> findAllProductForSelection();
 
-    void updateProduct(ProductUpdateDto updateDto);
-
-    ProductDto getProduct(Long productId);
-
-    List<ProductListDto> getAllProduct();
-
-    ProductIdNameDto getProductIdNameDto(Long productId);
+    /**
+     * @return
+     */
+    @Deprecated
+    List<ProductListDto> findAllProduct();
 }

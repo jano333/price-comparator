@@ -38,7 +38,7 @@ public class ProductPricesPerEshopsTable extends Panel {
         super(id);
 
         if(selectedProductId !=null){
-            selectedProduct = PriceComparatorApplication.getApi().getProductIdNameDto(selectedProductId);
+            selectedProduct = PriceComparatorApplication.getApi().getProductIdNameById(selectedProductId);
         }
 
         IModel<PageList<ProductInEshopPriceResultListDto>> tableModel = new LoadableDetachableModel<PageList<ProductInEshopPriceResultListDto>>() {

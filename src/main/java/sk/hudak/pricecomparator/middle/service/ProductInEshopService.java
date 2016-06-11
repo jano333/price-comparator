@@ -15,15 +15,15 @@ import java.util.List;
  */
 public interface ProductInEshopService {
 
-    PageList<ResponseDto> findProductInEshopsForProductIds(ProductIdsFindDto productIdsFindDto);
-
     /**
      * Priradenie produktu do eshopu.
      *
-     * @param dto
+     * @param createDto
      * @return
      */
-    Long createProductInEshop(ProductInEshopCreateDto dto);
+    Long createProductInEshop(ProductInEshopCreateDto createDto) throws PriceComparatorBusinesException;
+
+    PageList<ResponseDto> findProductInEshopsForProductIds(ProductIdsFindDto productIdsFindDto);
 
     /**
      * @param updateDto

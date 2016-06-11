@@ -96,7 +96,7 @@ public class ProductInEshopCreatePage extends LayoutPage implements CreatePageMa
     private void initSelectedEshop(PageParameters params) {
         Long eshopId = WU.paramAsLong(params, PARAM_ESHOP_ID);
         if (eshopId != null) {
-            selectedEshop = PriceComparatorApplication.getApi().getEshopIdNameDto(eshopId);
+            selectedEshop = PriceComparatorApplication.getApi().getEshopIdNameById(eshopId);
         }
     }
 

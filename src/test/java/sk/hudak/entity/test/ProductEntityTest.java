@@ -5,6 +5,7 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import sk.hudak.pricecomparator.middle.canonical.Unit;
+import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
 import sk.hudak.pricecomparator.middle.to.ProductCreateDto;
 import sk.hudak.pricecomparator.middle.to.ProductListDto;
@@ -30,10 +31,15 @@ public class ProductEntityTest extends AbstractTestNGSpringContextTests {
         dto.setCountOfUnit(new BigDecimal(2));
         dto.setUnit(Unit.KUS);
         dto.setCountOfItemInOnePackage(1);
-        Long product = service.createProduct(dto);
+        Long product = null;
+        try {
+            product = service.createProduct(dto);
+        } catch (PriceComparatorBusinesException e) {
+            e.printStackTrace();
+        }
         Assert.assertNotNull(product);
 
-        List<ProductListDto> allProducts = service.getAllProduct();
+        List<ProductListDto> allProducts = service.findAllProduct();
         Assert.assertNotNull(allProducts);
         Assert.assertTrue(allProducts.get(0) != null);
     }

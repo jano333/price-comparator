@@ -28,8 +28,8 @@ public class EshopServiceImpl implements EshopService {
     private EshopAssembler eshopAssembler;
 
     @Override
-    public PageList<EshopListDto> findEshops(EshopFindDto filter) {
-        return eshopAssembler.transformToPageListOfEshopListDto(eshopDao.findEshops(filter));
+    public PageList<EshopListDto> findEshops(EshopFindDto findDto) {
+        return eshopAssembler.transformToPageListOfEshopListDto(eshopDao.findEshops(findDto));
     }
 
     @Override
@@ -38,8 +38,8 @@ public class EshopServiceImpl implements EshopService {
     }
 
     @Override
-    public Long createEshop(EshopCreateDto dto) throws PriceComparatorBusinesException {
-        return eshopFacade.createEshop(dto);
+    public Long createEshop(EshopCreateDto createDto) throws PriceComparatorBusinesException {
+        return eshopFacade.createEshop(createDto);
     }
 
     @Override
@@ -53,12 +53,12 @@ public class EshopServiceImpl implements EshopService {
     }
 
     @Override
-    public EshopListDto getEshopListDtoById(Long eshopId) {
+    public EshopListDto getEshopListById(Long eshopId) {
         return eshopAssembler.transformToEshopListDto(eshopDao.readMandatory(eshopId));
     }
 
     @Override
-    public EshopIdNameDto getEshopIdNameDto(Long eshopId) {
+    public EshopIdNameDto getEshopIdNameById(Long eshopId) {
         return eshopAssembler.transformToEshopIdNameDto(eshopDao.readMandatory(eshopId));
     }
 

@@ -42,13 +42,23 @@ public class ProductInEshopEntityTest extends AbstractTestNGSpringContextTests {
         productCreateDto.setCountOfUnit(new BigDecimal(2));
         productCreateDto.setUnit(Unit.KUS);
         productCreateDto.setCountOfItemInOnePackage(1);
-        Long productId = service.createProduct(productCreateDto);
+        Long productId = null;
+        try {
+            productId = service.createProduct(productCreateDto);
+        } catch (PriceComparatorBusinesException e) {
+            e.printStackTrace();
+        }
 
         ProductInEshopCreateDto createDto = new ProductInEshopCreateDto();
         createDto.setProductId(productId);
         createDto.setEshopId(eshopId);
         createDto.setEshopProductPage("http://www.tesco.sk");
-        Long productInEshopId = service.createProductInEshop(createDto);
+        Long productInEshopId = null;
+        try {
+            productInEshopId = service.createProductInEshop(createDto);
+        } catch (PriceComparatorBusinesException e) {
+            e.printStackTrace();
+        }
         Assert.assertNotNull(productInEshopId);
 
         ProductInEshopService ser = service;

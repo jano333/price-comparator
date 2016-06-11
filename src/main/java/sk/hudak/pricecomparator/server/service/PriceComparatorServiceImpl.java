@@ -50,9 +50,9 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
 
     @Override
     @Transactional(readOnly = true)
-    public PageList<EshopListDto> findEshops(EshopFindDto filter) {
+    public PageList<EshopListDto> findEshops(EshopFindDto findDto) {
         logger.debug(">> findEshops");
-        PageList<EshopListDto> result = eshopService.findEshops(filter);
+        PageList<EshopListDto> result = eshopService.findEshops(findDto);
         logger.debug("<< findEshops");
         return result;
     }
@@ -86,17 +86,17 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
 
     @Override
     @Transactional(readOnly = true)
-    public EshopListDto getEshopListDtoById(Long eshopId) {
-        logger.debug(">> getEshopListDtoById");
-        EshopListDto result = eshopService.getEshopListDtoById(eshopId);
-        logger.debug("<< getEshopListDtoById");
+    public EshopListDto getEshopListById(Long eshopId) {
+        logger.debug(">> getEshopListById");
+        EshopListDto result = eshopService.getEshopListById(eshopId);
+        logger.debug("<< getEshopListById");
         return result;
     }
 
     @Override
     @Transactional(readOnly = true)
-    public EshopIdNameDto getEshopIdNameDto(Long eshopId) {
-        return eshopService.getEshopIdNameDto(eshopId);
+    public EshopIdNameDto getEshopIdNameById(Long eshopId) {
+        return eshopService.getEshopIdNameById(eshopId);
     }
 
     @Override
@@ -112,7 +112,7 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
 
     @Override
     @Transactional
-    public Long createProduct(ProductCreateDto createDto) {
+    public Long createProduct(ProductCreateDto createDto) throws PriceComparatorBusinesException {
         logger.debug(">> createProduct");
         Long result = productService.createProduct(createDto);
         logger.debug("<< createProduct");
@@ -139,16 +139,16 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
 
     @Override
     @Transactional(readOnly = true)
-    public ProductListDto getProductListDtoById(Long productId) {
-        logger.debug(">> getProductListDtoById");
-        ProductListDto result = productService.getProductListDtoById(productId);
-        logger.debug("<< getProductListDtoById");
+    public ProductListDto getProductListById(Long productId) {
+        logger.debug(">> getProductListById");
+        ProductListDto result = productService.getProductListById(productId);
+        logger.debug("<< getProductListById");
         return result;
     }
 
     @Override
     @Transactional
-    public void updateProduct(ProductUpdateDto updateDto) {
+    public void updateProduct(ProductUpdateDto updateDto) throws PriceComparatorBusinesException {
         logger.debug(">> updateProduct");
         productService.updateProduct(updateDto);
         logger.debug("<< updateProduct");
@@ -156,26 +156,26 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
 
     @Override
     @Transactional(readOnly = true)
-    public ProductDto getProduct(Long productId) {
-        logger.debug(">> getProduct");
-        ProductDto result = productService.getProduct(productId);
-        logger.debug("<< getProduct");
+    public ProductDto getProductById(Long productId) {
+        logger.debug(">> getProductById");
+        ProductDto result = productService.getProductById(productId);
+        logger.debug("<< getProductById");
         return result;
     }
 
     @Override
     @Transactional(readOnly = true)
-    public List<ProductListDto> getAllProduct() {
-        logger.debug(">> getAllProduct");
-        List<ProductListDto> result = productService.getAllProduct();
-        logger.debug("<< getAllProduct");
+    public List<ProductListDto> findAllProduct() {
+        logger.debug(">> findAllProduct");
+        List<ProductListDto> result = productService.findAllProduct();
+        logger.debug("<< findAllProduct");
         return result;
     }
 
     @Override
     @Transactional(readOnly = true)
-    public ProductIdNameDto getProductIdNameDto(Long productId) {
-        return productService.getProductIdNameDto(productId);
+    public ProductIdNameDto getProductIdNameById(Long productId) {
+        return productService.getProductIdNameById(productId);
     }
 
 
@@ -192,9 +192,9 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
     // ----------- PRODUCT_IN_ESHOP ------------
     @Override
     @Transactional
-    public Long createProductInEshop(ProductInEshopCreateDto dto) {
+    public Long createProductInEshop(ProductInEshopCreateDto createDto) throws PriceComparatorBusinesException {
         logger.debug(">> createProductInEshop");
-        Long result = productInEshopService.createProductInEshop(dto);
+        Long result = productInEshopService.createProductInEshop(createDto);
         logger.debug("<< createProductInEshop");
         return result;
     }

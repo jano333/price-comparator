@@ -67,7 +67,7 @@ public class EshopListTable extends Panel {
 
             @Override
             protected EshopListDto loadLazyById(Serializable id) {
-                return PriceComparatorApplication.getApi().getEshopListDtoById((Long) id);
+                return PriceComparatorApplication.getApi().getEshopListById((Long) id);
             }
 
             @Override

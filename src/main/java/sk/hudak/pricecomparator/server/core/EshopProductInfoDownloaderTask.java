@@ -73,7 +73,7 @@ public abstract class EshopProductInfoDownloaderTask implements Runnable {
             stopTask();
             return;
         }
-        ProductDto product = service.getProduct(productForUpdate.getProductId());
+        ProductDto product = service.getProductById(productForUpdate.getProductId());
 
         // 2. preklopenie
         ParserInputData parserInputData = transformToParserInputData(productForUpdate, product);

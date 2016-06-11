@@ -38,7 +38,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductListDto getProductListDtoById(Long productId) {
+    public ProductListDto getProductListById(Long productId) {
         ProductEntity productEntity = productDao.readMandatory(productId);
         return productAssembler.transformToProductListDto(productEntity);
     }
@@ -54,17 +54,17 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductDto getProduct(Long productId) {
+    public ProductDto getProductById(Long productId) {
         return productAssembler.transformToProductDto(productDao.readMandatory(productId));
     }
 
     @Override
-    public List<ProductListDto> getAllProduct() {
+    public List<ProductListDto> findAllProduct() {
         return productAssembler.transformToListOfProductListDto(productDao.findAllProducts());
     }
 
     @Override
-    public ProductIdNameDto getProductIdNameDto(Long productId) {
+    public ProductIdNameDto getProductIdNameById(Long productId) {
         return productAssembler.transformToProductIdNameDto(productDao.readMandatory(productId));
     }
 }
