@@ -41,7 +41,7 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
 
     @Override
     @Transactional
-    public Long createEshop(EshopCreateDto createDto) {
+    public Long createEshop(EshopCreateDto createDto) throws PriceComparatorBusinesException {
         logger.debug(">> createEshop");
         Long result = eshopService.createEshop(createDto);
         logger.debug("<< createEshop");

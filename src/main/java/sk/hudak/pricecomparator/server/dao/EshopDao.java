@@ -8,6 +8,7 @@ import sk.hudak.jef.JefDao;
 import sk.hudak.jef.PageList;
 import sk.hudak.jef.ServerPaging;
 import sk.hudak.jef.paging.PageData;
+import sk.hudak.pricecomparator.middle.EshopType;
 import sk.hudak.pricecomparator.middle.to.EshopFindDto;
 import sk.hudak.pricecomparator.server.model.EshopEntity;
 
@@ -59,6 +60,12 @@ public class EshopDao extends JefDao<EshopEntity> {
     public boolean existWithName(String eshopName) {
         Criteria cr = createCriteria(EshopEntity.class);
         cr.add(Restrictions.eq(EshopEntity.AT_NAME, eshopName));
+        return !cr.list().isEmpty();
+    }
+
+    public boolean existWithType(EshopType eshopType) {
+        Criteria cr = createCriteria(EshopEntity.class);
+        cr.add(Restrictions.eq(EshopEntity.AT_ESHOP_TYPE, eshopType));
         return !cr.list().isEmpty();
     }
 

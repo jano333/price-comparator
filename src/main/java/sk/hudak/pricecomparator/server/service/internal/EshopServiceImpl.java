@@ -1,6 +1,7 @@
 package sk.hudak.pricecomparator.server.service.internal;
 
 import sk.hudak.jef.PageList;
+import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
 import sk.hudak.pricecomparator.middle.service.EshopService;
 import sk.hudak.pricecomparator.middle.to.*;
 import sk.hudak.pricecomparator.server.assembler.EshopAssembler;
@@ -37,7 +38,7 @@ public class EshopServiceImpl implements EshopService {
     }
 
     @Override
-    public Long createEshop(EshopCreateDto dto) {
+    public Long createEshop(EshopCreateDto dto) throws PriceComparatorBusinesException {
         return eshopFacade.createEshop(dto);
     }
 

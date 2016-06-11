@@ -5,6 +5,7 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import sk.hudak.pricecomparator.middle.canonical.Unit;
+import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
 import sk.hudak.pricecomparator.middle.service.ProductInEshopService;
 import sk.hudak.pricecomparator.middle.to.*;
@@ -29,7 +30,12 @@ public class ProductInEshopEntityTest extends AbstractTestNGSpringContextTests {
         EshopCreateDto eshopCreateDto = new EshopCreateDto();
         eshopCreateDto.setName("Tesco");
         eshopCreateDto.setHomePage("TestHomePage");
-        Long eshopId = service.createEshop(eshopCreateDto);
+        Long eshopId = null;
+        try {
+            eshopId = service.createEshop(eshopCreateDto);
+        } catch (PriceComparatorBusinesException e) {
+            e.printStackTrace();
+        }
 
         ProductCreateDto productCreateDto = new ProductCreateDto();
         productCreateDto.setName("Ariel");

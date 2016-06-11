@@ -1,6 +1,7 @@
 package sk.hudak.pricecomparator.middle.service;
 
 import sk.hudak.jef.PageList;
+import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
 import sk.hudak.pricecomparator.middle.to.*;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
  */
 public interface EshopService {
 
-    Long createEshop(EshopCreateDto dto);
+    Long createEshop(EshopCreateDto dto) throws PriceComparatorBusinesException;
 
     PageList<EshopListDto> findEshops(EshopFindDto filter);
 
