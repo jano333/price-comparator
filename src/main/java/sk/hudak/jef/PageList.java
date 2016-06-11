@@ -50,4 +50,6 @@ public class PageList<T> implements Serializable {
     public void setEntries(List<T> entries) {
         this.entries = entries;
     }
+
+
 }

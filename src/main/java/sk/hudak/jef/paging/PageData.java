@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Toto sa zatial nepoziva, ale bude. Bude to nahrada za PageList
+ * <p>
  * Created by jan on 13. 12. 2014.
  */
 public class PageData<E> implements Serializable {

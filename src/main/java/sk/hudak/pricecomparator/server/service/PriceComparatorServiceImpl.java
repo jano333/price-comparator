@@ -201,6 +201,12 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
 
     @Override
     @Transactional(readOnly = true)
+    public PageList<ResponseDto> findProductInEshopsForProductIds(ProductIdsFindDto productIdsFindDto) {
+        return productInEshopService.findProductInEshopsForProductIds(productIdsFindDto);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public List<ProductInEshopListDto> findAllProductInEshop() {
         logger.debug(">> findAllProductInEshop");
         List<ProductInEshopListDto> result = productInEshopService.findAllProductInEshop();

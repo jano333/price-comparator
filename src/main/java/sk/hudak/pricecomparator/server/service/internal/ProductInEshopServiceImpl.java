@@ -12,6 +12,7 @@ import sk.hudak.pricecomparator.server.analyzator.StepOneProcessor;
 import sk.hudak.pricecomparator.server.assembler.EshopAssembler;
 import sk.hudak.pricecomparator.server.assembler.ProductInEshopAssembler;
 import sk.hudak.pricecomparator.server.core.JefValidator;
+import sk.hudak.pricecomparator.server.dao.EshopDao;
 import sk.hudak.pricecomparator.server.dao.ProductInEshopDao;
 import sk.hudak.pricecomparator.server.facade.ProductInEshopFacade;
 import sk.hudak.pricecomparator.server.model.EshopEntity;
@@ -21,6 +22,7 @@ import sk.hudak.pricecomparator.server.utils.ImageUtils;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,6 +32,9 @@ import java.util.List;
  */
 @Named
 public class ProductInEshopServiceImpl implements ProductInEshopService {
+
+    @Inject
+    private EshopDao eshopDao;
 
     @Inject
     private ProductInEshopDao productInEshopDao;
@@ -62,6 +67,53 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
     }
 
     //------------------------------------------------------
+
+    @Override
+    public PageList<ResponseDto> findProductInEshopsForProductIds(ProductIdsFindDto productIdsFindDto) {
+        // vyhladam eshopy obmedzene len na velkost(pagging)
+        EshopFindDto eshopFindDto = new EshopFindDto();
+        eshopFindDto.setOffset(productIdsFindDto.getOffset());
+        eshopFindDto.setCount(productIdsFindDto.getCount());
+
+        PageList<EshopEntity> eshops = eshopDao.findEshops(eshopFindDto);
+
+        List<ResponseDto> result = new ArrayList<>(eshops.getEntries().size());
+
+        for (EshopEntity eshopEntity : eshops.getEntries()) {
+
+            ResponseDto responseDto = new ResponseDto();
+            responseDto.setEshopId(eshopEntity.getId());
+            responseDto.setEshopName(eshopEntity.getName());
+
+            List<ProductInEshopInfo2> productInEshopInfo2List = new ArrayList<>(productIdsFindDto.getProductIds().size());
+
+            // ziskam produkty v eshope pre dany eshop a id produktov
+            List<ProductInEshopEntity> productsInEshopByProductsIds = productInEshopDao.findProductsInEshopByProductsIds(
+                    eshopEntity.getId(),
+                    productIdsFindDto.getProductIds());
+
+            for (Long requestProductId : productIdsFindDto.getProductIds()) {
+                boolean added = false;
+                for (ProductInEshopEntity productsInEshopByProductsId : productsInEshopByProductsIds) {
+                    if (requestProductId.equals(productsInEshopByProductsId.getProduct().getId())) {
+                        productInEshopInfo2List.add(new ProductInEshopInfo2(
+                                productsInEshopByProductsId.getProduct().getId(),
+                                productsInEshopByProductsId.getProductPageInEshop()));
+                        added = true;
+                    }
+                }
+                if (!added) {
+                    // pridam prazdny
+                    productInEshopInfo2List.add(new ProductInEshopInfo2());
+                }
+            }
+            responseDto.setProductInEshopInfo2(productInEshopInfo2List);
+
+            result.add(responseDto);
+        }
+
+        return new PageList<>(result, eshops.getCurrentPage(), eshops.getAllPageCount());
+    }
 
     @Override
     public Long createProductInEshop(ProductInEshopCreateDto dto) {

@@ -27,6 +27,7 @@ import java.util.List;
 @Named
 public class ProductInEshopDao extends JefDao<ProductInEshopEntity> {
 
+
     @Override
     public ProductInEshopEntity readMandatory(Long id) {
         return read(id, ProductInEshopEntity.class);
@@ -161,7 +162,14 @@ public class ProductInEshopDao extends JefDao<ProductInEshopEntity> {
         return (ProductInEshopEntity) crit.uniqueResult();
     }
 
+    public List<ProductInEshopEntity> findProductsInEshopByProductsIds(Long eshopId, List<Long> productsId) {
+        Criteria crit = createCriteria(ProductInEshopEntity.class);
+        crit.add(Restrictions.eq(ProductInEshopEntity.AT_ESHOP + "." + EshopEntity.AT_ID, eshopId));
+        crit.add(Restrictions.in(ProductInEshopEntity.AT_PRODUCT + "." + ProductEntity.AT_ID, productsId));
+        return crit.list();
+    }
 
+    //TODO tuto mmetodu premenovat lebo tam nedavam take ktore nemaju cene...
     public List<ProductInEshopEntity> findProductsInEshopByProductsIds(List<Long> productsId, String orderBy) {
         Criteria crit = createCriteria(ProductInEshopEntity.class);
         crit.add(Restrictions.in(ProductInEshopEntity.AT_PRODUCT + "." + ProductEntity.AT_ID, productsId));

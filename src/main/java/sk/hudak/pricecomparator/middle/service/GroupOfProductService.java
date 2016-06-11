@@ -19,6 +19,14 @@ public interface GroupOfProductService {
 
     List<GroupIdNameDto> findAllProductGroupSelection();
 
+    /**
+     * Zoznam vsetkych produktov v skupine podla id skupiny <code>groupOfProductId</code>
+     *
+     * @param groupOfProductId
+     * @return
+     */
+    List<ProductListDto> findProductsInGroup(Long groupOfProductId);
+
     // TODO prejst
 
     Long createGroupOfProduct(GroupOfProductCreateDto dto);
@@ -30,9 +38,6 @@ public interface GroupOfProductService {
     List<ProductListDto> findProductsNotInGroup(Long groupOfProductId);
 
     void addProductsToGroup(Set<Long> productsIdToBeAdded, Long groupOfProductId);
-
-    @Deprecated
-    List<ProductListDto> findProductsInGroup(Long groupOfProductId);
 
     @Deprecated
     List<ProductInEshopPriceResultListDto> findPriceInfoInEshopsForGroup(Long groupId);

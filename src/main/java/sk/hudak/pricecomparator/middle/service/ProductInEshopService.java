@@ -15,30 +15,46 @@ import java.util.List;
  */
 public interface ProductInEshopService {
 
-    PageList<ProductInEshopPriceInfoListDto> findProductsInEshopPriceInfo(ProductInEshopFindDto findDto);
-
-    PageList<ProductInEshopPriceResultListDto> findPriceInfoInEshopsForProduct(ProductFindDto findDto);
-
-    // TODO vsetko nizsie prejst
+    PageList<ResponseDto> findProductInEshopsForProductIds(ProductIdsFindDto productIdsFindDto);
 
     /**
-     * Priradenie existujuceho produktu do eshopu.
+     * Priradenie produktu do eshopu.
      *
      * @param dto
      * @return
      */
     Long createProductInEshop(ProductInEshopCreateDto dto);
 
+    /**
+     * @param updateDto
+     */
     void updateProductInEshopPrice(ProductInEshopPriceUpdateDto updateDto);
-
-    List<ProductInEshopListDto> findAllProductInEshop();
 
     /**
      * @param productId id produktu, povinne
-     * @param eshopId   id eshop-u, povinne
+     * @param eshopId   id eshopu, povinne
      * @return null ak sa nenajde, inak produkt v eshope.
      */
     ProductInEshopDto getProductInEshop(Long productId, Long eshopId);
+
+    /**
+     * @param findDto
+     * @return
+     */
+    PageList<ProductInEshopPriceInfoListDto> findProductsInEshopPriceInfo(ProductInEshopFindDto findDto);
+
+    /**
+     * @param findDto
+     * @return
+     */
+    PageList<ProductInEshopPriceResultListDto> findPriceInfoInEshopsForProduct(ProductFindDto findDto);
+
+    // TODO vsetko nizsie prejst
+
+    /**
+     * @return
+     */
+    List<ProductInEshopListDto> findAllProductInEshop();
 
     /**
      * Vyhlada vsetky eshop-y, ktore obsahuju produkt <code>productId</code>.
@@ -56,9 +72,17 @@ public interface ProductInEshopService {
      */
     List<EshopListDto> findEshopsWithoutProduct(Long productId);
 
+    /**
+     * @param productId
+     * @return
+     */
     List<ProductInEshopListDto> findProductsInEshopByProductId(Long productId);
 
 
+    /**
+     * @param productId
+     * @return
+     */
     List<ProductInEshopDto> findProductsInEshopForDownloaderByProductId(Long productId);
 
     /**
@@ -67,6 +91,10 @@ public interface ProductInEshopService {
      */
     List<ProductInEshopCustomListDto> findProductsInEshop(Long eshopId);
 
+    /**
+     * @param eshopType
+     * @return
+     */
     ProductInEshopDto findProductForPriceUpdate(EshopType eshopType);
 
 
@@ -85,9 +113,22 @@ public interface ProductInEshopService {
      */
     ProductInEshopForPictureDownloadInfoDto findUrlOfProductsInEshopWithoutPicture(EshopType feedo);
 
+    /**
+     * @param productUrl
+     * @return
+     */
     boolean existProductWithGivenUrl(String productUrl);
 
+    /**
+     * @param stepOneRequestDto
+     * @return
+     * @throws PriceComparatorBusinesException
+     */
     StepOneResponseDto analyzeProductUrl(StepOneRequestDto stepOneRequestDto) throws PriceComparatorBusinesException;
 
+    /**
+     * @param stepTwoRequestDto
+     * @throws PriceComparatorBusinesException
+     */
     void createNewProdutAndAddToEshop(StepTwoRequestDto stepTwoRequestDto) throws PriceComparatorBusinesException;
 }

@@ -7,7 +7,6 @@ import org.hibernate.criterion.Restrictions;
 import sk.hudak.jef.JefDao;
 import sk.hudak.jef.PageList;
 import sk.hudak.jef.ServerPaging;
-import sk.hudak.jef.paging.PageData;
 import sk.hudak.pricecomparator.middle.EshopType;
 import sk.hudak.pricecomparator.middle.to.EshopFindDto;
 import sk.hudak.pricecomparator.server.model.EshopEntity;
@@ -38,20 +37,7 @@ public class EshopDao extends JefDao<EshopEntity> {
         return new PageList<>(crit.list(), pagging.getCurrentPage(), pagging.getAllPage());
     }
 
-    public PageData<EshopEntity> findByCriteria(EshopFindDto findDto) {
-        val.notNull(findDto, "findDto dto is null");
 
-        Criteria crit = createCriteria(EshopEntity.class);
-        crit.add(Restrictions.eq(EshopEntity.AT_NAME, findDto.getName()));
-
-        if (findDto.getOrders().isEmpty()) {
-            addAscOrder(crit, EshopEntity.AT_NAME);
-        } else {
-            // TODO order
-
-        }
-        return createPageData(crit, findDto);
-    }
 
     /**
      * @param eshopName nazov eshopu

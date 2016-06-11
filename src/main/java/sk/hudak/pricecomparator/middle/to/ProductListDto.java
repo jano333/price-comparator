@@ -57,4 +57,13 @@ public class ProductListDto implements Serializable {
         result = 31 * result + (imagePath != null ? imagePath.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "ProductListDto{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", imagePath='" + imagePath + '\'' +
+                '}';
+    }
 }

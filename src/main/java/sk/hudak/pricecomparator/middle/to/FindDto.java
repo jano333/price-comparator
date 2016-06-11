@@ -23,6 +23,12 @@ public class FindDto extends BasicFilter implements Serializable {
     public FindDto() {
     }
 
+    /**
+     * FIXME* Toto sa zatial nepouziva. ale chcem aby sa pouzivalo namiesto BasicFilter
+     *
+     * @return
+     */
+    @Deprecated
     public Paging getPaging() {
         //kontrola, nie je mozne mat viac ako 100 vysledkov
         if (paging != null && paging.getPageSize() > MAX_RESULTS) {
@@ -31,14 +37,31 @@ public class FindDto extends BasicFilter implements Serializable {
         return paging;
     }
 
+    /**
+     * Zatial nepouzivat.
+     *
+     * @param paging
+     */
+    @Deprecated
     public void setPaging(Paging paging) {
         this.paging = paging;
     }
 
+    /**
+     * Zatial nepouzivat
+     *
+     * @return
+     */
+    @Deprecated
     public List<OrderBy> getOrders() {
         return orders;
     }
 
+    /**
+     * Zatial nepouzivat.
+     *
+     * @param orders
+     */
     public void setOrders(List<OrderBy> orders) {
         this.orders = orders;
     }
