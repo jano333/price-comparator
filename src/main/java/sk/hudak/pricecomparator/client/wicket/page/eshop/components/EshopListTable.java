@@ -9,7 +9,6 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.PropertyModel;
-import org.apache.wicket.request.mapper.parameter.PageParameters;
 import sk.hudak.jef.PageList;
 import sk.hudak.pricecomparator.client.wicket.PriceComparatorApplication;
 import sk.hudak.pricecomparator.client.wicket.WU;
@@ -81,18 +80,16 @@ public class EshopListTable extends Panel {
                 Link<EshopListDto> addProductToEshop = new Link<EshopListDto>("addProductToEshop", product) {
                     @Override
                     public void onClick() {
-
-                        PageParameters params = WU.param(ProductInEshopCreatePage.PARAM_ESHOP_ID, getModelObject().getId());
-                        setResponsePage(ProductInEshopCreatePage.class, params);
+                        setResponsePage(ProductInEshopCreatePage.class,
+                                WU.param(ProductInEshopCreatePage.PARAM_ESHOP_ID, getModelObject().getId()));
                     }
                 };
 
                 Link<EshopListDto> listOfEshopProducts = new Link<EshopListDto>("listOfEshopProducts", product) {
                     @Override
                     public void onClick() {
-
-                        PageParameters params = WU.param(ProductListPerEshopPage.PARAM_ESHOP_ID, getModelObject().getId());
-                        setResponsePage(ProductListPerEshopPage.class, params);
+                        setResponsePage(ProductListPerEshopPage.class,
+                                WU.param(ProductListPerEshopPage.PARAM_ESHOP_ID, getModelObject().getId()));
                     }
                 };
 

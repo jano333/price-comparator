@@ -45,8 +45,6 @@ public class Table<T> extends Border {
                 return Table.this.getObjectId(object);
             }
 
-            ;
-
             @Override
             protected T loadLazyById(Serializable id) {
                 return Table.this.loadLazyById(id);
@@ -59,20 +57,17 @@ public class Table<T> extends Border {
         searchedView.add(new PagingPanel<>("paging", filter, model));
         searchedView.add(VisibilityModifier.ofModel(searched));
         searchedView.add(VisibilityModifier.notZeroSize(entriesModel));
-//		add(searchedView);
         addToBorder(searchedView);
 
         WebMarkupContainer noEntriesFound = new WebMarkupContainer("noEntriesFound");
         noEntriesFound.add(new Label("label", new ResourceModel("no.entries.found")));
         noEntriesFound.add(VisibilityModifier.ofModel(searched));
         noEntriesFound.add(VisibilityModifier.zeroSize(entriesModel));
-//		add(noEntriesFound);
         addToBorder(noEntriesFound);
 
         WebMarkupContainer notSearchedYet = new WebMarkupContainer("notSearchedYet");
         notSearchedYet.add(new Label("label", new ResourceModel("not.searched.yet")));
         notSearchedYet.add(VisibilityModifier.ofModel(searched).setInvert(true));
-//		add(notSearchedYet);
         addToBorder(notSearchedYet);
 
     }
