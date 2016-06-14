@@ -2,6 +2,7 @@ package sk.hudak.pricecomparator.server.facade;
 
 import sk.hudak.jef.JefFacade;
 import sk.hudak.pricecomparator.middle.EshopType;
+import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorException;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopCreateDto;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopPriceUpdateDto;
@@ -30,7 +31,7 @@ public class ProductInEshopFacade extends JefFacade {
     @Inject
     private ProductDao productDao;
 
-    public Long createProductInEshop(ProductInEshopCreateDto createDto) {
+    public Long createProductInEshop(ProductInEshopCreateDto createDto) throws PriceComparatorBusinesException {
         val.notNull(createDto, "createDto is null");
         val.notNull(createDto.getEshopId(), "eshopId is null");
         val.notNull(createDto.getProductId(), "productId is null");
@@ -38,19 +39,16 @@ public class ProductInEshopFacade extends JefFacade {
         // TODO ostatne a dlzky validovat
 
         // kontola ci kombinacia produkt - eshop uz neexistuje
-        //TODO testunut !!!
+        //TODO testnut !!!
         if (productInEshopDao.existProductInEshop(createDto.getEshopId(), createDto.getProductId())) {
             throw new PriceComparatorException("Dany produkt uz existuje");
         }
 
+        //TODO
+        // kontrola ci product v eshope s takou url uz neexistuje
 //        if (productInEshopDao.existProductInEshopWithEshopProductPage(createDto.getEshopProductPage())) {
 //            throw new PriceComparatorException("Produkt s danou url uz existuje.");
 //        }
-        //TODO
-
-        // kontrola ci product v eshope s takou url uz neexistuje
-        //TODO
-
 
         ProductInEshopEntity entity = new ProductInEshopEntity();
         entity.setEshop(eshopDao.readMandatory(createDto.getEshopId()));

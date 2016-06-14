@@ -55,6 +55,11 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
     private StepOneProcessor stepOneProcessor;
 
     @Override
+    public Long createProductInEshop(ProductInEshopCreateDto createDto) throws PriceComparatorBusinesException {
+        return productInEshopFacade.createProductInEshop(createDto);
+    }
+
+    @Override
     public PageList<ProductInEshopPriceInfoListDto> findProductsInEshopPriceInfo(ProductInEshopFindDto findDto) {
         PageList<ProductInEshopEntity> productInEshopEntities = productInEshopDao.findProductsInEshop(findDto);
         return productInEshopAssembler.transformToPageListOfProductInEshopPriceInfoListDto(productInEshopEntities);
@@ -113,11 +118,6 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
         }
 
         return new PageList<>(result, eshops.getCurrentPage(), eshops.getAllPageCount());
-    }
-
-    @Override
-    public Long createProductInEshop(ProductInEshopCreateDto createDto) {
-        return productInEshopFacade.createProductInEshop(createDto);
     }
 
     @Override
