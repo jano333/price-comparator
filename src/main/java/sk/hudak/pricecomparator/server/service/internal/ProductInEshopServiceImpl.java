@@ -206,6 +206,7 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
     @Override
     public void createNewProdutAndAddToEshop(StepTwoRequestDto stepTwoRequestDto) throws PriceComparatorBusinesException {
         //TODO impl
+        System.out.println();
     }
 
     @Override

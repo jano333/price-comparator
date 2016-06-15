@@ -442,7 +442,8 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
     }
 
     @Override
+    @Transactional
     public void createNewProdutAndAddToEshop(StepTwoRequestDto stepTwoRequestDto) throws PriceComparatorBusinesException {
-        //TODO impl
+        productInEshopService.createNewProdutAndAddToEshop(stepTwoRequestDto);
     }
 }
