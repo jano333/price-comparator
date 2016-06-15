@@ -16,11 +16,15 @@ import sk.hudak.pricecomparator.client.wicket.WU;
 import sk.hudak.pricecomparator.client.wicket.component.common.IdListView;
 import sk.hudak.pricecomparator.client.wicket.component.table.PagingInfoPanel;
 import sk.hudak.pricecomparator.client.wicket.component.table.Table;
+import sk.hudak.pricecomparator.client.wicket.component.table.column.PriceForOneItemInPackageColumn;
+import sk.hudak.pricecomparator.client.wicket.component.table.column.PriceForPackageColumn;
+import sk.hudak.pricecomparator.client.wicket.component.table.column.PriceForUnitColumn;
 import sk.hudak.pricecomparator.middle.to.EshopIdNameDto;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopFindDto;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopPriceInfoListDto;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 
@@ -125,13 +129,14 @@ public class ProductListPerEshopTable extends Panel {
                 productName.add(new AttributeAppender("target", "_blank"));
 
 
-                Label priceForPackage = new Label("priceForPackage",
-                        new PropertyModel<String>(product, ProductInEshopPriceInfoListDto.AT_PRICE_FOR_PACKAGE));
+                PriceForPackageColumn priceForPackage = new PriceForPackageColumn("priceForPackage",
+                        new PropertyModel<BigDecimal>(product, ProductInEshopPriceInfoListDto.AT_PRICE_FOR_PACKAGE));
 
-                Label priceForOneItemInPackage = new Label("priceForOneItemInPackage",
-                        new PropertyModel<String>(product, ProductInEshopPriceInfoListDto.AT_PRICE_FOR_ONE_ITEM_IN_PACKAGE));
+                PriceForOneItemInPackageColumn priceForOneItemInPackage = new PriceForOneItemInPackageColumn("priceForOneItemInPackage",
+                        new PropertyModel<BigDecimal>(product, ProductInEshopPriceInfoListDto.AT_PRICE_FOR_ONE_ITEM_IN_PACKAGE));
 
-                Label priceForUnit = new Label("priceForUnit", new PropertyModel<String>(product, ProductInEshopPriceInfoListDto.AT_PRICE_FOR_UNIT));
+                PriceForUnitColumn priceForUnit = new PriceForUnitColumn("priceForUnit",
+                        new PropertyModel<BigDecimal>(product, ProductInEshopPriceInfoListDto.AT_PRICE_FOR_UNIT));
 
                 Label productAction = new Label("productAction", new PropertyModel<String>(product, ProductInEshopPriceInfoListDto.AT_PRODUCT_ACTION));
 
