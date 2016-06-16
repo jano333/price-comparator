@@ -19,8 +19,8 @@ import sk.hudak.pricecomparator.middle.EshopType;
 import sk.hudak.pricecomparator.middle.canonical.Unit;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopDto;
-import sk.hudak.pricecomparator.middle.to.internal.ProductByUrlAnalyzatorRequestDto;
 import sk.hudak.pricecomparator.middle.to.internal.ProductByUrlAnalyzatorResponseDto;
+import sk.hudak.pricecomparator.middle.to.internal.ProductByUrlRequestDto;
 import sk.hudak.pricecomparator.middle.to.internal.StepTwoRequestDto;
 
 import java.math.BigDecimal;
@@ -33,7 +33,7 @@ public class ProductInEshopCreateByUrlPage_1 extends LayoutPage {
 
     private AjaxButton stepOneSubmitBt;
     private Form<Void> stepOneForm;
-    private ProductByUrlAnalyzatorRequestDto stepOneRequestDto = new ProductByUrlAnalyzatorRequestDto();
+    private ProductByUrlRequestDto stepOneRequestDto = new ProductByUrlRequestDto();
 
     private AjaxButton stepTwoSubmitBt;
     private Form<Void> stepTwoForm;
@@ -42,6 +42,7 @@ public class ProductInEshopCreateByUrlPage_1 extends LayoutPage {
     public ProductInEshopCreateByUrlPage_1() {
 
         final FeedbackPanel feedback = new FeedbackPanel("feedback");
+        //FIXME overit ci dany riadok je potrebny
         feedback.setOutputMarkupPlaceholderTag(true);
         add(feedback);
 
@@ -51,7 +52,7 @@ public class ProductInEshopCreateByUrlPage_1 extends LayoutPage {
         add(stepOneForm);
 
         TextField<String> productUrl = new TextField<>("productUrl",
-                new PropertyModel<String>(stepOneRequestDto, ProductByUrlAnalyzatorRequestDto.AT_PRODUCT_URL));
+                new PropertyModel<String>(stepOneRequestDto, ProductByUrlRequestDto.AT_PRODUCT_URL));
         productUrl.setRequired(true);
         stepOneForm.add(productUrl);
 
@@ -140,8 +141,8 @@ public class ProductInEshopCreateByUrlPage_1 extends LayoutPage {
                     // musi tu byt aby sa skryl ak bola predtym chyba a bol zobrazeny
                     target.add(feedback);
 
-                } catch (Exception e) {
-                    //TODO
+                } catch (PriceComparatorBusinesException e) {
+                    //TODO err
                     e.printStackTrace();
                 }
 
@@ -154,8 +155,7 @@ public class ProductInEshopCreateByUrlPage_1 extends LayoutPage {
 
             @Override
             protected void onError(AjaxRequestTarget target, Form<?> form) {
-                //FIXME toto nizsie tu musi byt lebo inak sa nedozviem ze je chyba napr validacna pred
-                // sabmitom, fixme je tu preto lebo to treba pridat vsase kde pouzivam ajax na submit
+                // toto nizsie tu musi byt lebo inak sa nedozviem ze je chyba napr validacna pred sabmitom
                 target.add(feedback);
             }
 
@@ -166,9 +166,9 @@ public class ProductInEshopCreateByUrlPage_1 extends LayoutPage {
 
                     setResponsePage(ProductListPerEshopPage.class,
                             WU.param(ProductListPerEshopPage.PARAM_ESHOP_ID, result.getEshopId()));
-                    //TODO presmerovanie kam ???
 
                 } catch (PriceComparatorBusinesException e) {
+                    //TODO err
                     e.printStackTrace();
                 }
             }

@@ -8,8 +8,8 @@ import sk.hudak.pricecomparator.middle.EshopType;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
 import sk.hudak.pricecomparator.middle.service.*;
 import sk.hudak.pricecomparator.middle.to.*;
-import sk.hudak.pricecomparator.middle.to.internal.ProductByUrlAnalyzatorRequestDto;
 import sk.hudak.pricecomparator.middle.to.internal.ProductByUrlAnalyzatorResponseDto;
+import sk.hudak.pricecomparator.middle.to.internal.ProductByUrlRequestDto;
 import sk.hudak.pricecomparator.middle.to.internal.StepTwoRequestDto;
 
 import javax.inject.Inject;
@@ -333,9 +333,9 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
 
     @Override
     @Transactional(readOnly = true)
-    public ProductByUrlAnalyzatorResponseDto analyzeProductUrl(ProductByUrlAnalyzatorRequestDto productByUrlAnalyzatorRequestDto) throws PriceComparatorBusinesException {
+    public ProductByUrlAnalyzatorResponseDto analyzeProductUrl(ProductByUrlRequestDto productByUrlRequestDto) throws PriceComparatorBusinesException {
         logger.debug(">> analyzeProductUrl");
-        ProductByUrlAnalyzatorResponseDto productByUrlAnalyzatorResponseDto = productInEshopService.analyzeProductUrl(productByUrlAnalyzatorRequestDto);
+        ProductByUrlAnalyzatorResponseDto productByUrlAnalyzatorResponseDto = productInEshopService.analyzeProductUrl(productByUrlRequestDto);
         logger.debug("<< analyzeProductUrl");
         return productByUrlAnalyzatorResponseDto;
     }

@@ -5,8 +5,8 @@ import sk.hudak.pricecomparator.middle.EshopType;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorException;
 import sk.hudak.pricecomparator.middle.to.internal.ProductAnalyzatorResultDto;
-import sk.hudak.pricecomparator.middle.to.internal.ProductByUrlAnalyzatorRequestDto;
 import sk.hudak.pricecomparator.middle.to.internal.ProductByUrlAnalyzatorResponseDto;
+import sk.hudak.pricecomparator.middle.to.internal.ProductByUrlRequestDto;
 import sk.hudak.pricecomparator.server.dao.ProductInEshopDao;
 
 import javax.inject.Inject;
@@ -30,7 +30,7 @@ public class ProductByUrlAnalyzator {
     @Inject
     private ProductInEshopCreateAnalyzator productDataAnalyzator;
 
-    public ProductByUrlAnalyzatorResponseDto process(ProductByUrlAnalyzatorRequestDto requestDto) throws PriceComparatorBusinesException {
+    public ProductByUrlAnalyzatorResponseDto process(ProductByUrlRequestDto requestDto) throws PriceComparatorBusinesException {
         // validacia
         if (requestDto == null) {
             throw new PriceComparatorException("request is null");

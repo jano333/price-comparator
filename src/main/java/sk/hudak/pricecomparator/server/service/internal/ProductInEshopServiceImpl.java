@@ -5,8 +5,8 @@ import sk.hudak.pricecomparator.middle.EshopType;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
 import sk.hudak.pricecomparator.middle.service.ProductInEshopService;
 import sk.hudak.pricecomparator.middle.to.*;
-import sk.hudak.pricecomparator.middle.to.internal.ProductByUrlAnalyzatorRequestDto;
 import sk.hudak.pricecomparator.middle.to.internal.ProductByUrlAnalyzatorResponseDto;
+import sk.hudak.pricecomparator.middle.to.internal.ProductByUrlRequestDto;
 import sk.hudak.pricecomparator.middle.to.internal.StepTwoRequestDto;
 import sk.hudak.pricecomparator.server.analyzator.ProductByUrlAnalyzator;
 import sk.hudak.pricecomparator.server.assembler.EshopAssembler;
@@ -196,8 +196,8 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
     }
 
     @Override
-    public ProductByUrlAnalyzatorResponseDto analyzeProductUrl(ProductByUrlAnalyzatorRequestDto productByUrlAnalyzatorRequestDto) throws PriceComparatorBusinesException {
-        return productByUrlAnalyzator.process(productByUrlAnalyzatorRequestDto);
+    public ProductByUrlAnalyzatorResponseDto analyzeProductUrl(ProductByUrlRequestDto productByUrlRequestDto) throws PriceComparatorBusinesException {
+        return productByUrlAnalyzator.process(productByUrlRequestDto);
     }
 
     @Override
