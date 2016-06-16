@@ -8,8 +8,8 @@ import sk.hudak.pricecomparator.middle.EshopType;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
 import sk.hudak.pricecomparator.middle.service.*;
 import sk.hudak.pricecomparator.middle.to.*;
-import sk.hudak.pricecomparator.middle.to.internal.StepOneRequestDto;
-import sk.hudak.pricecomparator.middle.to.internal.StepOneResponseDto;
+import sk.hudak.pricecomparator.middle.to.internal.ProductByUrlAnalyzatorRequestDto;
+import sk.hudak.pricecomparator.middle.to.internal.ProductByUrlAnalyzatorResponseDto;
 import sk.hudak.pricecomparator.middle.to.internal.StepTwoRequestDto;
 
 import javax.inject.Inject;
@@ -322,6 +322,33 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
         return result;
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public boolean existProductWithGivenUrl(String productUrl) {
+        logger.debug(">> existProductWithGivenUrl");
+        boolean result = productInEshopService.existProductWithGivenUrl(productUrl);
+        logger.debug("<< existProductWithGivenUrl");
+        return result;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public ProductByUrlAnalyzatorResponseDto analyzeProductUrl(ProductByUrlAnalyzatorRequestDto productByUrlAnalyzatorRequestDto) throws PriceComparatorBusinesException {
+        logger.debug(">> analyzeProductUrl");
+        ProductByUrlAnalyzatorResponseDto productByUrlAnalyzatorResponseDto = productInEshopService.analyzeProductUrl(productByUrlAnalyzatorRequestDto);
+        logger.debug("<< analyzeProductUrl");
+        return productByUrlAnalyzatorResponseDto;
+    }
+
+    @Override
+    @Transactional
+    public ProductInEshopDto createNewProductAndAddToEshop(StepTwoRequestDto stepTwoRequestDto) throws PriceComparatorBusinesException {
+        logger.debug(">> createNewProductAndAddToEshop");
+        ProductInEshopDto result = productInEshopService.createNewProductAndAddToEshop(stepTwoRequestDto);
+        logger.debug("<< createNewProductAndAddToEshop");
+        return result;
+    }
+
     // --------- GROUP_OF_PRODUCTS ------------
 
 
@@ -423,27 +450,5 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
         return result;
     }
 
-    @Override
-    @Transactional(readOnly = true)
-    public boolean existProductWithGivenUrl(String productUrl) {
-        logger.debug(">> existProductWithGivenUrl");
-        boolean result = productInEshopService.existProductWithGivenUrl(productUrl);
-        logger.debug("<< existProductWithGivenUrl");
-        return result;
-    }
 
-    @Override
-    @Transactional(readOnly = true)
-    public StepOneResponseDto analyzeProductUrl(StepOneRequestDto stepOneRequestDto) throws PriceComparatorBusinesException {
-        logger.debug(">> analyzeProductUrl");
-        StepOneResponseDto stepOneResponseDto = productInEshopService.analyzeProductUrl(stepOneRequestDto);
-        logger.debug("<< analyzeProductUrl");
-        return stepOneResponseDto;
-    }
-
-    @Override
-    @Transactional
-    public void createNewProdutAndAddToEshop(StepTwoRequestDto stepTwoRequestDto) throws PriceComparatorBusinesException {
-        productInEshopService.createNewProdutAndAddToEshop(stepTwoRequestDto);
-    }
 }

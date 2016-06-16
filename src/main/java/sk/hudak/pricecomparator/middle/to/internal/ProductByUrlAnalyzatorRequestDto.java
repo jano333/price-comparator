@@ -5,16 +5,16 @@ import java.io.Serializable;
 /**
  * Created by hudak on 18.04.2016.
  */
-public class StepOneRequestDto implements Serializable {
+public class ProductByUrlAnalyzatorRequestDto implements Serializable {
 
     public static final String AT_PRODUCT_URL = "productUrl";
 
     private String productUrl;
 
-    public StepOneRequestDto() {
+    public ProductByUrlAnalyzatorRequestDto() {
     }
 
-    public StepOneRequestDto(String productUrl) {
+    public ProductByUrlAnalyzatorRequestDto(String productUrl) {
         this.productUrl = productUrl;
     }
 

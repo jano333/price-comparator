@@ -5,15 +5,16 @@ import sk.hudak.pricecomparator.middle.EshopType;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
 import sk.hudak.pricecomparator.middle.service.ProductInEshopService;
 import sk.hudak.pricecomparator.middle.to.*;
-import sk.hudak.pricecomparator.middle.to.internal.StepOneRequestDto;
-import sk.hudak.pricecomparator.middle.to.internal.StepOneResponseDto;
+import sk.hudak.pricecomparator.middle.to.internal.ProductByUrlAnalyzatorRequestDto;
+import sk.hudak.pricecomparator.middle.to.internal.ProductByUrlAnalyzatorResponseDto;
 import sk.hudak.pricecomparator.middle.to.internal.StepTwoRequestDto;
-import sk.hudak.pricecomparator.server.analyzator.StepOneProcessor;
+import sk.hudak.pricecomparator.server.analyzator.ProductByUrlAnalyzator;
 import sk.hudak.pricecomparator.server.assembler.EshopAssembler;
 import sk.hudak.pricecomparator.server.assembler.ProductInEshopAssembler;
 import sk.hudak.pricecomparator.server.core.JefValidator;
 import sk.hudak.pricecomparator.server.dao.EshopDao;
 import sk.hudak.pricecomparator.server.dao.ProductInEshopDao;
+import sk.hudak.pricecomparator.server.facade.ProductFacade;
 import sk.hudak.pricecomparator.server.facade.ProductInEshopFacade;
 import sk.hudak.pricecomparator.server.model.EshopEntity;
 import sk.hudak.pricecomparator.server.model.ProductEntity;
@@ -34,25 +35,21 @@ import java.util.List;
 public class ProductInEshopServiceImpl implements ProductInEshopService {
 
     @Inject
+    private JefValidator val;
+    @Inject
     private EshopDao eshopDao;
-
-    @Inject
-    private ProductInEshopDao productInEshopDao;
-
-    @Inject
-    private ProductInEshopFacade productInEshopFacade;
-
-    @Inject
-    private ProductInEshopAssembler productInEshopAssembler;
-
     @Inject
     private EshopAssembler eshopAssembler;
-
     @Inject
-    private JefValidator val;
-
+    private ProductFacade productFacade;
     @Inject
-    private StepOneProcessor stepOneProcessor;
+    private ProductInEshopDao productInEshopDao;
+    @Inject
+    private ProductInEshopFacade productInEshopFacade;
+    @Inject
+    private ProductInEshopAssembler productInEshopAssembler;
+    @Inject
+    private ProductByUrlAnalyzator productByUrlAnalyzator;
 
     @Override
     public Long createProductInEshop(ProductInEshopCreateDto createDto) throws PriceComparatorBusinesException {
@@ -195,18 +192,41 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
 
     @Override
     public boolean existProductWithGivenUrl(String productUrl) {
-        return productInEshopFacade.existProductWithGivenUrl(productUrl);
+        return productInEshopDao.existProductWithGivenUrl(productUrl);
     }
 
     @Override
-    public StepOneResponseDto analyzeProductUrl(StepOneRequestDto stepOneRequestDto) throws PriceComparatorBusinesException {
-        return stepOneProcessor.process(stepOneRequestDto);
+    public ProductByUrlAnalyzatorResponseDto analyzeProductUrl(ProductByUrlAnalyzatorRequestDto productByUrlAnalyzatorRequestDto) throws PriceComparatorBusinesException {
+        return productByUrlAnalyzator.process(productByUrlAnalyzatorRequestDto);
     }
 
     @Override
-    public void createNewProdutAndAddToEshop(StepTwoRequestDto stepTwoRequestDto) throws PriceComparatorBusinesException {
-        //TODO impl
-        System.out.println();
+    public ProductInEshopDto createNewProductAndAddToEshop(StepTwoRequestDto stepTwoRequestDto) throws PriceComparatorBusinesException {
+        EshopEntity eshopEntity = eshopDao.findEshopByType(stepTwoRequestDto.getEshopType());
+        if (eshopEntity == null) {
+            //FIXME err kluc
+            throw new PriceComparatorBusinesException("Eshop type je povinny");
+        }
+        ProductInEshopCreateDto createProductInEshopDto = new ProductInEshopCreateDto();
+        createProductInEshopDto.setEshopId(eshopEntity.getId());
+        createProductInEshopDto.setEshopProductPage(stepTwoRequestDto.getProductUrl());
+
+        ProductCreateDto createProductDto = new ProductCreateDto();
+        createProductDto.setName(stepTwoRequestDto.getProductName());
+        createProductDto.setUnit(stepTwoRequestDto.getUnit());
+        createProductDto.setCountOfUnit(stepTwoRequestDto.getCountOfUnit());
+        createProductDto.setCountOfItemInOnePackage(stepTwoRequestDto.getCountOfItemInPackage());
+        Long productId = productFacade.createProduct(createProductDto);
+        createProductInEshopDto.setProductId(productId);
+
+        Long productInEshopId = productInEshopFacade.createProductInEshop(createProductInEshopDto);
+
+        ProductInEshopDto result = new ProductInEshopDto();
+        result.setId(productInEshopId);
+        result.setProductId(productId);
+        result.setEshopId(eshopEntity.getId());
+        result.setEshopProductPage(stepTwoRequestDto.getProductUrl());
+        return result;
     }
 
     @Override

@@ -12,13 +12,15 @@ import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.util.convert.ConversionException;
 import org.apache.wicket.util.convert.IConverter;
 import sk.hudak.pricecomparator.client.wicket.PriceComparatorApplication;
+import sk.hudak.pricecomparator.client.wicket.WU;
 import sk.hudak.pricecomparator.client.wicket.page.common.LayoutPage;
+import sk.hudak.pricecomparator.client.wicket.page.productineshop.ProductListPerEshopPage;
 import sk.hudak.pricecomparator.middle.EshopType;
 import sk.hudak.pricecomparator.middle.canonical.Unit;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
-import sk.hudak.pricecomparator.middle.service.ProductInEshopService;
-import sk.hudak.pricecomparator.middle.to.internal.StepOneRequestDto;
-import sk.hudak.pricecomparator.middle.to.internal.StepOneResponseDto;
+import sk.hudak.pricecomparator.middle.to.ProductInEshopDto;
+import sk.hudak.pricecomparator.middle.to.internal.ProductByUrlAnalyzatorRequestDto;
+import sk.hudak.pricecomparator.middle.to.internal.ProductByUrlAnalyzatorResponseDto;
 import sk.hudak.pricecomparator.middle.to.internal.StepTwoRequestDto;
 
 import java.math.BigDecimal;
@@ -31,7 +33,7 @@ public class ProductInEshopCreateByUrlPage_1 extends LayoutPage {
 
     private AjaxButton stepOneSubmitBt;
     private Form<Void> stepOneForm;
-    private StepOneRequestDto stepOneRequestDto = new StepOneRequestDto();
+    private ProductByUrlAnalyzatorRequestDto stepOneRequestDto = new ProductByUrlAnalyzatorRequestDto();
 
     private AjaxButton stepTwoSubmitBt;
     private Form<Void> stepTwoForm;
@@ -49,7 +51,7 @@ public class ProductInEshopCreateByUrlPage_1 extends LayoutPage {
         add(stepOneForm);
 
         TextField<String> productUrl = new TextField<>("productUrl",
-                new PropertyModel<String>(stepOneRequestDto, StepOneRequestDto.AT_PRODUCT_URL));
+                new PropertyModel<String>(stepOneRequestDto, ProductByUrlAnalyzatorRequestDto.AT_PRODUCT_URL));
         productUrl.setRequired(true);
         stepOneForm.add(productUrl);
 
@@ -71,7 +73,6 @@ public class ProductInEshopCreateByUrlPage_1 extends LayoutPage {
                 return (IConverter<C>) new IConverter<EshopType>() {
                     @Override
                     public EshopType convertToObject(String value, Locale locale) throws ConversionException {
-                        System.out.println("value je " + value);
                         return EshopType.valueOf(value);
                     }
 
@@ -115,14 +116,13 @@ public class ProductInEshopCreateByUrlPage_1 extends LayoutPage {
 
             @Override
             protected void onError(AjaxRequestTarget target, Form<?> form) {
-                System.out.println("su tu chyby");
-
+                target.add(feedback);
             }
 
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 try {
-                    StepOneResponseDto tmp = PriceComparatorApplication.getApi().analyzeProductUrl(stepOneRequestDto);
+                    ProductByUrlAnalyzatorResponseDto tmp = PriceComparatorApplication.getApi().analyzeProductUrl(stepOneRequestDto);
                     // preklopenie
                     stepTwoRequestDto.setProductName(tmp.getProductName());
                     stepTwoRequestDto.setEshopType(tmp.getEshopType());
@@ -137,6 +137,8 @@ public class ProductInEshopCreateByUrlPage_1 extends LayoutPage {
                     stepTwoSubmitBt.setVisible(true);
 
                     target.add(stepOneSubmitBt, stepOneForm, stepTwoForm, stepTwoSubmitBt);
+                    // musi tu byt aby sa skryl ak bola predtym chyba a bol zobrazeny
+                    target.add(feedback);
 
                 } catch (Exception e) {
                     //TODO
@@ -152,7 +154,6 @@ public class ProductInEshopCreateByUrlPage_1 extends LayoutPage {
 
             @Override
             protected void onError(AjaxRequestTarget target, Form<?> form) {
-                System.out.println("error");
                 //FIXME toto nizsie tu musi byt lebo inak sa nedozviem ze je chyba napr validacna pred
                 // sabmitom, fixme je tu preto lebo to treba pridat vsase kde pouzivam ajax na submit
                 target.add(feedback);
@@ -160,15 +161,16 @@ public class ProductInEshopCreateByUrlPage_1 extends LayoutPage {
 
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
-                ProductInEshopService service = PriceComparatorApplication.getApi();
                 try {
-                    service.createNewProdutAndAddToEshop(stepTwoRequestDto);
+                    ProductInEshopDto result = PriceComparatorApplication.getApi().createNewProductAndAddToEshop(stepTwoRequestDto);
+
+                    setResponsePage(ProductListPerEshopPage.class,
+                            WU.param(ProductListPerEshopPage.PARAM_ESHOP_ID, result.getEshopId()));
+                    //TODO presmerovanie kam ???
 
                 } catch (PriceComparatorBusinesException e) {
                     e.printStackTrace();
                 }
-
-
             }
         };
         stepTwoSubmitBt.setOutputMarkupPlaceholderTag(true);

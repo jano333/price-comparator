@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorException;
 
 import javax.inject.Named;
+import java.math.BigDecimal;
 
 /**
  * Zakladny val
@@ -34,6 +35,25 @@ public class JefValidator {
             return;
         }
         if (value.length() > maxLength) {
+            throw new PriceComparatorException(errMsg);
+        }
+    }
+
+    public void greaterThanZero(BigDecimal value, String errMsg) {
+        if (value == null) {
+            return;
+        }
+        int i = value.compareTo(BigDecimal.ZERO);
+        if (i != 1) {
+            throw new PriceComparatorException(errMsg);
+        }
+    }
+
+    public void greaterThanZero(Integer value, String errMsg) {
+        if (value == null) {
+            return;
+        }
+        if (value.intValue() < 1) {
             throw new PriceComparatorException(errMsg);
         }
     }

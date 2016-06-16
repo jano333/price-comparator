@@ -38,7 +38,6 @@ public class EshopDao extends JefDao<EshopEntity> {
     }
 
 
-
     /**
      * @param eshopName nazov eshopu
      * @return true, ak eshop s danym nazvom uz existuje
@@ -68,5 +67,11 @@ public class EshopDao extends JefDao<EshopEntity> {
         Criteria crit = createCriteria(EshopEntity.class);
         crit.setProjection(Projections.property(EshopEntity.AT_HOME_PAGE));
         return crit.list();
+    }
+
+    public EshopEntity findEshopByType(EshopType eshopType) {
+        Criteria crit = createCriteria(EshopEntity.class);
+        crit.add(Restrictions.eq(EshopEntity.AT_ESHOP_TYPE, eshopType));
+        return (EshopEntity) crit.uniqueResult();
     }
 }

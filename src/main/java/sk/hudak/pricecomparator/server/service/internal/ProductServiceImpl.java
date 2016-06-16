@@ -1,6 +1,7 @@
 package sk.hudak.pricecomparator.server.service.internal;
 
 import sk.hudak.jef.PageList;
+import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
 import sk.hudak.pricecomparator.middle.service.ProductService;
 import sk.hudak.pricecomparator.middle.to.*;
 import sk.hudak.pricecomparator.server.assembler.ProductAssembler;
@@ -44,7 +45,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Long createProduct(ProductCreateDto createDto) {
+    public Long createProduct(ProductCreateDto createDto) throws PriceComparatorBusinesException {
         return productFacade.createProduct(createDto);
     }
 

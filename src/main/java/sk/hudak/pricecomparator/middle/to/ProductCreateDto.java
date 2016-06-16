@@ -18,7 +18,7 @@ public class ProductCreateDto implements Serializable {
     private String name;
     private Unit unit;
     private BigDecimal countOfUnit;
-    private int countOfItemInOnePackage;
+    private Integer countOfItemInOnePackage;
 
     //nepouzivaju sa...
     private Long categoryId;
@@ -33,11 +33,11 @@ public class ProductCreateDto implements Serializable {
         this.name = name;
     }
 
-    public int getCountOfItemInOnePackage() {
+    public Integer getCountOfItemInOnePackage() {
         return countOfItemInOnePackage;
     }
 
-    public void setCountOfItemInOnePackage(int countOfItemInOnePackage) {
+    public void setCountOfItemInOnePackage(Integer countOfItemInOnePackage) {
         this.countOfItemInOnePackage = countOfItemInOnePackage;
     }
 

@@ -2,7 +2,7 @@ package sk.hudak.pricecomparator.server.facade;
 
 import org.apache.commons.lang3.StringUtils;
 import sk.hudak.jef.JefFacade;
-import sk.hudak.pricecomparator.middle.exeption.PriceComparatorException;
+import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
 import sk.hudak.pricecomparator.middle.to.ProductCreateDto;
 import sk.hudak.pricecomparator.middle.to.ProductUpdateDto;
 import sk.hudak.pricecomparator.server.core.ServerConfig;
@@ -29,17 +29,17 @@ public class ProductFacade extends JefFacade {
     @Inject
     private CategoryDao categoryDao;
 
-    public Long createProduct(ProductCreateDto createDto) {
+    public Long createProduct(ProductCreateDto createDto) throws PriceComparatorBusinesException {
         val.notNull(createDto, "createDto is null");
         val.notNullAndNotEmpty(createDto.getName(), "name is null or empty");
         val.maxLength(createDto.getName(), 255, "name is longer than 255 chars");
         val.notNull(createDto.getUnit(), "unit is null");
         val.notNull(createDto.getCountOfUnit(), "countOfUnit is null");
-//        val.greaterThanZero(createDto.getCountOfUnit(), "TODO");
-//        val.greaterThanZero(createDto.getCountOfItemInOnePackage(), "TODO");
-        // unikatnost mena !!!
-        if(productDao.existWithName(createDto.getName())){
-            throw new PriceComparatorException("Product with name "+createDto.getName()+" allready exist.");
+        val.greaterThanZero(createDto.getCountOfUnit(), "countOfUnit is negative or zero");
+        val.greaterThanZero(createDto.getCountOfItemInOnePackage(), "count of item in one package is negative or zero");
+        // unikatnost mena
+        if (productDao.existWithName(createDto.getName())) {
+            throw new PriceComparatorBusinesException("Product with name " + createDto.getName() + " allready exist.");
         }
 
         ProductEntity product = new ProductEntity();
@@ -77,6 +77,7 @@ public class ProductFacade extends JefFacade {
         product.setCountOfUnit(updateDto.getCountOfUnit());
         product.setCountOfItemInOnePackage(updateDto.getCountOfItemInOnePackage());
         if (updateDto.getCategoryId() != null) {
+            //FIXME read robit iba ak su rozdielne id teda aby zbytocne nesiel select
             product.setCategory(categoryDao.readMandatory(updateDto.getCategoryId()));
         }
         // TODO spracovanie obrazku

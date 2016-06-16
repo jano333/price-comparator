@@ -4,10 +4,10 @@ import org.apache.commons.lang3.StringUtils;
 import sk.hudak.pricecomparator.middle.EshopType;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorException;
-import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
 import sk.hudak.pricecomparator.middle.to.internal.ProductAnalyzatorResultDto;
-import sk.hudak.pricecomparator.middle.to.internal.StepOneRequestDto;
-import sk.hudak.pricecomparator.middle.to.internal.StepOneResponseDto;
+import sk.hudak.pricecomparator.middle.to.internal.ProductByUrlAnalyzatorRequestDto;
+import sk.hudak.pricecomparator.middle.to.internal.ProductByUrlAnalyzatorResponseDto;
+import sk.hudak.pricecomparator.server.dao.ProductInEshopDao;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -16,13 +16,13 @@ import javax.inject.Named;
  * Created by hudak on 18.04.2016.
  */
 @Named
-public class StepOneProcessor {
+public class ProductByUrlAnalyzator {
+
+    @Inject
+    private ProductInEshopDao productInEshopDao;
 
     @Inject
     private EshopTypeResolver eshopTypeResolver;
-
-    @Inject
-    private PriceComparatorService service;
 
     @Inject
     private ProductNameDownloader productNameDownloader;
@@ -30,7 +30,7 @@ public class StepOneProcessor {
     @Inject
     private ProductInEshopCreateAnalyzator productDataAnalyzator;
 
-    public StepOneResponseDto process(StepOneRequestDto requestDto) throws PriceComparatorBusinesException {
+    public ProductByUrlAnalyzatorResponseDto process(ProductByUrlAnalyzatorRequestDto requestDto) throws PriceComparatorBusinesException {
         // validacia
         if (requestDto == null) {
             throw new PriceComparatorException("request is null");
@@ -45,7 +45,7 @@ public class StepOneProcessor {
             throw new PriceComparatorBusinesException("Nepodporovany typ eshopu");
         }
         // 2. overenie, ci uz produkt s danou url neexistuje
-        if (service.existProductWithGivenUrl(productUrl)) {
+        if (productInEshopDao.existProductWithGivenUrl(productUrl)) {
             throw new PriceComparatorBusinesException("Produkt s danou URL uz existuje.");
         }
         // 3. stiahnutie nazvu produktu z danej url...
@@ -56,8 +56,8 @@ public class StepOneProcessor {
         // 4. analyza atributov
         ProductAnalyzatorResultDto productAnalyzatorResultDto = productDataAnalyzator.analyzeFromName(productName);
 
-        // vyskladanie odopovede
-        StepOneResponseDto responseDto = new StepOneResponseDto();
+        // 5. vyskladanie odopovede
+        ProductByUrlAnalyzatorResponseDto responseDto = new ProductByUrlAnalyzatorResponseDto();
         responseDto.setProductUrl(productUrl);
         responseDto.setEshopType(eshopType);
         responseDto.setProductName(productName);

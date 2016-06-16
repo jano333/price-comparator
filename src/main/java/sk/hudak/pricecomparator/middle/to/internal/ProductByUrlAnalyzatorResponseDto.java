@@ -9,8 +9,7 @@ import java.math.BigDecimal;
 /**
  * Created by hudak on 18.04.2016.
  */
-public class StepOneResponseDto implements Serializable {
-
+public class ProductByUrlAnalyzatorResponseDto implements Serializable {
 
     private EshopType eshopType;
     private String productUrl;
@@ -71,7 +70,7 @@ public class StepOneResponseDto implements Serializable {
 
     @Override
     public String toString() {
-        return "StepOneResponseDto{" +
+        return "ProductByUrlAnalyzatorResponseDto{" +
                 "eshopType=" + eshopType +
                 ", productUrl='" + productUrl + '\'' +
                 ", productName='" + productName + '\'' +

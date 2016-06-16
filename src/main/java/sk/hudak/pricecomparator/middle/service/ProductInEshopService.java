@@ -4,8 +4,8 @@ import sk.hudak.jef.PageList;
 import sk.hudak.pricecomparator.middle.EshopType;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
 import sk.hudak.pricecomparator.middle.to.*;
-import sk.hudak.pricecomparator.middle.to.internal.StepOneRequestDto;
-import sk.hudak.pricecomparator.middle.to.internal.StepOneResponseDto;
+import sk.hudak.pricecomparator.middle.to.internal.ProductByUrlAnalyzatorRequestDto;
+import sk.hudak.pricecomparator.middle.to.internal.ProductByUrlAnalyzatorResponseDto;
 import sk.hudak.pricecomparator.middle.to.internal.StepTwoRequestDto;
 
 import java.util.List;
@@ -120,15 +120,15 @@ public interface ProductInEshopService {
     boolean existProductWithGivenUrl(String productUrl);
 
     /**
-     * @param stepOneRequestDto
+     * @param productByUrlAnalyzatorRequestDto
      * @return
      * @throws PriceComparatorBusinesException
      */
-    StepOneResponseDto analyzeProductUrl(StepOneRequestDto stepOneRequestDto) throws PriceComparatorBusinesException;
+    ProductByUrlAnalyzatorResponseDto analyzeProductUrl(ProductByUrlAnalyzatorRequestDto productByUrlAnalyzatorRequestDto) throws PriceComparatorBusinesException;
 
     /**
      * @param stepTwoRequestDto
      * @throws PriceComparatorBusinesException
      */
-    void createNewProdutAndAddToEshop(StepTwoRequestDto stepTwoRequestDto) throws PriceComparatorBusinesException;
+    ProductInEshopDto createNewProductAndAddToEshop(StepTwoRequestDto stepTwoRequestDto) throws PriceComparatorBusinesException;
 }

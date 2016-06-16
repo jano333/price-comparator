@@ -266,4 +266,6 @@ public class ProductInEshopDao extends JefDao<ProductInEshopEntity> {
         crit.add(Restrictions.eq(ProductInEshopEntity.AT_PRODUCT_PAGE_IN_ESHOP, productUrl));
         return !crit.list().isEmpty();
     }
+
+
 }

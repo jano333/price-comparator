@@ -3,7 +3,6 @@ package sk.hudak.pricecomparator.server.facade;
 import sk.hudak.jef.JefFacade;
 import sk.hudak.pricecomparator.middle.EshopType;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
-import sk.hudak.pricecomparator.middle.exeption.PriceComparatorException;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopCreateDto;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopPriceUpdateDto;
 import sk.hudak.pricecomparator.server.dao.EshopDao;
@@ -33,22 +32,19 @@ public class ProductInEshopFacade extends JefFacade {
 
     public Long createProductInEshop(ProductInEshopCreateDto createDto) throws PriceComparatorBusinesException {
         val.notNull(createDto, "createDto is null");
-        val.notNull(createDto.getEshopId(), "eshopId is null");
-        val.notNull(createDto.getProductId(), "productId is null");
-        val.notNullAndNotEmpty(createDto.getEshopProductPage(), "eshop product page is null or empty");
-        // TODO ostatne a dlzky validovat
-
-        // kontola ci kombinacia produkt - eshop uz neexistuje
-        //TODO testnut !!!
-        if (productInEshopDao.existProductInEshop(createDto.getEshopId(), createDto.getProductId())) {
-            throw new PriceComparatorException("Dany produkt uz existuje");
-        }
-
-        //TODO
+        val.notNull(createDto.getEshopId(), ProductInEshopCreateDto.AT_ESHOP_ID + " is null");
+        val.notNull(createDto.getProductId(), ProductInEshopCreateDto.AT_PRODUCT_ID + " is null");
+        val.notNullAndNotEmpty(createDto.getEshopProductPage(), ProductInEshopCreateDto.AT_ESHOP_PRODUCT_PAGE + " is null or empty");
         // kontrola ci product v eshope s takou url uz neexistuje
-//        if (productInEshopDao.existProductInEshopWithEshopProductPage(createDto.getEshopProductPage())) {
-//            throw new PriceComparatorException("Produkt s danou url uz existuje.");
-//        }
+        if (productInEshopDao.existProductWithGivenUrl(createDto.getEshopProductPage())) {
+            //FIXME err kluc
+            throw new PriceComparatorBusinesException("Produkt s danou url uz existuje.");
+        }
+        // kontola ci kombinacia produkt - eshop uz neexistuje
+        if (productInEshopDao.existProductInEshop(createDto.getEshopId(), createDto.getProductId())) {
+            //FIXME err kluc
+            throw new PriceComparatorBusinesException("Dany produkt uz existuje");
+        }
 
         ProductInEshopEntity entity = new ProductInEshopEntity();
         entity.setEshop(eshopDao.readMandatory(createDto.getEshopId()));
@@ -99,9 +95,5 @@ public class ProductInEshopFacade extends JefFacade {
         return productInEshopDao.findProductForPriceUpdate(eshopType, maxOlderDate);
 
 
-    }
-
-    public boolean existProductWithGivenUrl(String productUrl) {
-        return productInEshopDao.existProductWithGivenUrl(productUrl);
     }
 }
