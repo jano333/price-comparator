@@ -1,23 +1,30 @@
 package sk.hudak.pricecomparator.client.wicket.component.table.column;
 
-import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.util.convert.ConversionException;
 import org.apache.wicket.util.convert.IConverter;
+import sk.hudak.pricecomparator.middle.canonical.Unit;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Locale;
 
 /**
- * Created by jan on 14. 6. 2016.
+ * Created by jan on 16. 6. 2016.
  */
-public abstract class PriceColumn extends Label {
-    protected int pocetDestatinychMiest;
+public class PriceForUnitColumn2 extends PriceColumn {
 
-    public PriceColumn(String id, IModel<BigDecimal> model, int pocetDestatinychMiest) {
-        super(id, model);
-        this.pocetDestatinychMiest = pocetDestatinychMiest;
+    private IModel<Unit> unit;
+
+    public PriceForUnitColumn2(String id, IModel<BigDecimal> priceForUnit, IModel<Unit> unit) {
+        super(id, priceForUnit, 3);
+        this.unit = unit;
+    }
+
+    @Override
+    protected void onDetach() {
+        super.onDetach();
+        unit.detach();
     }
 
     @Override
@@ -32,9 +39,8 @@ public abstract class PriceColumn extends Label {
             public String convertToString(BigDecimal value, Locale locale) {
                 String suma = String.valueOf(value.setScale(pocetDestatinychMiest, RoundingMode.HALF_UP));
                 suma = suma.replace(".", ",");
-                return suma + " €";
+                return suma + " €/" + unit.getObject().getJednotka();
             }
         };
     }
-
 }

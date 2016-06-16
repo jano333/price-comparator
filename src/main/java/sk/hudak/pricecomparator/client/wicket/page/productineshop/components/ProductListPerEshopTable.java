@@ -1,10 +1,8 @@
 package sk.hudak.pricecomparator.client.wicket.page.productineshop.components;
 
-import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.*;
-import org.apache.wicket.markup.html.image.ContextImage;
 import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
@@ -18,7 +16,10 @@ import sk.hudak.pricecomparator.client.wicket.component.table.PagingInfoPanel;
 import sk.hudak.pricecomparator.client.wicket.component.table.Table;
 import sk.hudak.pricecomparator.client.wicket.component.table.column.PriceForOneItemInPackageColumn;
 import sk.hudak.pricecomparator.client.wicket.component.table.column.PriceForPackageColumn;
-import sk.hudak.pricecomparator.client.wicket.component.table.column.PriceForUnitColumn;
+import sk.hudak.pricecomparator.client.wicket.component.table.column.PriceForUnitColumn2;
+import sk.hudak.pricecomparator.client.wicket.component.table.column.ProductActionColumn;
+import sk.hudak.pricecomparator.middle.canonical.Unit;
+import sk.hudak.pricecomparator.middle.model.ProductAction;
 import sk.hudak.pricecomparator.middle.to.EshopIdNameDto;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopFindDto;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopPriceInfoListDto;
@@ -119,15 +120,14 @@ public class ProductListPerEshopTable extends Panel {
 
                 ExternalLink productImageLink = new ExternalLink("productImageLink",
                         new PropertyModel<String>(product, ProductInEshopPriceInfoListDto.AT_PRODUCT_ESHOP_PAGE));
-                ContextImage productImage = WU.productImage(product.getObject().getPictureFullPath());
-                productImageLink.add(productImage);
+                productImageLink.add(WU.productImage(product.getObject().getPictureFullPath()));
+                productImageLink.add(WU.atrTargetBlank());
 
                 ExternalLink productName = new ExternalLink("productName",
                         new PropertyModel<String>(product, ProductInEshopPriceInfoListDto.AT_PRODUCT_ESHOP_PAGE),
                         new PropertyModel<String>(product, ProductInEshopPriceInfoListDto.AT_PRODUCT_NAME)
                 );
-                productName.add(new AttributeAppender("target", "_blank"));
-
+                productName.add(WU.atrTargetBlank());
 
                 PriceForPackageColumn priceForPackage = new PriceForPackageColumn("priceForPackage",
                         new PropertyModel<BigDecimal>(product, ProductInEshopPriceInfoListDto.AT_PRICE_FOR_PACKAGE));
@@ -135,10 +135,12 @@ public class ProductListPerEshopTable extends Panel {
                 PriceForOneItemInPackageColumn priceForOneItemInPackage = new PriceForOneItemInPackageColumn("priceForOneItemInPackage",
                         new PropertyModel<BigDecimal>(product, ProductInEshopPriceInfoListDto.AT_PRICE_FOR_ONE_ITEM_IN_PACKAGE));
 
-                PriceForUnitColumn priceForUnit = new PriceForUnitColumn("priceForUnit",
-                        new PropertyModel<BigDecimal>(product, ProductInEshopPriceInfoListDto.AT_PRICE_FOR_UNIT));
+                PriceForUnitColumn2 priceForUnit = new PriceForUnitColumn2("priceForUnit",
+                        new PropertyModel<BigDecimal>(product, ProductInEshopPriceInfoListDto.AT_PRICE_FOR_UNIT),
+                        new PropertyModel<Unit>(product, ProductInEshopPriceInfoListDto.AT_UNIT));
 
-                Label productAction = new Label("productAction", new PropertyModel<String>(product, ProductInEshopPriceInfoListDto.AT_PRODUCT_ACTION));
+                ProductActionColumn productAction = new ProductActionColumn("productAction",
+                        new PropertyModel<ProductAction>(product, ProductInEshopPriceInfoListDto.AT_PRODUCT_ACTION));
 
                 Label actionValidTo = new Label("actionValidTo", new PropertyModel<String>(product, ProductInEshopPriceInfoListDto.AT_ACTION_VALID_TO));
 
@@ -156,6 +158,7 @@ public class ProductListPerEshopTable extends Panel {
         add(table);
 
     }
+
 
     public ProductInEshopFindDto getFilter() {
         return filter;

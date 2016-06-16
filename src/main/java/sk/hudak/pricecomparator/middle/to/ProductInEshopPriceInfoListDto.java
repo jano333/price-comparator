@@ -1,5 +1,6 @@
 package sk.hudak.pricecomparator.middle.to;
 
+import sk.hudak.pricecomparator.middle.canonical.Unit;
 import sk.hudak.pricecomparator.middle.model.ProductAction;
 
 import java.io.Serializable;
@@ -12,6 +13,7 @@ import java.util.Date;
 public class ProductInEshopPriceInfoListDto implements Serializable {
 
     public static final String AT_PRODUCT_NAME = "productName";
+    public static final String AT_UNIT = "unit";
     public static final String AT_PRICE_FOR_UNIT = "priceForUnit";
     public static final String AT_PRICE_FOR_PACKAGE = "priceForPackage";
     public static final String AT_PRICE_FOR_ONE_ITEM_IN_PACKAGE = "priceForOneItemInPackage";
@@ -26,6 +28,7 @@ public class ProductInEshopPriceInfoListDto implements Serializable {
     //    private String eshopName;
     private String productName;
 
+    private Unit unit;
     private BigDecimal priceForUnit;
     private BigDecimal priceForPackage;
     private BigDecimal priceForOneItemInPackage;
@@ -43,6 +46,14 @@ public class ProductInEshopPriceInfoListDto implements Serializable {
         this.id = id;
     }
 
+    public String getPictureFullPath() {
+        return pictureFullPath;
+    }
+
+    public void setPictureFullPath(String pictureFullPath) {
+        this.pictureFullPath = pictureFullPath;
+    }
+
     public String getProductName() {
         return productName;
     }
@@ -51,12 +62,12 @@ public class ProductInEshopPriceInfoListDto implements Serializable {
         this.productName = productName;
     }
 
-    public String getPictureFullPath() {
-        return pictureFullPath;
+    public Unit getUnit() {
+        return unit;
     }
 
-    public void setPictureFullPath(String pictureFullPath) {
-        this.pictureFullPath = pictureFullPath;
+    public void setUnit(Unit unit) {
+        this.unit = unit;
     }
 
     public BigDecimal getPriceForUnit() {

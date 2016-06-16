@@ -1,6 +1,8 @@
 package sk.hudak.pricecomparator.middle.canonical;
 
 /**
+ * Definuje typ mernej jednotky.
+ * <p>
  * Created by jan on 13. 10. 2015.
  */
 public enum Unit {
@@ -8,26 +10,33 @@ public enum Unit {
     /**
      * napr. plienky
      */
-    KUS,
+    KUS("ks"),
 
     /**
      * napr.: sol do sol do kupela - 0,5kg
      */
-    KILOGRAM,
+    KILOGRAM("kg"),
 
     /**
      * napr.: toaletny papier - 68m
      */
-    METER,
+    METER("m"),
 
     /**
      * napr.: alkohol - 0,7l
      */
-    LITER,
+    LITER("l"),
 
     //pozri http://potravinydomov.itesco.sk/sk-SK/ProductDetail/ProductDetail/2002015116798
-    DAVKA,
+    DAVKA("davka"),;
 
+    private String jednotka;
 
-    ;
+    Unit(String jednotka) {
+        this.jednotka = jednotka;
+    }
+
+    public String getJednotka() {
+        return jednotka;
+    }
 }

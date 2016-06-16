@@ -18,11 +18,18 @@ import sk.hudak.pricecomparator.client.wicket.WU;
 import sk.hudak.pricecomparator.client.wicket.component.common.IdListView;
 import sk.hudak.pricecomparator.client.wicket.component.table.PagingInfoPanel;
 import sk.hudak.pricecomparator.client.wicket.component.table.Table;
+import sk.hudak.pricecomparator.client.wicket.component.table.column.PriceForOneItemInPackageColumn;
+import sk.hudak.pricecomparator.client.wicket.component.table.column.PriceForPackageColumn;
+import sk.hudak.pricecomparator.client.wicket.component.table.column.PriceForUnitColumn2;
+import sk.hudak.pricecomparator.client.wicket.component.table.column.ProductActionColumn;
+import sk.hudak.pricecomparator.middle.canonical.Unit;
+import sk.hudak.pricecomparator.middle.model.ProductAction;
 import sk.hudak.pricecomparator.middle.to.GroupIdNameDto;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopPriceResultListDto;
 import sk.hudak.pricecomparator.middle.to.ProductPriceInGroupFindDto;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 
@@ -71,7 +78,7 @@ public class GroupProductPriceListTable extends Panel {
                     }
                 },
                 new ChoiceRenderer<GroupIdNameDto>(GroupIdNameDto.AT_NAME)
-        ){
+        ) {
             @Override
             protected String getNullKey() {
                 return "core.dropdown.nullValue.group";
@@ -113,17 +120,18 @@ public class GroupProductPriceListTable extends Panel {
                 );
                 productInEshopPage.add(new AttributeAppender("target", "_blank"));
 
-                Label priceForPackage = new Label("priceForPackage",
-                        new PropertyModel<String>(product, ProductInEshopPriceResultListDto.AT_PRICE_FOR_PACKAGE));
+                PriceForPackageColumn priceForPackage = new PriceForPackageColumn("priceForPackage",
+                        new PropertyModel<BigDecimal>(product, ProductInEshopPriceResultListDto.AT_PRICE_FOR_PACKAGE));
 
-                Label priceForOneItemInPackage = new Label("priceForOneItemInPackage",
-                        new PropertyModel<String>(product, ProductInEshopPriceResultListDto.AT_PRICE_FOR_ONE_ITEM_IN_PACKAGE));
+                PriceForOneItemInPackageColumn priceForOneItemInPackage = new PriceForOneItemInPackageColumn("priceForOneItemInPackage",
+                        new PropertyModel<BigDecimal>(product, ProductInEshopPriceResultListDto.AT_PRICE_FOR_ONE_ITEM_IN_PACKAGE));
 
-                Label priceForUnit = new Label("priceForUnit",
-                        new PropertyModel<String>(product, ProductInEshopPriceResultListDto.AT_PRICE_FOR_UNIT));
+                PriceForUnitColumn2 priceForUnit = new PriceForUnitColumn2("priceForUnit",
+                        new PropertyModel<BigDecimal>(product, ProductInEshopPriceResultListDto.AT_PRICE_FOR_UNIT),
+                        new PropertyModel<Unit>(product, ProductInEshopPriceResultListDto.AT_UNIT));
 
-                Label productAction = new Label("productAction",
-                        new PropertyModel<String>(product, ProductInEshopPriceResultListDto.AT_PRODUCT_ACTION));
+                ProductActionColumn productAction = new ProductActionColumn("productAction",
+                        new PropertyModel<ProductAction>(product, ProductInEshopPriceResultListDto.AT_PRODUCT_ACTION));
 
                 Label actionValidTo = new Label("actionValidTo",
                         new PropertyModel<String>(product, ProductInEshopPriceResultListDto.AT_ACTION_VALID_TO));

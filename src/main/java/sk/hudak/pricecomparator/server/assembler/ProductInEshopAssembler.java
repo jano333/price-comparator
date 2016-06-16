@@ -108,6 +108,7 @@ public class ProductInEshopAssembler {
         ProductInEshopPriceResultListDto result = new ProductInEshopPriceResultListDto();
         result.setId(entity.getId());
         result.setProductAction(entity.getProductAction());
+        result.setUnit(entity.getProduct().getUnit());
         result.setPriceForUnit(entity.getPriceForUnit());
         result.setActionValidTo(entity.getActionValidTo());
         result.setPriceForOneItemInPackage(entity.getPriceForOneItemInPackage());
@@ -138,6 +139,7 @@ public class ProductInEshopAssembler {
         ProductInEshopPriceInfoListDto result = new ProductInEshopPriceInfoListDto();
         result.setId(entity.getId());
         result.setProductAction(entity.getProductAction());
+        result.setUnit(entity.getProduct().getUnit());
         result.setPriceForUnit(entity.getPriceForUnit());
         result.setActionValidTo(entity.getActionValidTo());
         result.setPriceForOneItemInPackage(entity.getPriceForOneItemInPackage());

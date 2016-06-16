@@ -7,9 +7,11 @@ import java.math.BigDecimal;
 /**
  * Created by jan on 15. 6. 2016.
  */
+@Deprecated
 public class PriceForUnitColumn extends PriceColumn {
 
-    public PriceForUnitColumn(String id, IModel<BigDecimal> model) {
-        super(id, model, 3);
+    @Deprecated
+    public PriceForUnitColumn(String id, IModel<BigDecimal> priceForUnit) {
+        super(id, priceForUnit, 3);
     }
 }
