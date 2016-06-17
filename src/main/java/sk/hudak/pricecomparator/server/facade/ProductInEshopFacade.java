@@ -8,6 +8,7 @@ import sk.hudak.pricecomparator.middle.to.ProductInEshopPriceUpdateDto;
 import sk.hudak.pricecomparator.server.dao.EshopDao;
 import sk.hudak.pricecomparator.server.dao.ProductDao;
 import sk.hudak.pricecomparator.server.dao.ProductInEshopDao;
+import sk.hudak.pricecomparator.server.model.EshopEntity;
 import sk.hudak.pricecomparator.server.model.ProductInEshopEntity;
 
 import javax.inject.Inject;
@@ -22,41 +23,49 @@ import java.util.Date;
 public class ProductInEshopFacade extends JefFacade {
 
     @Inject
-    private ProductInEshopDao productInEshopDao;
-
-    @Inject
     private EshopDao eshopDao;
 
     @Inject
     private ProductDao productDao;
+
+    @Inject
+    private ProductInEshopDao productInEshopDao;
 
     public Long createProductInEshop(ProductInEshopCreateDto createDto) throws PriceComparatorBusinesException {
         val.notNull(createDto, "createDto is null");
         val.notNull(createDto.getEshopId(), ProductInEshopCreateDto.AT_ESHOP_ID + " is null");
         val.notNull(createDto.getProductId(), ProductInEshopCreateDto.AT_PRODUCT_ID + " is null");
         val.notNullAndNotEmpty(createDto.getEshopProductPage(), ProductInEshopCreateDto.AT_ESHOP_PRODUCT_PAGE + " is null or empty");
-        // kontrola ci product v eshope s takou url uz neexistuje
+        // kontrola, ci produkt v eshope s takou url uz neexistuje
         if (productInEshopDao.existProductWithGivenUrl(createDto.getEshopProductPage())) {
             //FIXME err kluc
-            throw new PriceComparatorBusinesException("Produkt s danou url uz existuje.");
+            throw new PriceComparatorBusinesException("Produkt s danou URL uz existuje.");
         }
-        // kontola ci kombinacia produkt - eshop uz neexistuje
+        // kontola, ci kombinacia produkt <-> eshop uz neexistuje
         if (productInEshopDao.existProductInEshop(createDto.getEshopId(), createDto.getProductId())) {
             //FIXME err kluc
-            throw new PriceComparatorBusinesException("Dany produkt uz existuje");
+            throw new PriceComparatorBusinesException("Produkt v danom eshope uz je pridany.");
         }
-
+        // kontrola, ci URL je pre dany eshop
+        EshopEntity eshop = eshopDao.readMandatory(createDto.getEshopId());
+        if (!createDto.getEshopProductPage().startsWith(eshop.getHomePage())) {
+            //FIXME err kluc
+            throw new PriceComparatorBusinesException("Dana URL produktu nie je pre dany eshop.");
+        }
+        // vytvorenie
         ProductInEshopEntity entity = new ProductInEshopEntity();
-        entity.setEshop(eshopDao.readMandatory(createDto.getEshopId()));
+        entity.setEshop(eshop);
         entity.setProduct(productDao.readMandatory(createDto.getProductId()));
         entity.setProductPageInEshop(createDto.getEshopProductPage());
-
+        // ulozenie do DB
         return productInEshopDao.create(entity);
     }
 
     public void updateProductInEshopPrice(ProductInEshopPriceUpdateDto updateDto) {
         val.notNull(updateDto, "updateDto is null");
         val.notNull(updateDto.getId(), "id is null");
+
+        //TODO validacie
 
         ProductInEshopEntity entity = productInEshopDao.readMandatory(updateDto.getId());
         entity.setProductAction(updateDto.getProductAction());
