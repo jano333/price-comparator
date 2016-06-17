@@ -10,7 +10,7 @@ public enum Unit {
     /**
      * napr. plienky
      */
-    KUS("ks"),
+    KUS("kus"),
 
     /**
      * napr.: sol do sol do kupela - 0,5kg
