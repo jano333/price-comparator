@@ -16,7 +16,7 @@ import sk.hudak.pricecomparator.client.wicket.component.table.PagingInfoPanel;
 import sk.hudak.pricecomparator.client.wicket.component.table.Table;
 import sk.hudak.pricecomparator.client.wicket.component.table.column.PriceForOneItemInPackageColumn;
 import sk.hudak.pricecomparator.client.wicket.component.table.column.PriceForPackageColumn;
-import sk.hudak.pricecomparator.client.wicket.component.table.column.PriceForUnitColumn2;
+import sk.hudak.pricecomparator.client.wicket.component.table.column.PriceForUnitColumn;
 import sk.hudak.pricecomparator.client.wicket.component.table.column.ProductActionColumn;
 import sk.hudak.pricecomparator.middle.canonical.Unit;
 import sk.hudak.pricecomparator.middle.model.ProductAction;
@@ -135,7 +135,7 @@ public class ProductListPerEshopTable extends Panel {
                 PriceForOneItemInPackageColumn priceForOneItemInPackage = new PriceForOneItemInPackageColumn("priceForOneItemInPackage",
                         new PropertyModel<BigDecimal>(product, ProductInEshopPriceInfoListDto.AT_PRICE_FOR_ONE_ITEM_IN_PACKAGE));
 
-                PriceForUnitColumn2 priceForUnit = new PriceForUnitColumn2("priceForUnit",
+                PriceForUnitColumn priceForUnit = new PriceForUnitColumn("priceForUnit",
                         new PropertyModel<BigDecimal>(product, ProductInEshopPriceInfoListDto.AT_PRICE_FOR_UNIT),
                         new PropertyModel<Unit>(product, ProductInEshopPriceInfoListDto.AT_UNIT));
 

@@ -12,11 +12,11 @@ import java.util.Locale;
 /**
  * Created by jan on 16. 6. 2016.
  */
-public class PriceForUnitColumn2 extends PriceColumn {
+public class PriceForUnitColumn extends PriceColumn {
 
     private IModel<Unit> unit;
 
-    public PriceForUnitColumn2(String id, IModel<BigDecimal> priceForUnit, IModel<Unit> unit) {
+    public PriceForUnitColumn(String id, IModel<BigDecimal> priceForUnit, IModel<Unit> unit) {
         super(id, priceForUnit, 3);
         this.unit = unit;
     }
