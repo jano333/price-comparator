@@ -131,4 +131,6 @@ public interface ProductInEshopService {
      * @throws PriceComparatorBusinesException
      */
     ProductInEshopDto createNewProductAndAddToEshop(StepTwoRequestDto stepTwoRequestDto) throws PriceComparatorBusinesException;
+
+    PageList<EshopWithoutProductListDto> findEshopWithoutProduct(ProductFindDto filter);
 }

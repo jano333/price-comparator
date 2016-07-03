@@ -3,6 +3,7 @@ package sk.hudak.pricecomparator.server.service.internal;
 import sk.hudak.jef.PageList;
 import sk.hudak.pricecomparator.middle.EshopType;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
+import sk.hudak.pricecomparator.middle.exeption.PriceComparatorErrorCodes;
 import sk.hudak.pricecomparator.middle.service.ProductInEshopService;
 import sk.hudak.pricecomparator.middle.to.*;
 import sk.hudak.pricecomparator.middle.to.internal.ProductByUrlAnalyzatorResponseDto;
@@ -204,12 +205,8 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
     public ProductInEshopDto createNewProductAndAddToEshop(StepTwoRequestDto stepTwoRequestDto) throws PriceComparatorBusinesException {
         EshopEntity eshopEntity = eshopDao.findEshopByType(stepTwoRequestDto.getEshopType());
         if (eshopEntity == null) {
-            //FIXME err kluc
-            throw new PriceComparatorBusinesException("Eshop type je povinny");
+            throw new PriceComparatorBusinesException(PriceComparatorErrorCodes.ERR_ESHOP_TYPE_IS_REQIRED);
         }
-        ProductInEshopCreateDto createProductInEshopDto = new ProductInEshopCreateDto();
-        createProductInEshopDto.setEshopId(eshopEntity.getId());
-        createProductInEshopDto.setEshopProductPage(stepTwoRequestDto.getProductUrl());
 
         ProductCreateDto createProductDto = new ProductCreateDto();
         createProductDto.setName(stepTwoRequestDto.getProductName());
@@ -217,8 +214,11 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
         createProductDto.setCountOfUnit(stepTwoRequestDto.getCountOfUnit());
         createProductDto.setCountOfItemInOnePackage(stepTwoRequestDto.getCountOfItemInPackage());
         Long productId = productFacade.createProduct(createProductDto);
-        createProductInEshopDto.setProductId(productId);
 
+        ProductInEshopCreateDto createProductInEshopDto = new ProductInEshopCreateDto();
+        createProductInEshopDto.setEshopId(eshopEntity.getId());
+        createProductInEshopDto.setEshopProductPage(stepTwoRequestDto.getProductUrl());
+        createProductInEshopDto.setProductId(productId);
         Long productInEshopId = productInEshopFacade.createProductInEshop(createProductInEshopDto);
 
         ProductInEshopDto result = new ProductInEshopDto();
@@ -227,6 +227,15 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
         result.setEshopId(eshopEntity.getId());
         result.setEshopProductPage(stepTwoRequestDto.getProductUrl());
         return result;
+    }
+
+    @Override
+    public PageList<EshopWithoutProductListDto> findEshopWithoutProduct(ProductFindDto filter) {
+
+        List<EshopEntity> eshopsWithoutProduct = productInEshopDao.findEshopsWithoutProduct(filter.getProductId());
+//        return eshopAssembler.transformToListOfEshopListDto(eshopsWithoutProduct);
+
+        return null;
     }
 
     @Override

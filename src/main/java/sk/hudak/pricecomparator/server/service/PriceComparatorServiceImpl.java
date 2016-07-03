@@ -349,6 +349,15 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
         return result;
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public PageList<EshopWithoutProductListDto> findEshopWithoutProduct(ProductFindDto findDto) {
+        logger.debug(">> findEshopWithoutProduct");
+        PageList<EshopWithoutProductListDto> resutl = productInEshopService.findEshopWithoutProduct(findDto);
+        logger.debug("<< findEshopWithoutProduct");
+        return resutl;
+    }
+
     // --------- GROUP_OF_PRODUCTS ------------
 
 
