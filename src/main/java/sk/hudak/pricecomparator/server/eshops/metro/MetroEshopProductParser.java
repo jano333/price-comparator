@@ -41,6 +41,35 @@ public class MetroEshopProductParser extends AbstractEshopProductParser {
         return productInfo;
     }
 
+//    @Override
+//    protected EshopProductInfo parsePrice(Document document) {
+//        if (isProductNedostupny(document)) {
+//            logger.error("produkt nie je dostupny: " + parserInputData.getEshopProductPage());
+//            return ProductInfoFactory.createUnaviable();
+//        }
+//
+//        final String productName = parseProductName(document);
+//
+//        final String cenaZaBalenie = parseCenaZaBalenie(document);
+//
+//
+//        return null;
+//    }
+//
+//    private String parseCenaZaBalenie(Document document) {
+//
+//        return null;
+//    }
+//
+//    private String parseProductName(Document document) {
+//        //TODO impl
+//        return null;
+//    }
+//
+//    private boolean isProductNedostupny(Document document) {
+//        return notExistElement(document, "div[class=action-ns]");
+//    }
+
     protected BigDecimal parseCena(Element element) {
         String html = element.html();
         int beginIndex = html.indexOf("|") + 2;
