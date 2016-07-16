@@ -2,7 +2,7 @@ package sk.hudak.pricecomparator.client.swing;
 
 import sk.hudak.pricecomparator.client.ServiceLocator;
 import sk.hudak.pricecomparator.client.utils.TaskManager;
-import sk.hudak.pricecomparator.server.eshops.tesco.TescoPictureLocalFinder;
+import sk.hudak.pricecomparator.server.eshops.tesco.app.TescoPictureLocalFinder;
 
 import javax.swing.*;
 

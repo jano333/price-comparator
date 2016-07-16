@@ -12,6 +12,7 @@ import java.util.Date;
 /**
  * Created by jan on 14. 10. 2015.
  */
+@Deprecated
 public abstract class AbstractEshopProductInfo implements EshopProductInfo {
 
     private ParserInputData parserInputData;
@@ -66,6 +67,7 @@ public abstract class AbstractEshopProductInfo implements EshopProductInfo {
 
     /**
      * balenie (4x52ks)
+     *
      * @return
      */
     private BigDecimal calculatePriceForUnit_KUS() {

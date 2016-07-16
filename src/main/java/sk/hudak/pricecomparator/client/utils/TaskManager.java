@@ -19,13 +19,13 @@ import sk.hudak.pricecomparator.server.eshops.internetovalekaren.InternetovaLeka
 import sk.hudak.pricecomparator.server.eshops.k24.K24ProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.lekarenbella.LekarenBellaProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.mall.MallProductInfoDownloaderTask;
-import sk.hudak.pricecomparator.server.eshops.metro.MetroProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.novalekaren.NovaLekarenProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.perinbaba.PerinbabaProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.pilulka.PilulkaProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.semistor.SemistorProductInfoDownloaderTask;
-import sk.hudak.pricecomparator.server.eshops.shoppie.ShoppieProductInfoDownloaderTask;
-import sk.hudak.pricecomparator.server.eshops.tesco.TescoProductInfoDownloaderTask;
+import sk.hudak.pricecomparator.server.tobedeleted.MetroProductInfoDownloaderTask;
+import sk.hudak.pricecomparator.server.tobedeleted.ShoppieProductInfoDownloaderTask;
+import sk.hudak.pricecomparator.server.tobedeleted.TescoProductInfoDownloaderTask;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +35,7 @@ import java.util.concurrent.Executors;
 /**
  * Created by jan on 13. 1. 2016.
  */
+@Deprecated
 public class TaskManager {
 
     private PriceComparatorService service;

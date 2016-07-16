@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.server.eshops.metro;
+package sk.hudak.pricecomparator.server.tobedeleted;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -16,7 +16,8 @@ import java.util.Map;
 /**
  * Created by jan on 13. 10. 2015.
  */
-public class MetroEshopProductParser extends AbstractEshopProductParser {
+@Deprecated
+public class MetroEshopProductParserOld extends AbstractEshopProductParser {
 
     @Override
     protected Map<String, String> getCookies() {

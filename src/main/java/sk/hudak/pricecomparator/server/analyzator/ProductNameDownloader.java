@@ -4,7 +4,7 @@ import sk.hudak.pricecomparator.middle.EshopProductParser;
 import sk.hudak.pricecomparator.middle.EshopType;
 import sk.hudak.pricecomparator.middle.canonical.ParserInputData;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorException;
-import sk.hudak.pricecomparator.server.eshops.tesco.TescoEshopProductParser;
+import sk.hudak.pricecomparator.server.tobedeleted.TescoEshopProductParser;
 
 import javax.inject.Named;
 

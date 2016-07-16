@@ -9,6 +9,7 @@ import java.util.Date;
 /**
  * Created by jan on 14. 10. 2015.
  */
+@Deprecated
 public class ProductInfoFactory {
 
     //TODO presunut do api

@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.server.eshops.tesco;
+package sk.hudak.pricecomparator.server.tobedeleted;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -16,6 +16,7 @@ import java.util.Date;
 /**
  * Created by jan on 13. 10. 2015.
  */
+@Deprecated
 public class TescoEshopProductParser extends AbstractEshopProductParser {
 
     @Override

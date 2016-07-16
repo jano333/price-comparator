@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 /**
  * Created by jan on 6. 11. 2015.
  */
+@Deprecated
 public class ParserInputData {
 
     // pocet poloziek v baliku

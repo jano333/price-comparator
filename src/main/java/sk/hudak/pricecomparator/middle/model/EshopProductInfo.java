@@ -8,6 +8,7 @@ import java.util.Date;
 /**
  * Created by jan on 13. 10. 2015.
  */
+@Deprecated
 public interface EshopProductInfo {
 
     /**

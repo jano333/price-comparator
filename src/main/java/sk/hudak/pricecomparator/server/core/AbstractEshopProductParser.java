@@ -18,6 +18,7 @@ import java.util.Map;
 /**
  * Created by jan on 13. 10. 2015.
  */
+@Deprecated
 public abstract class AbstractEshopProductParser implements EshopProductParser {
 
     protected Logger logger = LoggerFactory.getLogger(getClass());

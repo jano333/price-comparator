@@ -3,7 +3,7 @@ package sk;
 import sk.hudak.pricecomparator.middle.canonical.ParserInputData;
 import sk.hudak.pricecomparator.middle.canonical.Unit;
 import sk.hudak.pricecomparator.middle.model.EshopProductInfo;
-import sk.hudak.pricecomparator.server.eshops.metro.MetroEshopProductParser;
+import sk.hudak.pricecomparator.server.tobedeleted.MetroEshopProductParserOld;
 
 import java.math.BigDecimal;
 
@@ -19,7 +19,7 @@ public class MetroParserTest {
                 new BigDecimal(0.8),
                 "https://sortiment.metro.sk/sk/nutrilon-2-pronutra-24kg3x800g/226739p/");
 
-        MetroEshopProductParser parser = new MetroEshopProductParser();
+        MetroEshopProductParserOld parser = new MetroEshopProductParserOld();
         EshopProductInfo productInfo = parser.getProductInfo(parserInputData);
         System.out.println(productInfo.getAction());
         System.out.println(productInfo.getActionValidTo());

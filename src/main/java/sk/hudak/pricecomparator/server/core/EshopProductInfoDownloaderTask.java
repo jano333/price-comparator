@@ -16,6 +16,7 @@ import java.util.Random;
 /**
  * Created by jan on 4. 1. 2016.
  */
+@Deprecated
 public abstract class EshopProductInfoDownloaderTask implements Runnable {
 
     protected Logger logger = LoggerFactory.getLogger(getClass());

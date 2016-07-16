@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.server.eshops.tesco;
+package sk.hudak.pricecomparator.server.eshops.tesco.app;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

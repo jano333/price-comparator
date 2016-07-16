@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.server.eshops.tesco;
+package sk.hudak.pricecomparator.server.eshops.tesco.app;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;

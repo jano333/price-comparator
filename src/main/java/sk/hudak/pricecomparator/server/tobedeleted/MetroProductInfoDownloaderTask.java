@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.server.eshops.metro;
+package sk.hudak.pricecomparator.server.tobedeleted;
 
 import sk.hudak.pricecomparator.middle.EshopProductParser;
 import sk.hudak.pricecomparator.middle.EshopType;
@@ -8,6 +8,7 @@ import sk.hudak.pricecomparator.server.core.EshopProductInfoDownloaderTask;
 /**
  * Created by jan on 13. 1. 2016.
  */
+@Deprecated
 public class MetroProductInfoDownloaderTask extends EshopProductInfoDownloaderTask {
 
     public MetroProductInfoDownloaderTask(PriceComparatorService service) {
@@ -21,6 +22,6 @@ public class MetroProductInfoDownloaderTask extends EshopProductInfoDownloaderTa
 
     @Override
     protected EshopProductParser getEshopParser() {
-        return new MetroEshopProductParser();
+        return new MetroEshopProductParserOld();
     }
 }
