@@ -4,7 +4,7 @@ import sk.hudak.pricecomparator.client.ProductInfoToString;
 import sk.hudak.pricecomparator.middle.canonical.ParserInputData;
 import sk.hudak.pricecomparator.middle.canonical.Unit;
 import sk.hudak.pricecomparator.middle.model.EshopProductInfo;
-import sk.hudak.pricecomparator.server.eshops.pilulka.PilulkaEshopProductParser;
+import sk.hudak.pricecomparator.server.tobedeleted.PilulkaEshopProductParser;
 
 import java.math.BigDecimal;
 

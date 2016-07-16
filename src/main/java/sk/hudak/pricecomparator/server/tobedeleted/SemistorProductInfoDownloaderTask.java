@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.server.eshops.pilulka;
+package sk.hudak.pricecomparator.server.tobedeleted;
 
 import sk.hudak.pricecomparator.middle.EshopProductParser;
 import sk.hudak.pricecomparator.middle.EshopType;
@@ -8,19 +8,20 @@ import sk.hudak.pricecomparator.server.core.EshopProductInfoDownloaderTask;
 /**
  * Created by jan on 13. 1. 2016.
  */
-public class PilulkaProductInfoDownloaderTask extends EshopProductInfoDownloaderTask {
+@Deprecated
+public class SemistorProductInfoDownloaderTask extends EshopProductInfoDownloaderTask {
 
-    public PilulkaProductInfoDownloaderTask(PriceComparatorService service) {
+    public SemistorProductInfoDownloaderTask(PriceComparatorService service) {
         super(service);
     }
 
     @Override
     public EshopType getEshopType() {
-        return EshopType.PILULKA;
+        return EshopType.SEMISTOR;
     }
 
     @Override
     protected EshopProductParser getEshopParser() {
-        return new PilulkaEshopProductParser();
+        return new SemistorEshopProductParser();
     }
 }

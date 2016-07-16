@@ -8,6 +8,8 @@ import sk.hudak.pricecomparator.server.async.ng.impl.EshopTaskManagerImpNg;
 import sk.hudak.pricecomparator.server.async.ng.tesco.TescoProductPictureDownloaderTaskNg;
 import sk.hudak.pricecomparator.server.async.ng.tesco.TescoProductPriceUpdaterCallbackNg;
 import sk.hudak.pricecomparator.server.eshops.metro.MetroProductDownloaderTask;
+import sk.hudak.pricecomparator.server.eshops.pilulka.PilulkaProductDownloaderTask;
+import sk.hudak.pricecomparator.server.eshops.semistor.SemistorProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.shoppie.ShoppieProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.tesco.TescoProductDownloaderTask;
 
@@ -40,14 +42,21 @@ public class EshopTaskManager {
 
         EshopTaskManagerNg manager = new EshopTaskManagerImpNg(service);
 
+        // M
+        manager.registerEshopTask(new MetroProductDownloaderTask());
+
+        // P
+        manager.registerEshopTask(new PilulkaProductDownloaderTask());
+
+        // S
+        manager.registerEshopTask(new SemistorProductDownloaderTask());
+        manager.registerEshopTask(new ShoppieProductDownloaderTask());
+
+        // T
         manager.registerEshopTaskWithCallback(
                 new TescoProductDownloaderTask(),
                 new TescoProductPriceUpdaterCallbackNg());
         manager.registerEshopTask(new TescoProductPictureDownloaderTaskNg());
-
-        manager.registerEshopTask(new MetroProductDownloaderTask());
-
-        manager.registerEshopTask(new ShoppieProductDownloaderTask());
 
         manager.startAllTasks();
     }

@@ -21,11 +21,7 @@ import sk.hudak.pricecomparator.server.eshops.lekarenbella.LekarenBellaProductIn
 import sk.hudak.pricecomparator.server.eshops.mall.MallProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.novalekaren.NovaLekarenProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.perinbaba.PerinbabaProductInfoDownloaderTask;
-import sk.hudak.pricecomparator.server.eshops.pilulka.PilulkaProductInfoDownloaderTask;
-import sk.hudak.pricecomparator.server.eshops.semistor.SemistorProductInfoDownloaderTask;
-import sk.hudak.pricecomparator.server.tobedeleted.MetroProductInfoDownloaderTask;
-import sk.hudak.pricecomparator.server.tobedeleted.ShoppieProductInfoDownloaderTask;
-import sk.hudak.pricecomparator.server.tobedeleted.TescoProductInfoDownloaderTask;
+import sk.hudak.pricecomparator.server.tobedeleted.*;
 
 import java.util.ArrayList;
 import java.util.List;

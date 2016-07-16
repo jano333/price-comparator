@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.server.eshops.pilulka;
+package sk.hudak.pricecomparator.server.tobedeleted;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;

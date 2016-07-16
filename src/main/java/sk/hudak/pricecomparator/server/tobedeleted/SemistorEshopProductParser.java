@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.server.eshops.semistor;
+package sk.hudak.pricecomparator.server.tobedeleted;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 /**
  * Created by jan on 7. 11. 2015.
  */
+@Deprecated
 public class SemistorEshopProductParser extends AbstractEshopProductParser {
     @Override
     protected EshopProductInfo parsePrice(Document document) {
