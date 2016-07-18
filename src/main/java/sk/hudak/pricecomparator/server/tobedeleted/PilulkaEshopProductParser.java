@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 /**
  * Created by jan on 29. 11. 2015.
  */
+@Deprecated
 public class PilulkaEshopProductParser extends AbstractEshopProductParser {
 
 

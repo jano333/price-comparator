@@ -25,6 +25,8 @@ public enum EshopType {
 
     FEEDO,
 
+    GIGA_LEKARNA,
+
     HEJ,
     HRAVO_ZDRAVO,
 
@@ -45,6 +47,5 @@ public enum EshopType {
     SEMISTOR,
     SHOPPIE,
 
-    TESCO,
-    ;
+    TESCO;
 }

@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.server.eshops.perinbaba;
+package sk.hudak.pricecomparator.server.tobedeleted;
 
 import sk.hudak.pricecomparator.middle.EshopProductParser;
 import sk.hudak.pricecomparator.middle.EshopType;
@@ -8,6 +8,7 @@ import sk.hudak.pricecomparator.server.core.EshopProductInfoDownloaderTask;
 /**
  * Created by jan on 13. 1. 2016.
  */
+@Deprecated
 public class PerinbabaProductInfoDownloaderTask extends EshopProductInfoDownloaderTask {
 
     public PerinbabaProductInfoDownloaderTask(PriceComparatorService service) {

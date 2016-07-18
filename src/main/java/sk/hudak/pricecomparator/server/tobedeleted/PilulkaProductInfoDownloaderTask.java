@@ -8,6 +8,7 @@ import sk.hudak.pricecomparator.server.core.EshopProductInfoDownloaderTask;
 /**
  * Created by jan on 13. 1. 2016.
  */
+@Deprecated
 public class PilulkaProductInfoDownloaderTask extends EshopProductInfoDownloaderTask {
 
     public PilulkaProductInfoDownloaderTask(PriceComparatorService service) {
