@@ -41,6 +41,7 @@ public class MetroProductParser extends AbstractEshopProductParserNg {
 
     @Override
     protected String parseProductName(Document document) {
+        //TODO
         return null;
     }
 
@@ -51,6 +52,7 @@ public class MetroProductParser extends AbstractEshopProductParserNg {
 
     @Override
     protected Date parseActionValidity(Document document) {
+        //TODO
         return null;
     }
 }

@@ -2,19 +2,19 @@ package sk.hudak.pricecomparator.server.eshops.novalekaren;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-import sk.hudak.pricecomparator.middle.model.EshopProductInfo;
-import sk.hudak.pricecomparator.server.core.AbstractEshopProductInfo;
-import sk.hudak.pricecomparator.server.core.AbstractEshopProductParser;
-import sk.hudak.pricecomparator.server.factory.ProductInfoFactory;
+import sk.hudak.pricecomparator.middle.model.ProductAction;
+import sk.hudak.pricecomparator.server.async.ng.impl.AbstractEshopProductParserNg;
+import sk.hudak.pricecomparator.server.async.ng.impl.ParserUtils;
 
 import java.math.BigDecimal;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Map;
 
 /**
- * Created by jan on 2. 6. 2016.
+ * Created by jan on 18. 7. 2016.
  */
-public class NovaLekarenProductParser extends AbstractEshopProductParser {
+public class NovaLekarenProductParser extends AbstractEshopProductParserNg {
 
     @Override
     protected Map<String, String> getCookies() {
@@ -22,46 +22,34 @@ public class NovaLekarenProductParser extends AbstractEshopProductParser {
     }
 
     @Override
-    protected EshopProductInfo parsePrice(Document document) {
-        if (isProductNedostupny(document)) {
-            logger.error("produkt nie je dostupny: " + parserInputData.getEshopProductPage());
-            return ProductInfoFactory.createUnaviable();
-        }
-
-        final String productName = parseProductName(document);
-
-        final String cenaZaBalenie = parseCenaZaBalenie(document);
-
-        return new AbstractEshopProductInfo(parserInputData) {
-
-            @Override
-            public BigDecimal getPriceForPackage() {
-                return new BigDecimal(cenaZaBalenie);
-            }
-
-            @Override
-            public String getProductNameInEhop() {
-                return productName;
-            }
-        };
+    protected boolean isProductUnavailable(Document document) {
+        return ParserUtils.notExistElement(document, "input[class=subimg]");
     }
 
-    private boolean isProductNedostupny(Document document) {
-        return notExistElement(document, "input[class=subimg]");
-    }
-
-    private String parseProductName(Document document) {
-        //div[id="product_text"] h1
-        //TODO impl
-        return null;
-    }
-
-    private String parseCenaZaBalenie(Document document) {
+    @Override
+    protected BigDecimal parsePriceForPackage(Document document) {
         Elements elements = document.select("font[color=#00aeff] b");
         if (elements.isEmpty()) {
             return null;
         }
         String text = elements.get(0).text();
-        return removeLastCharacters(replaceAllCommaForDot(text), 2);
+        String tmp = ParserUtils.removeLastCharacters(ParserUtils.replaceAllCommaForDot(text), 2);
+        return new BigDecimal(tmp);
+    }
+
+    @Override
+    protected String parseProductName(Document document) {
+        //div[id="product_text"] h1
+        return null;
+    }
+
+    @Override
+    protected ProductAction parseAction(Document document) {
+        return null;
+    }
+
+    @Override
+    protected Date parseActionValidity(Document document) {
+        return null;
     }
 }

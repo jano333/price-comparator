@@ -8,6 +8,7 @@ import sk.hudak.pricecomparator.server.async.ng.impl.EshopTaskManagerImpNg;
 import sk.hudak.pricecomparator.server.async.ng.tesco.TescoProductPictureDownloaderTaskNg;
 import sk.hudak.pricecomparator.server.async.ng.tesco.TescoProductPriceUpdaterCallbackNg;
 import sk.hudak.pricecomparator.server.eshops.metro.MetroProductDownloaderTask;
+import sk.hudak.pricecomparator.server.eshops.novalekaren.NovaLekarenProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.perinbaba.PerinbabaProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.pilulka.PilulkaProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.semistor.SemistorProductDownloaderTask;
@@ -48,6 +49,8 @@ public class EshopTaskManager {
 //        manager.registerEshopTask(new GigaLekarnaProductDownloaderTask());
         // M
         manager.registerEshopTask(new MetroProductDownloaderTask());
+        // N
+        manager.registerEshopTask(new NovaLekarenProductDownloaderTask());
         // P
         manager.registerEshopTask(new PerinbabaProductDownloaderTask());
         manager.registerEshopTask(new PilulkaProductDownloaderTask());
