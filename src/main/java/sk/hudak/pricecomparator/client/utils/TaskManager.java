@@ -18,7 +18,6 @@ import sk.hudak.pricecomparator.server.eshops.hej.HejProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.internetovalekaren.InternetovaLekarenProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.k24.K24ProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.lekarenbella.LekarenBellaProductInfoDownloaderTask;
-import sk.hudak.pricecomparator.server.eshops.mall.MallProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.tobedeleted.*;
 
 import java.util.ArrayList;

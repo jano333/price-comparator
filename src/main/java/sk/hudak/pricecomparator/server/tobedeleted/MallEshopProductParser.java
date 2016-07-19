@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.server.eshops.mall;
+package sk.hudak.pricecomparator.server.tobedeleted;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 /**
  * Created by jan on 7. 11. 2015.
  */
+@Deprecated
 public class MallEshopProductParser extends AbstractEshopProductParser {
     @Override
     protected EshopProductInfo parsePrice(Document document) {
