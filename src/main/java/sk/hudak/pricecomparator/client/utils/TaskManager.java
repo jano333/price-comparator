@@ -4,7 +4,6 @@ import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
 import sk.hudak.pricecomparator.server.core.EshopProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.alza.AlzaProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.amddrogeria.AmdDrogeriaProductInfoDownloaderTask;
-import sk.hudak.pricecomparator.server.eshops.andrea.AndreaEshopProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.babetkovo.BabetkovoProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.bambino.BambinoProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.belmedika.BelmedikaEshopProductInfoDownloaderTask;

@@ -7,6 +7,7 @@ import sk.hudak.pricecomparator.server.async.ng.EshopTaskManagerNg;
 import sk.hudak.pricecomparator.server.async.ng.impl.EshopTaskManagerImpNg;
 import sk.hudak.pricecomparator.server.async.ng.tesco.TescoProductPictureDownloaderTaskNg;
 import sk.hudak.pricecomparator.server.async.ng.tesco.TescoProductPriceUpdaterCallbackNg;
+import sk.hudak.pricecomparator.server.eshops.andrea.AndreaProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.mall.MallProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.metro.MetroProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.novalekaren.NovaLekarenProductDownloaderTask;
@@ -44,6 +45,10 @@ public class EshopTaskManager {
 //        taskManager.startDownloading();
 
         EshopTaskManagerNg manager = new EshopTaskManagerImpNg(service);
+
+        // A
+        manager.registerEshopTask(new AndreaProductDownloaderTask());
+
 
         // G
         // zakomentovanie koli tomu ze dava Kcs nie Eur
