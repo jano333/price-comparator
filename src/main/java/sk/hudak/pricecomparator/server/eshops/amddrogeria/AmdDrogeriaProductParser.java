@@ -2,49 +2,36 @@ package sk.hudak.pricecomparator.server.eshops.amddrogeria;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-import sk.hudak.pricecomparator.middle.model.EshopProductInfo;
-import sk.hudak.pricecomparator.server.core.AbstractEshopProductInfo;
-import sk.hudak.pricecomparator.server.core.AbstractEshopProductParser;
-import sk.hudak.pricecomparator.server.factory.ProductInfoFactory;
+import sk.hudak.pricecomparator.middle.model.ProductAction;
+import sk.hudak.pricecomparator.server.async.ng.impl.AbstractEshopProductParserNg;
+import sk.hudak.pricecomparator.server.async.ng.impl.ParserUtils;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
- * Created by jan on 7. 5. 2016.
+ * Created by jan on 3. 8. 2016.
  */
-public class AmdDrogeriaProductParser extends AbstractEshopProductParser {
+public class AmdDrogeriaProductParser extends AbstractEshopProductParserNg {
 
     @Override
-    protected EshopProductInfo parsePrice(Document document) {
-        if (isProductNedostupny(document)) {
-            logger.error("produkt nie je dostupny: " + parserInputData.getEshopProductPage());
-            return ProductInfoFactory.createUnaviable();
+    protected boolean isProductUnavailable(Document document) {
+        return ParserUtils.notExistElement(document, "input[class=addtocart-button]");
+    }
+
+    @Override
+    protected BigDecimal parsePriceForPackage(Document document) {
+        Elements elements = document.select("span[class=PricesalesPrice]");
+        if (elements.isEmpty()) {
+            return null;
         }
-
-        final String productName = parseProductName(document);
-
-        final String cenaZaBalenie = parseCenaZaBalenie(document);
-
-
-        return new AbstractEshopProductInfo(parserInputData) {
-
-            @Override
-            public BigDecimal getPriceForPackage() {
-                return new BigDecimal(cenaZaBalenie);
-            }
-
-            @Override
-            public String getProductNameInEhop() {
-                return productName;
-            }
-        };
+        String str = ParserUtils.removeLastCharacters(elements.get(0).text(), 2);
+        String replace = str.replace(",", ".");
+        return new BigDecimal(replace);
     }
 
-    private boolean isProductNedostupny(Document document) {
-        return notExistElement(document, "input[class=addtocart-button]");
-    }
-
-    private String parseProductName(Document document) {
+    @Override
+    protected String parseProductName(Document document) {
         Elements elements = document.select("div[class=productdetailsin] h1");
         if (elements.isEmpty()) {
             return null;
@@ -53,14 +40,15 @@ public class AmdDrogeriaProductParser extends AbstractEshopProductParser {
         return text;
     }
 
-    private String parseCenaZaBalenie(Document document) {
-        Elements elements = document.select("span[class=PricesalesPrice]");
-        if (elements.isEmpty()) {
-            return null;
-        }
-        String str = removeLastCharacters(elements.get(0).text(), 2);
-        String replace = str.replace(",", ".");
-        return replace;
+    @Override
+    protected ProductAction parseAction(Document document) {
+        //TODO
+        return null;
     }
 
+    @Override
+    protected Date parseActionValidity(Document document) {
+        //TODO
+        return null;
+    }
 }

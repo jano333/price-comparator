@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.server.eshops.babetkovo;
+package sk.hudak.pricecomparator.server.tobedeleted;
 
 import sk.hudak.pricecomparator.middle.EshopProductParser;
 import sk.hudak.pricecomparator.middle.EshopType;
@@ -6,21 +6,22 @@ import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
 import sk.hudak.pricecomparator.server.core.EshopProductInfoDownloaderTask;
 
 /**
- * Created by jan on 8. 5. 2016.
+ * Created by jan on 7. 5. 2016.
  */
-public class BabetkovoProductInfoDownloaderTask extends EshopProductInfoDownloaderTask {
+@Deprecated
+public class AmdDrogeriaProductInfoDownloaderTask extends EshopProductInfoDownloaderTask {
 
-    public BabetkovoProductInfoDownloaderTask(PriceComparatorService service) {
+    public AmdDrogeriaProductInfoDownloaderTask(PriceComparatorService service) {
         super(service);
     }
 
     @Override
     public EshopType getEshopType() {
-        return EshopType.BABETKOVO;
+        return EshopType.AMD_DROGERIA;
     }
 
     @Override
     protected EshopProductParser getEshopParser() {
-        return new BabetkovoEshopProductParser();
+        return new AmdDrogeriaProductParser();
     }
 }

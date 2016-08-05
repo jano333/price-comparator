@@ -63,6 +63,9 @@ public abstract class AbstractEshopProductParserNg implements EshopProductParser
                 actionValidity = parseActionValidity(document);
             }
 
+            //TODO dokocit a posielat do navratovej hodnoty...
+            String pictureUrl = parsePictureUrl(document);
+
 
             BigDecimal priceForOneItemInPackage = ProductPriceCalculator.calculatePriceForOneItemInPackage(
                     priceForPackage,
@@ -93,6 +96,11 @@ public abstract class AbstractEshopProductParserNg implements EshopProductParser
             //TODO doriest dany pripad
             return EshopParserResponseNgFactory.createUnaviable();
         }
+    }
+
+    protected String parsePictureUrl(Document document) {
+
+        return null;
     }
 
     protected String getUserAgent() {

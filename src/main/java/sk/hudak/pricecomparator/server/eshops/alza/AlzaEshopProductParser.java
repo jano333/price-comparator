@@ -2,49 +2,29 @@ package sk.hudak.pricecomparator.server.eshops.alza;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import sk.hudak.pricecomparator.middle.model.EshopProductInfo;
-import sk.hudak.pricecomparator.server.core.AbstractEshopProductInfo;
-import sk.hudak.pricecomparator.server.core.AbstractEshopProductParser;
-import sk.hudak.pricecomparator.server.factory.ProductInfoFactory;
+import sk.hudak.pricecomparator.middle.model.ProductAction;
+import sk.hudak.pricecomparator.server.async.ng.impl.AbstractEshopProductParserNg;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
- * Created by jan on 12. 11. 2015.
+ * Created by jan on 11. 7. 2016.
  */
-public class AlzaEshopProductParser extends AbstractEshopProductParser {
-
+public class AlzaEshopProductParser extends AbstractEshopProductParserNg {
 
     @Override
-    protected EshopProductInfo parsePrice(Document document) {
-        //ta kto to nie
-        //<span class="bigPrice price_withVat">€16,64</span>
-        final String cenaZaBalenie = parseCenaZaBalenie(document);
-
-        if (StringUtils.isBlank(cenaZaBalenie)) {
-            return ProductInfoFactory.createUnaviable();
-        }
-
-        final String productImageUrl = parseProductImageUrl(document);
-
-        return new AbstractEshopProductInfo(parserInputData) {
-            @Override
-            public BigDecimal getPriceForPackage() {
-                return new BigDecimal(cenaZaBalenie);
-            }
-
-            @Override
-            public String getProductImageUrl() {
-                return productImageUrl;
-            }
-        };
+    protected boolean isProductUnavailable(Document document) {
+        //TODO zatial neviem ako...
+        return false;
     }
 
-    private String parseCenaZaBalenie(Document document) {
+    @Override
+    protected BigDecimal parsePriceForPackage(Document document) {
         Elements elements = document.select("span[class=bigPrice price_withVat]");
         if (elements.isEmpty()) {
+            //TODO tu by mala byt vynimka ked bduem mat ze je nedostupne
             return null;
         }
         String text = elements.get(0).text();
@@ -53,18 +33,24 @@ public class AlzaEshopProductParser extends AbstractEshopProductParser {
         }
         StringBuffer sb = new StringBuffer(text);
         sb = sb.deleteCharAt(0);
-        return sb.toString().replace(",", ".");
+        return new BigDecimal(sb.toString().replace(",", "."));
     }
 
-    private String parseProductImageUrl(Document document) {
-        Elements elements = document.select("img[id=imgMain]");
-        if (elements.isEmpty()) {
-            return null;
-        }
-        Element element = elements.get(0);
-        String src = element.attributes().get("src");
-        return src;
+    @Override
+    protected String parseProductName(Document document) {
+        //TODO
+        return null;
     }
 
+    @Override
+    protected ProductAction parseAction(Document document) {
+        //TODO
+        return null;
+    }
 
+    @Override
+    protected Date parseActionValidity(Document document) {
+        //TODO
+        return null;
+    }
 }

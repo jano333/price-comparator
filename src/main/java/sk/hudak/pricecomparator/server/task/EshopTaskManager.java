@@ -7,7 +7,10 @@ import sk.hudak.pricecomparator.server.async.ng.EshopTaskManagerNg;
 import sk.hudak.pricecomparator.server.async.ng.impl.EshopTaskManagerImpNg;
 import sk.hudak.pricecomparator.server.async.ng.tesco.TescoProductPictureDownloaderTaskNg;
 import sk.hudak.pricecomparator.server.async.ng.tesco.TescoProductPriceUpdaterCallbackNg;
+import sk.hudak.pricecomparator.server.eshops.alza.AlzaProductDownloaderTask;
+import sk.hudak.pricecomparator.server.eshops.amddrogeria.AmdDrogeriaProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.andrea.AndreaProductDownloaderTask;
+import sk.hudak.pricecomparator.server.eshops.babetkovo.BabetkovoProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.mall.MallProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.metro.MetroProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.novalekaren.NovaLekarenProductDownloaderTask;
@@ -47,12 +50,27 @@ public class EshopTaskManager {
         EshopTaskManagerNg manager = new EshopTaskManagerImpNg(service);
 
         // A
+        manager.registerEshopTask(new AlzaProductDownloaderTask());
+        manager.registerEshopTask(new AmdDrogeriaProductDownloaderTask());
         manager.registerEshopTask(new AndreaProductDownloaderTask());
 
+        // B
+        manager.registerEshopTask(new BabetkovoProductDownloaderTask());
+
+        // C
+
+        // D
+
+        // E
+
+        // F
 
         // G
         // zakomentovanie koli tomu ze dava Kcs nie Eur
 //        manager.registerEshopTask(new GigaLekarnaProductDownloaderTask());
+
+        // H
+
         // M
         manager.registerEshopTask(new MallProductDownloaderTask());
         manager.registerEshopTask(new MetroProductDownloaderTask());

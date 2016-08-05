@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.server.eshops.babetkovo;
+package sk.hudak.pricecomparator.server.tobedeleted;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 /**
  * Created by jan on 8. 5. 2016.
  */
+@Deprecated
 public class BabetkovoEshopProductParser extends AbstractEshopProductParser {
 
     @Override

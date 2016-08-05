@@ -1,6 +1,7 @@
 package sk.hudak.pricecomparator.server.eshops.tesco;
 
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import sk.hudak.pricecomparator.middle.model.ProductAction;
 import sk.hudak.pricecomparator.server.async.ng.impl.AbstractEshopProductParserNg;
@@ -72,5 +73,19 @@ public class TescoProductParser extends AbstractEshopProductParserNg {
         }
     }
 
+    @Override
+    protected String parsePictureUrl(Document document) {
 
+        Elements elements = document.select("img[class=product-image]");
+        if (elements.isEmpty()) {
+            //TODO osetrit
+            return null;
+        }
+        Element imgElement = elements.get(0);
+        String src = imgElement.attr("src");
+        System.out.println("picture: " + src);
+
+        return src;
+
+    }
 }
