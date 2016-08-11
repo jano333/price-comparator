@@ -11,6 +11,7 @@ import sk.hudak.pricecomparator.server.eshops.alza.AlzaProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.amddrogeria.AmdDrogeriaProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.andrea.AndreaProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.babetkovo.BabetkovoProductDownloaderTask;
+import sk.hudak.pricecomparator.server.eshops.bambino.BambinoProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.mall.MallProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.metro.MetroProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.novalekaren.NovaLekarenProductDownloaderTask;
@@ -56,6 +57,7 @@ public class EshopTaskManager {
 
         // B
         manager.registerEshopTask(new BabetkovoProductDownloaderTask());
+        manager.registerEshopTask(new BambinoProductDownloaderTask());
 
         // C
 

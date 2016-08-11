@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.server.eshops.bambino;
+package sk.hudak.pricecomparator.server.tobedeleted;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -11,6 +11,7 @@ import java.math.BigDecimal;
 /**
  * Created by jan on 9. 12. 2015.
  */
+@Deprecated
 public class BambinoEshopProductParser extends AbstractEshopProductParser {
 
 

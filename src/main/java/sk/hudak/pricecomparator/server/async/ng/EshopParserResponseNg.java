@@ -16,6 +16,7 @@ public class EshopParserResponseNg {
     private ProductAction action;
     private Date actionValidTo;
     private String productName;
+    private String pictureUrl;
 
     public BigDecimal getPriceForUnit() {
         return priceForUnit;
@@ -68,6 +69,15 @@ public class EshopParserResponseNg {
 
     public EshopParserResponseNg setProductName(String productName) {
         this.productName = productName;
+        return this;
+    }
+
+    public String getPictureUrl() {
+        return pictureUrl;
+    }
+
+    public EshopParserResponseNg setPictureUrl(String pictureUrl) {
+        this.pictureUrl = pictureUrl;
         return this;
     }
 }
