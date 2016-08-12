@@ -2,7 +2,7 @@ package sk.hudak.pricecomparator.server.eshops.gigalekarna;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-import sk.hudak.pricecomparator.middle.model.ProductAction;
+import sk.hudak.pricecomparator.middle.canonical.ProductAction;
 import sk.hudak.pricecomparator.server.async.ng.impl.AbstractEshopProductParserNg;
 import sk.hudak.pricecomparator.server.async.ng.impl.ParserUtils;
 

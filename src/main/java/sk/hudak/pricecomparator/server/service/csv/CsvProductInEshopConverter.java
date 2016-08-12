@@ -1,6 +1,6 @@
 package sk.hudak.pricecomparator.server.service.csv;
 
-import sk.hudak.pricecomparator.middle.EshopType;
+import sk.hudak.pricecomparator.middle.canonical.EshopType;
 import sk.hudak.pricecomparator.middle.canonical.Unit;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorException;
 import sk.hudak.pricecomparator.middle.to.CsvInputStringDto;

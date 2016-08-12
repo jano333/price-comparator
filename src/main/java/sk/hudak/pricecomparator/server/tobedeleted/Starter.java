@@ -1,9 +1,8 @@
-package sk.hudak.pricecomparator.server.async;
+package sk.hudak.pricecomparator.server.tobedeleted;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import sk.hudak.pricecomparator.middle.EshopType;
-import sk.hudak.pricecomparator.server.async.impl.TaskManagerImpl;
+import sk.hudak.pricecomparator.middle.canonical.EshopType;
 
 /**
  * Created by hudak on 10.05.2016.

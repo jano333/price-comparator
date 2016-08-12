@@ -1,5 +1,6 @@
-package sk.hudak.pricecomparator.middle.model;
+package sk.hudak.pricecomparator.server.tobedeleted;
 
+import sk.hudak.pricecomparator.middle.canonical.ProductAction;
 import sk.hudak.pricecomparator.middle.canonical.Unit;
 
 import java.math.BigDecimal;

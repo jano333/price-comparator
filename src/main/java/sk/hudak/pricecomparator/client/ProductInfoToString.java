@@ -1,7 +1,7 @@
 package sk.hudak.pricecomparator.client;
 
 
-import sk.hudak.pricecomparator.middle.model.EshopProductInfo;
+import sk.hudak.pricecomparator.server.tobedeleted.EshopProductInfo;
 
 import java.text.SimpleDateFormat;
 

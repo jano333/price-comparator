@@ -1,9 +1,8 @@
-package sk.hudak.pricecomparator.server.core;
+package sk.hudak.pricecomparator.server.tobedeleted;
 
-import sk.hudak.pricecomparator.middle.canonical.ParserInputData;
+import sk.hudak.pricecomparator.middle.canonical.ProductAction;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorException;
-import sk.hudak.pricecomparator.middle.model.EshopProductInfo;
-import sk.hudak.pricecomparator.middle.model.ProductAction;
+import sk.hudak.pricecomparator.server.core.ServerConfig;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

@@ -1,6 +1,6 @@
 package sk.hudak.pricecomparator.server.model;
 
-import sk.hudak.pricecomparator.middle.model.ProductAction;
+import sk.hudak.pricecomparator.middle.canonical.ProductAction;
 
 import javax.persistence.*;
 import java.math.BigDecimal;

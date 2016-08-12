@@ -1,6 +1,6 @@
 package sk.hudak.pricecomparator.middle.to.internal;
 
-import sk.hudak.pricecomparator.middle.EshopType;
+import sk.hudak.pricecomparator.middle.canonical.EshopType;
 import sk.hudak.pricecomparator.middle.canonical.Unit;
 
 import java.io.Serializable;

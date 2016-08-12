@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.middle;
+package sk.hudak.pricecomparator.middle.canonical;
 
 /**
  * Definuje inukatny identifikator pre eshop.

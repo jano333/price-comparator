@@ -4,11 +4,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import sk.hudak.pricecomparator.middle.model.EshopProductInfo;
-import sk.hudak.pricecomparator.middle.model.ProductAction;
-import sk.hudak.pricecomparator.server.core.AbstractEshopProductInfo;
-import sk.hudak.pricecomparator.server.core.AbstractEshopProductParser;
-import sk.hudak.pricecomparator.server.factory.ProductInfoFactory;
+import sk.hudak.pricecomparator.middle.canonical.ProductAction;
+import sk.hudak.pricecomparator.server.tobedeleted.AbstractEshopProductInfo;
+import sk.hudak.pricecomparator.server.tobedeleted.AbstractEshopProductParser;
+import sk.hudak.pricecomparator.server.tobedeleted.EshopProductInfo;
+import sk.hudak.pricecomparator.server.tobedeleted.ProductInfoFactory;
 
 import java.math.BigDecimal;
 

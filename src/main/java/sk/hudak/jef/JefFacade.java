@@ -1,7 +1,5 @@
 package sk.hudak.jef;
 
-import sk.hudak.pricecomparator.server.core.JefValidator;
-
 import javax.inject.Inject;
 
 /**

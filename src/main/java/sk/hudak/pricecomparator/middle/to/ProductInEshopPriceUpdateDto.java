@@ -1,6 +1,6 @@
 package sk.hudak.pricecomparator.middle.to;
 
-import sk.hudak.pricecomparator.middle.model.ProductAction;
+import sk.hudak.pricecomparator.middle.canonical.ProductAction;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

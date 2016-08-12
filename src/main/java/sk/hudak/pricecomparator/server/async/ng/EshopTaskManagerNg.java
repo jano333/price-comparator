@@ -1,6 +1,6 @@
 package sk.hudak.pricecomparator.server.async.ng;
 
-import sk.hudak.pricecomparator.middle.EshopType;
+import sk.hudak.pricecomparator.middle.canonical.EshopType;
 
 /**
  * Created by jan on 3. 7. 2016.

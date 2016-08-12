@@ -3,9 +3,9 @@ package sk.hudak.pricecomparator.server.eshops.hravozdravo;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.TextNode;
 import org.jsoup.select.Elements;
-import sk.hudak.pricecomparator.middle.model.EshopProductInfo;
-import sk.hudak.pricecomparator.server.core.AbstractEshopProductInfo;
-import sk.hudak.pricecomparator.server.core.AbstractEshopProductParser;
+import sk.hudak.pricecomparator.server.tobedeleted.AbstractEshopProductInfo;
+import sk.hudak.pricecomparator.server.tobedeleted.AbstractEshopProductParser;
+import sk.hudak.pricecomparator.server.tobedeleted.EshopProductInfo;
 
 import java.math.BigDecimal;
 

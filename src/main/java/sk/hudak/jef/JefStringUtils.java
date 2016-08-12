@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.middle.utils;
+package sk.hudak.jef;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

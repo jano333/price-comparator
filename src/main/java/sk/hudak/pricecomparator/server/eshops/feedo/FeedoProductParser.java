@@ -1,7 +1,7 @@
 package sk.hudak.pricecomparator.server.eshops.feedo;
 
 import org.jsoup.nodes.Document;
-import sk.hudak.pricecomparator.middle.model.ProductAction;
+import sk.hudak.pricecomparator.middle.canonical.ProductAction;
 import sk.hudak.pricecomparator.server.async.ng.impl.AbstractEshopProductParserNg;
 import sk.hudak.pricecomparator.server.async.ng.impl.ParserUtils;
 

@@ -2,7 +2,7 @@ package sk.hudak.pricecomparator.server.async.ng.tesco;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import sk.hudak.pricecomparator.middle.EshopType;
+import sk.hudak.pricecomparator.middle.canonical.EshopType;
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
 import sk.hudak.pricecomparator.server.async.ng.EshopTaskCallbackNg;
 import sk.hudak.pricecomparator.server.async.ng.EshopTaskNg;

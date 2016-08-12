@@ -1,7 +1,7 @@
 package sk.hudak.pricecomparator.server.analyzator;
 
 import org.apache.commons.lang3.StringUtils;
-import sk.hudak.pricecomparator.middle.EshopType;
+import sk.hudak.pricecomparator.middle.canonical.EshopType;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorException;
 import sk.hudak.pricecomparator.middle.to.internal.ProductAnalyzatorResultDto;

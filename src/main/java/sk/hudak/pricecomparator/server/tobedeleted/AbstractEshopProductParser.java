@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.server.core;
+package sk.hudak.pricecomparator.server.tobedeleted;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Connection;
@@ -7,10 +7,6 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import sk.hudak.pricecomparator.middle.EshopProductParser;
-import sk.hudak.pricecomparator.middle.canonical.ParserInputData;
-import sk.hudak.pricecomparator.middle.model.EshopProductInfo;
-import sk.hudak.pricecomparator.server.factory.ProductInfoFactory;
 
 import java.util.Collections;
 import java.util.Map;

@@ -1,7 +1,7 @@
 package sk.hudak.pricecomparator.server.facade;
 
 import sk.hudak.jef.JefFacade;
-import sk.hudak.pricecomparator.middle.EshopType;
+import sk.hudak.pricecomparator.middle.canonical.EshopType;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopCreateDto;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopPriceUpdateDto;

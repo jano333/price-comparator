@@ -7,7 +7,7 @@ import org.hibernate.criterion.Restrictions;
 import sk.hudak.jef.JefDao;
 import sk.hudak.jef.PageList;
 import sk.hudak.jef.ServerPaging;
-import sk.hudak.pricecomparator.middle.EshopType;
+import sk.hudak.pricecomparator.middle.canonical.EshopType;
 import sk.hudak.pricecomparator.middle.to.EshopFindDto;
 import sk.hudak.pricecomparator.server.model.EshopEntity;
 

@@ -13,6 +13,7 @@
 
     <context:property-placeholder location="classpath:price-comparator-config.properties"/>
 
+    <context:component-scan base-package="sk.hudak.jef"/>
     <context:component-scan base-package="sk.hudak.pricecomparator.server"/>
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">

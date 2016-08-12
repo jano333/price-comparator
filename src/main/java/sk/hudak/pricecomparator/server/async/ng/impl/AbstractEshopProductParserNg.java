@@ -6,7 +6,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import sk.hudak.pricecomparator.middle.model.ProductAction;
+import sk.hudak.pricecomparator.middle.canonical.ProductAction;
 import sk.hudak.pricecomparator.server.async.ng.EshopParserRequestNg;
 import sk.hudak.pricecomparator.server.async.ng.EshopParserResponseNg;
 import sk.hudak.pricecomparator.server.async.ng.EshopParserResponseNgFactory;

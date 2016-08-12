@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.server.core;
+package sk.hudak.jef;
 
 import org.apache.commons.lang3.StringUtils;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorException;

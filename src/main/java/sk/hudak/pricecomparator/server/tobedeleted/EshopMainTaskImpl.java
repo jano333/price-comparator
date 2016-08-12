@@ -1,8 +1,7 @@
-package sk.hudak.pricecomparator.server.async.impl;
+package sk.hudak.pricecomparator.server.tobedeleted;
 
 
-import sk.hudak.pricecomparator.middle.EshopType;
-import sk.hudak.pricecomparator.server.async.EshopSimpleTask;
+import sk.hudak.pricecomparator.middle.canonical.EshopType;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package sk.hudak.pricecomparator.server.analyzator;
 
-import sk.hudak.pricecomparator.middle.EshopType;
+import sk.hudak.pricecomparator.middle.canonical.EshopType;
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
 import sk.hudak.pricecomparator.middle.to.EshopHomePageInfoDto;
 

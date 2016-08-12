@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.middle.model;
+package sk.hudak.pricecomparator.middle.canonical;
 
 /**
  * Created by jan on 13. 10. 2015.

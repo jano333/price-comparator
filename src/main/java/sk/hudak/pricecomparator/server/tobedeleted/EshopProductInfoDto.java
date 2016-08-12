@@ -1,7 +1,6 @@
-package sk.hudak.pricecomparator.server.downloader;
+package sk.hudak.pricecomparator.server.tobedeleted;
 
-import sk.hudak.pricecomparator.middle.model.EshopProductInfo;
-import sk.hudak.pricecomparator.middle.model.ProductAction;
+import sk.hudak.pricecomparator.middle.canonical.ProductAction;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -9,6 +8,7 @@ import java.util.Date;
 /**
  * Created by jan on 12. 11. 2015.
  */
+@Deprecated
 public class EshopProductInfoDto {
 
     private ProductAction productAction;

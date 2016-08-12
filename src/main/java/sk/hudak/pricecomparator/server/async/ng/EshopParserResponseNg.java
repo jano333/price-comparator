@@ -1,6 +1,6 @@
 package sk.hudak.pricecomparator.server.async.ng;
 
-import sk.hudak.pricecomparator.middle.model.ProductAction;
+import sk.hudak.pricecomparator.middle.canonical.ProductAction;
 
 import java.math.BigDecimal;
 import java.util.Date;

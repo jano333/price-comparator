@@ -1,6 +1,6 @@
 package sk.hudak.pricecomparator.server.model;
 
-import sk.hudak.pricecomparator.middle.EshopType;
+import sk.hudak.pricecomparator.middle.canonical.EshopType;
 
 import javax.persistence.*;
 

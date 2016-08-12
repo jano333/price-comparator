@@ -1,7 +1,8 @@
 package sk.hudak.pricecomparator.server.service.internal;
 
+import sk.hudak.jef.JefValidator;
 import sk.hudak.jef.PageList;
-import sk.hudak.pricecomparator.middle.EshopType;
+import sk.hudak.pricecomparator.middle.canonical.EshopType;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorErrorCodes;
 import sk.hudak.pricecomparator.middle.service.ProductInEshopService;
@@ -12,7 +13,6 @@ import sk.hudak.pricecomparator.middle.to.internal.StepTwoRequestDto;
 import sk.hudak.pricecomparator.server.analyzator.ProductByUrlAnalyzator;
 import sk.hudak.pricecomparator.server.assembler.EshopAssembler;
 import sk.hudak.pricecomparator.server.assembler.ProductInEshopAssembler;
-import sk.hudak.pricecomparator.server.core.JefValidator;
 import sk.hudak.pricecomparator.server.dao.EshopDao;
 import sk.hudak.pricecomparator.server.dao.ProductInEshopDao;
 import sk.hudak.pricecomparator.server.facade.ProductFacade;

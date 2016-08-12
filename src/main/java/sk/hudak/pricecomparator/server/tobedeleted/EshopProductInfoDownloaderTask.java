@@ -1,15 +1,13 @@
-package sk.hudak.pricecomparator.server.core;
+package sk.hudak.pricecomparator.server.tobedeleted;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import sk.hudak.pricecomparator.middle.EshopProductParser;
-import sk.hudak.pricecomparator.middle.EshopType;
-import sk.hudak.pricecomparator.middle.canonical.ParserInputData;
-import sk.hudak.pricecomparator.middle.model.EshopProductInfo;
+import sk.hudak.pricecomparator.middle.canonical.EshopType;
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
 import sk.hudak.pricecomparator.middle.to.ProductDto;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopDto;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopPriceUpdateDto;
+import sk.hudak.pricecomparator.server.core.ServerConfig;
 
 import java.util.Random;
 

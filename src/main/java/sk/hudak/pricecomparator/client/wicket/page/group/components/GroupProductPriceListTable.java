@@ -22,8 +22,8 @@ import sk.hudak.pricecomparator.client.wicket.component.table.column.PriceForOne
 import sk.hudak.pricecomparator.client.wicket.component.table.column.PriceForPackageColumn;
 import sk.hudak.pricecomparator.client.wicket.component.table.column.PriceForUnitColumn;
 import sk.hudak.pricecomparator.client.wicket.component.table.column.ProductActionColumn;
+import sk.hudak.pricecomparator.middle.canonical.ProductAction;
 import sk.hudak.pricecomparator.middle.canonical.Unit;
-import sk.hudak.pricecomparator.middle.model.ProductAction;
 import sk.hudak.pricecomparator.middle.to.GroupIdNameDto;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopPriceResultListDto;
 import sk.hudak.pricecomparator.middle.to.ProductPriceInGroupFindDto;
