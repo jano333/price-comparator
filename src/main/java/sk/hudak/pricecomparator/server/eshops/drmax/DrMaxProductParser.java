@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.server.eshops.internetovalekaren;
+package sk.hudak.pricecomparator.server.eshops.drmax;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -11,20 +11,18 @@ import java.util.Date;
 /**
  * Created by jan on 23. 8. 2016.
  */
-public class InternetovaLekarenProductParser extends AbstractEshopProductParserNg {
+public class DrMaxProductParser extends AbstractEshopProductParserNg {
 
     @Override
     protected boolean isProductUnavailable(Document document) {
-        //TODO
+        //TODO impl
         return false;
     }
 
     @Override
     protected BigDecimal parsePriceForPackage(Document document) {
-        //cena
         Elements elements = document.select("strong[itemprop=price]");
         StringBuffer sb = new StringBuffer(elements.get(0).text());
-        sb = sb.deleteCharAt(sb.length() - 1);
         final String cenaZaBalenie = sb.toString().replace(",", ".");
 
         return new BigDecimal(cenaZaBalenie);

@@ -1,17 +1,14 @@
-package sk.hudak.pricecomparator.server.eshops.hej;
+package sk.hudak.pricecomparator.server.tobedeleted;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
-import sk.hudak.pricecomparator.server.tobedeleted.AbstractEshopProductInfo;
-import sk.hudak.pricecomparator.server.tobedeleted.AbstractEshopProductParser;
-import sk.hudak.pricecomparator.server.tobedeleted.EshopProductInfo;
-import sk.hudak.pricecomparator.server.tobedeleted.ProductInfoFactory;
 
 import java.math.BigDecimal;
 
 /**
  * Created by jan on 14. 10. 2015.
  */
+@Deprecated
 public class HejEshopProductParser extends AbstractEshopProductParser {
 
     @Override

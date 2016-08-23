@@ -13,7 +13,10 @@ import sk.hudak.pricecomparator.server.eshops.andrea.AndreaProductDownloaderTask
 import sk.hudak.pricecomparator.server.eshops.babetkovo.BabetkovoProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.bambino.BambinoProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.belmedika.BelmedikaProductDownloaderTask;
+import sk.hudak.pricecomparator.server.eshops.drmax.DrMaxProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.feedo.FeedoProductDownloaderTask;
+import sk.hudak.pricecomparator.server.eshops.hej.HejProductDownloaderTask;
+import sk.hudak.pricecomparator.server.eshops.internetovalekaren.InternetovaLekarenProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.lekarenbella.LekarenBellaProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.mall.MallProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.metro.MetroProductDownloaderTask;
@@ -61,30 +64,28 @@ public class EshopTaskManager {
         manager.registerEshopTask(new BabetkovoProductDownloaderTask());
         manager.registerEshopTask(new BambinoProductDownloaderTask());
         manager.registerEshopTask(new BelmedikaProductDownloaderTask());
+        //TODO buggy
         // C
-
+        //TODO ckdmarket
         // D
-
+        manager.registerEshopTask(new DrMaxProductDownloaderTask());
+        //TODO drogeriavmd
         // E
-
+        // TODO esodrogeria
         // F
         manager.registerEshopTask(new FeedoProductDownloaderTask());
-
         // G
-        // zakomentovanie koli tomu ze dava Kcs nie Eur
+        // TODO zakomentovanie koli tomu ze dava Kcs nie Eur
 //        manager.registerEshopTask(new GigaLekarnaProductDownloaderTask());
-
         // H
-
+        manager.registerEshopTask(new HejProductDownloaderTask());
+        // TODO hravozdravo
         // I
-
-        // J
-
+        manager.registerEshopTask(new InternetovaLekarenProductDownloaderTask());
         // K
-
+        //TODO k24
         // L
         manager.registerEshopTask(new LekarenBellaProductDownloaderTask());
-
         // M
         manager.registerEshopTask(new MallProductDownloaderTask());
         manager.registerEshopTask(new MetroProductDownloaderTask());

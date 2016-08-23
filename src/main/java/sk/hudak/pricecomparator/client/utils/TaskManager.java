@@ -3,15 +3,10 @@ package sk.hudak.pricecomparator.client.utils;
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
 import sk.hudak.pricecomparator.server.eshops.bugy.BugyEshopProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.ckdmarket.CkdMarketProductInfoDownloaderTask;
-import sk.hudak.pricecomparator.server.eshops.drmax.DrMaxProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.drogeriavmd.DrogeriaVmdProductInfoDowlnoaderTask;
 import sk.hudak.pricecomparator.server.eshops.esodregeria.EsoDrogeriaProductInfoDownloaderTask;
-import sk.hudak.pricecomparator.server.eshops.hej.HejProductInfoDownloaderTask;
-import sk.hudak.pricecomparator.server.eshops.internetovalekaren.InternetovaLekarenProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.k24.K24ProductInfoDownloaderTask;
-import sk.hudak.pricecomparator.server.tobedeleted.BelmedikaEshopProductInfoDownloaderTask;
-import sk.hudak.pricecomparator.server.tobedeleted.EshopProductInfoDownloaderTask;
-import sk.hudak.pricecomparator.server.tobedeleted.LekarenBellaProductInfoDownloaderTask;
+import sk.hudak.pricecomparator.server.tobedeleted.*;
 
 import java.util.ArrayList;
 import java.util.List;

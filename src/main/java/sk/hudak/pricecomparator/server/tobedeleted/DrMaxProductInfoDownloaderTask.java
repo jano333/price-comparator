@@ -1,13 +1,12 @@
-package sk.hudak.pricecomparator.server.eshops.drmax;
+package sk.hudak.pricecomparator.server.tobedeleted;
 
 import sk.hudak.pricecomparator.middle.canonical.EshopType;
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
-import sk.hudak.pricecomparator.server.tobedeleted.EshopProductInfoDownloaderTask;
-import sk.hudak.pricecomparator.server.tobedeleted.EshopProductParser;
 
 /**
  * Created by jan on 14. 1. 2016.
  */
+@Deprecated
 public class DrMaxProductInfoDownloaderTask extends EshopProductInfoDownloaderTask {
 
     public DrMaxProductInfoDownloaderTask(PriceComparatorService service) {

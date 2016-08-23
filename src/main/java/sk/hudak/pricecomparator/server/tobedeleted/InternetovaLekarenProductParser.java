@@ -1,24 +1,25 @@
-package sk.hudak.pricecomparator.server.eshops.drmax;
+package sk.hudak.pricecomparator.server.tobedeleted;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-import sk.hudak.pricecomparator.server.tobedeleted.AbstractEshopProductInfo;
-import sk.hudak.pricecomparator.server.tobedeleted.AbstractEshopProductParser;
-import sk.hudak.pricecomparator.server.tobedeleted.EshopProductInfo;
 
 import java.math.BigDecimal;
 
 /**
- * Created by jan on 3. 1. 2016.
+ * Created by jan on 7. 12. 2015.
  */
-public class DrMaxEshopProductParser extends AbstractEshopProductParser {
+@Deprecated
+public class InternetovaLekarenProductParser extends AbstractEshopProductParser {
 
     @Override
     protected EshopProductInfo parsePrice(Document document) {
 
+        //cena
         Elements elements = document.select("strong[itemprop=price]");
         StringBuffer sb = new StringBuffer(elements.get(0).text());
+        sb = sb.deleteCharAt(sb.length() - 1);
         final String cenaZaBalenie = sb.toString().replace(",", ".");
+
 
         return new AbstractEshopProductInfo(parserInputData) {
 
@@ -27,6 +28,5 @@ public class DrMaxEshopProductParser extends AbstractEshopProductParser {
                 return new BigDecimal(cenaZaBalenie);
             }
         };
-
     }
 }
