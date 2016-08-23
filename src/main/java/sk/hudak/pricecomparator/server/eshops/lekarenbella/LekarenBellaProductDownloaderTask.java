@@ -1,21 +1,20 @@
-package sk.hudak.pricecomparator.server.eshops.pilulka;
+package sk.hudak.pricecomparator.server.eshops.lekarenbella;
 
 import sk.hudak.pricecomparator.middle.canonical.EshopType;
 import sk.hudak.pricecomparator.server.async.ng.EshopProductParserNg;
 import sk.hudak.pricecomparator.server.async.ng.impl.AbstractProductInfoDownloaderTaskNg;
 
 /**
- * Created by jan on 16. 7. 2016.
+ * Created by jan on 22. 8. 2016.
  */
-public class PilulkaProductDownloaderTask extends AbstractProductInfoDownloaderTaskNg {
-
+public class LekarenBellaProductDownloaderTask extends AbstractProductInfoDownloaderTaskNg {
     @Override
     public EshopType getEshopType() {
-        return EshopType.PILULKA;
+        return EshopType.LEKAREN_BELLA;
     }
 
     @Override
     protected EshopProductParserNg createEshopProductParser() {
-        return new PilulkaProductParser();
+        return new LekarenBellaProductParser();
     }
 }

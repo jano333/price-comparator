@@ -1,10 +1,9 @@
 package sk;
 
-import sk.hudak.pricecomparator.client.ProductInfoToString;
 import sk.hudak.pricecomparator.middle.canonical.Unit;
-import sk.hudak.pricecomparator.server.eshops.feedo.FeedoEshopProductParser;
-import sk.hudak.pricecomparator.server.tobedeleted.EshopProductInfo;
-import sk.hudak.pricecomparator.server.tobedeleted.ParserInputData;
+import sk.hudak.pricecomparator.server.async.ng.EshopParserRequestNg;
+import sk.hudak.pricecomparator.server.async.ng.EshopParserResponseNg;
+import sk.hudak.pricecomparator.server.eshops.feedo.FeedoProductParser;
 
 import java.math.BigDecimal;
 
@@ -14,15 +13,15 @@ import java.math.BigDecimal;
 public class FeedoEshopProductParserTest {
 
     public static void main(String[] args) {
-        ParserInputData parserInputData = new ParserInputData(
-                6,
-                Unit.KUS,
-                new BigDecimal(0.8),
-                "https://www.feedo.sk/6x-nutrilon-2-pronutra-800g-dojcenske-mlieko/");
+        EshopParserRequestNg parserInputData = new EshopParserRequestNg()
+                .setCountOfItemInOnePackage(3)
+                .setUnit(Unit.KUS)
+                .setCountOfUnit(new BigDecimal(0.8))
+                .setEshopProductPage("https://www.feedo.sk/3x-nutrilon-3-pronutra-800g-dojcenske-mlieko/");
 
-        FeedoEshopProductParser parser = new FeedoEshopProductParser();
-        EshopProductInfo productInfo = parser.getProductInfo(parserInputData);
-        System.out.println(ProductInfoToString.toString(productInfo));
+        FeedoProductParser parser = new FeedoProductParser();
+        EshopParserResponseNg productInfo = parser.parseEshopProductInfo(parserInputData);
+        System.out.println(productInfo);
 
     }
 }

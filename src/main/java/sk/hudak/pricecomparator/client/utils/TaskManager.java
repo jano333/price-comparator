@@ -1,18 +1,17 @@
 package sk.hudak.pricecomparator.client.utils;
 
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
-import sk.hudak.pricecomparator.server.eshops.belmedika.BelmedikaEshopProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.bugy.BugyEshopProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.ckdmarket.CkdMarketProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.drmax.DrMaxProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.drogeriavmd.DrogeriaVmdProductInfoDowlnoaderTask;
 import sk.hudak.pricecomparator.server.eshops.esodregeria.EsoDrogeriaProductInfoDownloaderTask;
-import sk.hudak.pricecomparator.server.eshops.feedo.FeedoProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.hej.HejProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.internetovalekaren.InternetovaLekarenProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.k24.K24ProductInfoDownloaderTask;
-import sk.hudak.pricecomparator.server.eshops.lekarenbella.LekarenBellaProductInfoDownloaderTask;
-import sk.hudak.pricecomparator.server.tobedeleted.*;
+import sk.hudak.pricecomparator.server.tobedeleted.BelmedikaEshopProductInfoDownloaderTask;
+import sk.hudak.pricecomparator.server.tobedeleted.EshopProductInfoDownloaderTask;
+import sk.hudak.pricecomparator.server.tobedeleted.LekarenBellaProductInfoDownloaderTask;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,12 +32,12 @@ public class TaskManager {
 
         taskList = new ArrayList<>();
 
-        taskList.add(new AlzaProductInfoDownloaderTask(service));
-        taskList.add(new AndreaEshopProductInfoDownloaderTask(service));
-        taskList.add(new AmdDrogeriaProductInfoDownloaderTask(service));
+//        taskList.add(new AlzaProductInfoDownloaderTask(service));
+//        taskList.add(new AndreaEshopProductInfoDownloaderTask(service));
+//        taskList.add(new AmdDrogeriaProductInfoDownloaderTask(service));
 
-        taskList.add(new BabetkovoProductInfoDownloaderTask(service));
-        taskList.add(new BambinoProductInfoDownloaderTask(service));
+//        taskList.add(new BabetkovoProductInfoDownloaderTask(service));
+//        taskList.add(new BambinoProductInfoDownloaderTask(service));
         taskList.add(new BelmedikaEshopProductInfoDownloaderTask(service));
         taskList.add(new BugyEshopProductInfoDownloaderTask(service));
 
@@ -49,7 +48,7 @@ public class TaskManager {
 
         taskList.add(new EsoDrogeriaProductInfoDownloaderTask(service));
 
-        taskList.add(new FeedoProductInfoDownloaderTask(service));
+//        taskList.add(new FeedoProductInfoDownloaderTask(service));
 
         taskList.add(new HejProductInfoDownloaderTask(service));
 
@@ -62,19 +61,19 @@ public class TaskManager {
 
         taskList.add(new LekarenBellaProductInfoDownloaderTask(service));
 
-        taskList.add(new MallProductInfoDownloaderTask(service));
-        taskList.add(new MetroProductInfoDownloaderTask(service));
+//        taskList.add(new MallProductInfoDownloaderTask(service));
+//        taskList.add(new MetroProductInfoDownloaderTask(service));
 
-        taskList.add(new NovaLekarenProductInfoDownloaderTask(service));
+//        taskList.add(new NovaLekarenProductInfoDownloaderTask(service));
 
-        taskList.add(new PerinbabaProductInfoDownloaderTask(service));
-        taskList.add(new PilulkaProductInfoDownloaderTask(service));
+//        taskList.add(new PerinbabaProductInfoDownloaderTask(service));
+//        taskList.add(new PilulkaProductInfoDownloaderTask(service));
 
-        taskList.add(new SemistorProductInfoDownloaderTask(service));
-        taskList.add(new ShoppieProductInfoDownloaderTask(service));
+//        taskList.add(new SemistorProductInfoDownloaderTask(service));
+//        taskList.add(new ShoppieProductInfoDownloaderTask(service));
 
 
-        taskList.add(new TescoProductInfoDownloaderTask(service));
+//        taskList.add(new TescoProductInfoDownloaderTask(service));
     }
 
     public void startDownloading() {

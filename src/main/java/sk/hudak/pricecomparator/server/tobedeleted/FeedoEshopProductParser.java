@@ -1,14 +1,10 @@
-package sk.hudak.pricecomparator.server.eshops.feedo;
+package sk.hudak.pricecomparator.server.tobedeleted;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import sk.hudak.pricecomparator.middle.canonical.ProductAction;
-import sk.hudak.pricecomparator.server.tobedeleted.AbstractEshopProductInfo;
-import sk.hudak.pricecomparator.server.tobedeleted.AbstractEshopProductParser;
-import sk.hudak.pricecomparator.server.tobedeleted.EshopProductInfo;
-import sk.hudak.pricecomparator.server.tobedeleted.ProductInfoFactory;
 
 import java.math.BigDecimal;
 

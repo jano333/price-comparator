@@ -1,6 +1,9 @@
 package sk.hudak.pricecomparator.server.eshops.feedo;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import sk.hudak.pricecomparator.middle.canonical.ProductAction;
 import sk.hudak.pricecomparator.server.async.ng.impl.AbstractEshopProductParserNg;
 import sk.hudak.pricecomparator.server.async.ng.impl.ParserUtils;
@@ -21,12 +24,44 @@ public class FeedoProductParser extends AbstractEshopProductParserNg {
 
     @Override
     protected boolean isProductUnavailable(Document document) {
-        return ParserUtils.existElement(document, "button[class=btn btn-danger btn-large cart]");
+        return ParserUtils.notExistElement(document, "button[class=btn btn-danger btn-large cart]");
     }
 
     @Override
     protected BigDecimal parsePriceForPackage(Document document) {
-        return null;
+        // skusim -> premim cena
+        Elements select = document.select("div[class=price price-premium] span");
+        if (!select.isEmpty()) {
+        } else {
+            // ak sa nenajde tak skusim -> akcna cena
+            select = document.select("div[class=price price-discount] span");
+            if (!select.isEmpty()) {
+            } else {
+                // ak sa nenajde tak skusim -> normalna cena
+                select = document.select("div[class=price price-base] span");
+                if (select.isEmpty()) {
+                    logger.error("cena pre dany produkt sa nenasla");
+                    //TODO vynimka
+                    return null;
+                }
+            }
+        }
+
+        Element element1 = select.get(0);
+//        Elements children = element1.children();
+//        if (children.isEmpty()) {
+//            //TODO vynimka
+//            return null;
+//        }
+//        Element element = element1.child(0);
+        String html = element1.html();
+        if (StringUtils.isBlank(html)) {
+            //TODO vynimka
+            return null;
+        }
+
+        String cenaZaBalenie = html.substring(0, html.indexOf("&nbsp;")).replace(",", ".");
+        return new BigDecimal(cenaZaBalenie);
     }
 
     @Override

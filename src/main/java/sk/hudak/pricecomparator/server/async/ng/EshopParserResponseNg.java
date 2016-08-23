@@ -80,4 +80,17 @@ public class EshopParserResponseNg {
         this.pictureUrl = pictureUrl;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "EshopParserResponseNg{" +
+                "priceForUnit=" + priceForUnit +
+                ", priceForPackage=" + priceForPackage +
+                ", priceForOneItemInPackage=" + priceForOneItemInPackage +
+                ", action=" + action +
+                ", actionValidTo=" + actionValidTo +
+                ", productName='" + productName + '\'' +
+                ", pictureUrl='" + pictureUrl + '\'' +
+                '}';
+    }
 }

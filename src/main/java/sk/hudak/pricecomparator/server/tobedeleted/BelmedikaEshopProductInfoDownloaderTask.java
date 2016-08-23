@@ -1,13 +1,12 @@
-package sk.hudak.pricecomparator.server.eshops.belmedika;
+package sk.hudak.pricecomparator.server.tobedeleted;
 
 import sk.hudak.pricecomparator.middle.canonical.EshopType;
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
-import sk.hudak.pricecomparator.server.tobedeleted.EshopProductInfoDownloaderTask;
-import sk.hudak.pricecomparator.server.tobedeleted.EshopProductParser;
 
 /**
  * Created by jan on 30. 5. 2016.
  */
+@Deprecated
 public class BelmedikaEshopProductInfoDownloaderTask extends EshopProductInfoDownloaderTask {
 
     public BelmedikaEshopProductInfoDownloaderTask(PriceComparatorService service) {

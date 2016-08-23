@@ -12,6 +12,9 @@ import sk.hudak.pricecomparator.server.eshops.amddrogeria.AmdDrogeriaProductDown
 import sk.hudak.pricecomparator.server.eshops.andrea.AndreaProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.babetkovo.BabetkovoProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.bambino.BambinoProductDownloaderTask;
+import sk.hudak.pricecomparator.server.eshops.belmedika.BelmedikaProductDownloaderTask;
+import sk.hudak.pricecomparator.server.eshops.feedo.FeedoProductDownloaderTask;
+import sk.hudak.pricecomparator.server.eshops.lekarenbella.LekarenBellaProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.mall.MallProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.metro.MetroProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.novalekaren.NovaLekarenProductDownloaderTask;
@@ -54,11 +57,10 @@ public class EshopTaskManager {
         manager.registerEshopTask(new AlzaProductDownloaderTask());
         manager.registerEshopTask(new AmdDrogeriaProductDownloaderTask());
         manager.registerEshopTask(new AndreaProductDownloaderTask());
-
         // B
         manager.registerEshopTask(new BabetkovoProductDownloaderTask());
         manager.registerEshopTask(new BambinoProductDownloaderTask());
-
+        manager.registerEshopTask(new BelmedikaProductDownloaderTask());
         // C
 
         // D
@@ -66,12 +68,22 @@ public class EshopTaskManager {
         // E
 
         // F
+        manager.registerEshopTask(new FeedoProductDownloaderTask());
 
         // G
         // zakomentovanie koli tomu ze dava Kcs nie Eur
 //        manager.registerEshopTask(new GigaLekarnaProductDownloaderTask());
 
         // H
+
+        // I
+
+        // J
+
+        // K
+
+        // L
+        manager.registerEshopTask(new LekarenBellaProductDownloaderTask());
 
         // M
         manager.registerEshopTask(new MallProductDownloaderTask());

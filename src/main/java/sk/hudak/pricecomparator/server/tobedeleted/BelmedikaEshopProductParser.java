@@ -1,17 +1,14 @@
-package sk.hudak.pricecomparator.server.eshops.belmedika;
+package sk.hudak.pricecomparator.server.tobedeleted;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-import sk.hudak.pricecomparator.server.tobedeleted.AbstractEshopProductInfo;
-import sk.hudak.pricecomparator.server.tobedeleted.AbstractEshopProductParser;
-import sk.hudak.pricecomparator.server.tobedeleted.EshopProductInfo;
-import sk.hudak.pricecomparator.server.tobedeleted.ProductInfoFactory;
 
 import java.math.BigDecimal;
 
 /**
  * Created by jan on 30. 5. 2016.
  */
+@Deprecated
 public class BelmedikaEshopProductParser extends AbstractEshopProductParser {
 
     @Override

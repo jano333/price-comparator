@@ -50,7 +50,7 @@ public class ProductInEshopFacade extends JefFacade {
         EshopEntity eshop = eshopDao.readMandatory(createDto.getEshopId());
         if (!createDto.getEshopProductPage().startsWith(eshop.getHomePage())) {
             //FIXME err kluc
-            throw new PriceComparatorBusinesException("Dana URL produktu nie je pre dany eshop.");
+//            throw new PriceComparatorBusinesException("Dana URL produktu nie je pre dany eshop.");
         }
         // vytvorenie
         ProductInEshopEntity entity = new ProductInEshopEntity();
