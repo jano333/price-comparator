@@ -1,18 +1,15 @@
-package sk.hudak.pricecomparator.server.eshops.bugy;
+package sk.hudak.pricecomparator.server.tobedeleted;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-import sk.hudak.pricecomparator.server.tobedeleted.AbstractEshopProductInfo;
-import sk.hudak.pricecomparator.server.tobedeleted.AbstractEshopProductParser;
-import sk.hudak.pricecomparator.server.tobedeleted.EshopProductInfo;
-import sk.hudak.pricecomparator.server.tobedeleted.ProductInfoFactory;
 
 import java.math.BigDecimal;
 
 /**
- * Created by jan on 19. 5. 2016.
+ * Created by jan on 22. 5. 2016.
  */
-public class BugyEshopProductParser extends AbstractEshopProductParser {
+@Deprecated
+public class CkdMarketProductParser extends AbstractEshopProductParser {
 
     @Override
     protected EshopProductInfo parsePrice(Document document) {
@@ -40,16 +37,11 @@ public class BugyEshopProductParser extends AbstractEshopProductParser {
     }
 
     private boolean isProductNedostupny(Document document) {
-        return notExistElement(document, "button[class=add_to_cart]");    }
-
-    private String parseProductName(Document document) {
-        //div[id="product_text"] h1
-        //TODO impl
-        return null;
+        return notExistElement(document, "button[class=submit submitBig submitCart]");
     }
 
     private String parseCenaZaBalenie(Document document) {
-        Elements elements = document.select("div[id=product_price] span");
+        Elements elements = document.select("span[class=priceTaxValueNumber]");
         if (elements.isEmpty()) {
             return null;
         }
@@ -57,4 +49,8 @@ public class BugyEshopProductParser extends AbstractEshopProductParser {
         return removeLastCharacters(replaceAllCommaForDot(text), 2);
     }
 
+    private String parseProductName(Document document) {
+        //TODO impl
+        return null;
+    }
 }

@@ -1,8 +1,6 @@
 package sk.hudak.pricecomparator.client.utils;
 
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
-import sk.hudak.pricecomparator.server.eshops.bugy.BugyEshopProductInfoDownloaderTask;
-import sk.hudak.pricecomparator.server.eshops.ckdmarket.CkdMarketProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.drogeriavmd.DrogeriaVmdProductInfoDowlnoaderTask;
 import sk.hudak.pricecomparator.server.eshops.esodregeria.EsoDrogeriaProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.k24.K24ProductInfoDownloaderTask;

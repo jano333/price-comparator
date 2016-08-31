@@ -2,7 +2,7 @@ package sk.hudak.entity.test;
 
 import sk.hudak.pricecomparator.client.ProductInfoToString;
 import sk.hudak.pricecomparator.middle.canonical.Unit;
-import sk.hudak.pricecomparator.server.eshops.bugy.BugyEshopProductParser;
+import sk.hudak.pricecomparator.server.tobedeleted.BugyEshopProductParser;
 import sk.hudak.pricecomparator.server.tobedeleted.EshopProductInfo;
 import sk.hudak.pricecomparator.server.tobedeleted.ParserInputData;
 

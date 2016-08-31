@@ -13,6 +13,8 @@ import sk.hudak.pricecomparator.server.eshops.andrea.AndreaProductDownloaderTask
 import sk.hudak.pricecomparator.server.eshops.babetkovo.BabetkovoProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.bambino.BambinoProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.belmedika.BelmedikaProductDownloaderTask;
+import sk.hudak.pricecomparator.server.eshops.bugy.BugyProductDownloaderTask;
+import sk.hudak.pricecomparator.server.eshops.ckdmarket.CkdMarketProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.drmax.DrMaxProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.feedo.FeedoProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.hej.HejProductDownloaderTask;
@@ -64,9 +66,9 @@ public class EshopTaskManager {
         manager.registerEshopTask(new BabetkovoProductDownloaderTask());
         manager.registerEshopTask(new BambinoProductDownloaderTask());
         manager.registerEshopTask(new BelmedikaProductDownloaderTask());
-        //TODO buggy
+        manager.registerEshopTask(new BugyProductDownloaderTask());
         // C
-        //TODO ckdmarket
+        manager.registerEshopTask(new CkdMarketProductDownloaderTask());
         // D
         manager.registerEshopTask(new DrMaxProductDownloaderTask());
         //TODO drogeriavmd
@@ -79,7 +81,7 @@ public class EshopTaskManager {
 //        manager.registerEshopTask(new GigaLekarnaProductDownloaderTask());
         // H
         manager.registerEshopTask(new HejProductDownloaderTask());
-        // TODO hravozdravo
+        // TODO hravozdravo teraz to je https://www.zdravyvyvoj.sk/
         // I
         manager.registerEshopTask(new InternetovaLekarenProductDownloaderTask());
         // K

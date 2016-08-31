@@ -1,56 +1,46 @@
-package sk.hudak.pricecomparator.server.eshops.alza;
+package sk.hudak.pricecomparator.server.eshops.bugy;
 
-import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import sk.hudak.pricecomparator.middle.canonical.ProductAction;
 import sk.hudak.pricecomparator.server.async.ng.impl.AbstractEshopProductParserNg;
+import sk.hudak.pricecomparator.server.async.ng.impl.ParserUtils;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * Created by jan on 11. 7. 2016.
+ * Created by jan on 29. 8. 2016.
  */
-public class AlzaEshopProductParser extends AbstractEshopProductParserNg {
+public class BugyProductParser extends AbstractEshopProductParserNg {
 
     @Override
     protected boolean isProductUnavailable(Document document) {
-        //TODO zatial neviem ako...
-        return false;
+        return ParserUtils.notExistElement(document, "button[class=add_to_cart]");
     }
 
     @Override
     protected BigDecimal parsePriceForPackage(Document document) {
-        Elements elements = document.select("span[class=bigPrice price_withVat]");
+        Elements elements = document.select("div[id=product_price] span");
         if (elements.isEmpty()) {
-            //TODO tu by mala byt vynimka ked bduem mat ze je nedostupne
             return null;
         }
         String text = elements.get(0).text();
-        if (StringUtils.isBlank(text)) {
-            return null;
-        }
-        StringBuffer sb = new StringBuffer(text);
-        sb = sb.deleteCharAt(0);
-        return new BigDecimal(sb.toString().replace(",", "."));
+        return new BigDecimal(ParserUtils.removeLastCharacters(ParserUtils.replaceAllCommaForDot(text), 2));
     }
 
     @Override
     protected String parseProductName(Document document) {
-        //TODO
         return null;
     }
 
     @Override
     protected ProductAction parseAction(Document document) {
-        //TODO
         return null;
     }
 
     @Override
     protected Date parseActionValidity(Document document) {
-        //TODO
         return null;
     }
 }
