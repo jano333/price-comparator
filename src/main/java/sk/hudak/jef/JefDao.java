@@ -8,7 +8,7 @@ import org.hibernate.criterion.Projections;
 import sk.hudak.jef.paging.PageData;
 import sk.hudak.jef.paging.Paging;
 import sk.hudak.pricecomparator.middle.to.FindDto;
-import sk.hudak.pricecomparator.server.core.LongIdEntity;
+import sk.hudak.pricecomparator.server.domain.LongIdEntity;
 
 import javax.inject.Inject;
 import java.util.List;

@@ -7,7 +7,7 @@ import sk.hudak.pricecomparator.middle.exeption.PriceComparatorException;
 import sk.hudak.pricecomparator.middle.to.internal.ProductAnalyzatorResultDto;
 import sk.hudak.pricecomparator.middle.to.internal.ProductByUrlAnalyzatorResponseDto;
 import sk.hudak.pricecomparator.middle.to.internal.ProductByUrlRequestDto;
-import sk.hudak.pricecomparator.server.dao.ProductInEshopDao;
+import sk.hudak.pricecomparator.server.domain.dao.ProductInEshopDao;
 
 import javax.inject.Inject;
 import javax.inject.Named;
