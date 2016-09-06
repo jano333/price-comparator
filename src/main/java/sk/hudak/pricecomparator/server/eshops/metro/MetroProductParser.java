@@ -7,6 +7,8 @@ import sk.hudak.pricecomparator.server.async.ng.impl.AbstractEshopProductParserN
 import sk.hudak.pricecomparator.server.async.ng.impl.ParserUtils;
 
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
 import java.util.Map;
@@ -52,7 +54,19 @@ public class MetroProductParser extends AbstractEshopProductParserNg {
 
     @Override
     protected Date parseActionValidity(Document document) {
-        //TODO
-        return null;
+        Elements elements = document.select("div[class=action-l clearfix]");
+        if (elements.isEmpty()) {
+            return null;
+        }
+        StringBuilder sb = new StringBuilder(elements.get(0).html());
+        sb = sb.delete(0, "Platnosť akcie do ".length());
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+            return sdf.parse(sb.toString());
+        } catch (ParseException e) {
+            //TODO vynimka
+            e.printStackTrace();
+            return null;
+        }
     }
 }

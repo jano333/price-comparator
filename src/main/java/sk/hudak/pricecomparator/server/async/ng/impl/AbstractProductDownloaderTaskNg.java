@@ -14,7 +14,7 @@ import java.util.Random;
 /**
  * Created by jan on 9. 7. 2016.
  */
-public abstract class AbstractProductInfoDownloaderTaskNg implements EshopTaskNg {
+public abstract class AbstractProductDownloaderTaskNg implements EshopTaskNg {
 
     protected Logger logger = LoggerFactory.getLogger(getClass());
 

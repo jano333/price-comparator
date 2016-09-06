@@ -23,15 +23,6 @@ public class TescoProductParser extends AbstractEshopProductParserNg {
     }
 
     @Override
-    protected String parseProductName(Document document) {
-        Elements elements = document.select("h1[class=product-title]");
-        if (elements.isEmpty()) {
-            return null;
-        }
-        return elements.get(0).text();
-    }
-
-    @Override
     protected BigDecimal parsePriceForPackage(Document document) {
         Elements elements = document.select("div[class=price-per-sellable-unit price-per-sellable-unit--price price-per-sellable-unit--price-per-item] div span span[class=value]");
         if (elements.isEmpty()) {
@@ -39,6 +30,15 @@ public class TescoProductParser extends AbstractEshopProductParserNg {
         }
         String replace = elements.get(0).text().replace(",", ".");
         return new BigDecimal(replace);
+    }
+
+    @Override
+    protected String parseProductName(Document document) {
+        Elements elements = document.select("h1[class=product-title]");
+        if (elements.isEmpty()) {
+            return null;
+        }
+        return elements.get(0).text();
     }
 
     @Override

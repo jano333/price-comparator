@@ -4,10 +4,12 @@ import sk.hudak.pricecomparator.middle.canonical.EshopType;
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
 import sk.hudak.pricecomparator.server.tobedeleted.EshopProductInfoDownloaderTask;
 import sk.hudak.pricecomparator.server.tobedeleted.EshopProductParser;
+import sk.hudak.pricecomparator.server.tobedeleted.EsoDrogeriaProductParser;
 
 /**
  * Created by jan on 29. 5. 2016.
  */
+@Deprecated
 public class EsoDrogeriaProductInfoDownloaderTask extends EshopProductInfoDownloaderTask {
 
     public EsoDrogeriaProductInfoDownloaderTask(PriceComparatorService service) {

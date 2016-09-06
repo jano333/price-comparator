@@ -16,6 +16,8 @@ import sk.hudak.pricecomparator.server.eshops.belmedika.BelmedikaProductDownload
 import sk.hudak.pricecomparator.server.eshops.bugy.BugyProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.ckdmarket.CkdMarketProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.drmax.DrMaxProductDownloaderTask;
+import sk.hudak.pricecomparator.server.eshops.drogeriavmd.DrogeriaVmdProductDowlnoaderTask;
+import sk.hudak.pricecomparator.server.eshops.esodregeria.EsoDrogeriaProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.feedo.FeedoProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.hej.HejProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.internetovalekaren.InternetovaLekarenProductDownloaderTask;
@@ -71,9 +73,9 @@ public class EshopTaskManager {
         manager.registerEshopTask(new CkdMarketProductDownloaderTask());
         // D
         manager.registerEshopTask(new DrMaxProductDownloaderTask());
-        //TODO drogeriavmd
+        manager.registerEshopTask(new DrogeriaVmdProductDowlnoaderTask());
         // E
-        // TODO esodrogeria
+        manager.registerEshopTask(new EsoDrogeriaProductDownloaderTask());
         // F
         manager.registerEshopTask(new FeedoProductDownloaderTask());
         // G

@@ -1,21 +1,21 @@
-package sk.hudak.pricecomparator.server.eshops.mall;
+package sk.hudak.pricecomparator.server.eshops.drogeriavmd;
 
 import sk.hudak.pricecomparator.middle.canonical.EshopType;
 import sk.hudak.pricecomparator.server.async.ng.EshopProductParserNg;
 import sk.hudak.pricecomparator.server.async.ng.impl.AbstractProductDownloaderTaskNg;
 
 /**
- * Created by jan on 19. 7. 2016.
+ * Created by jan on 2. 9. 2016.
  */
-public class MallProductDownloaderTask extends AbstractProductDownloaderTaskNg {
+public class DrogeriaVmdProductDowlnoaderTask extends AbstractProductDownloaderTaskNg {
 
     @Override
     public EshopType getEshopType() {
-        return EshopType.MALL;
+        return EshopType.DROGERIA_VMD;
     }
 
     @Override
     protected EshopProductParserNg createEshopProductParser() {
-        return new MallProductParser();
+        return new DrogeriaVmdProductParser();
     }
 }
