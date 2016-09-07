@@ -15,7 +15,7 @@ public class SemistorProductInfoDownloaderTask extends EshopProductInfoDownloade
 
     @Override
     public EshopType getEshopType() {
-        return EshopType.SEMISTOR;
+        return EshopType.SEMILTON;
     }
 
     @Override

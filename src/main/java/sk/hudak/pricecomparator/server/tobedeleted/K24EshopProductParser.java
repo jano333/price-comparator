@@ -1,16 +1,14 @@
-package sk.hudak.pricecomparator.server.eshops.k24;
+package sk.hudak.pricecomparator.server.tobedeleted;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-import sk.hudak.pricecomparator.server.tobedeleted.AbstractEshopProductInfo;
-import sk.hudak.pricecomparator.server.tobedeleted.AbstractEshopProductParser;
-import sk.hudak.pricecomparator.server.tobedeleted.EshopProductInfo;
 
 import java.math.BigDecimal;
 
 /**
  * Created by jan on 29. 11. 2015.
  */
+@Deprecated
 public class K24EshopProductParser extends AbstractEshopProductParser {
 
     @Override

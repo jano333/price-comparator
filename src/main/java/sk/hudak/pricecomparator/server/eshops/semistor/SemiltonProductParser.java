@@ -12,7 +12,7 @@ import java.util.Date;
 /**
  * Created by jan on 16. 7. 2016.
  */
-public class SemistorProductParser extends AbstractEshopProductParserNg {
+public class SemiltonProductParser extends AbstractEshopProductParserNg {
     @Override
     protected boolean isProductUnavailable(Document document) {
         //TODO

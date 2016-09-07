@@ -44,7 +44,7 @@ public enum EshopType {
     PERINBABA,
     PILULKA,
 
-    SEMISTOR,
+    SEMILTON,
     SHOPPIE,
 
     TESCO;

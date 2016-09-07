@@ -27,7 +27,7 @@ import sk.hudak.pricecomparator.server.eshops.metro.MetroProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.novalekaren.NovaLekarenProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.perinbaba.PerinbabaProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.pilulka.PilulkaProductDownloaderTask;
-import sk.hudak.pricecomparator.server.eshops.semistor.SemistorProductDownloaderTask;
+import sk.hudak.pricecomparator.server.eshops.semistor.SemiltonProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.shoppie.ShoppieProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.tesco.TescoProductDownloaderTask;
 
@@ -87,7 +87,9 @@ public class EshopTaskManager {
         // I
         manager.registerEshopTask(new InternetovaLekarenProductDownloaderTask());
         // K
-        //TODO k24
+        // TODO je len jeden produkt aj ten je zla url:
+        // http://www.k24.sk/product/288078/Elektronika/Sport_a_hobby/Pampers_Premium_Care_VP_Mini_80_ks_.html
+//        manager.registerEshopTask(new K24ProductDownloaderTask());
         // L
         manager.registerEshopTask(new LekarenBellaProductDownloaderTask());
         // M
@@ -99,7 +101,7 @@ public class EshopTaskManager {
         manager.registerEshopTask(new PerinbabaProductDownloaderTask());
         manager.registerEshopTask(new PilulkaProductDownloaderTask());
         // S
-        manager.registerEshopTask(new SemistorProductDownloaderTask());
+        manager.registerEshopTask(new SemiltonProductDownloaderTask());
         manager.registerEshopTask(new ShoppieProductDownloaderTask());
         // T
         manager.registerEshopTaskWithCallback(
