@@ -5,6 +5,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import sk.hudak.pricecomparator.middle.canonical.ProductAction;
 import sk.hudak.pricecomparator.server.async.ng.impl.AbstractEshopProductParserNg;
+import sk.hudak.pricecomparator.server.async.ng.impl.ParserUtils;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -13,10 +14,10 @@ import java.util.Date;
  * Created by jan on 16. 7. 2016.
  */
 public class SemiltonProductParser extends AbstractEshopProductParserNg {
+
     @Override
     protected boolean isProductUnavailable(Document document) {
-        //TODO
-        return false;
+        return ParserUtils.notExistElement(document, "span[class=buy-button]");
     }
 
     @Override

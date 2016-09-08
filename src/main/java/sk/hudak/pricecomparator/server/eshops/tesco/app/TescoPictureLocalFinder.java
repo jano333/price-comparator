@@ -1,7 +1,7 @@
 package sk.hudak.pricecomparator.server.eshops.tesco.app;
 
-import sk.hudak.pricecomparator.client.ServiceLocator;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopCustomListDto;
+import sk.hudak.pricecomparator.server.tobedeleted.ServiceLocator;
 
 import java.io.File;
 import java.io.FileOutputStream;

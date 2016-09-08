@@ -1,4 +1,4 @@
-package sk;
+package sk.parser;
 
 import sk.hudak.pricecomparator.client.ProductInfoToString;
 import sk.hudak.pricecomparator.middle.canonical.Unit;
@@ -11,6 +11,7 @@ import java.math.BigDecimal;
 /**
  * Created by jan on 29. 11. 2015.
  */
+@Deprecated
 public class PilulkaEshopProductParserTest {
 
     public static void main(String[] args) {

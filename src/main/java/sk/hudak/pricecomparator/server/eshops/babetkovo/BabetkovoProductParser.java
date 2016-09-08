@@ -32,17 +32,17 @@ public class BabetkovoProductParser extends AbstractEshopProductParserNg {
     }
 
     @Override
-    protected String parseProductName(Document document) {
-        return null;
-    }
-
-    @Override
     protected ProductAction parseAction(Document document) {
         return null;
     }
 
     @Override
     protected Date parseActionValidity(Document document) {
+        return null;
+    }
+
+    @Override
+    protected String parseProductName(Document document) {
         return null;
     }
 }

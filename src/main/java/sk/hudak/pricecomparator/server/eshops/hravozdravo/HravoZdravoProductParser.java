@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 /**
  * Created by jan on 1. 1. 2016.
  */
+@Deprecated
 public class HravoZdravoProductParser extends AbstractEshopProductParser {
 
     @Override

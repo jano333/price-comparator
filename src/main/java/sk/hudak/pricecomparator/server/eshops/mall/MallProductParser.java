@@ -17,13 +17,6 @@ public class MallProductParser extends AbstractEshopProductParserNg {
     @Override
     protected boolean isProductUnavailable(Document document) {
         return ParserUtils.notExistElement(document, "button[id=add-to-cart]");
-//        // ak tam je stitok "Už sa nepredáva"
-//        // vratit ako nedostupne
-//        Elements elements1 = document.select("em[class=label label--nostock]");
-//        if (!elements1.isEmpty()) {
-//            logger.error("Produkt sa uz nepredava");
-//            return ProductInfoFactory.createUnaviable();
-//        }
     }
 
     @Override

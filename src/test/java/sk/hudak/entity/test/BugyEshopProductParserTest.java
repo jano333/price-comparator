@@ -11,6 +11,7 @@ import java.math.BigDecimal;
 /**
  * Created by jan on 22. 5. 2016.
  */
+@Deprecated
 public class BugyEshopProductParserTest {
 
     public static void main(String[] args) {

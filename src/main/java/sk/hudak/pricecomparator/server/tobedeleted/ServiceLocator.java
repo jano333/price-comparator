@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.client;
+package sk.hudak.pricecomparator.server.tobedeleted;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

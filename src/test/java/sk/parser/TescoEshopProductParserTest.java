@@ -1,4 +1,4 @@
-package sk;
+package sk.parser;
 
 import sk.hudak.pricecomparator.server.tobedeleted.EshopProductInfo;
 import sk.hudak.pricecomparator.server.tobedeleted.ParserInputData;
@@ -7,6 +7,7 @@ import sk.hudak.pricecomparator.server.tobedeleted.TescoEshopProductParser;
 /**
  * Created by jan on 24. 4. 2016.
  */
+@Deprecated
 public class TescoEshopProductParserTest {
 
     public static void main(String[] args) {

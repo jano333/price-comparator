@@ -1,8 +1,6 @@
-package sk.hudak.pricecomparator.client.utils;
+package sk.hudak.pricecomparator.server.tobedeleted;
 
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
-import sk.hudak.pricecomparator.server.eshops.esodregeria.EsoDrogeriaProductInfoDownloaderTask;
-import sk.hudak.pricecomparator.server.tobedeleted.*;
 
 import java.util.ArrayList;
 import java.util.List;

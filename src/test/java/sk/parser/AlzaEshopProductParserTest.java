@@ -1,4 +1,4 @@
-package sk;
+package sk.parser;
 
 import sk.hudak.pricecomparator.middle.canonical.Unit;
 import sk.hudak.pricecomparator.server.tobedeleted.AlzaEshopProductParser;
@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 /**
  * Created by jan on 12. 11. 2015.
  */
+@Deprecated
 public class AlzaEshopProductParserTest {
     public static void main(String[] args) {
         ParserInputData parserInputData = new ParserInputData(

@@ -5,6 +5,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import sk.hudak.pricecomparator.middle.canonical.ProductAction;
 import sk.hudak.pricecomparator.server.async.ng.impl.AbstractEshopProductParserNg;
+import sk.hudak.pricecomparator.server.async.ng.impl.ParserUtils;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -16,8 +17,7 @@ public class AlzaProductParser extends AbstractEshopProductParserNg {
 
     @Override
     protected boolean isProductUnavailable(Document document) {
-        //TODO zatial neviem ako...
-        return false;
+        return ParserUtils.notExistElement(document, "a[class=cart-insert]");
     }
 
     @Override
@@ -37,12 +37,6 @@ public class AlzaProductParser extends AbstractEshopProductParserNg {
     }
 
     @Override
-    protected String parseProductName(Document document) {
-        //TODO
-        return null;
-    }
-
-    @Override
     protected ProductAction parseAction(Document document) {
         //TODO
         return null;
@@ -50,6 +44,12 @@ public class AlzaProductParser extends AbstractEshopProductParserNg {
 
     @Override
     protected Date parseActionValidity(Document document) {
+        //TODO
+        return null;
+    }
+
+    @Override
+    protected String parseProductName(Document document) {
         //TODO
         return null;
     }

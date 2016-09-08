@@ -4,6 +4,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import sk.hudak.pricecomparator.middle.canonical.ProductAction;
 import sk.hudak.pricecomparator.server.async.ng.impl.AbstractEshopProductParserNg;
+import sk.hudak.pricecomparator.server.async.ng.impl.ParserUtils;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -15,8 +16,7 @@ public class K24ProductParser extends AbstractEshopProductParserNg {
 
     @Override
     protected boolean isProductUnavailable(Document document) {
-        //TODO pridat do kosika button
-        return false;
+        return ParserUtils.notExistElement(document, "a[class=addToCart]");
     }
 
     @Override

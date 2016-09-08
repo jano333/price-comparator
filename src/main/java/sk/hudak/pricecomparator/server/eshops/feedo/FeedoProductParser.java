@@ -48,25 +48,13 @@ public class FeedoProductParser extends AbstractEshopProductParserNg {
         }
 
         Element element1 = select.get(0);
-//        Elements children = element1.children();
-//        if (children.isEmpty()) {
-//            //TODO vynimka
-//            return null;
-//        }
-//        Element element = element1.child(0);
         String html = element1.html();
         if (StringUtils.isBlank(html)) {
             //TODO vynimka
             return null;
         }
-
         String cenaZaBalenie = html.substring(0, html.indexOf("&nbsp;")).replace(",", ".");
         return new BigDecimal(cenaZaBalenie);
-    }
-
-    @Override
-    protected String parseProductName(Document document) {
-        return null;
     }
 
     @Override
@@ -80,6 +68,12 @@ public class FeedoProductParser extends AbstractEshopProductParserNg {
 
     @Override
     protected Date parseActionValidity(Document document) {
+        return ACTION_VALIDITY_NOT_DEFINE;
+    }
+
+    @Override
+    protected String parseProductName(Document document) {
+        //TODO parseProductName
         return null;
     }
 }

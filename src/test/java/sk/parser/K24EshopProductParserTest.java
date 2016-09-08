@@ -1,27 +1,27 @@
-package sk;
+package sk.parser;
 
+import sk.hudak.pricecomparator.client.ProductInfoToString;
 import sk.hudak.pricecomparator.middle.canonical.Unit;
 import sk.hudak.pricecomparator.server.tobedeleted.EshopProductInfo;
+import sk.hudak.pricecomparator.server.tobedeleted.K24EshopProductParser;
 import sk.hudak.pricecomparator.server.tobedeleted.ParserInputData;
-import sk.hudak.pricecomparator.server.tobedeleted.SemistorEshopProductParser;
 
 import java.math.BigDecimal;
 
 /**
- * Created by jan on 7. 11. 2015.
+ * Created by jan on 29. 11. 2015.
  */
-public class SemistorEshopProductParserTest {
-
+@Deprecated
+public class K24EshopProductParserTest {
     public static void main(String[] args) {
         ParserInputData parserInputData = new ParserInputData(
                 80,
                 Unit.KUS,
                 new BigDecimal(1),
-                "http://semilton.sk/baby/health-hygiene/diapers/pampers-premium-vp-mini-80/");
+                "http://www.k24.sk/product/288078/Elektronika/Sport_a_hobby/Pampers_Premium_Care_VP_Mini_80_ks_.html");
 
-
-        SemistorEshopProductParser parser = new SemistorEshopProductParser();
+        K24EshopProductParser parser = new K24EshopProductParser();
         EshopProductInfo productInfo = parser.getProductInfo(parserInputData);
-
+        System.out.println(ProductInfoToString.toString(productInfo));
     }
 }

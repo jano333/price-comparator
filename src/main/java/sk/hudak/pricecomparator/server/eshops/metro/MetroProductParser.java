@@ -5,10 +5,9 @@ import org.jsoup.select.Elements;
 import sk.hudak.pricecomparator.middle.canonical.ProductAction;
 import sk.hudak.pricecomparator.server.async.ng.impl.AbstractEshopProductParserNg;
 import sk.hudak.pricecomparator.server.async.ng.impl.ParserUtils;
+import sk.hudak.pricecomparator.server.utils.DateUtils;
 
 import java.math.BigDecimal;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
 import java.util.Map;
@@ -24,9 +23,9 @@ public class MetroProductParser extends AbstractEshopProductParserNg {
         return Collections.singletonMap("storeId", "21");
     }
 
-
     @Override
     protected boolean isProductUnavailable(Document document) {
+        //TODO ma to byt na button button pridat do kosika, co je toto?
         return ParserUtils.existElement(document, "div[class=action-ns]");
     }
 
@@ -38,13 +37,6 @@ public class MetroProductParser extends AbstractEshopProductParserNg {
         int endIndex = html.indexOf("s DPH") - 2;
         html = html.substring(beginIndex, endIndex).trim();
         return new BigDecimal(html.replace(",", "."));
-    }
-
-
-    @Override
-    protected String parseProductName(Document document) {
-        //TODO
-        return null;
     }
 
     @Override
@@ -60,13 +52,12 @@ public class MetroProductParser extends AbstractEshopProductParserNg {
         }
         StringBuilder sb = new StringBuilder(elements.get(0).html());
         sb = sb.delete(0, "Platnosť akcie do ".length());
-        try {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-            return sdf.parse(sb.toString());
-        } catch (ParseException e) {
-            //TODO vynimka
-            e.printStackTrace();
-            return null;
-        }
+        return DateUtils.parseDate(sb.toString(), DateUtils.DATE_FORMAT_HH_MM_YYYY);
+    }
+
+    @Override
+    protected String parseProductName(Document document) {
+        //TODO parseProductName
+        return null;
     }
 }

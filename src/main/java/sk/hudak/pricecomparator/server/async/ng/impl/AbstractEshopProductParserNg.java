@@ -27,6 +27,9 @@ public abstract class AbstractEshopProductParserNg implements EshopProductParser
     private static final int DEFAULT_TIMEOUT = 10000;
     private static final String MOZILLA_USER_AGENT_DEFAULT = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0";
 
+    // flag, ak eshop neudava platnost do kedy plati akcia produktu
+    public static final Date ACTION_VALIDITY_NOT_DEFINE = null;
+
     protected EshopParserRequestNg request;
 
     @Override
@@ -126,7 +129,7 @@ public abstract class AbstractEshopProductParserNg implements EshopProductParser
 
     protected abstract Date parseActionValidity(Document document);
 
-    protected ProductAction parseAction(Document document, String selector){
+    protected ProductAction parseAction(Document document, String selector) {
         return ParserUtils.existElement(document, selector)
                 ? ProductAction.IN_ACTION
                 : ProductAction.NON_ACTION;

@@ -1,10 +1,7 @@
-package sk.hudak.pricecomparator.server.eshops.esodregeria;
+package sk.hudak.pricecomparator.server.tobedeleted;
 
 import sk.hudak.pricecomparator.middle.canonical.EshopType;
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
-import sk.hudak.pricecomparator.server.tobedeleted.EshopProductInfoDownloaderTask;
-import sk.hudak.pricecomparator.server.tobedeleted.EshopProductParser;
-import sk.hudak.pricecomparator.server.tobedeleted.EsoDrogeriaProductParser;
 
 /**
  * Created by jan on 29. 5. 2016.

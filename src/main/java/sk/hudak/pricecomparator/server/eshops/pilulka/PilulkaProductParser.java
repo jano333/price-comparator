@@ -4,6 +4,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import sk.hudak.pricecomparator.middle.canonical.ProductAction;
 import sk.hudak.pricecomparator.server.async.ng.impl.AbstractEshopProductParserNg;
+import sk.hudak.pricecomparator.server.async.ng.impl.ParserUtils;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -14,8 +15,7 @@ import java.util.Date;
 public class PilulkaProductParser extends AbstractEshopProductParserNg {
     @Override
     protected boolean isProductUnavailable(Document document) {
-        Elements elements = document.select("strong[id=priceNew]");
-        return elements.isEmpty();
+        return ParserUtils.notExistElement(document, "span[class=inline-btn btn-purple btn-h44 btn-basket before]");
     }
 
     @Override

@@ -4,6 +4,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import sk.hudak.pricecomparator.middle.canonical.ProductAction;
 import sk.hudak.pricecomparator.server.async.ng.impl.AbstractEshopProductParserNg;
+import sk.hudak.pricecomparator.server.async.ng.impl.ParserUtils;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -14,8 +15,7 @@ import java.util.Date;
 public class AndreaProductParser extends AbstractEshopProductParserNg {
     @Override
     protected boolean isProductUnavailable(Document document) {
-        // TODO
-        return false;
+        return ParserUtils.notExistElement(document, "a[class=btnx normal green buy]");
     }
 
     @Override

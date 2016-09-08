@@ -1,4 +1,4 @@
-package sk;
+package sk.parser;
 
 import sk.hudak.pricecomparator.middle.canonical.Unit;
 import sk.hudak.pricecomparator.server.async.ng.EshopParserRequestNg;

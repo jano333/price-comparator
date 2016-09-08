@@ -6,10 +6,9 @@ import org.jsoup.select.Elements;
 import sk.hudak.pricecomparator.middle.canonical.ProductAction;
 import sk.hudak.pricecomparator.server.async.ng.impl.AbstractEshopProductParserNg;
 import sk.hudak.pricecomparator.server.async.ng.impl.ParserUtils;
+import sk.hudak.pricecomparator.server.utils.DateUtils;
 
 import java.math.BigDecimal;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -33,19 +32,9 @@ public class TescoProductParser extends AbstractEshopProductParserNg {
     }
 
     @Override
-    protected String parseProductName(Document document) {
-        Elements elements = document.select("h1[class=product-title]");
-        if (elements.isEmpty()) {
-            return null;
-        }
-        return elements.get(0).text();
-    }
-
-    @Override
     protected ProductAction parseAction(Document document) {
         return parseAction(document, "div[class=icon-offer-flash-group] div[class=red-square] span[class=text-position]");
     }
-
 
     @Override
     protected Date parseActionValidity(Document document) {
@@ -63,14 +52,17 @@ public class TescoProductParser extends AbstractEshopProductParserNg {
 
         StringBuilder sb = new StringBuilder(elements.get(0).text());
         sb = sb.delete(0, "Cena je platná pri dodaní do ".length());
-        try {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-            return sdf.parse(sb.toString());
-        } catch (ParseException e) {
-            //TODO vynimka
-            e.printStackTrace();
+        return DateUtils.parseDate(sb.toString(), DateUtils.DATE_FORMAT_HH_MM_YYYY);
+    }
+
+
+    @Override
+    protected String parseProductName(Document document) {
+        Elements elements = document.select("h1[class=product-title]");
+        if (elements.isEmpty()) {
             return null;
         }
+        return elements.get(0).text();
     }
 
     @Override

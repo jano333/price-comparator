@@ -1,7 +1,6 @@
 package sk.hudak.pricecomparator.server.task;
 
 import sk.hudak.jef.ssl.JefSslManager;
-import sk.hudak.pricecomparator.client.utils.TaskManager;
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
 import sk.hudak.pricecomparator.server.async.ng.EshopTaskManagerNg;
 import sk.hudak.pricecomparator.server.async.ng.impl.EshopTaskManagerImpNg;
@@ -30,6 +29,7 @@ import sk.hudak.pricecomparator.server.eshops.pilulka.PilulkaProductDownloaderTa
 import sk.hudak.pricecomparator.server.eshops.semistor.SemiltonProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.shoppie.ShoppieProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.tesco.TescoProductDownloaderTask;
+import sk.hudak.pricecomparator.server.tobedeleted.TaskManager;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
