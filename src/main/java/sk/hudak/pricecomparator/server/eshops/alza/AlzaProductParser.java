@@ -38,8 +38,10 @@ public class AlzaProductParser extends AbstractEshopProductParserNg {
 
     @Override
     protected ProductAction parseAction(Document document) {
-        //TODO
-        return null;
+        //TODO dorobit parsovanie zlavy v percentach
+        boolean flag1 = ParserUtils.existElement(document, "span[class=icon-percentage icon]");
+        boolean flag2 = ParserUtils.existElement(document, "span[class=quantityPercentDiscount icon-percentage icon]");
+        return (flag1 || flag2) ? ProductAction.IN_ACTION : ProductAction.NON_ACTION;
     }
 
     @Override

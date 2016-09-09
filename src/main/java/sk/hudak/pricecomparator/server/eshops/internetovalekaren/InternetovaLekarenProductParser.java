@@ -21,7 +21,6 @@ public class InternetovaLekarenProductParser extends AbstractEshopProductParserN
 
     @Override
     protected BigDecimal parsePriceForPackage(Document document) {
-        //cena
         Elements elements = document.select("strong[itemprop=price]");
         StringBuffer sb = new StringBuffer(elements.get(0).text());
         sb = sb.deleteCharAt(sb.length() - 1);
@@ -31,17 +30,21 @@ public class InternetovaLekarenProductParser extends AbstractEshopProductParserN
     }
 
     @Override
-    protected String parseProductName(Document document) {
-        return null;
-    }
-
-    @Override
     protected ProductAction parseAction(Document document) {
-        return null;
+        // ak je cervenym tak je v akcii, inak nie
+        return ParserUtils.existElement(document, "strong[class=fs-xxlarge red]")
+                ? ProductAction.IN_ACTION
+                : ProductAction.NON_ACTION;
     }
 
     @Override
     protected Date parseActionValidity(Document document) {
+        return ACTION_VALIDITY_NOT_DEFINE;
+    }
+
+    @Override
+    protected String parseProductName(Document document) {
+        //TODO
         return null;
     }
 }

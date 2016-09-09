@@ -1,10 +1,12 @@
 package sk.hudak.pricecomparator.server.eshops.mall;
 
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import sk.hudak.pricecomparator.middle.canonical.ProductAction;
 import sk.hudak.pricecomparator.server.async.ng.impl.AbstractEshopProductParserNg;
 import sk.hudak.pricecomparator.server.async.ng.impl.ParserUtils;
+import sk.hudak.pricecomparator.server.utils.DateUtils;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -33,22 +35,28 @@ public class MallProductParser extends AbstractEshopProductParserNg {
     }
 
     @Override
-    protected String parseProductName(Document document) {
-        return null;
-    }
-
-    @Override
     protected ProductAction parseAction(Document document) {
-        Elements elements3 = document.select("em[class=label label--action");
-        if (!elements3.isEmpty()) {
-            return ProductAction.IN_ACTION;
-        } else {
-            return ProductAction.NON_ACTION;
-        }
+        return ParserUtils.existElement(document, "em[class=label label--action")
+                ? ProductAction.IN_ACTION
+                : ProductAction.NON_ACTION;
     }
 
     @Override
     protected Date parseActionValidity(Document document) {
+        Elements select = document.select("p[class=mb-5]");
+        if (select.isEmpty()) {
+            return null;
+        }
+        Element element = select.get(0);
+        StringBuilder sb = new StringBuilder(element.html());
+        sb.delete(0, sb.indexOf("do") + 3);
+        sb.delete(10, sb.length());
+        return DateUtils.parseDate(sb.toString(), DateUtils.DATE_FORMAT_HH_MM_YYYY);
+    }
+
+    @Override
+    protected String parseProductName(Document document) {
+        //TODO
         return null;
     }
 }
