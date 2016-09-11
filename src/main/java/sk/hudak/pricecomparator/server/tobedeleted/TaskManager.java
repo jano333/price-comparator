@@ -21,48 +21,6 @@ public class TaskManager {
 
         taskList = new ArrayList<>();
 
-//        taskList.add(new AlzaProductInfoDownloaderTask(service));
-//        taskList.add(new AndreaEshopProductInfoDownloaderTask(service));
-//        taskList.add(new AmdDrogeriaProductInfoDownloaderTask(service));
-
-//        taskList.add(new BabetkovoProductInfoDownloaderTask(service));
-//        taskList.add(new BambinoProductInfoDownloaderTask(service));
-        taskList.add(new BelmedikaEshopProductInfoDownloaderTask(service));
-        taskList.add(new BugyEshopProductInfoDownloaderTask(service));
-
-        taskList.add(new CkdMarketProductInfoDownloaderTask(service));
-
-        taskList.add(new DrMaxProductInfoDownloaderTask(service));
-        taskList.add(new DrogeriaVmdProductInfoDowlnoaderTask(service));
-
-        taskList.add(new EsoDrogeriaProductInfoDownloaderTask(service));
-
-//        taskList.add(new FeedoProductInfoDownloaderTask(service));
-
-        taskList.add(new HejProductInfoDownloaderTask(service));
-
-        // hravo zdravo je nedostupne
-//        taskList.add(new HravoZdravoProductInfoDownloaderTask(service));
-
-        taskList.add(new InternetovaLekarenProductInfoDownloaderTask(service));
-
-        taskList.add(new K24ProductInfoDownloaderTask(service));
-
-        taskList.add(new LekarenBellaProductInfoDownloaderTask(service));
-
-//        taskList.add(new MallProductInfoDownloaderTask(service));
-//        taskList.add(new MetroProductInfoDownloaderTask(service));
-
-//        taskList.add(new NovaLekarenProductInfoDownloaderTask(service));
-
-//        taskList.add(new PerinbabaProductInfoDownloaderTask(service));
-//        taskList.add(new PilulkaProductInfoDownloaderTask(service));
-
-//        taskList.add(new SemistorProductInfoDownloaderTask(service));
-//        taskList.add(new ShoppieProductInfoDownloaderTask(service));
-
-
-//        taskList.add(new TescoProductInfoDownloaderTask(service));
     }
 
     public void startDownloading() {
