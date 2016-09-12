@@ -1,8 +1,6 @@
 package sk.parser;
 
-import sk.hudak.pricecomparator.server.tobedeleted.EshopProductInfo;
 import sk.hudak.pricecomparator.server.tobedeleted.ParserInputData;
-import sk.hudak.pricecomparator.server.tobedeleted.TescoEshopProductParser;
 
 /**
  * Created by jan on 24. 4. 2016.
@@ -23,8 +21,8 @@ public class TescoEshopProductParserTest {
 //                "https://potravinydomov.itesco.sk/groceries/sk-SK/products/2002016675461");
                 "https://potravinydomov.itesco.sk/groceries/sk-SK/products/2002121104955");
 
-        TescoEshopProductParser parser = new TescoEshopProductParser();
-        EshopProductInfo productInfo = parser.getProductInfo(parserInputData);
-        System.out.println(productInfo.getProductNameInEhop());
+//        TescoEshopProductParser parser = new TescoEshopProductParser();
+//        EshopProductInfo productInfo = parser.getProductInfo(parserInputData);
+//        System.out.println(productInfo.getProductNameInEhop());
     }
 }

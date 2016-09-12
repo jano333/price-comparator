@@ -32,17 +32,20 @@ public class BambinoProductParser extends AbstractEshopProductParserNg {
     }
 
     @Override
-    protected String parseProductName(Document document) {
-        return null;
-    }
-
-    @Override
     protected ProductAction parseAction(Document document) {
-        return null;
+        //TODO testnut... ci je to tak
+        return ParserUtils.existElement(document, "div[class=badge badge--discount]")
+                ? ProductAction.IN_ACTION
+                : ProductAction.NON_ACTION;
     }
 
     @Override
     protected Date parseActionValidity(Document document) {
+        return ACTION_VALIDITY_NOT_DEFINE;
+    }
+
+    @Override
+    protected String parseProductName(Document document) {
         return null;
     }
 }

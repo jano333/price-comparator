@@ -36,8 +36,10 @@ public enum EshopType {
 
     LEKAREN_BELLA,
 
+    MADERNA,
     MALL,
     METRO,
+    MOJA_LEKAREN,
 
     NOVA_LEKAREN,
 
