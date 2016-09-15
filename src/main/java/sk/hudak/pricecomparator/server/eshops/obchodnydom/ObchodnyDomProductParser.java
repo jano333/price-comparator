@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.server.eshops.bambino;
+package sk.hudak.pricecomparator.server.eshops.obchodnydom;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -10,30 +10,35 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * Created by jan on 11. 8. 2016.
+ * Created by jan on 15. 9. 2016.
  */
-public class BambinoProductParser extends AbstractEshopProductParserNg {
+public class ObchodnyDomProductParser extends AbstractEshopProductParserNg {
 
     @Override
     protected boolean isProductUnavailable(Document document) {
-        return ParserUtils.notExistElement(document, "button[class=button button--primary add-to-cart]");
+        return ParserUtils.notExistElement(document, "form#price3 input[type=\"submit\"]");
     }
 
     @Override
     protected BigDecimal parsePriceForPackage(Document document) {
-        //cena
-        Elements elements = document.select("strong[itemprop=price]");
-        StringBuffer sb = new StringBuffer(elements.get(0).text());
-        sb = sb.deleteCharAt(0);
-        sb = sb.deleteCharAt(0);
-        final String cenaZaBalenie = sb.toString().replace(",", ".");
-
-        return new BigDecimal(cenaZaBalenie);
+        //najprv akciovu cenu ak existuje
+        Elements elements = document.select("div#akcni strong span");
+        String text = null;
+        if (elements.isEmpty()) {
+            // bezna cena
+            elements = document.select("div#cenaa strong");
+            text = elements.get(0).text();
+            text = ParserUtils.removeLastCharacters(text, 2);
+        } else {
+            text = elements.get(0).text();
+        }
+        text = ParserUtils.replaceAllCommaForDot(text);
+        return new BigDecimal(text);
     }
 
     @Override
     protected ProductAction parseAction(Document document) {
-        return ParserUtils.existElement(document, "div[class=badge badge--discount]")
+        return ParserUtils.existElement(document, "div#akcni strong span")
                 ? ProductAction.IN_ACTION
                 : ProductAction.NON_ACTION;
     }
@@ -45,7 +50,6 @@ public class BambinoProductParser extends AbstractEshopProductParserNg {
 
     @Override
     protected String parseProductName(Document document) {
-        //TODO
         return null;
     }
 }

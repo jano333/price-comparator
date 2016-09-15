@@ -23,9 +23,11 @@ import sk.hudak.pricecomparator.server.eshops.internetovalekaren.InternetovaLeka
 import sk.hudak.pricecomparator.server.eshops.lekarenbella.LekarenBellaProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.maderna.MadernaProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.mall.MallProductDownloaderTask;
+import sk.hudak.pricecomparator.server.eshops.market24.Market24ProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.metro.MetroProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.mojalekaren.MojalekarenProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.novalekaren.NovaLekarenProductDownloaderTask;
+import sk.hudak.pricecomparator.server.eshops.obchodnydom.ObchodnyDomProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.perinbaba.PerinbabaProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.pilulka.PilulkaProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.semistor.SemiltonProductDownloaderTask;
@@ -97,10 +99,13 @@ public class EshopTaskManager {
         // M
         manager.registerEshopTask(new MadernaProductDownloaderTask());
         manager.registerEshopTask(new MallProductDownloaderTask());
+        manager.registerEshopTask(new Market24ProductDownloaderTask());
         manager.registerEshopTask(new MetroProductDownloaderTask());
         manager.registerEshopTask(new MojalekarenProductDownloaderTask());
         // N
         manager.registerEshopTask(new NovaLekarenProductDownloaderTask());
+        // O
+        manager.registerEshopTask(new ObchodnyDomProductDownloaderTask());
         // P
         manager.registerEshopTask(new PerinbabaProductDownloaderTask());
         manager.registerEshopTask(new PilulkaProductDownloaderTask());

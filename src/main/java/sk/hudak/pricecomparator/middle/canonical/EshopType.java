@@ -37,11 +37,14 @@ public enum EshopType {
     LEKAREN_BELLA,
 
     MADERNA,
+    MARKET24,
     MALL,
     METRO,
     MOJA_LEKAREN,
 
     NOVA_LEKAREN,
+
+    OBCHODNY_DOM,
 
     PERINBABA,
     PILULKA,
