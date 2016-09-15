@@ -28,6 +28,7 @@ public enum EshopType {
     GIGA_LEKARNA,
 
     HEJ,
+    //FIXME hravo zdravo uz nie je je nieco ine...
     HRAVO_ZDRAVO,
 
     INTERNETOVA_LEKAREN,
