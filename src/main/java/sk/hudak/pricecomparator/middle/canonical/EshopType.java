@@ -53,5 +53,5 @@ public enum EshopType {
     SEMILTON,
     SHOPPIE,
 
-    TESCO;
+    TESCO, RETROGERIA;
 }
