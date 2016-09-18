@@ -17,7 +17,8 @@ public class AlzaProductParser extends AbstractEshopProductParserNg {
 
     @Override
     protected boolean isProductUnavailable(Document document) {
-        return ParserUtils.notExistElement(document, "a[class=cart-insert]");
+        return ParserUtils.notExistElement(document, "a[class=cart-insert]")
+                &&ParserUtils.notExistElement(document, "a[class=btnx normal green buy]");
     }
 
     @Override

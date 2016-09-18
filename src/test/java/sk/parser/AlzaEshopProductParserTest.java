@@ -13,10 +13,10 @@ import java.math.BigDecimal;
 public class AlzaEshopProductParserTest {
     public static void main(String[] args) {
         EshopParserRequestNg parserInputData = new EshopParserRequestNg()
-                .setCountOfItemInOnePackage(80)
-                .setUnit(Unit.DAVKA)
+                .setCountOfItemInOnePackage(1)
+                .setUnit(Unit.KUS)
                 .setCountOfUnit(new BigDecimal(1))
-                .setEshopProductPage("https://www.alza.sk/maxi/ariel-mountain-spring-6-kg-80-pranie-d2643269.htm");
+                .setEshopProductPage("https://www.alza.sk/maxi/philips-avent-elektronicka-odsavacka-natural-d4191492.htm");
 
         AlzaProductParser parser = new AlzaProductParser();
         EshopParserResponseNg productInfo = parser.parseEshopProductInfo(parserInputData);
