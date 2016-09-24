@@ -61,22 +61,39 @@ public class ProductInEshopFacade extends JefFacade {
         return productInEshopDao.create(entity);
     }
 
-    public void updateProductInEshopPrice(ProductInEshopPriceUpdateDto updateDto) {
-        val.notNull(updateDto, "updateDto is null");
-        val.notNull(updateDto.getId(), "id is null");
+    public void updateProductInEshopPrice(ProductInEshopPriceUpdateDto priceUpdateDto) {
+        val.notNull(priceUpdateDto, "priceUpdateDto is null");
+        val.notNull(priceUpdateDto.getId(), "id is null");
 
         //TODO validacie
 
-        ProductInEshopEntity entity = productInEshopDao.readMandatory(updateDto.getId());
-        entity.setProductAction(updateDto.getProductAction());
-        entity.setActionValidTo(updateDto.getActionValidTo());
-        entity.setPriceForUnit(updateDto.getPriceForUnit());
-        entity.setPriceForPackage(updateDto.getPriceForPackage());
-        entity.setPriceForOneItemInPackage(updateDto.getPriceForOneItemInPackage());
+        ProductInEshopEntity entity = productInEshopDao.readMandatory(priceUpdateDto.getId());
+        entity.setProductAction(priceUpdateDto.getProductAction());
+        entity.setActionValidTo(priceUpdateDto.getActionValidTo());
+        entity.setPriceForUnit(priceUpdateDto.getPriceForUnit());
+        entity.setPriceForPackage(priceUpdateDto.getPriceForPackage());
+        entity.setPriceForOneItemInPackage(priceUpdateDto.getPriceForOneItemInPackage());
         //TODO ako jeden
         entity.setLastUpdatedPrice(new Date());
+        // nastavenie best price
+        if (notExistBestPrice(entity)) {
+            entity.setBestPrice(priceUpdateDto.getPriceForPackage());
+        } else {
+            if (isBestPriceGreaterThanActualPriceForPackage(priceUpdateDto, entity)) {
+                // nastav lepsiu cenu
+                entity.setBestPrice(priceUpdateDto.getPriceForPackage());
+            }
+        }
 
         productInEshopDao.update(entity);
+    }
+
+    private boolean isBestPriceGreaterThanActualPriceForPackage(ProductInEshopPriceUpdateDto priceUpdateDto, ProductInEshopEntity entity) {
+        return entity.getBestPrice().compareTo(priceUpdateDto.getPriceForPackage()) > 0;
+    }
+
+    private boolean notExistBestPrice(ProductInEshopEntity entity) {
+        return entity.getBestPrice() == null;
     }
 
 

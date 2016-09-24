@@ -63,6 +63,10 @@ public class ProductInEshopEntity extends BasicEntity {
     @Column(name = "LAST_UPDATED_PRICE")
     private Date lastUpdatedPrice;
 
+    //TODO bude tu cena za balik? alebo jednotkova cena? asi za balik aby som mal prehlad...
+    @Column(name = "BEST_PRICE")
+    private BigDecimal bestPrice;
+
     @Override
     public Long getId() {
         return id;
@@ -151,5 +155,13 @@ public class ProductInEshopEntity extends BasicEntity {
 
     public void setLastUpdatedPrice(Date lastUpdatedPrice) {
         this.lastUpdatedPrice = lastUpdatedPrice;
+    }
+
+    public BigDecimal getBestPrice() {
+        return bestPrice;
+    }
+
+    public void setBestPrice(BigDecimal bestPrice) {
+        this.bestPrice = bestPrice;
     }
 }

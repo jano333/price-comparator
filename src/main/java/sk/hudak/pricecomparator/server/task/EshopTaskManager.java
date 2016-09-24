@@ -34,7 +34,6 @@ import sk.hudak.pricecomparator.server.eshops.retrogeria.RetrogeriaProductDownlo
 import sk.hudak.pricecomparator.server.eshops.semistor.SemiltonProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.shoppie.ShoppieProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.tesco.TescoProductDownloaderTask;
-import sk.hudak.pricecomparator.server.tobedeleted.TaskManager;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -50,18 +49,12 @@ public class EshopTaskManager {
     @Inject
     private PriceComparatorService service;
 
-    private TaskManager taskManager;
-
     @PostConstruct
     public void init() {
         System.out.println("init call");
 
         // custom ssl to ignore SSL check for specific domains
         JefSslManager.getInstance().init();
-
-//        taskManager = new TaskManager();
-//        taskManager.initTaks(service);
-//        taskManager.startDownloading();
 
         EshopTaskManagerNg manager = new EshopTaskManagerImpNg(service);
 
@@ -128,6 +121,6 @@ public class EshopTaskManager {
     public void destroy() {
         System.out.println("Destroy call");
 
-        taskManager.stopDownloading();
+//        taskManager.stopDownloading();
     }
 }
