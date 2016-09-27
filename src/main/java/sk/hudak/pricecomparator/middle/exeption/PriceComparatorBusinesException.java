@@ -10,6 +10,7 @@ public class PriceComparatorBusinesException extends Exception {
     public PriceComparatorBusinesException(String msgCode) {
         super(msgCode);
     }
+
     public PriceComparatorBusinesException(String msgCode, String... params) {
         super(msgCode);
         this.params = params;

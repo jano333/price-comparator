@@ -200,6 +200,23 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
     }
 
     @Override
+    @Transactional
+    public void updateProductInEshop(ProductInEshopUpdateDto updateDto) throws PriceComparatorBusinesException {
+        logger.debug(">> updateProductInEshop");
+        productInEshopService.updateProductInEshop(updateDto);
+        logger.debug(">> updateProductInEshop");
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public ProductInEshopDto getProductInEshop(Long productInEshopId) {
+        logger.debug(">> getProductInEshop");
+        ProductInEshopDto result = productInEshopService.getProductInEshop(productInEshopId);
+        logger.debug("<< getProductInEshop");
+        return result;
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public PageList<ResponseDto> findProductInEshopsForProductIds(ProductIdsFindDto productIdsFindDto) {
         return productInEshopService.findProductInEshopsForProductIds(productIdsFindDto);
@@ -279,10 +296,10 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
 
     @Override
     @Transactional
-    public void updateProductInEshopPrice(ProductInEshopPriceUpdateDto updateDto) {
-        logger.debug(">> updateProductInEshopPrice");
-        productInEshopService.updateProductInEshopPrice(updateDto);
-        logger.debug("<< updateProductInEshopPrice");
+    public void updatePriceOfProductInEshop(ProductInEshopPriceUpdateDto updatePriceDto) {
+        logger.debug(">> updatePriceOfProductInEshop");
+        productInEshopService.updatePriceOfProductInEshop(updatePriceDto);
+        logger.debug("<< updatePriceOfProductInEshop");
     }
 
 
@@ -356,6 +373,15 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
         PageList<EshopWithoutProductListDto> resutl = productInEshopService.findEshopWithoutProduct(findDto);
         logger.debug("<< findEshopWithoutProduct");
         return resutl;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public ProductInEshopPriceInfoListDto getProductInEhopPriceInfoListDto(Long productInEshopId) {
+        logger.debug(">> getProductInEhopPriceInfoListDto");
+        ProductInEshopPriceInfoListDto result = productInEshopService.getProductInEhopPriceInfoListDto(productInEshopId);
+        logger.debug("<< getProductInEhopPriceInfoListDto");
+        return result;
     }
 
     // --------- GROUP_OF_PRODUCTS ------------

@@ -58,6 +58,23 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
     }
 
     @Override
+    public void updateProductInEshop(ProductInEshopUpdateDto updateDto) throws PriceComparatorBusinesException {
+        productInEshopFacade.updateProductInEshop(updateDto);
+    }
+
+    @Override
+    public ProductInEshopDto getProductInEshop(Long productInEshopId) {
+        return productInEshopAssembler.transformToProductInEshopDto(
+                productInEshopDao.readMandatory(productInEshopId));
+    }
+
+    @Override
+    public ProductInEshopPriceInfoListDto getProductInEhopPriceInfoListDto(Long productInEshopId) {
+        return productInEshopAssembler.transformToProductInEshopPriceInfoListDto(
+                productInEshopDao.readMandatory(productInEshopId));
+    }
+
+    @Override
     public PageList<ProductInEshopPriceInfoListDto> findProductsInEshopPriceInfo(ProductInEshopFindDto findDto) {
         PageList<ProductInEshopEntity> productInEshopEntities = productInEshopDao.findProductsInEshop(findDto);
         return productInEshopAssembler.transformToPageListOfProductInEshopPriceInfoListDto(productInEshopEntities);
@@ -187,8 +204,8 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
     }
 
     @Override
-    public void updateProductInEshopPrice(ProductInEshopPriceUpdateDto updateDto) {
-        productInEshopFacade.updateProductInEshopPrice(updateDto);
+    public void updatePriceOfProductInEshop(ProductInEshopPriceUpdateDto updatePriceDto) {
+        productInEshopFacade.updateProductInEshopPrice(updatePriceDto);
     }
 
     @Override
@@ -223,8 +240,8 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
 
         ProductInEshopDto result = new ProductInEshopDto();
         result.setId(productInEshopId);
-        result.setProductId(productId);
-        result.setEshopId(eshopEntity.getId());
+        result.setProductId(new ProductIdNameDto(productId, createProductDto.getName()));
+        result.setEshopId(eshopAssembler.transformToEshopIdNameDto(eshopEntity));
         result.setEshopProductPage(stepTwoRequestDto.getProductUrl());
         return result;
     }
@@ -234,7 +251,7 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
 
         List<EshopEntity> eshopsWithoutProduct = productInEshopDao.findEshopsWithoutProduct(filter.getProductId());
 //        return eshopAssembler.transformToListOfEshopListDto(eshopsWithoutProduct);
-
+        //TODO
         return null;
     }
 

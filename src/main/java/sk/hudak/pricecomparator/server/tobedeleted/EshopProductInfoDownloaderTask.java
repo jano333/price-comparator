@@ -72,7 +72,7 @@ public abstract class EshopProductInfoDownloaderTask implements Runnable {
             stopTask();
             return;
         }
-        ProductDto product = service.getProductById(productForUpdate.getProductId());
+        ProductDto product = service.getProductById(productForUpdate.getProductId().getId());
 
         // 2. preklopenie
         ParserInputData parserInputData = transformToParserInputData(productForUpdate, product);
@@ -84,7 +84,7 @@ public abstract class EshopProductInfoDownloaderTask implements Runnable {
         ProductInEshopPriceUpdateDto updateDto = transfromToProductInEshopPriceUpdateDto(productForUpdate.getId(), productInfo);
 
         // 5. ulozenie do DB
-        service.updateProductInEshopPrice(updateDto);
+        service.updatePriceOfProductInEshop(updateDto);
     }
 
     /**

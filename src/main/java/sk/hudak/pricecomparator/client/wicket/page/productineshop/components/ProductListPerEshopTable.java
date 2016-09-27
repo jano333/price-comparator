@@ -4,6 +4,7 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.*;
 import org.apache.wicket.markup.html.link.ExternalLink;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
@@ -15,6 +16,7 @@ import sk.hudak.pricecomparator.client.wicket.component.common.IdListView;
 import sk.hudak.pricecomparator.client.wicket.component.table.PagingInfoPanel;
 import sk.hudak.pricecomparator.client.wicket.component.table.Table;
 import sk.hudak.pricecomparator.client.wicket.component.table.column.*;
+import sk.hudak.pricecomparator.client.wicket.page.productineshop.ProductInEshopUpdatePage;
 import sk.hudak.pricecomparator.middle.canonical.ProductAction;
 import sk.hudak.pricecomparator.middle.canonical.Unit;
 import sk.hudak.pricecomparator.middle.to.EshopIdNameDto;
@@ -99,7 +101,6 @@ public class ProductListPerEshopTable extends Panel {
         filterForm.add(new PagingInfoPanel("infoPaging", filter, tableModel));
 
         Table<ProductInEshopPriceInfoListDto> table = new Table<ProductInEshopPriceInfoListDto>("table", filter, tableModel) {
-            private static final long serialVersionUID = 1L;
 
             @Override
             protected Serializable getObjectId(ProductInEshopPriceInfoListDto dto) {
@@ -108,8 +109,7 @@ public class ProductListPerEshopTable extends Panel {
 
             @Override
             protected ProductInEshopPriceInfoListDto loadLazyById(Serializable id) {
-                //TODO
-                return new ProductInEshopPriceInfoListDto();
+                return PriceComparatorApplication.getApi().getProductInEhopPriceInfoListDto((Long)id);
             }
 
             @Override
@@ -145,11 +145,22 @@ public class ProductListPerEshopTable extends Panel {
 
                 Label lastUpdatedPrice = new Label("lastUpdatedPrice", new PropertyModel<String>(product, ProductInEshopPriceInfoListDto.AT_LAST_UPDATED_PRICE));
 
+                //actions
+                Link<ProductInEshopPriceInfoListDto> productInEshopUpdate = new Link<ProductInEshopPriceInfoListDto>("productInEshopUpdate", product) {
+                    @Override
+                    public void onClick() {
+                        setResponsePage(ProductInEshopUpdatePage.class,
+                                WU.param(ProductInEshopUpdatePage.PARAM_PRODUCT_IN_ESHOP_ID, getModelObject().getId()));
+                    }
+                };
+
                 WebMarkupContainer tr = new WebMarkupContainer("tr");
                 tr.add(productImageLink, productName,
                         priceForPackage, priceForOneItemInPackage, priceForUnit,
                         productAction, actionValidTo,
                         lastUpdatedPrice);
+                //actions
+                tr.add(productInEshopUpdate);
 
                 item.add(tr);
             }

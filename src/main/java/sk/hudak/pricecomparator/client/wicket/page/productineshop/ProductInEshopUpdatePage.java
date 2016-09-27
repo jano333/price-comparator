@@ -9,50 +9,51 @@ import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import sk.hudak.pricecomparator.client.wicket.PriceComparatorApplication;
-import sk.hudak.pricecomparator.client.wicket.WU;
-import sk.hudak.pricecomparator.client.wicket.page.CreatePageMarker;
 import sk.hudak.pricecomparator.client.wicket.page.common.LayoutPage;
 import sk.hudak.pricecomparator.middle.to.EshopIdNameDto;
 import sk.hudak.pricecomparator.middle.to.ProductIdNameDto;
-import sk.hudak.pricecomparator.middle.to.ProductInEshopCreateDto;
+import sk.hudak.pricecomparator.middle.to.ProductInEshopDto;
+import sk.hudak.pricecomparator.middle.to.ProductInEshopUpdateDto;
 
 import java.util.List;
 
 /**
- * Created by jan on 1. 4. 2016.
+ * Created by jan on 12. 8. 2016.
  */
-public class ProductInEshopCreatePage extends LayoutPage implements CreatePageMarker {
+public class ProductInEshopUpdatePage extends LayoutPage {
 
-    public static final transient String PARAM_ESHOP_ID = "eshopId";
-
-    private ProductInEshopCreateDto createDto = new ProductInEshopCreateDto();
+    public static final transient String PARAM_PRODUCT_IN_ESHOP_ID = "productInEshopId";
 
     private EshopIdNameDto selectedEshop;
     private ProductIdNameDto selectedProduct;
+    private String eshopProductPage;
 
-    public ProductInEshopCreatePage() {
-        this(new PageParameters());
-    }
+    public ProductInEshopUpdatePage(PageParameters params) {
+        final Long productInEshopId = params.get(PARAM_PRODUCT_IN_ESHOP_ID).toLongObject();
 
-    public ProductInEshopCreatePage(PageParameters params) {
-        initSelectedEshop(params);
-        initSelectedProduct(params);
+        ProductInEshopDto productInEshop = PriceComparatorApplication.getApi().getProductInEshop(productInEshopId);
+        selectedEshop = productInEshop.getEshopId();
+        selectedProduct = productInEshop.getProductId();
+        eshopProductPage = productInEshop.getEshopProductPage();
 
         add(new FeedbackPanel("feedback"));
 
-        // filter
         Form<Void> form = new Form<Void>("form") {
             @Override
             protected void onSubmit() {
                 try {
-                    createDto.setProductId(selectedProduct.getId());
-                    createDto.setEshopId(selectedEshop.getId());
-                    PriceComparatorApplication.getApi().createProductInEshop(createDto);
+                    ProductInEshopUpdateDto updateDto = new ProductInEshopUpdateDto();
+                    updateDto.setId(productInEshopId);
+                    updateDto.setProductId(selectedProduct.getId());
+                    updateDto.setEshopId(selectedEshop.getId());
+                    updateDto.setEshopProductPage(eshopProductPage);
 
-                    createDto = new ProductInEshopCreateDto();
+                    PriceComparatorApplication.getApi().updateProductInEshop(updateDto);
+
                     setResponsePage(ProductListPerEshopPage.class);
 
                 } catch (Exception e) {
+                    //TODO
                     e.printStackTrace();
                 }
             }
@@ -88,35 +89,8 @@ public class ProductInEshopCreatePage extends LayoutPage implements CreatePageMa
         form.add(eshop);
 
         TextField<String> productEshopPageUrl = new TextField<>("productEshopPageUrl",
-                new PropertyModel<String>(createDto, ProductInEshopCreateDto.AT_ESHOP_PRODUCT_PAGE));
+                new PropertyModel<String>(this, "eshopProductPage"));
         productEshopPageUrl.setRequired(true);
         form.add(productEshopPageUrl);
-    }
-
-    private void initSelectedEshop(PageParameters params) {
-        Long eshopId = WU.paramAsLong(params, PARAM_ESHOP_ID);
-        if (eshopId != null) {
-            selectedEshop = PriceComparatorApplication.getApi().getEshopIdNameById(eshopId);
-        }
-    }
-
-    private void initSelectedProduct(PageParameters params) {
-        //TODO
-    }
-
-    public ProductIdNameDto getSelectedProduct() {
-        return selectedProduct;
-    }
-
-    public void setSelectedProduct(ProductIdNameDto selectedProduct) {
-        this.selectedProduct = selectedProduct;
-    }
-
-    public EshopIdNameDto getSelectedEshop() {
-        return selectedEshop;
-    }
-
-    public void setSelectedEshop(EshopIdNameDto selectedEshop) {
-        this.selectedEshop = selectedEshop;
     }
 }

@@ -2,6 +2,8 @@ package sk.hudak.pricecomparator.server.domain.assembler;
 
 import sk.hudak.jef.PageList;
 import sk.hudak.pricecomparator.middle.to.*;
+import sk.hudak.pricecomparator.server.domain.model.EshopEntity;
+import sk.hudak.pricecomparator.server.domain.model.ProductEntity;
 import sk.hudak.pricecomparator.server.domain.model.ProductInEshopEntity;
 import sk.hudak.pricecomparator.server.utils.ImageUtils;
 
@@ -61,8 +63,10 @@ public class ProductInEshopAssembler {
         }
         ProductInEshopDto result = new ProductInEshopDto();
         result.setId(entity.getId());
-        result.setEshopId(entity.getEshop().getId());
-        result.setProductId(entity.getProduct().getId());
+        EshopEntity eshop = entity.getEshop();
+        result.setEshopId(new EshopIdNameDto(eshop.getId(), eshop.getName()));
+        ProductEntity product = entity.getProduct();
+        result.setProductId(new ProductIdNameDto(product.getId(), product.getName()));
         result.setEshopProductPage(entity.getProductPageInEshop());
 
         return result;
@@ -132,7 +136,7 @@ public class ProductInEshopAssembler {
         return result;
     }
 
-    private ProductInEshopPriceInfoListDto transformToProductInEshopPriceInfoListDto(ProductInEshopEntity entity) {
+    public ProductInEshopPriceInfoListDto transformToProductInEshopPriceInfoListDto(ProductInEshopEntity entity) {
         if (entity == null) {
             return null;
         }
@@ -153,8 +157,6 @@ public class ProductInEshopAssembler {
         if (pictureFile.exists()) {
             result.setPictureFullPath(pictureFile.getAbsolutePath());
         }
-
-
         return result;
     }
 

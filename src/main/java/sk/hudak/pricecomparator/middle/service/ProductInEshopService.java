@@ -16,19 +16,28 @@ import java.util.List;
 public interface ProductInEshopService {
 
     /**
-     * Priradenie produktu do eshopu.
+     * Priradenie existujuceho produktu do existujuceho eshopu.
      *
      * @param createDto
      * @return
      */
     Long createProductInEshop(ProductInEshopCreateDto createDto) throws PriceComparatorBusinesException;
 
-    PageList<ResponseDto> findProductInEshopsForProductIds(ProductIdsFindDto productIdsFindDto);
+
+    void updateProductInEshop(ProductInEshopUpdateDto updateDto) throws PriceComparatorBusinesException;
+
+
+    ProductInEshopDto getProductInEshop(Long productInEshopId);
+
 
     /**
-     * @param updateDto
+     * Aktualizacia ceny a akcie produktu v eshope.
+     *
+     * @param updatePriceDto
      */
-    void updateProductInEshopPrice(ProductInEshopPriceUpdateDto updateDto);
+    void updatePriceOfProductInEshop(ProductInEshopPriceUpdateDto updatePriceDto);
+
+    PageList<ResponseDto> findProductInEshopsForProductIds(ProductIdsFindDto productIdsFindDto);
 
     /**
      * @param productId id produktu, povinne
@@ -72,12 +81,12 @@ public interface ProductInEshopService {
      */
     List<EshopListDto> findEshopsWithoutProduct(Long productId);
 
+
     /**
      * @param productId
      * @return
      */
     List<ProductInEshopListDto> findProductsInEshopByProductId(Long productId);
-
 
     /**
      * @param productId
@@ -90,6 +99,7 @@ public interface ProductInEshopService {
      * @return zoznam produktov v danom eshope
      */
     List<ProductInEshopCustomListDto> findProductsInEshop(Long eshopId);
+
 
     /**
      * @param eshopType
@@ -106,7 +116,6 @@ public interface ProductInEshopService {
      */
     List<ProductInEshopPriceInfoListDto> findProductInEshopPriceInfoForEshop(Long eshopId);
 
-
     /**
      * @param feedo
      * @return null, ak ziaden taky neexistuje
@@ -120,6 +129,7 @@ public interface ProductInEshopService {
     boolean existProductWithGivenUrl(String productUrl);
 
     /**
+     * //TODO tato metoda by mali ist do ineho servisu
      * @param productByUrlRequestDto
      * @return
      * @throws PriceComparatorBusinesException
@@ -133,4 +143,6 @@ public interface ProductInEshopService {
     ProductInEshopDto createNewProductAndAddToEshop(StepTwoRequestDto stepTwoRequestDto) throws PriceComparatorBusinesException;
 
     PageList<EshopWithoutProductListDto> findEshopWithoutProduct(ProductFindDto filter);
+
+    ProductInEshopPriceInfoListDto getProductInEhopPriceInfoListDto(Long productInEshopId);
 }

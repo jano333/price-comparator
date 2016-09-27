@@ -74,7 +74,7 @@ public abstract class AbstractProductDownloaderTaskNg implements EshopTaskNg {
             stopTask();
             return;
         }
-        ProductDto product = service.getProductById(productForUpdate.getProductId());
+        ProductDto product = service.getProductById(productForUpdate.getProductId().getId());
 
         // 2. preklopenie
         EshopParserRequestNg eshopParserRequest = createEshopParserRequestNg(productForUpdate, product);
@@ -86,7 +86,7 @@ public abstract class AbstractProductDownloaderTaskNg implements EshopTaskNg {
         ProductInEshopPriceUpdateDto updateDto = transfromToProductInEshopPriceUpdateDto(productForUpdate.getId(), response);
 
         // 5. ulozenie do DB
-        service.updateProductInEshopPrice(updateDto);
+        service.updatePriceOfProductInEshop(updateDto);
     }
 
     private ProductInEshopPriceUpdateDto transfromToProductInEshopPriceUpdateDto(Long id, EshopParserResponseNg response) {

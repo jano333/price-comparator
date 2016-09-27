@@ -8,8 +8,8 @@ import java.io.Serializable;
 public class ProductInEshopDto implements Serializable {
 
     private Long id;
-    private Long productId;
-    private Long eshopId;
+    private ProductIdNameDto productId;
+    private EshopIdNameDto eshopId;
     private String eshopProductPage;
 
     public Long getId() {
@@ -20,19 +20,19 @@ public class ProductInEshopDto implements Serializable {
         this.id = id;
     }
 
-    public Long getProductId() {
+    public ProductIdNameDto getProductId() {
         return productId;
     }
 
-    public void setProductId(Long productId) {
+    public void setProductId(ProductIdNameDto productId) {
         this.productId = productId;
     }
 
-    public Long getEshopId() {
+    public EshopIdNameDto getEshopId() {
         return eshopId;
     }
 
-    public void setEshopId(Long eshopId) {
+    public void setEshopId(EshopIdNameDto eshopId) {
         this.eshopId = eshopId;
     }
 
