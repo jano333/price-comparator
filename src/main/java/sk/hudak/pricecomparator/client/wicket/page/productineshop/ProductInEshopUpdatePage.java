@@ -18,6 +18,8 @@ import sk.hudak.pricecomparator.middle.to.ProductInEshopUpdateDto;
 import java.util.List;
 
 /**
+ * Produkt v eshope edit page.
+ * <p>
  * Created by jan on 12. 8. 2016.
  */
 public class ProductInEshopUpdatePage extends LayoutPage {
@@ -53,7 +55,7 @@ public class ProductInEshopUpdatePage extends LayoutPage {
                     setResponsePage(ProductListPerEshopPage.class);
 
                 } catch (Exception e) {
-                    //TODO
+                    //TODO vynimka
                     e.printStackTrace();
                 }
             }

@@ -1,15 +1,14 @@
+**************
+https://www.alza.sk/maxi/pampers-premium-care-midi-80-ks-d2430397.htm?o=14
+je to dostupne ale mne hlasi ze to je nedostupne...
+**************
 TOTO zle rata!!!!
 http://www.pilulka.sk/pampers-active-baby-4-maxi-7-14-kg-2x90-ks-180ks-darcek-utierky
-
-
-
-
 **************
 neche mi zktualizovat:
 https://sortiment.metro.sk/sk/nutrilon-2-pronutra-24kg3x800g/226739p/
 podla chrome to je vsetko ok
 ale ked stiahnem tak je tam napisene ze je nedostupny
-
 **************
 [ERROR][28.06 21:54:33][pool-1-thread-18]s.h.p.s.e.m.MetroEshopProductParser: another error while conneting to: https://sortiment.metro.sk/sk/finlandia-vodka-40-1x700ml-/159866p/
 java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
@@ -17,17 +16,13 @@ java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
 	at java.util.ArrayList.get(ArrayList.java:411) ~[na:1.7.0_40]
 	at org.jsoup.select.Elements.get(Elements.java:544) ~[jsoup-1.8.1.jar:na]
 	at sk.hudak.pricecomparator.server.tobedeleted.MetroEshopProductParserOld.parsePrice(MetroEshopProductParser.java:38) ~[classes/:na]
-
 **************
 - [ERROR][28.06 21:52:34][pool-1-thread-13]s.h.p.s.e.h.HejEshopProductParser: another error while conneting to: https://www.hej.sk/dojcenske-mlieko-nutrilon-3-pronutra-800g-v-nabidce-take-vyhodne-6ks-baleni-za-cenu-299-1ks/
 javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
 	at sun.security.ssl.Alerts.getSSLException(Alerts.java:192) ~[na:1.7.0_40]
-
 **************
-
 - vsetky vytvorene entity nemaju created a modified date, a ni sa stym nopocita
 v jednotlivych servicoch
-
 9. BUG:
 - pri vypocitavani ceny nezaokruhlovat(lebo 0.225 ale vysledna cena je za balenie je nizsia pozri 26.94
 Andrea Shop	        0.208 € za jednotku, 	24.90 € za balenie, https://www.andreashop.sk/pampers-premium-care-s3-120-ks-465461

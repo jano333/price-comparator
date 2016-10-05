@@ -29,10 +29,8 @@ public class ProductInEshopFacade extends JefFacade {
 
     @Inject
     private EshopDao eshopDao;
-
     @Inject
     private ProductDao productDao;
-
     @Inject
     private ProductInEshopDao productInEshopDao;
 
