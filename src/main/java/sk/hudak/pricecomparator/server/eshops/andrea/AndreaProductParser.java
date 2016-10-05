@@ -13,9 +13,10 @@ import java.util.Date;
  * Created by jan on 28. 7. 2016.
  */
 public class AndreaProductParser extends AbstractEshopProductParserNg {
+
     @Override
     protected boolean isProductUnavailable(Document document) {
-        return ParserUtils.notExistElement(document, "a[class=btnx normal green buy]");
+        return ParserUtils.notExistElement(document, "a[class=cart-insert]");
     }
 
     @Override
@@ -29,17 +30,17 @@ public class AndreaProductParser extends AbstractEshopProductParserNg {
     }
 
     @Override
-    protected String parseProductName(Document document) {
-        return null;
-    }
-
-    @Override
     protected ProductAction parseAction(Document document) {
         return null;
     }
 
     @Override
     protected Date parseActionValidity(Document document) {
+        return null;
+    }
+
+    @Override
+    protected String parseProductName(Document document) {
         return null;
     }
 }
