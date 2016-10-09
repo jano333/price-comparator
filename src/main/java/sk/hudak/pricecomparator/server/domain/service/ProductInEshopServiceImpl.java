@@ -63,6 +63,11 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
     }
 
     @Override
+    public void deleteProductInEshop(Long productInEshopId) throws PriceComparatorBusinesException {
+        productInEshopFacade.deleteProductInEshop(productInEshopId);
+    }
+
+    @Override
     public ProductInEshopDto getProductInEshop(Long productInEshopId) {
         return productInEshopAssembler.transformToProductInEshopDto(
                 productInEshopDao.readMandatory(productInEshopId));

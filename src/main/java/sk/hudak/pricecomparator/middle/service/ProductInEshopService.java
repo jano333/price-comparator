@@ -18,17 +18,37 @@ public interface ProductInEshopService {
     /**
      * Priradenie existujuceho produktu do existujuceho eshopu.
      *
-     * @param createDto
-     * @return
+     * @param createDto data pre vytvorenie
+     * @return db id novo vytvoreneho produktu v eshope
+     * @throws PriceComparatorBusinesException bussines chyba v pripade zlyhania
      */
     Long createProductInEshop(ProductInEshopCreateDto createDto) throws PriceComparatorBusinesException;
 
-
+    /**
+     * Uprava existujucejho produktu v eshope.
+     *
+     * @param updateDto data pre update
+     * @throws PriceComparatorBusinesException bussines chyba v pripade zlyhania
+     */
     void updateProductInEshop(ProductInEshopUpdateDto updateDto) throws PriceComparatorBusinesException;
 
+    /**
+     * Nacitanie informacii o produkte v eshope.
+     *
+     * @param productInEshopId db id produktu v eshope
+     * @return info o produkte v eshope
+     * @throws PriceComparatorBusinesException bussines chyba v pripade zlyhania
+     */
+    ProductInEshopDto getProductInEshop(Long productInEshopId) throws PriceComparatorBusinesException;
 
-    ProductInEshopDto getProductInEshop(Long productInEshopId);
+    /**
+     * Odmaze dany produkt z eshopu, pricom samotny produkt ani eshop nerusi.
+     *
+     * @param productInEshopId db id produtktu v eshope
+     */
+    void deleteProductInEshop(Long productInEshopId) throws PriceComparatorBusinesException;
 
+    // TODO nizsie prejst co sa pouziva...
 
     /**
      * Aktualizacia ceny a akcie produktu v eshope.
@@ -130,6 +150,7 @@ public interface ProductInEshopService {
 
     /**
      * //TODO tato metoda by mali ist do ineho servisu
+     *
      * @param productByUrlRequestDto
      * @return
      * @throws PriceComparatorBusinesException

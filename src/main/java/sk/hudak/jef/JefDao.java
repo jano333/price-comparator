@@ -43,7 +43,7 @@ public abstract class JefDao<T extends LongIdEntity> {
         return entity.getId();
     }
 
-    protected void delete(T entity) {
+    public void delete(T entity) {
         val.notNull(entity, "entity is null.");
 
         getCurrentSession().delete(entity);

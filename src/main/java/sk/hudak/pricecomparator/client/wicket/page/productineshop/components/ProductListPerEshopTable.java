@@ -19,6 +19,7 @@ import sk.hudak.pricecomparator.client.wicket.component.table.column.*;
 import sk.hudak.pricecomparator.client.wicket.page.productineshop.ProductInEshopUpdatePage;
 import sk.hudak.pricecomparator.middle.canonical.ProductAction;
 import sk.hudak.pricecomparator.middle.canonical.Unit;
+import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
 import sk.hudak.pricecomparator.middle.to.EshopIdNameDto;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopFindDto;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopPriceInfoListDto;
@@ -109,7 +110,7 @@ public class ProductListPerEshopTable extends Panel {
 
             @Override
             protected ProductInEshopPriceInfoListDto loadLazyById(Serializable id) {
-                return PriceComparatorApplication.getApi().getProductInEhopPriceInfoListDto((Long)id);
+                return PriceComparatorApplication.getApi().getProductInEhopPriceInfoListDto((Long) id);
             }
 
             @Override
@@ -153,6 +154,21 @@ public class ProductListPerEshopTable extends Panel {
                                 WU.param(ProductInEshopUpdatePage.PARAM_PRODUCT_IN_ESHOP_ID, getModelObject().getId()));
                     }
                 };
+                Link<ProductInEshopPriceInfoListDto> productInEshopDelete = new Link<ProductInEshopPriceInfoListDto>("productInEshopDelete", product) {
+                    @Override
+                    public void onClick() {
+                        Long productInEshopId = getModelObject().getId();
+                        try {
+                            PriceComparatorApplication.getApi().deleteProductInEshop(productInEshopId);
+                            System.out.println("uspesne odstraneny");
+
+                        } catch (PriceComparatorBusinesException e) {
+                            //TODO
+                            e.printStackTrace();
+                        }
+                    }
+                };
+
 
                 WebMarkupContainer tr = new WebMarkupContainer("tr");
                 tr.add(productImageLink, productName,
@@ -161,6 +177,7 @@ public class ProductListPerEshopTable extends Panel {
                         lastUpdatedPrice);
                 //actions
                 tr.add(productInEshopUpdate);
+                tr.add(productInEshopDelete);
 
                 item.add(tr);
             }

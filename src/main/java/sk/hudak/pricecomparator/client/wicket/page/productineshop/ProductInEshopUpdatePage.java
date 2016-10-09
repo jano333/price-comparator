@@ -10,6 +10,7 @@ import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import sk.hudak.pricecomparator.client.wicket.PriceComparatorApplication;
 import sk.hudak.pricecomparator.client.wicket.page.common.LayoutPage;
+import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
 import sk.hudak.pricecomparator.middle.to.EshopIdNameDto;
 import sk.hudak.pricecomparator.middle.to.ProductIdNameDto;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopDto;
@@ -33,7 +34,13 @@ public class ProductInEshopUpdatePage extends LayoutPage {
     public ProductInEshopUpdatePage(PageParameters params) {
         final Long productInEshopId = params.get(PARAM_PRODUCT_IN_ESHOP_ID).toLongObject();
 
-        ProductInEshopDto productInEshop = PriceComparatorApplication.getApi().getProductInEshop(productInEshopId);
+        ProductInEshopDto productInEshop = null;
+        try {
+            productInEshop = PriceComparatorApplication.getApi().getProductInEshop(productInEshopId);
+        } catch (PriceComparatorBusinesException e) {
+            //TODO
+            e.printStackTrace();
+        }
         selectedEshop = productInEshop.getEshopId();
         selectedProduct = productInEshop.getProductId();
         eshopProductPage = productInEshop.getEshopProductPage();

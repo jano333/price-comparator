@@ -16,7 +16,7 @@ public class MojalekarenProductParser extends AbstractEshopProductParserNg {
 
     @Override
     protected boolean isProductUnavailable(Document document) {
-        return ParserUtils.notExistElement(document, "button[class=\"buy-cz\"]");
+        return ParserUtils.notExistElement(document, "div[class=\"detailProductInformation\"] button[class=\"buy-cz\"]");
     }
 
     @Override

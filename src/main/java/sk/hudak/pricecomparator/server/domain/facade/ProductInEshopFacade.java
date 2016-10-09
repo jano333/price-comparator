@@ -77,6 +77,11 @@ public class ProductInEshopFacade extends JefFacade {
         entity.setProductPageInEshop(updateDto.getEshopProductPage());
     }
 
+    public void deleteProductInEshop(Long productInEshopId) {
+        ProductInEshopEntity productInEshopEntity = productInEshopDao.readMandatory(productInEshopId);
+        productInEshopDao.delete(productInEshopEntity);
+    }
+
     public void updateProductInEshopPrice(ProductInEshopPriceUpdateDto priceUpdateDto) {
         val.notNull(priceUpdateDto, "priceUpdateDto is null");
         val.notNull(priceUpdateDto.getId(), "id is null");

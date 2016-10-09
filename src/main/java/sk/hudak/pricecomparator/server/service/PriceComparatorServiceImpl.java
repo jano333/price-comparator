@@ -209,7 +209,7 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
 
     @Override
     @Transactional(readOnly = true)
-    public ProductInEshopDto getProductInEshop(Long productInEshopId) {
+    public ProductInEshopDto getProductInEshop(Long productInEshopId) throws PriceComparatorBusinesException {
         logger.debug(">> getProductInEshop");
         ProductInEshopDto result = productInEshopService.getProductInEshop(productInEshopId);
         logger.debug("<< getProductInEshop");
@@ -217,9 +217,20 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
     }
 
     @Override
+    @Transactional
+    public void deleteProductInEshop(Long productInEshopId) throws PriceComparatorBusinesException {
+        logger.debug(">> deleteProductInEshop");
+        productInEshopService.deleteProductInEshop(productInEshopId);
+        logger.debug(">> deleteProductInEshop");
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public PageList<ResponseDto> findProductInEshopsForProductIds(ProductIdsFindDto productIdsFindDto) {
-        return productInEshopService.findProductInEshopsForProductIds(productIdsFindDto);
+        logger.debug(">> findProductInEshopsForProductIds");
+        PageList<ResponseDto> productInEshopsForProductIds = productInEshopService.findProductInEshopsForProductIds(productIdsFindDto);
+        logger.debug(">> findProductInEshopsForProductIds");
+        return productInEshopsForProductIds;
     }
 
     @Override
