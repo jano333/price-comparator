@@ -8,11 +8,9 @@ import sk.hudak.pricecomparator.middle.canonical.Unit;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
 import sk.hudak.pricecomparator.middle.to.ProductCreateDto;
-import sk.hudak.pricecomparator.middle.to.ProductListDto;
 
 import javax.inject.Inject;
 import java.math.BigDecimal;
-import java.util.List;
 
 /**
  * Created by jan on 30. 12. 2015.
@@ -39,8 +37,5 @@ public class ProductEntityTest extends AbstractTestNGSpringContextTests {
         }
         Assert.assertNotNull(product);
 
-        List<ProductListDto> allProducts = service.findAllProduct();
-        Assert.assertNotNull(allProducts);
-        Assert.assertTrue(allProducts.get(0) != null);
     }
 }

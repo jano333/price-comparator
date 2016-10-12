@@ -156,19 +156,10 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
 
     @Override
     @Transactional(readOnly = true)
-    public ProductDto getProductById(Long productId) {
-        logger.debug(">> getProductById");
-        ProductDto result = productService.getProductById(productId);
-        logger.debug("<< getProductById");
-        return result;
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public List<ProductListDto> findAllProduct() {
-        logger.debug(">> findAllProduct");
-        List<ProductListDto> result = productService.findAllProduct();
-        logger.debug("<< findAllProduct");
+    public ProductDto getProduct(Long productId) throws PriceComparatorBusinesException {
+        logger.debug(">> getProduct");
+        ProductDto result = productService.getProduct(productId);
+        logger.debug("<< getProduct");
         return result;
     }
 

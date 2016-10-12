@@ -2,6 +2,7 @@ package sk.hudak.pricecomparator.server.async.ng.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
 import sk.hudak.pricecomparator.middle.to.ProductDto;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopDto;
@@ -74,7 +75,14 @@ public abstract class AbstractProductDownloaderTaskNg implements EshopTaskNg {
             stopTask();
             return;
         }
-        ProductDto product = service.getProductById(productForUpdate.getProductId().getId());
+        ProductDto product = null;
+        try {
+            product = service.getProduct(productForUpdate.getProductId().getId());
+
+        } catch (PriceComparatorBusinesException e) {
+            //TODO
+            e.printStackTrace();
+        }
 
         // 2. preklopenie
         EshopParserRequestNg eshopParserRequest = createEshopParserRequestNg(productForUpdate, product);

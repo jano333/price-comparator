@@ -12,27 +12,37 @@ import java.util.List;
 public interface ProductService {
 
     /**
-     * @param createDto
-     * @return
+     * Vytvorenie noveho produktu.
+     *
+     * @param createDto data pre vytvorenie noveho produktu
+     * @return db id novovytvoreneho produtku
+     * @throws PriceComparatorBusinesException bussines chyba v pripade zlyhania
      */
     Long createProduct(ProductCreateDto createDto) throws PriceComparatorBusinesException;
 
     /**
-     * @param updateDto
+     * Update existujuceho produktu.
+     *
+     * @param updateDto data pre update existujuceho produktu
+     * @throws PriceComparatorBusinesException bussines chyba v pripade zlyhania
      */
-    void updateProduct(ProductUpdateDto updateDto)throws PriceComparatorBusinesException;
+    void updateProduct(ProductUpdateDto updateDto) throws PriceComparatorBusinesException;
 
     /**
-     * @param productId
-     * @return
+     * Nacitanie detailov produktu.
+     *
+     * @param productId db id produktu.
+     * @return detaily produktu
      */
-    ProductDto getProductById(Long productId);
+    ProductDto getProduct(Long productId) throws PriceComparatorBusinesException;
+
+    //TODO impl delete
 
     /**
-     * @param productId
+     * @param filter
      * @return
      */
-    ProductIdNameDto getProductIdNameById(Long productId);
+    PageList<ProductListDto> findProducts(ProductFindDto filter);
 
     /**
      * for lazy loading in table...
@@ -43,19 +53,14 @@ public interface ProductService {
     ProductListDto getProductListById(Long productId);
 
     /**
-     * @param filter
+     * @param productId
      * @return
      */
-    PageList<ProductListDto> findProducts(ProductFindDto filter);
+    ProductIdNameDto getProductIdNameById(Long productId);
 
     /**
      * @return
      */
     List<ProductIdNameDto> findAllProductForSelection();
 
-    /**
-     * @return
-     */
-    @Deprecated
-    List<ProductListDto> findAllProduct();
 }

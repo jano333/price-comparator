@@ -29,6 +29,16 @@ public class ProductServiceImpl implements ProductService {
     private ProductAssembler productAssembler;
 
     @Override
+    public Long createProduct(ProductCreateDto createDto) throws PriceComparatorBusinesException {
+        return productFacade.createProduct(createDto);
+    }
+
+    @Override
+    public void updateProduct(ProductUpdateDto updateDto) throws PriceComparatorBusinesException {
+        productFacade.updateProduct(updateDto);
+    }
+
+    @Override
     public List<ProductIdNameDto> findAllProductForSelection() {
         return productAssembler.transformToListOfProductIdNameDto(productDao.findAllProducts());
     }
@@ -45,23 +55,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Long createProduct(ProductCreateDto createDto) throws PriceComparatorBusinesException {
-        return productFacade.createProduct(createDto);
-    }
-
-    @Override
-    public void updateProduct(ProductUpdateDto updateDto) {
-        productFacade.updateProduct(updateDto);
-    }
-
-    @Override
-    public ProductDto getProductById(Long productId) {
+    public ProductDto getProduct(Long productId) {
         return productAssembler.transformToProductDto(productDao.readMandatory(productId));
-    }
-
-    @Override
-    public List<ProductListDto> findAllProduct() {
-        return productAssembler.transformToListOfProductListDto(productDao.findAllProducts());
     }
 
     @Override
