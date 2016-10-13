@@ -20,7 +20,7 @@ public class PriceComparatorErrorCodes {
     public static final String ERR_ESHOP_TYPE_ALLREADY_EXIST = "err-eshop-type-allready-exist";
 
     /**
-     * "Produkt s URL {} uz existuje."
+     * Produkt s URL {} uz existuje.
      */
     public static final String ERR_PRODUCT_WITH_URL_ALLREADY_EXIST = "err-product-with-url-allready-exist";
 }

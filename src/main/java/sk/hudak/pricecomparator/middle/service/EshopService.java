@@ -18,23 +18,15 @@ public interface EshopService {
      */
     Long createEshop(EshopCreateDto createDto) throws PriceComparatorBusinesException;
 
-    /**
-     * @param eshopId
-     * @return
-     */
-    EshopDto getEshopById(Long eshopId);
+    //TODO UPDATE
 
     /**
      * @param eshopId
      * @return
      */
-    EshopListDto getEshopListById(Long eshopId);
+    EshopDto getEshop(Long eshopId);
 
-    /**
-     * @param eshopId
-     * @return
-     */
-    EshopIdNameDto getEshopIdNameById(Long eshopId);
+    //TODO DELETE
 
     /**
      * @param findDto
@@ -43,9 +35,12 @@ public interface EshopService {
     PageList<EshopListDto> findEshops(EshopFindDto findDto);
 
     /**
+     * Table lazy loading
+     *
+     * @param eshopId
      * @return
      */
-    List<EshopHomePageInfoDto> findAllHomePages();
+    EshopListDto getEshopListById(Long eshopId);
 
     /**
      * @return
@@ -53,8 +48,15 @@ public interface EshopService {
     List<EshopIdNameDto> findAllEshopsForSelection();
 
     /**
+     * @param eshopId
      * @return
      */
-    @Deprecated
-    List<EshopListDto> findAllEshops();
+    EshopIdNameDto getEshopIdNameById(Long eshopId);
+
+    /**
+     * @return
+     */
+    List<EshopHomePageInfoDto> findAllHomePages();
+
+
 }

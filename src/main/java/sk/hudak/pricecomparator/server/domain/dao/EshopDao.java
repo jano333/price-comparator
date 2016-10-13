@@ -54,6 +54,7 @@ public class EshopDao extends JefDao<EshopEntity> {
         return !cr.list().isEmpty();
     }
 
+    @Deprecated
     public List<EshopEntity> findAllEshops() {
         Criteria crit = createCriteria(EshopEntity.class);
         addAscOrder(crit, EshopEntity.AT_NAME);

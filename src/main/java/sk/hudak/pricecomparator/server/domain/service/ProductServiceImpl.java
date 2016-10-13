@@ -7,7 +7,6 @@ import sk.hudak.pricecomparator.middle.to.*;
 import sk.hudak.pricecomparator.server.domain.assembler.ProductAssembler;
 import sk.hudak.pricecomparator.server.domain.dao.ProductDao;
 import sk.hudak.pricecomparator.server.domain.facade.ProductFacade;
-import sk.hudak.pricecomparator.server.domain.model.ProductEntity;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -39,8 +38,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductIdNameDto> findAllProductForSelection() {
-        return productAssembler.transformToListOfProductIdNameDto(productDao.findAllProducts());
+    public ProductDto getProduct(Long productId) {
+        return productAssembler.transformToProductDto(productDao.readMandatory(productId));
     }
 
     @Override
@@ -49,14 +48,13 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductListDto getProductListById(Long productId) {
-        ProductEntity productEntity = productDao.readMandatory(productId);
-        return productAssembler.transformToProductListDto(productEntity);
+    public List<ProductIdNameDto> findAllProductForSelection() {
+        return productAssembler.transformToListOfProductIdNameDto(productDao.findAllProducts());
     }
 
     @Override
-    public ProductDto getProduct(Long productId) {
-        return productAssembler.transformToProductDto(productDao.readMandatory(productId));
+    public ProductListDto getProductListById(Long productId) {
+        return productAssembler.transformToProductListDto(productDao.readMandatory(productId));
     }
 
     @Override

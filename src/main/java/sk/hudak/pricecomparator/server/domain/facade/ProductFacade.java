@@ -31,16 +31,21 @@ public class ProductFacade extends JefFacade {
 
     public Long createProduct(ProductCreateDto createDto) throws PriceComparatorBusinesException {
         val.notNull(createDto, "createDto is null");
+
         val.notNullAndNotEmpty(createDto.getName(), "name is null or empty");
         val.maxLength(createDto.getName(), 255, "name is longer than 255 chars");
-        val.notNull(createDto.getUnit(), "unit is null");
-        val.notNull(createDto.getCountOfUnit(), "countOfUnit is null");
-        val.greaterThanZero(createDto.getCountOfUnit(), "countOfUnit is negative or zero");
-        val.greaterThanZero(createDto.getCountOfItemInOnePackage(), "count of item in one package is negative or zero");
-        // unikatnost mena
+        // unikatnost
         if (productDao.existWithName(createDto.getName())) {
             throw new PriceComparatorBusinesException("Product with name " + createDto.getName() + " allready exist.");
         }
+
+        val.notNull(createDto.getUnit(), "unit is null");
+
+        val.notNull(createDto.getCountOfUnit(), "countOfUnit is null");
+        val.greaterThanZero(createDto.getCountOfUnit(), "countOfUnit is negative or zero");
+
+        val.greaterThanZero(createDto.getCountOfItemInOnePackage(), "count of item in one package is negative or zero");
+
 
         ProductEntity product = new ProductEntity();
         product.setName(createDto.getName().trim());
@@ -61,11 +66,15 @@ public class ProductFacade extends JefFacade {
 
     public void updateProduct(ProductUpdateDto updateDto) {
         val.notNull(updateDto, "updateDto is null");
+
         val.notNull(updateDto.getId(), "id is null");
+
         val.notNullAndNotEmpty(updateDto.getName(), "name is null or empty");
         val.maxLength(updateDto.getName(), 255, "name is longer than 255 chars");
         //TODO unikatnost mena !!!
+
         val.notNull(updateDto.getUnit(), "unit is null");
+
         val.notNull(updateDto.getCountOfUnit(), "countOfUnit is null");
 //        val.gaterThanZero(createDto.getCountOfUnit(), "TODO");
 //        val.gaterThanZero(createDto.getCountOfItemInOnePackage(), "TODO");

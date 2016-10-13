@@ -75,7 +75,6 @@ public class EshopAssembler {
     }
 
     public PageList<EshopListDto> transformToPageListOfEshopListDto(PageList<EshopEntity> eshops) {
-
         List<EshopListDto> versions = new ArrayList<>(eshops.getEntries().size());
         for (EshopEntity entity : eshops.getEntries()) {
             versions.add(transformToEshopListDto(entity));

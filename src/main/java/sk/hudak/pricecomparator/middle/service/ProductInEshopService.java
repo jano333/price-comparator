@@ -48,6 +48,9 @@ public interface ProductInEshopService {
      */
     void deleteProductInEshop(Long productInEshopId) throws PriceComparatorBusinesException;
 
+    PageList<ResponseDto> findProductInEshopsForProductIds(ProductIdsFindDto productIdsFindDto);
+
+
     // TODO nizsie prejst co sa pouziva...
 
     /**
@@ -56,8 +59,6 @@ public interface ProductInEshopService {
      * @param updatePriceDto
      */
     void updatePriceOfProductInEshop(ProductInEshopPriceUpdateDto updatePriceDto);
-
-    PageList<ResponseDto> findProductInEshopsForProductIds(ProductIdsFindDto productIdsFindDto);
 
     /**
      * @param productId id produktu, povinne
@@ -78,7 +79,6 @@ public interface ProductInEshopService {
      */
     PageList<ProductInEshopPriceResultListDto> findPriceInfoInEshopsForProduct(ProductFindDto findDto);
 
-    // TODO vsetko nizsie prejst
 
     /**
      * @return

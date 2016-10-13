@@ -28,28 +28,18 @@ public class EshopServiceImpl implements EshopService {
     private EshopAssembler eshopAssembler;
 
     @Override
-    public PageList<EshopListDto> findEshops(EshopFindDto findDto) {
-        return eshopAssembler.transformToPageListOfEshopListDto(eshopDao.findEshops(findDto));
-    }
-
-    @Override
-    public List<EshopHomePageInfoDto> findAllHomePages() {
-        return eshopAssembler.transformToListOfEshopHomePageInfoDto(eshopDao.findAllEshops());
-    }
-
-    @Override
     public Long createEshop(EshopCreateDto createDto) throws PriceComparatorBusinesException {
         return eshopFacade.createEshop(createDto);
     }
 
     @Override
-    public EshopDto getEshopById(Long eshopId) {
+    public EshopDto getEshop(Long eshopId) {
         return eshopAssembler.transformToEshopDto(eshopDao.readMandatory(eshopId));
     }
 
     @Override
-    public List<EshopListDto> findAllEshops() {
-        return eshopAssembler.transformToListOfEshopListDto(eshopDao.findAllEshops());
+    public PageList<EshopListDto> findEshops(EshopFindDto findDto) {
+        return eshopAssembler.transformToPageListOfEshopListDto(eshopDao.findEshops(findDto));
     }
 
     @Override
@@ -60,6 +50,11 @@ public class EshopServiceImpl implements EshopService {
     @Override
     public EshopIdNameDto getEshopIdNameById(Long eshopId) {
         return eshopAssembler.transformToEshopIdNameDto(eshopDao.readMandatory(eshopId));
+    }
+
+    @Override
+    public List<EshopHomePageInfoDto> findAllHomePages() {
+        return eshopAssembler.transformToListOfEshopHomePageInfoDto(eshopDao.findAllEshops());
     }
 
     @Override
