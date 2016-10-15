@@ -289,10 +289,10 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
 
     @Override
     @Transactional
-    public void updatePriceOfProductInEshop(ProductInEshopPriceUpdateDto updatePriceDto) {
-        logger.debug(">> updatePriceOfProductInEshop");
-        productInEshopService.updatePriceOfProductInEshop(updatePriceDto);
-        logger.debug("<< updatePriceOfProductInEshop");
+    public void updateInfoOfProductInEshop(ProductInEshopInfoUpdateDto updatePriceDto) {
+        logger.debug(">> updateInfoOfProductInEshop");
+        productInEshopService.updateInfoOfProductInEshop(updatePriceDto);
+        logger.debug("<< updateInfoOfProductInEshop");
     }
 
 

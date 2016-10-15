@@ -209,8 +209,8 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
     }
 
     @Override
-    public void updatePriceOfProductInEshop(ProductInEshopPriceUpdateDto updatePriceDto) {
-        productInEshopFacade.updateProductInEshopPrice(updatePriceDto);
+    public void updateInfoOfProductInEshop(ProductInEshopInfoUpdateDto updateDto) {
+        productInEshopFacade.updateInfoOfProductInEshop(updateDto);
     }
 
     @Override

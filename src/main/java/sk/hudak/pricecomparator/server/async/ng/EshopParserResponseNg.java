@@ -13,8 +13,10 @@ public class EshopParserResponseNg {
     private BigDecimal priceForUnit;
     private BigDecimal priceForPackage;
     private BigDecimal priceForOneItemInPackage;
+
     private ProductAction action;
     private Date actionValidTo;
+
     private String productName;
     private String pictureUrl;
 

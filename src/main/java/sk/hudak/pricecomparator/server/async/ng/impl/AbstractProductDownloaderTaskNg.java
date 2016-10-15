@@ -6,7 +6,7 @@ import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
 import sk.hudak.pricecomparator.middle.to.ProductDto;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopDto;
-import sk.hudak.pricecomparator.middle.to.ProductInEshopPriceUpdateDto;
+import sk.hudak.pricecomparator.middle.to.ProductInEshopInfoUpdateDto;
 import sk.hudak.pricecomparator.server.async.ng.*;
 import sk.hudak.pricecomparator.server.core.ServerConfig;
 
@@ -91,20 +91,22 @@ public abstract class AbstractProductDownloaderTaskNg implements EshopTaskNg {
         EshopParserResponseNg response = parser.parseEshopProductInfo(eshopParserRequest);
 
         // 4. preklopenie
-        ProductInEshopPriceUpdateDto updateDto = transfromToProductInEshopPriceUpdateDto(productForUpdate.getId(), response);
+        ProductInEshopInfoUpdateDto updateDto = transfromToProductInEshopPriceUpdateDto(productForUpdate.getId(), response);
 
         // 5. ulozenie do DB
-        service.updatePriceOfProductInEshop(updateDto);
+        service.updateInfoOfProductInEshop(updateDto);
     }
 
-    private ProductInEshopPriceUpdateDto transfromToProductInEshopPriceUpdateDto(Long id, EshopParserResponseNg response) {
-        ProductInEshopPriceUpdateDto dto = new ProductInEshopPriceUpdateDto();
+    private ProductInEshopInfoUpdateDto transfromToProductInEshopPriceUpdateDto(Long id, EshopParserResponseNg response) {
+        ProductInEshopInfoUpdateDto dto = new ProductInEshopInfoUpdateDto();
         dto.setId(id);
         dto.setPriceForPackage(response.getPriceForPackage());
         dto.setPriceForOneItemInPackage(response.getPriceForOneItemInPackage());
         dto.setPriceForUnit(response.getPriceForUnit());
         dto.setProductAction(response.getAction());
         dto.setActionValidTo(response.getActionValidTo());
+        dto.setProductName(response.getProductName());
+        dto.setPictureUrl(response.getPictureUrl());
         return dto;
     }
 

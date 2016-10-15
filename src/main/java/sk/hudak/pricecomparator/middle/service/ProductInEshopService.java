@@ -42,30 +42,53 @@ public interface ProductInEshopService {
     ProductInEshopDto getProductInEshop(Long productInEshopId) throws PriceComparatorBusinesException;
 
     /**
+     * Nacitanie informacii o produkte v eshope.
+     *
+     * @param productId id produktu, povinne
+     * @param eshopId   id eshopu, povinne
+     * @return null ak sa nenajde, inak produkt v eshope.
+     */
+    ProductInEshopDto getProductInEshop(Long productId, Long eshopId);
+
+    /**
      * Odmaze dany produkt z eshopu, pricom samotny produkt ani eshop nerusi.
      *
      * @param productInEshopId db id produtktu v eshope
      */
     void deleteProductInEshop(Long productInEshopId) throws PriceComparatorBusinesException;
 
-    PageList<ResponseDto> findProductInEshopsForProductIds(ProductIdsFindDto productIdsFindDto);
 
+    /**
+     * Vyhlada vsetky eshop-y, ktore obsahuju produkt <code>productId</code>.
+     * <p>
+     * TODO prerobit na page list result
+     *
+     * @param productId id produktu
+     * @return zoznam eshopov, ktore obsahuju produkt <code>productId</code>
+     */
+    List<EshopListDto> findEshopsWithProduct(Long productId);
+
+    /**
+     * Vyhlada vsetky eshop-y, ktore NEobsahuju produkt <code>productId</code>.
+     * <p>
+     * TODO prerobit na page list result
+     *
+     * @param productId id produktu
+     * @return zoznam eshopov, ktore neobsahuju produkt <code>productId</code>
+     */
+    List<EshopListDto> findEshopsWithoutProduct(Long productId);
 
     // TODO nizsie prejst co sa pouziva...
+
+    PageList<ResponseDto> findProductInEshopsForProductIds(ProductIdsFindDto productIdsFindDto);
 
     /**
      * Aktualizacia ceny a akcie produktu v eshope.
      *
      * @param updatePriceDto
      */
-    void updatePriceOfProductInEshop(ProductInEshopPriceUpdateDto updatePriceDto);
+    void updateInfoOfProductInEshop(ProductInEshopInfoUpdateDto updatePriceDto);
 
-    /**
-     * @param productId id produktu, povinne
-     * @param eshopId   id eshopu, povinne
-     * @return null ak sa nenajde, inak produkt v eshope.
-     */
-    ProductInEshopDto getProductInEshop(Long productId, Long eshopId);
 
     /**
      * @param findDto
@@ -79,27 +102,10 @@ public interface ProductInEshopService {
      */
     PageList<ProductInEshopPriceResultListDto> findPriceInfoInEshopsForProduct(ProductFindDto findDto);
 
-
     /**
      * @return
      */
     List<ProductInEshopListDto> findAllProductInEshop();
-
-    /**
-     * Vyhlada vsetky eshop-y, ktore obsahuju produkt <code>productId</code>.
-     *
-     * @param productId id produktu
-     * @return zoznam eshopov, ktore obsahuju produkt <code>productId</code>
-     */
-    List<EshopListDto> findEshopsWithProduct(Long productId);
-
-    /**
-     * Vyhlada vsetky eshop-y, ktore NEobsahuju produkt <code>productId</code>.
-     *
-     * @param productId id produktu
-     * @return zoznam eshopov, ktore neobsahuju produkt <code>productId</code>
-     */
-    List<EshopListDto> findEshopsWithoutProduct(Long productId);
 
 
     /**

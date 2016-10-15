@@ -4,7 +4,7 @@ import sk.hudak.jef.JefFacade;
 import sk.hudak.pricecomparator.middle.canonical.EshopType;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopCreateDto;
-import sk.hudak.pricecomparator.middle.to.ProductInEshopPriceUpdateDto;
+import sk.hudak.pricecomparator.middle.to.ProductInEshopInfoUpdateDto;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopUpdateDto;
 import sk.hudak.pricecomparator.server.domain.dao.EshopDao;
 import sk.hudak.pricecomparator.server.domain.dao.ProductDao;
@@ -78,24 +78,22 @@ public class ProductInEshopFacade extends JefFacade {
     }
 
     public void deleteProductInEshop(Long productInEshopId) {
-        ProductInEshopEntity productInEshopEntity = productInEshopDao.readMandatory(productInEshopId);
-        productInEshopDao.delete(productInEshopEntity);
+        ProductInEshopEntity entity = productInEshopDao.readMandatory(productInEshopId);
+        productInEshopDao.delete(entity);
     }
 
-    public void updateProductInEshopPrice(ProductInEshopPriceUpdateDto priceUpdateDto) {
+    public void updateInfoOfProductInEshop(ProductInEshopInfoUpdateDto priceUpdateDto) {
         val.notNull(priceUpdateDto, "priceUpdateDto is null");
         val.notNull(priceUpdateDto.getId(), "id is null");
 
         //TODO validacie
 
         ProductInEshopEntity entity = productInEshopDao.readMandatory(priceUpdateDto.getId());
-        entity.setProductAction(priceUpdateDto.getProductAction());
-        entity.setActionValidTo(priceUpdateDto.getActionValidTo());
         entity.setPriceForUnit(priceUpdateDto.getPriceForUnit());
         entity.setPriceForPackage(priceUpdateDto.getPriceForPackage());
         entity.setPriceForOneItemInPackage(priceUpdateDto.getPriceForOneItemInPackage());
-        //TODO ako jeden
         entity.setLastUpdatedPrice(new Date());
+        //TODO ako jeden
         // nastavenie best price
         if (notExistBestPrice(entity)) {
             entity.setBestPrice(priceUpdateDto.getPriceForPackage());
@@ -106,10 +104,14 @@ public class ProductInEshopFacade extends JefFacade {
             }
         }
 
+        entity.setProductAction(priceUpdateDto.getProductAction());
+        entity.setActionValidTo(priceUpdateDto.getActionValidTo());
+        entity.setProductNameInEhop(priceUpdateDto.getProductName());
+        entity.setProductPictureUrl(priceUpdateDto.getPictureUrl());
         productInEshopDao.update(entity);
     }
 
-    private boolean isBestPriceGreaterThanActualPriceForPackage(ProductInEshopPriceUpdateDto priceUpdateDto, ProductInEshopEntity entity) {
+    private boolean isBestPriceGreaterThanActualPriceForPackage(ProductInEshopInfoUpdateDto priceUpdateDto, ProductInEshopEntity entity) {
         return entity.getBestPrice().compareTo(priceUpdateDto.getPriceForPackage()) > 0;
     }
 

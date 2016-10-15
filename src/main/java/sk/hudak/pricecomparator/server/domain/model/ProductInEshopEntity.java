@@ -44,6 +44,9 @@ public class ProductInEshopEntity extends BasicEntity {
     @Column(name = "PRODUCT_NAME_IN_ESHOP")
     private String productNameInEhop;
 
+    @Column(name = "PRODUCT_PICTURE_URL")
+    private String productPictureUrl;
+
     @Column(name = "PRODUCT_ACTION")
     @Enumerated(EnumType.STRING)
     private ProductAction productAction;
@@ -75,6 +78,15 @@ public class ProductInEshopEntity extends BasicEntity {
     @Override
     public void setId(Long id) {
         this.id = id;
+    }
+
+
+    public String getProductPictureUrl() {
+        return productPictureUrl;
+    }
+
+    public void setProductPictureUrl(String productPictureUrl) {
+        this.productPictureUrl = productPictureUrl;
     }
 
     public ProductEntity getProduct() {

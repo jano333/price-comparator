@@ -42,6 +42,13 @@
     <dependencies>
 
         <dependency>
+            <groupId>net.coobird</groupId>
+            <artifactId>thumbnailator</artifactId>
+            <version>0.4.8</version>
+        </dependency>
+
+        <!-- toto zrusit pouzivat to nad tym -->
+        <dependency>
             <groupId>org.im4java</groupId>
             <artifactId>im4java</artifactId>
             <version>1.4.0</version>

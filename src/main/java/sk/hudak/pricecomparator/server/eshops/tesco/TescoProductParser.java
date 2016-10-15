@@ -67,17 +67,12 @@ public class TescoProductParser extends AbstractEshopProductParserNg {
 
     @Override
     protected String parsePictureUrl(Document document) {
-
         Elements elements = document.select("img[class=product-image]");
         if (elements.isEmpty()) {
-            //TODO osetrit
             return null;
         }
         Element imgElement = elements.get(0);
         String src = imgElement.attr("src");
-        System.out.println("picture: " + src);
-
         return src;
-
     }
 }

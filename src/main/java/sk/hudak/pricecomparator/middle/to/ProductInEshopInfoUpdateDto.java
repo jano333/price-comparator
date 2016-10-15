@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * Created by jan on 10. 1. 2016.
  */
-public class ProductInEshopPriceUpdateDto implements Serializable {
+public class ProductInEshopInfoUpdateDto implements Serializable {
 
     private Long id;
     private ProductAction productAction;
@@ -17,6 +17,25 @@ public class ProductInEshopPriceUpdateDto implements Serializable {
     private BigDecimal priceForPackage;
     private BigDecimal priceForOneItemInPackage;
     private BigDecimal priceForUnit;
+
+    private String productName;
+    private String pictureUrl;
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public String getPictureUrl() {
+        return pictureUrl;
+    }
+
+    public void setPictureUrl(String pictureUrl) {
+        this.pictureUrl = pictureUrl;
+    }
 
     public Long getId() {
         return id;
