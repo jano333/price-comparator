@@ -63,7 +63,9 @@ public class GroupProductPriceListTable extends Panel {
         Form<Void> filterForm = new Form<Void>("filterForm") {
             @Override
             protected void onSubmit() {
-                filter.setGroupId(selectedGroup.getId());
+                if (selectedGroup != null) {
+                    filter.setGroupId(selectedGroup.getId());
+                }
             }
         };
         add(filterForm);
