@@ -1,25 +1,4 @@
-[ERROR][12.10 23:28:55][INTERNETOVA_LEKAREN]s.h.p.s.e.i.InternetovaLekarenProductParser: http status code: 404
-[ERROR][12.10 23:28:55][INTERNETOVA_LEKAREN]s.h.p.s.e.i.InternetovaLekarenProductParser: error while conneting to: http://www.internetovalekaren.eu/katalog/product/4234-Pampers-Premium-care-3-Midi-120ks-4-9kg-Mega-Box-darcek-zdarma/
-**************
-[ERROR][12.10 23:28:11][DR_MAX]s.h.p.s.e.d.DrMaxProductParser: http status code: 404
-[ERROR][12.10 23:28:11][DR_MAX]s.h.p.s.e.d.DrMaxProductParser: error while conneting to: https://www.drmax.sk/nutrilon-2-2x800g/
-org.jsoup.HttpStatusException: HTTP error fetching URL
-****************
-[ERROR][12.10 23:28:11][DR_MAX]s.h.p.s.e.d.DrMaxProductParser: error while conneting to: https://www.drmax.sk/nutrilon-2-2x800g/
-org.jsoup.HttpStatusException: HTTP error fetching URL
-	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:459) ~[jsoup-1.8.1.jar:na]
-	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:434) ~[jsoup-1.8.1.jar:na]
-	at org.jsoup.helper.HttpConnection.execute(HttpConnection.java:181) ~[jsoup-1.8.1.jar:na]
-	at org.jsoup.helper.HttpConnection.get(HttpConnection.java:170) ~[jsoup-1.8.1.jar:na]
-	at sk.hudak.pricecomparator.server.async.ng.impl.AbstractEshopProductParserNg.parseEshopProductInfo(AbstractEshopProductParserNg.java:47) ~[classes/:na]
-	at sk.hudak.pricecomparator.server.async.ng.impl.AbstractProductDownloaderTaskNg.doInOneCycle(AbstractProductDownloaderTaskNg.java:91) [classes/:na]
-	at sk.hudak.pricecomparator.server.async.ng.impl.AbstractProductDownloaderTaskNg.run(AbstractProductDownloaderTaskNg.java:46) [classes/:na]
-	at sk.hudak.pricecomparator.server.async.ng.impl.EshopInternalRunnableNg.run(EshopInternalRunnableNg.java:37) [classes/:na]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471) [na:1.7.0_40]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_40]
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_40]
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_40]
-	at java.lang.Thread.run(Thread.java:724) [na:1.7.0_40]
+TODO prest Feedo a dalsoe espy kde nie je cena...
 *************
 [ERROR][12.10 23:28:10][TESCO]s.h.p.s.e.t.TescoProductParser: http status code: 404
 [ERROR][12.10 23:28:10][TESCO]s.h.p.s.e.t.TescoProductParser: error while conneting to: https://potravinydomov.itesco.sk/groceries/sk-SK/products/2002121081105
