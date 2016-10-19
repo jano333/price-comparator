@@ -16,7 +16,7 @@ public class DrMaxProductParser extends AbstractEshopProductParserNg {
 
     @Override
     protected boolean isProductUnavailable(Document document) {
-        return ParserUtils.notExistElement(document, "button[class=addToCartBtn btn btn-big radius-big]");
+        return ParserUtils.notExistElement(document, "button[class=addToCartBtn btn btn-big btn-pink ucase]");
     }
 
     @Override
@@ -30,7 +30,9 @@ public class DrMaxProductParser extends AbstractEshopProductParserNg {
 
     @Override
     protected String parseProductName(Document document) {
-        return null;
+        Elements elements = document.select("h1[itemprop=name]");
+        //TODO NPE
+        return elements.get(0).text();
     }
 
     @Override
