@@ -1,8 +1,8 @@
 package sk.hudak.pricecomparator.server.task;
 
 import sk.hudak.jef.ssl.JefSslManager;
+import sk.hudak.pricecomparator.middle.canonical.EshopType;
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
-import sk.hudak.pricecomparator.server.async.ng.EshopTaskManagerNg;
 import sk.hudak.pricecomparator.server.async.ng.impl.EshopTaskManagerImpNg;
 import sk.hudak.pricecomparator.server.async.ng.tesco.TescoProductPictureDownloaderTaskNg;
 import sk.hudak.pricecomparator.server.async.ng.tesco.TescoProductPriceUpdaterCallbackNg;
@@ -49,14 +49,15 @@ public class EshopTaskManager {
     @Inject
     private PriceComparatorService service;
 
+    private EshopTaskManagerImpNg manager;
+
     @PostConstruct
     public void init() {
-        System.out.println("init call");
 
         // custom ssl to ignore SSL check for specific domains
         JefSslManager.getInstance().init();
 
-        EshopTaskManagerNg manager = new EshopTaskManagerImpNg(service);
+        manager = new EshopTaskManagerImpNg(service);
 
         // A
         manager.registerEshopTask(new AlzaProductDownloaderTask());
@@ -114,7 +115,18 @@ public class EshopTaskManager {
                 new TescoProductPriceUpdaterCallbackNg());
         manager.registerEshopTask(new TescoProductPictureDownloaderTaskNg());
 
+        startAllTasks();
+    }
+
+    /**
+     * Spusti vsetky zaregistrovane tasky
+     */
+    public void startAllTasks() {
         manager.startAllTasks();
+    }
+
+    public void startEshopTask(EshopType eshopType) {
+        manager.startTask(eshopType);
     }
 
     @PreDestroy

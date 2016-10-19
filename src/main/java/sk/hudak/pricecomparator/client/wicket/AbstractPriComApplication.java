@@ -95,7 +95,7 @@ public abstract class AbstractPriComApplication extends WebApplication {
 
     @Override
     public Session newSession(Request request, Response response) {
-        WebSession session = new CSRFSession(request);
+        WebSession session = new PrcoSession(request);
 //        session.setLocale(new Locale("SK"));
         session.setLocale(new Locale("sk"));
         return session;

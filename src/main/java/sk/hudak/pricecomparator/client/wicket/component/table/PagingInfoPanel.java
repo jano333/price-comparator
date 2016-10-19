@@ -90,6 +90,8 @@ public class PagingInfoPanel<T> extends Panel {
 
         //TODO tu by malo byt len read only model...
         Label curretCountPerPage = new Label("offset", new PropertyModel<>(filter, BasicFilter.AT_COUNT));
+        //[WARN ][16.10 16:00:09][qtp9517133-16]o.a.w.m.ChainingModel: It is not a good idea to reference the Session instance in models directly as it may lead to serialization problems. If you need to access a property of the session via the model use the page instance as the model object and 'session.attribute' as the path.
+//        Label curretCountPerPage = new Label("offset", new PropertyModel<>(((PrcoSession) getWebSession()), "countPerPage"));
         add(curretCountPerPage);
 
         ListView<Integer> perPage = new ListView<Integer>("perPage", Arrays.asList(5, 10, 20, 50, 100)) {
