@@ -1,7 +1,6 @@
 package sk.hudak.pricecomparator.client.wicket.page.productineshop.components;
 
 import org.apache.wicket.markup.html.WebMarkupContainer;
-import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.*;
 import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.markup.html.link.Link;
@@ -144,7 +143,8 @@ public class ProductListPerEshopTable extends Panel {
                 ActionValidToColumn actionValidTo = new ActionValidToColumn("actionValidTo",
                         new PropertyModel<Date>(product, ProductInEshopPriceInfoListDto.AT_ACTION_VALID_TO));
 
-                Label lastUpdatedPrice = new Label("lastUpdatedPrice", new PropertyModel<String>(product, ProductInEshopPriceInfoListDto.AT_LAST_UPDATED_PRICE));
+                LastUpdatedPriceColumn lastUpdatedPrice = new LastUpdatedPriceColumn("lastUpdatedPrice",
+                        new PropertyModel<Date>(product, ProductInEshopPriceInfoListDto.AT_LAST_UPDATED_PRICE));
 
                 //actions
                 Link<ProductInEshopPriceInfoListDto> productInEshopUpdate = new Link<ProductInEshopPriceInfoListDto>("productInEshopUpdate", product) {
