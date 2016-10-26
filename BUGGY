@@ -1,3 +1,30 @@
+---------------
+[ERROR][23.10 14:15:55][FEEDO]s.h.p.s.e.f.FeedoProductParser: http status code: 404
+[ERROR][23.10 14:15:55][FEEDO]s.h.p.s.e.f.FeedoProductParser: error while conneting to: https://www.feedo.sk/pampers-active-baby-dry-3-midi-174ks-4-9kg-mega-box-plus-mesacna-zasoba-jednorazove-plienky/
+---------------
+[DEBUG][23.10 14:14:50][HEJ]s.h.p.s.e.h.HejProductParser: conneting to: http://www.hej.sk/filter-na-vodu-brita-maxtra-208891/
+[ERROR][23.10 14:14:51][HEJ]s.h.p.s.e.h.HejProductParser: another error while conneting to: http://www.hej.sk/filter-na-vodu-brita-maxtra-208891/
+java.lang.NumberFormatException: null
+	at java.math.BigDecimal.<init>(BigDecimal.java:545) ~[na:1.7.0_40]
+	at java.math.BigDecimal.<init>(BigDecimal.java:739) ~[na:1.7.0_40]
+	at sk.hudak.pricecomparator.server.eshops.hej.HejProductParser.parsePriceForPackage(HejProductParser.java:24) ~[classes/:na]
+-------------
+[ERROR][23.10 14:14:50][FEEDO]s.h.p.s.e.f.FeedoProductParser: http status code: 404
+[ERROR][23.10 14:14:50][FEEDO]s.h.p.s.e.f.FeedoProductParser: error while conneting to: https://www.feedo.sk/obchod/plienky-a-doplnky/plienky-jednorazove/pampers-active-new-baby-2-mini-plienky-velkost-2-mini-3-6-kg-228-ks-mesacna-zasoba/
+-------------
+[ERROR][23.10 14:13:15][FEEDO]s.h.p.s.e.f.FeedoProductParser: http status code: 404
+[ERROR][23.10 14:13:15][FEEDO]s.h.p.s.e.f.FeedoProductParser: error while conneting to: https://www.feedo.sk/pampers-premium-care-3-midi-120ks-4-9-kg-mega-box-mesacna-zasoba-jednorazove-plienky/
+org.jsoup.HttpStatusException: HTTP error fetching URL
+-----------------
+
+
+
+
+FEATURE:
+rozlisovat nedostupne a neeexistujuce(404) lebo 404 to potrebujem fixnut ale nedostupne nechat tak len vediet
+o tom ze take nieco je
+
+
 TODO prest Feedo a dalsoe espy kde nie je cena...
 *************
 [ERROR][12.10 23:28:10][TESCO]s.h.p.s.e.t.TescoProductParser: http status code: 404
