@@ -9,12 +9,21 @@ public class ProductInEshopFindDto extends FindDto {
 
     public static final String AT_PRODUCT_NAME = "productName";
     public static final String AT_ONLY_IN_ACTION = "onlyInAction";
+    public static final String AT_PRODUCT_IN_ESHOP_URL = "productInEshopUrl";
 
     private Long eshopId;
     private String productName;
     private boolean onlyInAction;
-
     private List<Long> productId;
+    private String productInEshopUrl;
+
+    public String getProductInEshopUrl() {
+        return productInEshopUrl;
+    }
+
+    public void setProductInEshopUrl(String productInEshopUrl) {
+        this.productInEshopUrl = productInEshopUrl;
+    }
 
     public Long getEshopId() {
         return eshopId;

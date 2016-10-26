@@ -34,31 +34,35 @@ public class ProductInEshopDao extends JefDao<ProductInEshopEntity> {
     }
 
     public PageList<ProductInEshopEntity> findProductsInEshop(ProductInEshopFindDto findDto) {
+        //TODO napr takto to ma JSOP: Validate.notNull(userAgent, "User agent must not be null");
         if (findDto == null) {
             throw new PriceComparatorException("Find dto is null");
         }
-        Criteria crit = createCriteria(ProductInEshopEntity.class);
-        // budem podla toho sortovat
-        Criteria critProd = crit.createCriteria(ProductInEshopEntity.AT_PRODUCT);
+        Criteria cr = createCriteria(ProductInEshopEntity.class);
+        Criteria crProduct = cr.createCriteria(ProductInEshopEntity.AT_PRODUCT);
 
-        //eshopId
+        // eshopId
         if (findDto.getEshopId() != null) {
-            crit.add(Restrictions.eq(ProductInEshopEntity.AT_ESHOP + "." + EshopEntity.AT_ID, findDto.getEshopId()));
+            cr.add(Restrictions.eq(ProductInEshopEntity.AT_ESHOP + "." + EshopEntity.AT_ID, findDto.getEshopId()));
         }
-        //productName
+        // productName
         if (StringUtils.isNotBlank(findDto.getProductName())) {
-            critProd.add(Restrictions.ilike(ProductEntity.AT_NAME, "%" + findDto.getProductName() + "%"));
+            crProduct.add(Restrictions.ilike(ProductEntity.AT_NAME, "%" + findDto.getProductName() + "%"));
         }
         // onlyInAction
         if (findDto.isOnlyInAction()) {
-            crit.add(Restrictions.eq(ProductInEshopEntity.AT_PRODUCT_ACTION, ProductAction.IN_ACTION));
+            cr.add(Restrictions.eq(ProductInEshopEntity.AT_PRODUCT_ACTION, ProductAction.IN_ACTION));
+        }
+        // productInEshopUrl
+        if (StringUtils.isNotBlank(findDto.getProductInEshopUrl())) {
+            cr.add(Restrictions.ilike(ProductInEshopEntity.AT_PRODUCT_PAGE_IN_ESHOP, "%" + findDto.getProductInEshopUrl() + "%"));
         }
 
-        ServerPaging pagging = createPaging(findDto, crit);
+        ServerPaging pagging = createPaging(findDto, cr);
         //TODO sortovanie zobrazt z find dto
         //zosrotovane podla nazvu produktu
-        addAscOrder(critProd, ProductEntity.AT_NAME);
-        return new PageList<>(crit.list(), pagging.getCurrentPage(), pagging.getAllPage());
+        addAscOrder(crProduct, ProductEntity.AT_NAME);
+        return new PageList<>(cr.list(), pagging.getCurrentPage(), pagging.getAllPage());
     }
 
 

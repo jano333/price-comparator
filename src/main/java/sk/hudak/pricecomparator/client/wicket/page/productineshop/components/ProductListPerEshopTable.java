@@ -25,7 +25,6 @@ import sk.hudak.pricecomparator.middle.to.ProductInEshopPriceInfoListDto;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -51,12 +50,12 @@ public class ProductListPerEshopTable extends Panel {
 
             @Override
             protected PageList<ProductInEshopPriceInfoListDto> load() {
-                if (filter.getEshopId() != null) {
+//                if (filter.getEshopId() != null) {
                     return PriceComparatorApplication.getApi().findProductsInEshopPriceInfo(filter);
-                }
+//                }
                 //FIXME empty page list
                 // FIXME pocet stranok, verzus aktualna stranka
-                return new PageList<>(Collections.EMPTY_LIST, 0, 0);
+//                return new PageList<>(Collections.EMPTY_LIST, 0, 0);
             }
         };
 
@@ -96,6 +95,11 @@ public class ProductListPerEshopTable extends Panel {
         CheckBox onlyInActionFilter = new CheckBox("onlyInAction",
                 new PropertyModel<Boolean>(filter, ProductInEshopFindDto.AT_ONLY_IN_ACTION));
         filterForm.add(onlyInActionFilter);
+
+        TextField<String> urlProduktuFilter = new TextField<>("urlProduktu",
+                new PropertyModel<String>(filter, ProductInEshopFindDto.AT_PRODUCT_IN_ESHOP_URL));
+        filterForm.add(urlProduktuFilter);
+
 
         // pagging
         filterForm.add(new PagingInfoPanel("infoPaging", filter, tableModel));
