@@ -1,0 +1,88 @@
+<configuration debug="true" scan="true" scanPeriod="30 seconds">
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date %level [%thread] [%file:%line] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE_ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>C:/price-comparator/logs/prco-server-error.log</file>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>C:/price-comparator/logs/prco-server-error-%d{yyyy_MM_dd}.log.zip</fileNamePattern>
+            <!-- keep 30 days' worth of history -->
+            <maxHistory>30</maxHistory>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%date %level [%thread] [%X{principalId}] %logger{10} [%file:%line] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE_DEBUG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>C:/price-comparator/logs/prco-server-debug.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>C:/price-comparator/logs/prco-server-debug-%d{yyyy_MM_dd}.log.zip</fileNamePattern>
+            <!-- keep 30 days' worth of history -->
+            <maxHistory>30</maxHistory>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%date %level [%thread] [%X{principalId}] %logger{10} [%file:%line] %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <!--<appender name="FILE_SLOW_SQL" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/amc/app-ws-api-ca-test/logs/app-ws-api-ca-test-server-debug-slow-sql.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/amc/app-ws-api-ca-test/logs/app-ws-api-ca-test-server-debug-slow-sql-%d{yyyy_MM_dd}.log.zip</fileNamePattern>
+            &lt;!&ndash; keep 30 days' worth of history &ndash;&gt;
+            <maxHistory>30</maxHistory>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%date %level [%thread] [%X{principalId}] %logger{10} [%file:%line] %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.jdbcdslog.SlowQueryLogger" additivity="true">
+        <level value="info" />
+        <appender-ref ref="FILE_SLOW_SQL" />
+    </logger>-->
+
+    <logger name="sk.hudak" level="debug" additivity="true">
+        <appender-ref ref="FILE_DEBUG"/>
+    </logger>
+
+    <logger name="org.springframework" level="warn" additivity="false">
+        <appender-ref ref="FILE_DEBUG"/>
+    </logger>
+
+    <logger name="org.apache.wicket">
+        <level value="INFO"/>
+    </logger>
+
+    <logger name="com" level="warn" additivity="false">
+        <appender-ref ref="FILE_DEBUG"/>
+        <appender-ref ref="FILE_ERROR"/>
+    </logger>
+    <logger name="org" level="warn" additivity="false">
+        <appender-ref ref="FILE_DEBUG"/>
+        <appender-ref ref="FILE_ERROR"/>
+    </logger>
+
+    <root level="warn">
+        <appender-ref ref="FILE_ERROR"/>
+    </root>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+</configuration>
