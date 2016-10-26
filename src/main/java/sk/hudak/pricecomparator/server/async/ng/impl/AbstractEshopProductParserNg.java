@@ -47,7 +47,7 @@ public abstract class AbstractEshopProductParserNg implements EshopProductParser
             Document document = connection.get();
 
             if (isProductUnavailable(document)) {
-                logger.error("produkt nie je dostupny: {}", request.getEshopProductPage());
+                logger.warn("produkt nie je dostupny: {}", request.getEshopProductPage());
                 return EshopParserResponseNgFactory.createUnaviable();
             }
 
