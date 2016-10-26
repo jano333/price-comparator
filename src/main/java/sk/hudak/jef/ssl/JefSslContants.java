@@ -9,6 +9,7 @@ public final class JefSslContants {
 	public static final Set<String> ALLOWED_HOSTNAME = new HashSet<>(1);
 	static {
 		ALLOWED_HOSTNAME.add("hej.sk");
+		ALLOWED_HOSTNAME.add("esodrogeria.eu");
 	}
 
 	private JefSslContants() {
