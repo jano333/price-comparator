@@ -15,6 +15,7 @@ import java.util.Date;
 public class ProductInEshopPriceResultListDto implements Serializable {
 
     public static final String AT_ESHOP_NAME = "eshopName";
+    public static final String AT_PRODUCT_NAME = "productName";
 
     public static final String AT_UNIT = "unit";
     public static final String AT_PRICE_FOR_UNIT = "priceForUnit";
@@ -28,6 +29,7 @@ public class ProductInEshopPriceResultListDto implements Serializable {
 
     private Long id;
     private String eshopName;
+    private String productName;
 
     private Unit unit;
     private BigDecimal priceForUnit;
@@ -40,6 +42,13 @@ public class ProductInEshopPriceResultListDto implements Serializable {
     private String productEshopPage;
     private String imagePath;
 
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
 
     public Unit getUnit() {
         return unit;

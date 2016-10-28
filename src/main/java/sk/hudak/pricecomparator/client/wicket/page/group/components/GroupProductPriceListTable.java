@@ -1,6 +1,5 @@
 package sk.hudak.pricecomparator.client.wicket.page.group.components;
 
-import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.ChoiceRenderer;
@@ -116,11 +115,17 @@ public class GroupProductPriceListTable extends Panel {
                 ContextImage productImage = WU.productImage(product.getObject().getImagePath());
                 productImageLink.add(productImage);
 
+                ExternalLink productName = new ExternalLink("productName",
+                        new PropertyModel<String>(product, ProductInEshopPriceResultListDto.AT_PRODUCT_ESHOP_PAGE),
+                        new PropertyModel<String>(product, ProductInEshopPriceResultListDto.AT_PRODUCT_NAME)
+                );
+                productName.add(WU.atrTargetBlank());
+
                 ExternalLink productInEshopPage = new ExternalLink("productInEshopPage",
                         new PropertyModel<String>(product, ProductInEshopPriceResultListDto.AT_PRODUCT_ESHOP_PAGE),
                         new PropertyModel<String>(product, ProductInEshopPriceResultListDto.AT_ESHOP_NAME)
                 );
-                productInEshopPage.add(new AttributeAppender("target", "_blank"));
+                productInEshopPage.add(WU.atrTargetBlank());
 
                 PriceForPackageColumn priceForPackage = new PriceForPackageColumn("priceForPackage",
                         new PropertyModel<BigDecimal>(product, ProductInEshopPriceResultListDto.AT_PRICE_FOR_PACKAGE));
@@ -144,6 +149,7 @@ public class GroupProductPriceListTable extends Panel {
 
                 WebMarkupContainer tr = new WebMarkupContainer("tr");
                 tr.add(productImageLink,
+                        productName,
                         productInEshopPage,
                         priceForPackage, priceForOneItemInPackage, priceForUnit,
                         productAction, actionValidTo,

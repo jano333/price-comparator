@@ -192,7 +192,7 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
     @Override
     @Transactional(readOnly = true)
     public ProductInEshopDto getProductInEshop(Long productInEshopId) throws PriceComparatorBusinesException {
-        logger.debug(">> getProductInEshop");
+        logger.debug(">> getProductInEshop {}", productInEshopId);
         ProductInEshopDto result = productInEshopService.getProductInEshop(productInEshopId);
         logger.debug("<< getProductInEshop");
         return result;
