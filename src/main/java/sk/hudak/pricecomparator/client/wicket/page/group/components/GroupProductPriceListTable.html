@@ -57,6 +57,7 @@
                 <th>Akcia</th>
                 <th>Platnosť akcie</th>
                 <th>Aktualizované</th>
+                <th></th>
             </tr>
             </thead>
 
@@ -72,6 +73,21 @@
                     <td><span wicket:id="productAction"></span></td>
                     <td><span wicket:id="actionValidTo"></span></td>
                     <td><span wicket:id="lastUpdatedPrice"></span></td>
+                    <td>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a wicket:id="updateProductInEshop">Upraviť produkt v ehope</a></li>
+                                <li class="disabled"><a href="#">Aktualizovať</a></li>
+                                <li class="disabled"><a href="#">Upraviť produkt</a></li>
+                                <li role="separator" class="divider"></li>
+                            </ul>
+                        </div>
+                    </td>
                 </tr>
 
             </wicket:container>

@@ -151,14 +151,14 @@ public class ProductListPerEshopTable extends Panel {
                         new PropertyModel<Date>(product, ProductInEshopPriceInfoListDto.AT_LAST_UPDATED_PRICE));
 
                 //actions
-                Link<ProductInEshopPriceInfoListDto> productInEshopUpdate = new Link<ProductInEshopPriceInfoListDto>("productInEshopUpdate", product) {
+                Link<ProductInEshopPriceInfoListDto> updateProductInEshop = new Link<ProductInEshopPriceInfoListDto>("updateProductInEshop", product) {
                     @Override
                     public void onClick() {
                         setResponsePage(ProductInEshopUpdatePage.class,
                                 WU.param(ProductInEshopUpdatePage.PARAM_PRODUCT_IN_ESHOP_ID, getModelObject().getId()));
                     }
                 };
-                Link<ProductInEshopPriceInfoListDto> productInEshopDelete = new Link<ProductInEshopPriceInfoListDto>("productInEshopDelete", product) {
+                Link<ProductInEshopPriceInfoListDto> removeProductFromEshopLink = new Link<ProductInEshopPriceInfoListDto>("removeProductFromEshopLink", product) {
                     @Override
                     public void onClick() {
                         Long productInEshopId = getModelObject().getId();
@@ -180,8 +180,8 @@ public class ProductListPerEshopTable extends Panel {
                         productAction, actionValidTo,
                         lastUpdatedPrice);
                 //actions
-                tr.add(productInEshopUpdate);
-                tr.add(productInEshopDelete);
+                tr.add(updateProductInEshop);
+                tr.add(removeProductFromEshopLink);
 
                 item.add(tr);
             }

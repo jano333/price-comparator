@@ -325,6 +325,15 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
 
     @Override
     @Transactional(readOnly = true)
+    public ProductInEshopPriceResultListDto getProductInEshopPriceResultListDto(Long productInEshopId) {
+        logger.debug(">> getProductInEshopPriceResultListDto id {}", productInEshopId);
+        ProductInEshopPriceResultListDto result = productInEshopService.getProductInEshopPriceResultListDto(productInEshopId);
+        logger.debug("<< findPriceInfoInEshopsForProduct");
+        return result;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public ProductInEshopForPictureDownloadInfoDto findUrlOfProductsInEshopWithoutPicture(EshopType eshopType) {
         logger.debug(">> findUrlOfProductsInEshopWithoutPicture");
         ProductInEshopForPictureDownloadInfoDto result = productInEshopService.findUrlOfProductsInEshopWithoutPicture(eshopType);

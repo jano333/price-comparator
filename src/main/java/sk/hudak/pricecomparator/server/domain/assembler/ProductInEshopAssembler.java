@@ -105,7 +105,7 @@ public class ProductInEshopAssembler {
         return result;
     }
 
-    private ProductInEshopPriceResultListDto transformToProductInEshopPriceResultListDto(ProductInEshopEntity entity) {
+    public ProductInEshopPriceResultListDto transformToProductInEshopPriceResultListDto(ProductInEshopEntity entity) {
         if (entity == null) {
             return null;
         }

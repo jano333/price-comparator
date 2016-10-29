@@ -102,6 +102,8 @@ public interface ProductInEshopService {
      */
     PageList<ProductInEshopPriceResultListDto> findPriceInfoInEshopsForProduct(ProductFindDto findDto);
 
+    ProductInEshopPriceResultListDto getProductInEshopPriceResultListDto(Long productInEshopId);
+
     /**
      * @return
      */

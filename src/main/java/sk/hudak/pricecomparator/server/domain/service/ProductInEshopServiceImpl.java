@@ -91,6 +91,12 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
         return productInEshopAssembler.transformToPageListOfProductInEshopPriceResultListDto(productInEshopEntities);
     }
 
+    @Override
+    public ProductInEshopPriceResultListDto getProductInEshopPriceResultListDto(Long productInEshopId) {
+        return productInEshopAssembler.transformToProductInEshopPriceResultListDto(
+                productInEshopDao.readMandatory(productInEshopId));
+    }
+
     //------------------------------------------------------
 
     @Override

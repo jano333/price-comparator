@@ -1,12 +1,11 @@
 package sk.hudak.pricecomparator.client.wicket.page.group.components;
 
 import org.apache.wicket.markup.html.WebMarkupContainer;
-import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.ChoiceRenderer;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
-import org.apache.wicket.markup.html.image.ContextImage;
 import org.apache.wicket.markup.html.link.ExternalLink;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
@@ -17,10 +16,8 @@ import sk.hudak.pricecomparator.client.wicket.WU;
 import sk.hudak.pricecomparator.client.wicket.component.common.IdListView;
 import sk.hudak.pricecomparator.client.wicket.component.table.PagingInfoPanel;
 import sk.hudak.pricecomparator.client.wicket.component.table.Table;
-import sk.hudak.pricecomparator.client.wicket.component.table.column.PriceForOneItemInPackageColumn;
-import sk.hudak.pricecomparator.client.wicket.component.table.column.PriceForPackageColumn;
-import sk.hudak.pricecomparator.client.wicket.component.table.column.PriceForUnitColumn;
-import sk.hudak.pricecomparator.client.wicket.component.table.column.ProductActionColumn;
+import sk.hudak.pricecomparator.client.wicket.component.table.column.*;
+import sk.hudak.pricecomparator.client.wicket.page.productineshop.ProductInEshopUpdatePage;
 import sk.hudak.pricecomparator.middle.canonical.ProductAction;
 import sk.hudak.pricecomparator.middle.canonical.Unit;
 import sk.hudak.pricecomparator.middle.to.GroupIdNameDto;
@@ -30,6 +27,7 @@ import sk.hudak.pricecomparator.middle.to.ProductPriceInGroupFindDto;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -69,8 +67,7 @@ public class GroupProductPriceListTable extends Panel {
         };
         add(filterForm);
 
-        DropDownChoice<GroupIdNameDto> groupFilter = new DropDownChoice<GroupIdNameDto>(
-                "skupina",
+        DropDownChoice<GroupIdNameDto> groupFilter = new DropDownChoice<GroupIdNameDto>("skupina",
                 new PropertyModel<GroupIdNameDto>(this, "selectedGroup"),
                 new LoadableDetachableModel<List<GroupIdNameDto>>() {
                     @Override
@@ -102,50 +99,57 @@ public class GroupProductPriceListTable extends Panel {
 
             @Override
             protected ProductInEshopPriceResultListDto loadLazyById(Serializable id) {
-                //TODO
-                return new ProductInEshopPriceResultListDto();
+                return PriceComparatorApplication.getApi().getProductInEshopPriceResultListDto((Long) id);
             }
 
             @Override
             protected void populateItem(IdListView.IdListItem<ProductInEshopPriceResultListDto> item) {
-                IModel<ProductInEshopPriceResultListDto> product = item.getModel();
+                IModel<ProductInEshopPriceResultListDto> model = item.getModel();
 
                 ExternalLink productImageLink = new ExternalLink("productImageLink",
-                        new PropertyModel<String>(product, ProductInEshopPriceResultListDto.AT_PRODUCT_ESHOP_PAGE));
-                ContextImage productImage = WU.productImage(product.getObject().getImagePath());
-                productImageLink.add(productImage);
+                        new PropertyModel<String>(model, ProductInEshopPriceResultListDto.AT_PRODUCT_ESHOP_PAGE));
+                productImageLink.add(WU.productImage(model.getObject().getImagePath()));
 
                 ExternalLink productName = new ExternalLink("productName",
-                        new PropertyModel<String>(product, ProductInEshopPriceResultListDto.AT_PRODUCT_ESHOP_PAGE),
-                        new PropertyModel<String>(product, ProductInEshopPriceResultListDto.AT_PRODUCT_NAME)
+                        new PropertyModel<String>(model, ProductInEshopPriceResultListDto.AT_PRODUCT_ESHOP_PAGE),
+                        new PropertyModel<String>(model, ProductInEshopPriceResultListDto.AT_PRODUCT_NAME)
                 );
                 productName.add(WU.atrTargetBlank());
 
                 ExternalLink productInEshopPage = new ExternalLink("productInEshopPage",
-                        new PropertyModel<String>(product, ProductInEshopPriceResultListDto.AT_PRODUCT_ESHOP_PAGE),
-                        new PropertyModel<String>(product, ProductInEshopPriceResultListDto.AT_ESHOP_NAME)
+                        new PropertyModel<String>(model, ProductInEshopPriceResultListDto.AT_PRODUCT_ESHOP_PAGE),
+                        new PropertyModel<String>(model, ProductInEshopPriceResultListDto.AT_ESHOP_NAME)
                 );
                 productInEshopPage.add(WU.atrTargetBlank());
 
                 PriceForPackageColumn priceForPackage = new PriceForPackageColumn("priceForPackage",
-                        new PropertyModel<BigDecimal>(product, ProductInEshopPriceResultListDto.AT_PRICE_FOR_PACKAGE));
+                        new PropertyModel<BigDecimal>(model, ProductInEshopPriceResultListDto.AT_PRICE_FOR_PACKAGE));
 
                 PriceForOneItemInPackageColumn priceForOneItemInPackage = new PriceForOneItemInPackageColumn("priceForOneItemInPackage",
-                        new PropertyModel<BigDecimal>(product, ProductInEshopPriceResultListDto.AT_PRICE_FOR_ONE_ITEM_IN_PACKAGE));
+                        new PropertyModel<BigDecimal>(model, ProductInEshopPriceResultListDto.AT_PRICE_FOR_ONE_ITEM_IN_PACKAGE));
 
                 PriceForUnitColumn priceForUnit = new PriceForUnitColumn("priceForUnit",
-                        new PropertyModel<BigDecimal>(product, ProductInEshopPriceResultListDto.AT_PRICE_FOR_UNIT),
-                        new PropertyModel<Unit>(product, ProductInEshopPriceResultListDto.AT_UNIT));
+                        new PropertyModel<BigDecimal>(model, ProductInEshopPriceResultListDto.AT_PRICE_FOR_UNIT),
+                        new PropertyModel<Unit>(model, ProductInEshopPriceResultListDto.AT_UNIT));
 
                 ProductActionColumn productAction = new ProductActionColumn("productAction",
-                        new PropertyModel<ProductAction>(product, ProductInEshopPriceResultListDto.AT_PRODUCT_ACTION));
+                        new PropertyModel<ProductAction>(model, ProductInEshopPriceResultListDto.AT_PRODUCT_ACTION));
 
-                Label actionValidTo = new Label("actionValidTo",
-                        new PropertyModel<String>(product, ProductInEshopPriceResultListDto.AT_ACTION_VALID_TO));
+                ActionValidToColumn actionValidTo = new ActionValidToColumn("actionValidTo",
+                        new PropertyModel<Date>(model, ProductInEshopPriceResultListDto.AT_ACTION_VALID_TO));
 
-                Label lastUpdatedPrice = new Label("lastUpdatedPrice",
-                        new PropertyModel<String>(product, ProductInEshopPriceResultListDto.AT_LAST_UPDATED_PRICE));
+                LastUpdatedPriceColumn lastUpdatedPrice = new LastUpdatedPriceColumn("lastUpdatedPrice",
+                        new PropertyModel<Date>(model, ProductInEshopPriceResultListDto.AT_LAST_UPDATED_PRICE));
 
+                //actions
+                Link<ProductInEshopPriceResultListDto> updateProductInEshop = new Link<ProductInEshopPriceResultListDto>(
+                        "updateProductInEshop", model) {
+                    @Override
+                    public void onClick() {
+                        setResponsePage(ProductInEshopUpdatePage.class,
+                                WU.param(ProductInEshopUpdatePage.PARAM_PRODUCT_IN_ESHOP_ID, getModelObject().getId()));
+                    }
+                };
 
                 WebMarkupContainer tr = new WebMarkupContainer("tr");
                 tr.add(productImageLink,
@@ -154,6 +158,8 @@ public class GroupProductPriceListTable extends Panel {
                         priceForPackage, priceForOneItemInPackage, priceForUnit,
                         productAction, actionValidTo,
                         lastUpdatedPrice);
+                //actions
+                tr.add(updateProductInEshop);
 
                 item.add(tr);
             }
