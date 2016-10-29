@@ -17,8 +17,6 @@ public class LastUpdatedPriceColumn extends Label {
 
     public LastUpdatedPriceColumn(String id, IModel<Date> model) {
         super(id, model);
-//        if(model.getObject().)
-//        add(new AttributeAppender("class", ""))
     }
 
     @Override

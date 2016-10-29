@@ -15,8 +15,6 @@ import java.util.Locale;
  */
 public class ActionValidToColumn extends Label {
 
-    private SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-
     public ActionValidToColumn(String id, IModel<Date> model) {
         super(id, model);
     }
@@ -26,7 +24,7 @@ public class ActionValidToColumn extends Label {
         return (IConverter<C>) new DateConverter() {
             @Override
             public DateFormat getDateFormat(Locale locale) {
-                return sdf;
+                return new SimpleDateFormat("dd.MM.yyyy");
             }
         };
     }
