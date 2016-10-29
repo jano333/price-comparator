@@ -4,6 +4,12 @@ package sk.hudak.pricecomparator.middle.exeption;
  * Created by jan on 11. 6. 2016.
  */
 public class PriceComparatorErrorCodes {
+
+    /**
+     * Produkt s nazvom {0} uz existuje.
+     */
+    public static final String ERR_PRODUCT_WITH_NAME_ALLREADY_EXIST = "product-with-name-allready-exist";
+
     /**
      * Typ eshopu je povinny paramter.
      */

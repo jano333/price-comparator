@@ -10,13 +10,19 @@ import java.math.BigDecimal;
  */
 public class ProductUpdateDto implements Serializable {
 
+    public static final String AT_NAME = "name";
+    public static final String AT_UNIT = "unit";
+    public static final String AT_COUNT_OF_UNIT = "countOfUnit";
+    public static final String AT_COUNT_OF_ITEM_IN_ONE_PACKAGE = "countOfItemInOnePackage";
+
     private Long id;
     private String name;
-    private int countOfItemInOnePackage;
     private Unit unit;
     private BigDecimal countOfUnit;
-    private Long categoryId;
+    private Integer countOfItemInOnePackage;
 
+    //nepouzivaju sa...
+    private Long categoryId;
     private String imageLocalPath;
     private byte[] imageContent;
 
@@ -36,14 +42,6 @@ public class ProductUpdateDto implements Serializable {
         this.name = name;
     }
 
-    public int getCountOfItemInOnePackage() {
-        return countOfItemInOnePackage;
-    }
-
-    public void setCountOfItemInOnePackage(int countOfItemInOnePackage) {
-        this.countOfItemInOnePackage = countOfItemInOnePackage;
-    }
-
     public Unit getUnit() {
         return unit;
     }
@@ -58,6 +56,14 @@ public class ProductUpdateDto implements Serializable {
 
     public void setCountOfUnit(BigDecimal countOfUnit) {
         this.countOfUnit = countOfUnit;
+    }
+
+    public Integer getCountOfItemInOnePackage() {
+        return countOfItemInOnePackage;
+    }
+
+    public void setCountOfItemInOnePackage(Integer countOfItemInOnePackage) {
+        this.countOfItemInOnePackage = countOfItemInOnePackage;
     }
 
     public Long getCategoryId() {

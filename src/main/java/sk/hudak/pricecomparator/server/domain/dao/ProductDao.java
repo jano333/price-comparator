@@ -61,4 +61,12 @@ public class ProductDao extends JefDao<ProductEntity> {
         //FIXME optimalizaovat
         return !crit.list().isEmpty();
     }
+
+    public boolean existWithName(String productName, Long productIdSkip) {
+        Criteria crit = createCriteria(ProductEntity.class);
+        crit.add(Restrictions.eq(ProductEntity.AT_NAME, productName));
+        crit.add(Restrictions.ne(ProductEntity.AT_ID, productIdSkip));
+        //FIXME optimalizaovat
+        return !crit.list().isEmpty();
+    }
 }
