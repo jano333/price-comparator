@@ -61,6 +61,7 @@ public interface ProductService {
     /**
      * @return
      */
+    @Deprecated
     List<ProductIdNameDto> findAllProductForSelection();
 
 }

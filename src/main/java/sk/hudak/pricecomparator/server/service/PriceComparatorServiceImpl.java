@@ -111,11 +111,19 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
     }
 
     @Override
+    @Transactional
+    public void updateProduct(ProductUpdateDto updateDto) throws PriceComparatorBusinesException {
+        logger.debug(">> updateProduct");
+        productService.updateProduct(updateDto);
+        logger.debug("<< updateProduct");
+    }
+
+    @Override
     @Transactional(readOnly = true)
-    public List<ProductIdNameDto> findAllProductForSelection() {
-        logger.debug(">> findAllProductForSelection");
-        List<ProductIdNameDto> result = productService.findAllProductForSelection();
-        logger.debug("<< findAllProductForSelection");
+    public ProductDto getProduct(Long productId) throws PriceComparatorBusinesException {
+        logger.debug(">> getProduct {}", productId);
+        ProductDto result = productService.getProduct(productId);
+        logger.debug("<< getProduct");
         return result;
     }
 
@@ -130,27 +138,19 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
 
     @Override
     @Transactional(readOnly = true)
-    public ProductListDto getProductListById(Long productId) {
-        logger.debug(">> getProductListById");
-        ProductListDto result = productService.getProductListById(productId);
-        logger.debug("<< getProductListById");
+    public List<ProductIdNameDto> findAllProductForSelection() {
+        logger.debug(">> findAllProductForSelection");
+        List<ProductIdNameDto> result = productService.findAllProductForSelection();
+        logger.debug("<< findAllProductForSelection");
         return result;
     }
 
     @Override
-    @Transactional
-    public void updateProduct(ProductUpdateDto updateDto) throws PriceComparatorBusinesException {
-        logger.debug(">> updateProduct");
-        productService.updateProduct(updateDto);
-        logger.debug("<< updateProduct");
-    }
-
-    @Override
     @Transactional(readOnly = true)
-    public ProductDto getProduct(Long productId) throws PriceComparatorBusinesException {
-        logger.debug(">> getProduct");
-        ProductDto result = productService.getProduct(productId);
-        logger.debug("<< getProduct");
+    public ProductListDto getProductListById(Long productId) {
+        logger.debug(">> getProductListById");
+        ProductListDto result = productService.getProductListById(productId);
+        logger.debug("<< getProductListById");
         return result;
     }
 

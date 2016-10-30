@@ -16,6 +16,7 @@ import sk.hudak.pricecomparator.client.wicket.component.common.IdListView;
 import sk.hudak.pricecomparator.client.wicket.component.table.PagingInfoPanel;
 import sk.hudak.pricecomparator.client.wicket.component.table.Table;
 import sk.hudak.pricecomparator.client.wicket.page.product.ProductPricesPerEshopsListPage;
+import sk.hudak.pricecomparator.client.wicket.page.product.ProductUpdatePage;
 import sk.hudak.pricecomparator.middle.to.ProductFindDto;
 import sk.hudak.pricecomparator.middle.to.ProductListDto;
 
@@ -82,6 +83,14 @@ public class ProductListTable extends Panel {
                     public void onClick() {
                         setResponsePage(ProductPricesPerEshopsListPage.class,
                                 WU.param(ProductPricesPerEshopsListPage.PARAM_PRODUCT_ID, getModelObject().getId()));
+                    }
+                });
+
+                tr.add(new Link<ProductListDto>("updateProduct", product) {
+                    @Override
+                    public void onClick() {
+                        setResponsePage(ProductUpdatePage.class,
+                                WU.param(ProductUpdatePage.PARAM_PRODUCT_ID, getModelObject().getId()));
                     }
                 });
 

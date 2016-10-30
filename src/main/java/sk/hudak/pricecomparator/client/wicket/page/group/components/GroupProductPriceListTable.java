@@ -17,6 +17,7 @@ import sk.hudak.pricecomparator.client.wicket.component.common.IdListView;
 import sk.hudak.pricecomparator.client.wicket.component.table.PagingInfoPanel;
 import sk.hudak.pricecomparator.client.wicket.component.table.Table;
 import sk.hudak.pricecomparator.client.wicket.component.table.column.*;
+import sk.hudak.pricecomparator.client.wicket.page.product.ProductUpdatePage;
 import sk.hudak.pricecomparator.client.wicket.page.productineshop.ProductInEshopUpdatePage;
 import sk.hudak.pricecomparator.middle.canonical.ProductAction;
 import sk.hudak.pricecomparator.middle.canonical.Unit;
@@ -151,6 +152,16 @@ public class GroupProductPriceListTable extends Panel {
                     }
                 };
 
+                Link<ProductInEshopPriceResultListDto> updateProduct = new Link<ProductInEshopPriceResultListDto>(
+                        "updateProduct", model) {
+                    @Override
+                    public void onClick() {
+                        setResponsePage(ProductUpdatePage.class,
+                                WU.param(ProductUpdatePage.PARAM_PRODUCT_ID, getModelObject().getProduct().getId()));
+                    }
+                };
+
+
                 WebMarkupContainer tr = new WebMarkupContainer("tr");
                 tr.add(productImageLink,
                         productName,
@@ -160,6 +171,7 @@ public class GroupProductPriceListTable extends Panel {
                         lastUpdatedPrice);
                 //actions
                 tr.add(updateProductInEshop);
+                tr.add(updateProduct);
 
                 item.add(tr);
             }

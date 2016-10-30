@@ -21,7 +21,7 @@ public class PriceFormaterUtils {
         StringBuilder sb = new StringBuilder();
         for (ProductInEshopPriceResultListDto eshopProductPriceDto : result) {
             // nazov eshopu
-            sb.append(eshopProductPriceDto.getEshopName());
+            sb.append(eshopProductPriceDto.getEshop().getName());
             // cena za jednotku
             sb.append("\t ").append(removeDotAtTheEndIfExist(removeZerosAtTheEnd(eshopProductPriceDto.getPriceForUnit()))).append(" € za jednotku");
             // cena za balenie

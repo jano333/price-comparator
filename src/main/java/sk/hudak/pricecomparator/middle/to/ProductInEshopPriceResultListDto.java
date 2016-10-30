@@ -14,8 +14,8 @@ import java.util.Date;
  */
 public class ProductInEshopPriceResultListDto implements Serializable {
 
-    public static final String AT_ESHOP_NAME = "eshopName";
-    public static final String AT_PRODUCT_NAME = "productName";
+    public static final String AT_ESHOP_NAME = "eshop." + EshopIdNameDto.AT_NAME;
+    public static final String AT_PRODUCT_NAME = "product." + ProductIdNameDto.AT_NAME;
 
     public static final String AT_UNIT = "unit";
     public static final String AT_PRICE_FOR_UNIT = "priceForUnit";
@@ -28,8 +28,8 @@ public class ProductInEshopPriceResultListDto implements Serializable {
 
 
     private Long id;
-    private String eshopName;
-    private String productName;
+    private EshopIdNameDto eshop;
+    private ProductIdNameDto product;
 
     private Unit unit;
     private BigDecimal priceForUnit;
@@ -42,12 +42,28 @@ public class ProductInEshopPriceResultListDto implements Serializable {
     private String productEshopPage;
     private String imagePath;
 
-    public String getProductName() {
-        return productName;
+    public Long getId() {
+        return id;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public EshopIdNameDto getEshop() {
+        return eshop;
+    }
+
+    public void setEshop(EshopIdNameDto eshop) {
+        this.eshop = eshop;
+    }
+
+    public ProductIdNameDto getProduct() {
+        return product;
+    }
+
+    public void setProduct(ProductIdNameDto product) {
+        this.product = product;
     }
 
     public Unit getUnit() {
@@ -58,44 +74,12 @@ public class ProductInEshopPriceResultListDto implements Serializable {
         this.unit = unit;
     }
 
-    public String getImagePath() {
-        return imagePath;
+    public BigDecimal getPriceForUnit() {
+        return priceForUnit;
     }
 
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getProductEshopPage() {
-        return productEshopPage;
-    }
-
-    public void setProductEshopPage(String productEshopPage) {
-        this.productEshopPage = productEshopPage;
-    }
-
-    public ProductAction getProductAction() {
-        return productAction;
-    }
-
-    public void setProductAction(ProductAction productAction) {
-        this.productAction = productAction;
-    }
-
-    public Date getActionValidTo() {
-        return actionValidTo;
-    }
-
-    public void setActionValidTo(Date actionValidTo) {
-        this.actionValidTo = actionValidTo;
+    public void setPriceForUnit(BigDecimal priceForUnit) {
+        this.priceForUnit = priceForUnit;
     }
 
     public BigDecimal getPriceForPackage() {
@@ -114,20 +98,20 @@ public class ProductInEshopPriceResultListDto implements Serializable {
         this.priceForOneItemInPackage = priceForOneItemInPackage;
     }
 
-    public BigDecimal getPriceForUnit() {
-        return priceForUnit;
+    public ProductAction getProductAction() {
+        return productAction;
     }
 
-    public void setPriceForUnit(BigDecimal priceForUnit) {
-        this.priceForUnit = priceForUnit;
+    public void setProductAction(ProductAction productAction) {
+        this.productAction = productAction;
     }
 
-    public String getEshopName() {
-        return eshopName;
+    public Date getActionValidTo() {
+        return actionValidTo;
     }
 
-    public void setEshopName(String eshopName) {
-        this.eshopName = eshopName;
+    public void setActionValidTo(Date actionValidTo) {
+        this.actionValidTo = actionValidTo;
     }
 
     public Date getLastUpdatedPrice() {
@@ -136,5 +120,21 @@ public class ProductInEshopPriceResultListDto implements Serializable {
 
     public void setLastUpdatedPrice(Date lastUpdatedPrice) {
         this.lastUpdatedPrice = lastUpdatedPrice;
+    }
+
+    public String getProductEshopPage() {
+        return productEshopPage;
+    }
+
+    public void setProductEshopPage(String productEshopPage) {
+        this.productEshopPage = productEshopPage;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 }

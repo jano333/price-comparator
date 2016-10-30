@@ -109,19 +109,22 @@ public class ProductInEshopAssembler {
         if (entity == null) {
             return null;
         }
+        ProductEntity product = entity.getProduct();
+        EshopEntity eshop = entity.getEshop();
+
         ProductInEshopPriceResultListDto result = new ProductInEshopPriceResultListDto();
         result.setId(entity.getId());
         result.setProductAction(entity.getProductAction());
-        result.setUnit(entity.getProduct().getUnit());
+        result.setUnit(product.getUnit());
         result.setPriceForUnit(entity.getPriceForUnit());
         result.setActionValidTo(entity.getActionValidTo());
         result.setPriceForOneItemInPackage(entity.getPriceForOneItemInPackage());
         result.setPriceForPackage(entity.getPriceForPackage());
         result.setProductEshopPage(entity.getProductPageInEshop());
-        result.setEshopName(entity.getEshop().getName());
-        result.setProductName(entity.getProduct().getName());
+        result.setEshop(new EshopIdNameDto(eshop.getId(), eshop.getName()));
+        result.setProduct(new ProductIdNameDto(product.getId(), product.getName()));
         result.setLastUpdatedPrice(entity.getLastUpdatedPrice());
-        result.setImagePath(ImageUtils.findProductImage(entity.getProduct().getId()));
+        result.setImagePath(ImageUtils.findProductImage(product.getId()));
 
         return result;
     }
