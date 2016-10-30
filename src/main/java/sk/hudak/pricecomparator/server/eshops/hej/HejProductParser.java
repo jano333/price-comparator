@@ -15,7 +15,7 @@ public class HejProductParser extends AbstractEshopProductParserNg {
 
     @Override
     protected boolean isProductUnavailable(Document document) {
-        return ParserUtils.notExistElement(document, "a[id=big_basket]");
+        return ParserUtils.notExistElement(document, "p[id=vlozit_do_kosiku]");
     }
 
     @Override
