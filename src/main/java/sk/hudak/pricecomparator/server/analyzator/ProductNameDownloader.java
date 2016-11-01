@@ -2,9 +2,9 @@ package sk.hudak.pricecomparator.server.analyzator;
 
 import sk.hudak.pricecomparator.middle.canonical.EshopType;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorException;
-import sk.hudak.pricecomparator.server.async.ng.EshopParserRequestNg;
-import sk.hudak.pricecomparator.server.async.ng.EshopParserResponseNg;
-import sk.hudak.pricecomparator.server.async.ng.EshopProductParserNg;
+import sk.hudak.pricecomparator.server.async.ng.EshopParserRequest;
+import sk.hudak.pricecomparator.server.async.ng.EshopParserResponse;
+import sk.hudak.pricecomparator.server.async.ng.EshopProductParser;
 import sk.hudak.pricecomparator.server.eshops.tesco.TescoProductParser;
 
 import javax.inject.Named;
@@ -16,15 +16,15 @@ import javax.inject.Named;
 public class ProductNameDownloader {
 
     public String downloadProductName(EshopType eshopType, String productUrl) {
-        EshopProductParserNg parser = getParser(eshopType);
+        EshopProductParser parser = getParser(eshopType);
         //TODO toto nie je testnute... a cele toto prerobit
-        EshopParserRequestNg request = new EshopParserRequestNg();
+        EshopParserRequest request = new EshopParserRequest();
         request.setEshopProductPage(productUrl);
-        EshopParserResponseNg eshopParserResponseNg = parser.parseEshopProductInfo(request);
-        return eshopParserResponseNg.getProductName();
+        EshopParserResponse eshopParserResponse = parser.parseEshopProductInfo(request);
+        return eshopParserResponse.getProductName();
     }
 
-    private EshopProductParserNg getParser(EshopType eshopType) {
+    private EshopProductParser getParser(EshopType eshopType) {
         switch (eshopType) {
             case TESCO:
                 return new TescoProductParser();

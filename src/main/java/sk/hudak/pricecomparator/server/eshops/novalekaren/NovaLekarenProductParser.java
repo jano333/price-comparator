@@ -3,7 +3,7 @@ package sk.hudak.pricecomparator.server.eshops.novalekaren;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import sk.hudak.pricecomparator.middle.canonical.ProductAction;
-import sk.hudak.pricecomparator.server.async.ng.impl.AbstractEshopProductParserNg;
+import sk.hudak.pricecomparator.server.async.ng.impl.AbstractEshopProductParser;
 import sk.hudak.pricecomparator.server.async.ng.impl.ParserUtils;
 
 import java.math.BigDecimal;
@@ -14,7 +14,7 @@ import java.util.Map;
 /**
  * Created by jan on 18. 7. 2016.
  */
-public class NovaLekarenProductParser extends AbstractEshopProductParserNg {
+public class NovaLekarenProductParser extends AbstractEshopProductParser {
 
     @Override
     protected Map<String, String> getCookies() {

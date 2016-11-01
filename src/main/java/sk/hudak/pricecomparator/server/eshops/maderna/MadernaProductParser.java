@@ -4,7 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import sk.hudak.pricecomparator.middle.canonical.ProductAction;
-import sk.hudak.pricecomparator.server.async.ng.impl.AbstractEshopProductParserNg;
+import sk.hudak.pricecomparator.server.async.ng.impl.AbstractEshopProductParser;
 import sk.hudak.pricecomparator.server.async.ng.impl.ParserUtils;
 
 import java.math.BigDecimal;
@@ -13,7 +13,7 @@ import java.util.Date;
 /**
  * Created by jan on 10. 9. 2016.
  */
-public class MadernaProductParser extends AbstractEshopProductParserNg {
+public class MadernaProductParser extends AbstractEshopProductParser {
     @Override
     protected boolean isProductUnavailable(Document document) {
         Elements elements = document.select("form#addtocart > div > input[class]");

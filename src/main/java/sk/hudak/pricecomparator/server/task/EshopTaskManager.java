@@ -3,9 +3,9 @@ package sk.hudak.pricecomparator.server.task;
 import sk.hudak.jef.ssl.JefSslManager;
 import sk.hudak.pricecomparator.middle.canonical.EshopType;
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
-import sk.hudak.pricecomparator.server.async.ng.impl.EshopTaskManagerImpNg;
-import sk.hudak.pricecomparator.server.async.ng.tesco.TescoProductPictureDownloaderTaskNg;
-import sk.hudak.pricecomparator.server.async.ng.tesco.TescoProductPriceUpdaterCallbackNg;
+import sk.hudak.pricecomparator.server.async.ng.impl.EshopTaskManagerImp;
+import sk.hudak.pricecomparator.server.async.ng.tesco.TescoProductPictureDownloaderTask;
+import sk.hudak.pricecomparator.server.async.ng.tesco.TescoProductPriceUpdaterCallback;
 import sk.hudak.pricecomparator.server.eshops.alza.AlzaProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.amddrogeria.AmdDrogeriaProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.andrea.AndreaProductDownloaderTask;
@@ -49,7 +49,7 @@ public class EshopTaskManager {
     @Inject
     private PriceComparatorService service;
 
-    private EshopTaskManagerImpNg manager;
+    private EshopTaskManagerImp manager;
 
     @PostConstruct
     public void init() {
@@ -57,7 +57,7 @@ public class EshopTaskManager {
         // custom ssl to ignore SSL check for specific domains
         JefSslManager.getInstance().init();
 
-        manager = new EshopTaskManagerImpNg(service);
+        manager = new EshopTaskManagerImp(service);
 
         // A
         manager.registerEshopTask(new AlzaProductDownloaderTask());
@@ -112,8 +112,8 @@ public class EshopTaskManager {
         // T
         manager.registerEshopTaskWithCallback(
                 new TescoProductDownloaderTask(),
-                new TescoProductPriceUpdaterCallbackNg());
-        manager.registerEshopTask(new TescoProductPictureDownloaderTaskNg());
+                new TescoProductPriceUpdaterCallback());
+        manager.registerEshopTask(new TescoProductPictureDownloaderTask());
 
         startAllTasks();
     }

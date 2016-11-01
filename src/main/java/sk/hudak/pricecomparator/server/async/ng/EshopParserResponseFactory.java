@@ -7,12 +7,12 @@ import java.math.BigDecimal;
 /**
  * Created by jan on 9. 7. 2016.
  */
-public class EshopParserResponseNgFactory {
+public class EshopParserResponseFactory {
 
     public static final BigDecimal PRICE_UNAVIABLE = new BigDecimal(-1);
 
-    public static EshopParserResponseNg createUnaviable() {
-        return new EshopParserResponseNg()
+    public static EshopParserResponse createUnaviable() {
+        return new EshopParserResponse()
                 .setAction(ProductAction.UNKNOWN)
                 .setPriceForOneItemInPackage(PRICE_UNAVIABLE)
                 .setPriceForPackage(PRICE_UNAVIABLE)

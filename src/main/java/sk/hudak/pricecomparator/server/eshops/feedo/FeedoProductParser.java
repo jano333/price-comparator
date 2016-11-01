@@ -5,7 +5,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import sk.hudak.pricecomparator.middle.canonical.ProductAction;
-import sk.hudak.pricecomparator.server.async.ng.impl.AbstractEshopProductParserNg;
+import sk.hudak.pricecomparator.server.async.ng.impl.AbstractEshopProductParser;
 import sk.hudak.pricecomparator.server.async.ng.impl.ParserUtils;
 
 import java.math.BigDecimal;
@@ -14,7 +14,7 @@ import java.util.Date;
 /**
  * Created by jan on 11. 8. 2016.
  */
-public class FeedoProductParser extends AbstractEshopProductParserNg {
+public class FeedoProductParser extends AbstractEshopProductParser {
 
     @Override
     protected int getTimeout() {

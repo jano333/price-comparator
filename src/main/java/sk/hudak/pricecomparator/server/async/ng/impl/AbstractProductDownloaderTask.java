@@ -15,21 +15,21 @@ import java.util.Random;
 /**
  * Created by jan on 9. 7. 2016.
  */
-public abstract class AbstractProductDownloaderTaskNg implements EshopTaskNg {
+public abstract class AbstractProductDownloaderTask implements EshopTask {
 
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
     protected PriceComparatorService service;
-    protected EshopTaskCallbackNg callback;
+    protected EshopTaskCallback callback;
 
     private Boolean stop = Boolean.FALSE;
 
-    private EshopProductParserNg parser;
+    private EshopProductParser parser;
 
-    protected abstract EshopProductParserNg createEshopProductParser();
+    protected abstract EshopProductParser createEshopProductParser();
 
     @Override
-    public void run(PriceComparatorService service, EshopTaskCallbackNg callback) {
+    public void run(PriceComparatorService service, EshopTaskCallback callback) {
         logger.debug("starting task");
         this.service = service;
         this.callback = callback;
@@ -38,8 +38,8 @@ public abstract class AbstractProductDownloaderTaskNg implements EshopTaskNg {
         }
 
 
-//        TescoTaskEventNg tescoTaskEventNg = new TescoTaskEventNg();
-//        TescoProductPriceUpdaterCallbackNg callback1 = (TescoProductPriceUpdaterCallbackNg) callback;
+//        TescoTaskEvent tescoTaskEventNg = new TescoTaskEvent();
+//        TescoProductPriceUpdaterCallback callback1 = (TescoProductPriceUpdaterCallback) callback;
 //        callback1.onEvent(tescoTaskEventNg);
 
         while (!shouldStopTask()) {
@@ -60,7 +60,7 @@ public abstract class AbstractProductDownloaderTaskNg implements EshopTaskNg {
         // 1. service metoda vrati id produktu v eshope, ktory je potrebne aktualizovat
         // ak pride null tak vsetko je aktualne
 
-        // 2. service metoda pre dane id vrati uz naplneni objekt EshopParserRequestNg !!!
+        // 2. service metoda pre dane id vrati uz naplneni objekt EshopParserRequest !!!
 
         // 3. tento request podsunie do parsera a ten mi vrati response
 
@@ -85,10 +85,10 @@ public abstract class AbstractProductDownloaderTaskNg implements EshopTaskNg {
         }
 
         // 2. preklopenie
-        EshopParserRequestNg eshopParserRequest = createEshopParserRequestNg(productForUpdate, product);
+        EshopParserRequest eshopParserRequest = createEshopParserRequestNg(productForUpdate, product);
 
         // 3. stiahnem aktualne informacie a dopitam zvysne atributy
-        EshopParserResponseNg response = parser.parseEshopProductInfo(eshopParserRequest);
+        EshopParserResponse response = parser.parseEshopProductInfo(eshopParserRequest);
 
         // 4. preklopenie
         ProductInEshopInfoUpdateDto updateDto = transfromToProductInEshopPriceUpdateDto(productForUpdate.getId(), response);
@@ -97,7 +97,7 @@ public abstract class AbstractProductDownloaderTaskNg implements EshopTaskNg {
         service.updateInfoOfProductInEshop(updateDto);
     }
 
-    private ProductInEshopInfoUpdateDto transfromToProductInEshopPriceUpdateDto(Long id, EshopParserResponseNg response) {
+    private ProductInEshopInfoUpdateDto transfromToProductInEshopPriceUpdateDto(Long id, EshopParserResponse response) {
         ProductInEshopInfoUpdateDto dto = new ProductInEshopInfoUpdateDto();
         dto.setId(id);
         dto.setPriceForPackage(response.getPriceForPackage());
@@ -110,8 +110,8 @@ public abstract class AbstractProductDownloaderTaskNg implements EshopTaskNg {
         return dto;
     }
 
-    private EshopParserRequestNg createEshopParserRequestNg(ProductInEshopDto productInEshopDto, ProductDto productDto) {
-        return new EshopParserRequestNg()
+    private EshopParserRequest createEshopParserRequestNg(ProductInEshopDto productInEshopDto, ProductDto productDto) {
+        return new EshopParserRequest()
                 .setUnit(productDto.getUnit())
                 .setCountOfUnit(productDto.getCountOfUnit())
                 .setCountOfItemInOnePackage(productDto.getCountOfItemInOnePackage())

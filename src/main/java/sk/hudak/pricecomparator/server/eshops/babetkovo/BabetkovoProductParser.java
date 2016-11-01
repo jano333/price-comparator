@@ -3,7 +3,7 @@ package sk.hudak.pricecomparator.server.eshops.babetkovo;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import sk.hudak.pricecomparator.middle.canonical.ProductAction;
-import sk.hudak.pricecomparator.server.async.ng.impl.AbstractEshopProductParserNg;
+import sk.hudak.pricecomparator.server.async.ng.impl.AbstractEshopProductParser;
 import sk.hudak.pricecomparator.server.async.ng.impl.ParserUtils;
 
 import java.math.BigDecimal;
@@ -12,7 +12,7 @@ import java.util.Date;
 /**
  * Created by jan on 5. 8. 2016.
  */
-public class BabetkovoProductParser extends AbstractEshopProductParserNg {
+public class BabetkovoProductParser extends AbstractEshopProductParser {
 
     @Override
     protected boolean isProductUnavailable(Document document) {

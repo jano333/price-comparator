@@ -2,9 +2,9 @@ package sk.hudak.pricecomparator.server.async.ng.impl;
 
 import sk.hudak.pricecomparator.middle.canonical.EshopType;
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
-import sk.hudak.pricecomparator.server.async.ng.EshopTaskCallbackNg;
-import sk.hudak.pricecomparator.server.async.ng.EshopTaskManagerNg;
-import sk.hudak.pricecomparator.server.async.ng.EshopTaskNg;
+import sk.hudak.pricecomparator.server.async.ng.EshopTask;
+import sk.hudak.pricecomparator.server.async.ng.EshopTaskCallback;
+import sk.hudak.pricecomparator.server.async.ng.EshopTaskManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,13 +18,13 @@ import java.util.concurrent.ThreadFactory;
 /**
  * Created by jan on 3. 7. 2016.
  */
-public class EshopTaskManagerImpNg implements EshopTaskManagerNg {
+public class EshopTaskManagerImp implements EshopTaskManager {
 
     private Map<EshopType, List<TaskWithCallback>> registeredTasks = new HashMap<>(EshopType.values().length);
 
     private PriceComparatorService service;
 
-    public EshopTaskManagerImpNg(PriceComparatorService service) {
+    public EshopTaskManagerImp(PriceComparatorService service) {
         this.service = service;
     }
 
@@ -35,17 +35,17 @@ public class EshopTaskManagerImpNg implements EshopTaskManagerNg {
     private Map<EshopType, Future<?>> runningTasks = new HashMap<>();
 
     @Override
-    public void registerEshopTask(EshopTaskNg eshopTaskNg) {
-        registerEshopTaskWithCallback(eshopTaskNg, null);
+    public void registerEshopTask(EshopTask eshopTask) {
+        registerEshopTaskWithCallback(eshopTask, null);
     }
 
     @Override
-    public void registerEshopTaskWithCallback(EshopTaskNg eshopTaskNg, EshopTaskCallbackNg callback) {
+    public void registerEshopTaskWithCallback(EshopTask eshopTask, EshopTaskCallback callback) {
         //TODO validate input params
-        if (!registeredTasks.containsKey(eshopTaskNg.getEshopType())) {
-            registeredTasks.put(eshopTaskNg.getEshopType(), new ArrayList<TaskWithCallback>(1));
+        if (!registeredTasks.containsKey(eshopTask.getEshopType())) {
+            registeredTasks.put(eshopTask.getEshopType(), new ArrayList<TaskWithCallback>(1));
         }
-        registeredTasks.get(eshopTaskNg.getEshopType()).add(new TaskWithCallback(eshopTaskNg, callback));
+        registeredTasks.get(eshopTask.getEshopType()).add(new TaskWithCallback(eshopTask, callback));
     }
 
     @Override
@@ -71,7 +71,7 @@ public class EshopTaskManagerImpNg implements EshopTaskManagerNg {
         ExecutorService executorService = Executors.newSingleThreadExecutor(tf);
 
         List<TaskWithCallback> taskWithCallbacks = registeredTasks.get(eshopType);
-        EshopInternalRunnableNg internalTask = new EshopInternalRunnableNg(service, eshopType, taskWithCallbacks);
+        EshopInternalRunnable internalTask = new EshopInternalRunnable(service, eshopType, taskWithCallbacks);
         Future<?> future = executorService.submit(internalTask);
 
         runningTasks.put(eshopType, future);
@@ -80,19 +80,19 @@ public class EshopTaskManagerImpNg implements EshopTaskManagerNg {
     }
 
     public static class TaskWithCallback {
-        private EshopTaskNg task;
-        private EshopTaskCallbackNg callback;
+        private EshopTask task;
+        private EshopTaskCallback callback;
 
-        public TaskWithCallback(EshopTaskNg task, EshopTaskCallbackNg callback) {
+        public TaskWithCallback(EshopTask task, EshopTaskCallback callback) {
             this.task = task;
             this.callback = callback;
         }
 
-        public EshopTaskNg getTask() {
+        public EshopTask getTask() {
             return task;
         }
 
-        public EshopTaskCallbackNg getCallback() {
+        public EshopTaskCallback getCallback() {
             return callback;
         }
 

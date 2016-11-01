@@ -1,15 +1,15 @@
 package sk.hudak.pricecomparator.server.eshops.tesco;
 
 import sk.hudak.pricecomparator.middle.canonical.EshopType;
-import sk.hudak.pricecomparator.server.async.ng.EshopProductParserNg;
-import sk.hudak.pricecomparator.server.async.ng.impl.AbstractProductDownloaderTaskNg;
+import sk.hudak.pricecomparator.server.async.ng.EshopProductParser;
+import sk.hudak.pricecomparator.server.async.ng.impl.AbstractProductDownloaderTask;
 
 /**
  * Task, ktory aktualizuje vsetky produkty v eshope TESCO.
  * <p>
  * Created by jan on 3. 7. 2016.
  */
-public class TescoProductDownloaderTask extends AbstractProductDownloaderTaskNg {
+public class TescoProductDownloaderTask extends AbstractProductDownloaderTask {
 
     @Override
     public EshopType getEshopType() {
@@ -18,7 +18,7 @@ public class TescoProductDownloaderTask extends AbstractProductDownloaderTaskNg 
 
 
     @Override
-    protected EshopProductParserNg createEshopProductParser() {
+    protected EshopProductParser createEshopProductParser() {
         return new TescoProductParser();
     }
 }

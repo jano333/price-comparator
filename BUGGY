@@ -1,82 +1,11 @@
----------------
-[ERROR][23.10 14:15:55][FEEDO]s.h.p.s.e.f.FeedoProductParser: http status code: 404
-[ERROR][23.10 14:15:55][FEEDO]s.h.p.s.e.f.FeedoProductParser: error while conneting to: https://www.feedo.sk/pampers-active-baby-dry-3-midi-174ks-4-9kg-mega-box-plus-mesacna-zasoba-jednorazove-plienky/
----------------
-[DEBUG][23.10 14:14:50][HEJ]s.h.p.s.e.h.HejProductParser: conneting to: http://www.hej.sk/filter-na-vodu-brita-maxtra-208891/
-[ERROR][23.10 14:14:51][HEJ]s.h.p.s.e.h.HejProductParser: another error while conneting to: http://www.hej.sk/filter-na-vodu-brita-maxtra-208891/
-java.lang.NumberFormatException: null
-	at java.math.BigDecimal.<init>(BigDecimal.java:545) ~[na:1.7.0_40]
-	at java.math.BigDecimal.<init>(BigDecimal.java:739) ~[na:1.7.0_40]
-	at sk.hudak.pricecomparator.server.eshops.hej.HejProductParser.parsePriceForPackage(HejProductParser.java:24) ~[classes/:na]
--------------
-[ERROR][23.10 14:14:50][FEEDO]s.h.p.s.e.f.FeedoProductParser: http status code: 404
-[ERROR][23.10 14:14:50][FEEDO]s.h.p.s.e.f.FeedoProductParser: error while conneting to: https://www.feedo.sk/obchod/plienky-a-doplnky/plienky-jednorazove/pampers-active-new-baby-2-mini-plienky-velkost-2-mini-3-6-kg-228-ks-mesacna-zasoba/
--------------
-[ERROR][23.10 14:13:15][FEEDO]s.h.p.s.e.f.FeedoProductParser: http status code: 404
-[ERROR][23.10 14:13:15][FEEDO]s.h.p.s.e.f.FeedoProductParser: error while conneting to: https://www.feedo.sk/pampers-premium-care-3-midi-120ks-4-9-kg-mega-box-mesacna-zasoba-jednorazove-plienky/
-org.jsoup.HttpStatusException: HTTP error fetching URL
------------------
+*************
+BUG:
+tesco ked je produkt nedostupny tak vrati 404 napr.: https://potravinydomov.itesco.sk/groceries/sk-SK/products/2002121081105
 
-
-
-
+*************
 FEATURE:
 rozlisovat nedostupne a neeexistujuce(404) lebo 404 to potrebujem fixnut ale nedostupne nechat tak len vediet
 o tom ze take nieco je
-
-
-TODO prest Feedo a dalsoe espy kde nie je cena...
-*************
-[ERROR][12.10 23:28:10][TESCO]s.h.p.s.e.t.TescoProductParser: http status code: 404
-[ERROR][12.10 23:28:10][TESCO]s.h.p.s.e.t.TescoProductParser: error while conneting to: https://potravinydomov.itesco.sk/groceries/sk-SK/products/2002121081105
-**********
-[ERROR][12.10 23:28:10][ESO_DROGERIA]s.h.p.s.e.e.EsoDrogeriaProductParser: another error while conneting to: http://www.esodrogeria.eu/www-esodrogeria-eu/eshop/22-1-HYGIENICKE-POTREBY/93-3-PAMPERS/5/435-PAMPERS-ACTIVE-BABY-DRY-3-MIDI-4-9KG-GIANT-PACK-90KS
-javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
-	at sun.security.ssl.Alerts.getSSLException(Alerts.java:192) ~[na:1.7.0_40]
-	at sun.security.ssl.SSLSocketImpl.fatal(SSLSocketImpl.java:1884) ~[na:1.7.0_40]
-	at sun.security.ssl.Handshaker.fatalSE(Handshaker.java:276) ~[na:1.7.0_40]
-	at sun.security.ssl.Handshaker.fatalSE(Handshaker.java:270) ~[na:1.7.0_40]
-	at sun.security.ssl.ClientHandshaker.serverCertificate(ClientHandshaker.java:1341) ~[na:1.7.0_40]
-	at sun.security.ssl.ClientHandshaker.processMessage(ClientHandshaker.java:153) ~[na:1.7.0_40]
-	at sun.security.ssl.Handshaker.processLoop(Handshaker.java:868) ~[na:1.7.0_40]
-	at sun.security.ssl.Handshaker.process_record(Handshaker.java:804) ~[na:1.7.0_40]
-	at sun.security.ssl.SSLSocketImpl.readRecord(SSLSocketImpl.java:1016) ~[na:1.7.0_40]
-	at sun.security.ssl.SSLSocketImpl.performInitialHandshake(SSLSocketImpl.java:1312) ~[na:1.7.0_40]
-	at sun.security.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:1339) ~[na:1.7.0_40]
-	at sun.security.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:1323) ~[na:1.7.0_40]
-	at sun.net.www.protocol.https.HttpsClient.afterConnect(HttpsClient.java:563) ~[na:1.7.0_40]
-	at sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.connect(AbstractDelegateHttpsURLConnection.java:185) ~[na:1.7.0_40]
-	at sun.net.www.protocol.https.HttpsURLConnectionImpl.connect(HttpsURLConnectionImpl.java:153) ~[na:1.7.0_40]
-	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:449) ~[jsoup-1.8.1.jar:na]
-	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:475) ~[jsoup-1.8.1.jar:na]
-	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:434) ~[jsoup-1.8.1.jar:na]
-	at org.jsoup.helper.HttpConnection.execute(HttpConnection.java:181) ~[jsoup-1.8.1.jar:na]
-	at org.jsoup.helper.HttpConnection.get(HttpConnection.java:170) ~[jsoup-1.8.1.jar:na]
-	at sk.hudak.pricecomparator.server.async.ng.impl.AbstractEshopProductParserNg.parseEshopProductInfo(AbstractEshopProductParserNg.java:47) ~[classes/:na]
-	at sk.hudak.pricecomparator.server.async.ng.impl.AbstractProductDownloaderTaskNg.doInOneCycle(AbstractProductDownloaderTaskNg.java:91) [classes/:na]
-	at sk.hudak.pricecomparator.server.async.ng.impl.AbstractProductDownloaderTaskNg.run(AbstractProductDownloaderTaskNg.java:46) [classes/:na]
-	at sk.hudak.pricecomparator.server.async.ng.impl.EshopInternalRunnableNg.run(EshopInternalRunnableNg.java:37) [classes/:na]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471) [na:1.7.0_40]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_40]
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_40]
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_40]
-	at java.lang.Thread.run(Thread.java:724) [na:1.7.0_40]
-Caused by: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
-	at sun.security.validator.PKIXValidator.doBuild(PKIXValidator.java:385) ~[na:1.7.0_40]
-	at sun.security.validator.PKIXValidator.engineValidate(PKIXValidator.java:292) ~[na:1.7.0_40]
-	at sun.security.validator.Validator.validate(Validator.java:260) ~[na:1.7.0_40]
-	at sun.security.ssl.X509TrustManagerImpl.validate(X509TrustManagerImpl.java:326) ~[na:1.7.0_40]
-	at sun.security.ssl.X509TrustManagerImpl.checkTrusted(X509TrustManagerImpl.java:231) ~[na:1.7.0_40]
-	at sun.security.ssl.X509TrustManagerImpl.checkServerTrusted(X509TrustManagerImpl.java:107) ~[na:1.7.0_40]
-	at sk.hudak.jef.ssl.JefCustomTrustManager.checkServerTrusted(JefCustomTrustManager.java:53) ~[classes/:na]
-	at sun.security.ssl.AbstractTrustManagerWrapper.checkServerTrusted(SSLContextImpl.java:813) ~[na:1.7.0_40]
-	at sun.security.ssl.ClientHandshaker.serverCertificate(ClientHandshaker.java:1323) ~[na:1.7.0_40]
-	... 24 common frames omitted
-Caused by: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
-	at sun.security.provider.certpath.SunCertPathBuilder.engineBuild(SunCertPathBuilder.java:196) ~[na:1.7.0_40]
-	at java.security.cert.CertPathBuilder.build(CertPathBuilder.java:268) ~[na:1.7.0_40]
-	at sun.security.validator.PKIXValidator.doBuild(PKIXValidator.java:380) ~[na:1.7.0_40]
-	... 32 common frames omitted
 *************
 https://www.alza.sk/maxi/pampers-premium-care-midi-80-ks-d2430397.htm?o=14
 je to dostupne ale mne hlasi ze to je nedostupne...

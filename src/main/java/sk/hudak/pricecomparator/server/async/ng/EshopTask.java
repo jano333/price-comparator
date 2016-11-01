@@ -6,9 +6,9 @@ import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
 /**
  * Created by jan on 3. 7. 2016.
  */
-public interface EshopTaskNg {
+public interface EshopTask {
 
     EshopType getEshopType();
 
-    void run(PriceComparatorService service, EshopTaskCallbackNg callback);
+    void run(PriceComparatorService service, EshopTaskCallback callback);
 }

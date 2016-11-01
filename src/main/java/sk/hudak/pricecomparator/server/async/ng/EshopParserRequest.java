@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 /**
  * Created by jan on 9. 7. 2016.
  */
-public class EshopParserRequestNg {
+public class EshopParserRequest {
 
     // merna jednotka
     private Unit unit;
@@ -29,7 +29,7 @@ public class EshopParserRequestNg {
         return unit;
     }
 
-    public EshopParserRequestNg setUnit(Unit unit) {
+    public EshopParserRequest setUnit(Unit unit) {
         this.unit = unit;
         return this;
     }
@@ -38,7 +38,7 @@ public class EshopParserRequestNg {
         return countOfUnit;
     }
 
-    public EshopParserRequestNg setCountOfUnit(BigDecimal countOfUnit) {
+    public EshopParserRequest setCountOfUnit(BigDecimal countOfUnit) {
         this.countOfUnit = countOfUnit;
         return this;
     }
@@ -47,7 +47,7 @@ public class EshopParserRequestNg {
         return countOfItemInOnePackage;
     }
 
-    public EshopParserRequestNg setCountOfItemInOnePackage(int countOfItemInOnePackage) {
+    public EshopParserRequest setCountOfItemInOnePackage(int countOfItemInOnePackage) {
         this.countOfItemInOnePackage = countOfItemInOnePackage;
         return this;
     }
@@ -56,7 +56,7 @@ public class EshopParserRequestNg {
         return eshopProductPage;
     }
 
-    public EshopParserRequestNg setEshopProductPage(String eshopProductPage) {
+    public EshopParserRequest setEshopProductPage(String eshopProductPage) {
         this.eshopProductPage = eshopProductPage;
         return this;
     }

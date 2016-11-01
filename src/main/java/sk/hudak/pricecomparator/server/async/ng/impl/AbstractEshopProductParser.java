@@ -7,10 +7,10 @@ import org.jsoup.nodes.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sk.hudak.pricecomparator.middle.canonical.ProductAction;
-import sk.hudak.pricecomparator.server.async.ng.EshopParserRequestNg;
-import sk.hudak.pricecomparator.server.async.ng.EshopParserResponseNg;
-import sk.hudak.pricecomparator.server.async.ng.EshopParserResponseNgFactory;
-import sk.hudak.pricecomparator.server.async.ng.EshopProductParserNg;
+import sk.hudak.pricecomparator.server.async.ng.EshopParserRequest;
+import sk.hudak.pricecomparator.server.async.ng.EshopParserResponse;
+import sk.hudak.pricecomparator.server.async.ng.EshopParserResponseFactory;
+import sk.hudak.pricecomparator.server.async.ng.EshopProductParser;
 
 import java.math.BigDecimal;
 import java.util.Collections;
@@ -20,7 +20,7 @@ import java.util.Map;
 /**
  * Created by jan on 9. 7. 2016.
  */
-public abstract class AbstractEshopProductParserNg implements EshopProductParserNg {
+public abstract class AbstractEshopProductParser implements EshopProductParser {
 
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -30,10 +30,10 @@ public abstract class AbstractEshopProductParserNg implements EshopProductParser
     // flag, ak eshop neudava platnost do kedy plati akcia produktu
     public static final Date ACTION_VALIDITY_NOT_DEFINE = null;
 
-    protected EshopParserRequestNg request;
+    protected EshopParserRequest request;
 
     @Override
-    public EshopParserResponseNg parseEshopProductInfo(EshopParserRequestNg request) {
+    public EshopParserResponse parseEshopProductInfo(EshopParserRequest request) {
         this.request = request;
 
         try {
@@ -48,7 +48,7 @@ public abstract class AbstractEshopProductParserNg implements EshopProductParser
 
             if (isProductUnavailable(document)) {
                 logger.warn("produkt nie je dostupny: {}", request.getEshopProductPage());
-                return EshopParserResponseNgFactory.createUnaviable();
+                return EshopParserResponseFactory.createUnaviable();
             }
 
             // nazov produktu
@@ -76,7 +76,7 @@ public abstract class AbstractEshopProductParserNg implements EshopProductParser
                     request.getCountOfUnit(), priceForOneItemInPackage);
 
 
-            EshopParserResponseNg responseNg = new EshopParserResponseNg()
+            EshopParserResponse responseNg = new EshopParserResponse()
                     .setProductName(productName)
                     .setPriceForPackage(priceForPackage)
                     .setPriceForOneItemInPackage(priceForOneItemInPackage)
@@ -91,12 +91,12 @@ public abstract class AbstractEshopProductParserNg implements EshopProductParser
             logger.error("http status code: " + e.getStatusCode());
             logger.error("error while conneting to: " + request.getEshopProductPage(), e);
             //TODO doriest dany pripad
-            return EshopParserResponseNgFactory.createUnaviable();
+            return EshopParserResponseFactory.createUnaviable();
 
         } catch (Exception e) {
             logger.error("another error while conneting to: " + request.getEshopProductPage(), e);
             //TODO doriest dany pripad
-            return EshopParserResponseNgFactory.createUnaviable();
+            return EshopParserResponseFactory.createUnaviable();
         }
     }
 

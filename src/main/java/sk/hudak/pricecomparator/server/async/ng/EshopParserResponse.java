@@ -8,7 +8,7 @@ import java.util.Date;
 /**
  * Created by jan on 9. 7. 2016.
  */
-public class EshopParserResponseNg {
+public class EshopParserResponse {
 
     private BigDecimal priceForUnit;
     private BigDecimal priceForPackage;
@@ -24,7 +24,7 @@ public class EshopParserResponseNg {
         return priceForUnit;
     }
 
-    public EshopParserResponseNg setPriceForUnit(BigDecimal priceForUnit) {
+    public EshopParserResponse setPriceForUnit(BigDecimal priceForUnit) {
         this.priceForUnit = priceForUnit;
         return this;
     }
@@ -33,7 +33,7 @@ public class EshopParserResponseNg {
         return priceForPackage;
     }
 
-    public EshopParserResponseNg setPriceForPackage(BigDecimal priceForPackage) {
+    public EshopParserResponse setPriceForPackage(BigDecimal priceForPackage) {
         this.priceForPackage = priceForPackage;
         return this;
     }
@@ -42,7 +42,7 @@ public class EshopParserResponseNg {
         return priceForOneItemInPackage;
     }
 
-    public EshopParserResponseNg setPriceForOneItemInPackage(BigDecimal priceForOneItemInPackage) {
+    public EshopParserResponse setPriceForOneItemInPackage(BigDecimal priceForOneItemInPackage) {
         this.priceForOneItemInPackage = priceForOneItemInPackage;
         return this;
     }
@@ -51,7 +51,7 @@ public class EshopParserResponseNg {
         return action;
     }
 
-    public EshopParserResponseNg setAction(ProductAction action) {
+    public EshopParserResponse setAction(ProductAction action) {
         this.action = action;
         return this;
     }
@@ -60,7 +60,7 @@ public class EshopParserResponseNg {
         return actionValidTo;
     }
 
-    public EshopParserResponseNg setActionValidTo(Date actionValidTo) {
+    public EshopParserResponse setActionValidTo(Date actionValidTo) {
         this.actionValidTo = actionValidTo;
         return this;
     }
@@ -69,7 +69,7 @@ public class EshopParserResponseNg {
         return productName;
     }
 
-    public EshopParserResponseNg setProductName(String productName) {
+    public EshopParserResponse setProductName(String productName) {
         this.productName = productName;
         return this;
     }
@@ -78,14 +78,14 @@ public class EshopParserResponseNg {
         return pictureUrl;
     }
 
-    public EshopParserResponseNg setPictureUrl(String pictureUrl) {
+    public EshopParserResponse setPictureUrl(String pictureUrl) {
         this.pictureUrl = pictureUrl;
         return this;
     }
 
     @Override
     public String toString() {
-        return "EshopParserResponseNg{" +
+        return "EshopParserResponse{" +
                 "priceForUnit=" + priceForUnit +
                 ", priceForPackage=" + priceForPackage +
                 ", priceForOneItemInPackage=" + priceForOneItemInPackage +

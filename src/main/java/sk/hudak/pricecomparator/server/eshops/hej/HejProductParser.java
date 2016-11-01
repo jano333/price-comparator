@@ -2,7 +2,7 @@ package sk.hudak.pricecomparator.server.eshops.hej;
 
 import org.jsoup.nodes.Document;
 import sk.hudak.pricecomparator.middle.canonical.ProductAction;
-import sk.hudak.pricecomparator.server.async.ng.impl.AbstractEshopProductParserNg;
+import sk.hudak.pricecomparator.server.async.ng.impl.AbstractEshopProductParser;
 import sk.hudak.pricecomparator.server.async.ng.impl.ParserUtils;
 
 import java.math.BigDecimal;
@@ -11,7 +11,7 @@ import java.util.Date;
 /**
  * Created by jan on 23. 8. 2016.
  */
-public class HejProductParser extends AbstractEshopProductParserNg {
+public class HejProductParser extends AbstractEshopProductParser {
 
     @Override
     protected boolean isProductUnavailable(Document document) {

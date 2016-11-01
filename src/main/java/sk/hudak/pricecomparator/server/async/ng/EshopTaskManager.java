@@ -5,22 +5,22 @@ import sk.hudak.pricecomparator.middle.canonical.EshopType;
 /**
  * Created by jan on 3. 7. 2016.
  */
-public interface EshopTaskManagerNg {
+public interface EshopTaskManager {
 
     /**
      * zaregistruje dany task
      *
-     * @param eshopTaskNg
+     * @param eshopTask
      */
-    void registerEshopTask(EshopTaskNg eshopTaskNg);
+    void registerEshopTask(EshopTask eshopTask);
 
     /**
      * zaregistruje dany task aj s callbackom
      *
-     * @param eshopTaskNg
+     * @param eshopTask
      * @param callback
      */
-    void registerEshopTaskWithCallback(EshopTaskNg eshopTaskNg, EshopTaskCallbackNg callback);
+    void registerEshopTaskWithCallback(EshopTask eshopTask, EshopTaskCallback callback);
 
     /**
      * spusti vsetky zaregistrovane tasky

@@ -1,13 +1,13 @@
 package sk.hudak.pricecomparator.server.eshops.perinbaba;
 
 import sk.hudak.pricecomparator.middle.canonical.EshopType;
-import sk.hudak.pricecomparator.server.async.ng.EshopProductParserNg;
-import sk.hudak.pricecomparator.server.async.ng.impl.AbstractProductDownloaderTaskNg;
+import sk.hudak.pricecomparator.server.async.ng.EshopProductParser;
+import sk.hudak.pricecomparator.server.async.ng.impl.AbstractProductDownloaderTask;
 
 /**
  * Created by jan on 18. 7. 2016.
  */
-public class PerinbabaProductDownloaderTask extends AbstractProductDownloaderTaskNg {
+public class PerinbabaProductDownloaderTask extends AbstractProductDownloaderTask {
 
     @Override
     public EshopType getEshopType() {
@@ -15,7 +15,7 @@ public class PerinbabaProductDownloaderTask extends AbstractProductDownloaderTas
     }
 
     @Override
-    protected EshopProductParserNg createEshopProductParser() {
+    protected EshopProductParser createEshopProductParser() {
         return new PerinbabaProductParser();
     }
 }

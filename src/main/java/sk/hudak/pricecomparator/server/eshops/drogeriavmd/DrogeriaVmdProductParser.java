@@ -3,7 +3,7 @@ package sk.hudak.pricecomparator.server.eshops.drogeriavmd;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import sk.hudak.pricecomparator.middle.canonical.ProductAction;
-import sk.hudak.pricecomparator.server.async.ng.impl.AbstractEshopProductParserNg;
+import sk.hudak.pricecomparator.server.async.ng.impl.AbstractEshopProductParser;
 import sk.hudak.pricecomparator.server.async.ng.impl.ParserUtils;
 
 import java.math.BigDecimal;
@@ -12,7 +12,7 @@ import java.util.Date;
 /**
  * Created by jan on 2. 9. 2016.
  */
-public class DrogeriaVmdProductParser extends AbstractEshopProductParserNg {
+public class DrogeriaVmdProductParser extends AbstractEshopProductParser {
 
     @Override
     protected boolean isProductUnavailable(Document document) {

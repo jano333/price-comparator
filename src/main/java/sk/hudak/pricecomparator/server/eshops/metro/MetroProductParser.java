@@ -3,7 +3,7 @@ package sk.hudak.pricecomparator.server.eshops.metro;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import sk.hudak.pricecomparator.middle.canonical.ProductAction;
-import sk.hudak.pricecomparator.server.async.ng.impl.AbstractEshopProductParserNg;
+import sk.hudak.pricecomparator.server.async.ng.impl.AbstractEshopProductParser;
 import sk.hudak.pricecomparator.server.async.ng.impl.ParserUtils;
 import sk.hudak.pricecomparator.server.utils.DateUtils;
 
@@ -15,7 +15,7 @@ import java.util.Map;
 /**
  * Created by jan on 11. 7. 2016.
  */
-public class MetroProductParser extends AbstractEshopProductParserNg {
+public class MetroProductParser extends AbstractEshopProductParser {
 
     @Override
     protected Map<String, String> getCookies() {

@@ -1,13 +1,13 @@
 package sk.hudak.pricecomparator.server.eshops.semistor;
 
 import sk.hudak.pricecomparator.middle.canonical.EshopType;
-import sk.hudak.pricecomparator.server.async.ng.EshopProductParserNg;
-import sk.hudak.pricecomparator.server.async.ng.impl.AbstractProductDownloaderTaskNg;
+import sk.hudak.pricecomparator.server.async.ng.EshopProductParser;
+import sk.hudak.pricecomparator.server.async.ng.impl.AbstractProductDownloaderTask;
 
 /**
  * Created by jan on 16. 7. 2016.
  */
-public class SemiltonProductDownloaderTask extends AbstractProductDownloaderTaskNg {
+public class SemiltonProductDownloaderTask extends AbstractProductDownloaderTask {
 
     @Override
     public EshopType getEshopType() {
@@ -15,7 +15,7 @@ public class SemiltonProductDownloaderTask extends AbstractProductDownloaderTask
     }
 
     @Override
-    protected EshopProductParserNg createEshopProductParser() {
+    protected EshopProductParser createEshopProductParser() {
         return new SemiltonProductParser();
     }
 }

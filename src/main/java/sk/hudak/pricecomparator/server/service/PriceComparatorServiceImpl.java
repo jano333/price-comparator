@@ -50,6 +50,15 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
 
     @Override
     @Transactional(readOnly = true)
+    public EshopDto getEshop(Long eshopId) {
+        logger.debug(">> getEshop");
+        EshopDto result = eshopService.getEshop(eshopId);
+        logger.debug("<< getEshop");
+        return result;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public PageList<EshopListDto> findEshops(EshopFindDto findDto) {
         logger.debug(">> findEshops");
         PageList<EshopListDto> result = eshopService.findEshops(findDto);
@@ -63,15 +72,6 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
         logger.debug(">> findAllHomePages");
         List<EshopHomePageInfoDto> result = eshopService.findAllHomePages();
         logger.debug("<< findAllHomePages");
-        return result;
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public EshopDto getEshop(Long eshopId) {
-        logger.debug(">> getEshop");
-        EshopDto result = eshopService.getEshop(eshopId);
-        logger.debug("<< getEshop");
         return result;
     }
 
