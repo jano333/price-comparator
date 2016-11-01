@@ -18,12 +18,17 @@ public class AlzaProductParser extends AbstractEshopProductParserNg {
     @Override
     protected boolean isProductUnavailable(Document document) {
         return ParserUtils.notExistElement(document, "a[class=cart-insert]")
-                &&ParserUtils.notExistElement(document, "a[class=btnx normal green buy]");
+                && ParserUtils.notExistElement(document, "a[class=btnx normal green buy]");
     }
 
     @Override
     protected BigDecimal parsePriceForPackage(Document document) {
-        Elements elements = document.select("span[class=bigPrice price_withVat]");
+        //niekte je to tak
+        Elements elements = document.select("span[class=price_withVat]");
+        if (elements.isEmpty()) {
+            // inde tak
+            elements = document.select("span[class=bigPrice price_withVat]");
+        }
         if (elements.isEmpty()) {
             //TODO tu by mala byt vynimka ked bduem mat ze je nedostupne
             return null;
