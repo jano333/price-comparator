@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.server.utils;
+package sk.hudak.pricecomparator.middle.utils;
 
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorException;
 
