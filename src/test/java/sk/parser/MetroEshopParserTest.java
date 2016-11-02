@@ -16,10 +16,10 @@ public class MetroEshopParserTest {
     public static void main(String[] args) {
 
         EshopParserRequest parserInputData = new EshopParserRequest()
+                .setUnit(Unit.KILOGRAM)
+                .setCountOfUnit(new BigDecimal(0.8))
                 .setCountOfItemInOnePackage(1)
-                .setUnit(Unit.LITER)
-                .setCountOfUnit(new BigDecimal(1))
-                .setEshopProductPage("https://sortiment.metro.sk/sk/absolut-vodka-40-1l-/159865p/");
+                .setEshopProductPage("https://sortiment.metro.sk/sk/nutrilon-3-800g-/175646p/");
 
         EshopProductParser parser = new MetroProductParser();
         EshopParserResponse productInfo = parser.parseEshopProductInfo(parserInputData);

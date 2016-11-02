@@ -31,12 +31,11 @@ public class MetroProductParser extends AbstractEshopProductParser {
 
     @Override
     protected BigDecimal parsePriceForPackage(Document document) {
-        Elements elements = document.select("td[class=text-right]:has(strong)");
+        Elements elements = document.select("tr[class=price-package] td:nth-child(4)");
         String html = elements.get(0).html();
-        int beginIndex = html.indexOf("|") + 2;
-        int endIndex = html.indexOf("s DPH") - 2;
-        html = html.substring(beginIndex, endIndex).trim();
-        return new BigDecimal(html.replace(",", "."));
+        html = ParserUtils.removeLastCharacters(html, 2);
+        html = ParserUtils.replaceAllCommaForDot(html);
+        return new BigDecimal(html);
     }
 
     @Override
