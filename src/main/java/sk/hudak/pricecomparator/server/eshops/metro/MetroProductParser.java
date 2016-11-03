@@ -25,8 +25,7 @@ public class MetroProductParser extends AbstractEshopProductParser {
 
     @Override
     protected boolean isProductUnavailable(Document document) {
-        //TODO ma to byt na button button pridat do kosika, co je toto?
-        return ParserUtils.existElement(document, "div[class=action-ns]");
+        return ParserUtils.existElement(document, "div[class=product-availability m-b-sm] span[class=icon-neskladem]");
     }
 
     @Override
@@ -40,11 +39,13 @@ public class MetroProductParser extends AbstractEshopProductParser {
 
     @Override
     protected ProductAction parseAction(Document document) {
+        //TODO overit urobili redesign
         return parseAction(document, "div[class=action-a]");
     }
 
     @Override
     protected Date parseActionValidity(Document document) {
+        //TODO overit urobili redesign
         Elements elements = document.select("div[class=action-l clearfix]");
         if (elements.isEmpty()) {
             return null;

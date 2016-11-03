@@ -18,8 +18,8 @@ public class MetroEshopParserTest {
         EshopParserRequest parserInputData = new EshopParserRequest()
                 .setUnit(Unit.KILOGRAM)
                 .setCountOfUnit(new BigDecimal(0.8))
-                .setCountOfItemInOnePackage(1)
-                .setEshopProductPage("https://sortiment.metro.sk/sk/nutrilon-3-800g-/175646p/");
+                .setCountOfItemInOnePackage(3)
+                .setEshopProductPage("https://sortiment.metro.sk/sk/nutrilon-2-mp-24kg-3x800g/182540p/");
 
         EshopProductParser parser = new MetroProductParser();
         EshopParserResponse productInfo = parser.parseEshopProductInfo(parserInputData);
