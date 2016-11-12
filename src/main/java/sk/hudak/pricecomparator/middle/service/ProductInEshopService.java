@@ -87,7 +87,7 @@ public interface ProductInEshopService {
      *
      * @param updatePriceDto
      */
-    void updateInfoOfProductInEshop(ProductInEshopInfoUpdateDto updatePriceDto);
+    void updateInfoOfProductInEshop(ProductInEshopInfoUpdateDto updatePriceDto) throws PriceComparatorBusinesException;
 
 
     /**

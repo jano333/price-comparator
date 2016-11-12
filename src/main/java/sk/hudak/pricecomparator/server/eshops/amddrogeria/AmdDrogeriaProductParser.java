@@ -15,6 +15,12 @@ import java.util.Date;
 public class AmdDrogeriaProductParser extends AbstractEshopProductParser {
 
     @Override
+    protected int getTimeout() {
+        //koli pomalym odozvam davam na 15 sekund
+        return 15000;
+    }
+
+    @Override
     protected boolean isProductUnavailable(Document document) {
         return ParserUtils.notExistElement(document, "input[class=addtocart-button]");
     }

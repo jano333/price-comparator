@@ -4,8 +4,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 
 /**
+ * Pouzivaj {@link sk.hudak.pricecomparator.server.html.parser.JsoupParserUtils}
+ * <p>
  * Created by jan on 9. 7. 2016.
  */
+@Deprecated
 public class ParserUtils {
 
     public static boolean notExistElement(Document document, String cssQuery) {

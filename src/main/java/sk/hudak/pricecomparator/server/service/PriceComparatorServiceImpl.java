@@ -289,7 +289,7 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
 
     @Override
     @Transactional
-    public void updateInfoOfProductInEshop(ProductInEshopInfoUpdateDto updatePriceDto) {
+    public void updateInfoOfProductInEshop(ProductInEshopInfoUpdateDto updatePriceDto) throws PriceComparatorBusinesException {
         logger.debug(">> updateInfoOfProductInEshop");
         productInEshopService.updateInfoOfProductInEshop(updatePriceDto);
         logger.debug("<< updateInfoOfProductInEshop");

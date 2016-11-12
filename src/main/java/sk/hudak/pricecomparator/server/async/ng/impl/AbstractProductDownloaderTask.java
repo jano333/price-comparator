@@ -94,7 +94,12 @@ public abstract class AbstractProductDownloaderTask implements EshopTask {
         ProductInEshopInfoUpdateDto updateDto = transfromToProductInEshopPriceUpdateDto(productForUpdate.getId(), response);
 
         // 5. ulozenie do DB
-        service.updateInfoOfProductInEshop(updateDto);
+        try {
+            service.updateInfoOfProductInEshop(updateDto);
+        } catch (PriceComparatorBusinesException e) {
+            //TODO
+            e.printStackTrace();
+        }
     }
 
     private ProductInEshopInfoUpdateDto transfromToProductInEshopPriceUpdateDto(Long id, EshopParserResponse response) {

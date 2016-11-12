@@ -11,13 +11,15 @@ import java.util.Date;
  */
 public class ProductInEshopInfoUpdateDto implements Serializable {
 
+    // povinne:
     private Long id;
-    private ProductAction productAction;
-    private Date actionValidTo;
     private BigDecimal priceForPackage;
     private BigDecimal priceForOneItemInPackage;
     private BigDecimal priceForUnit;
 
+    // nepovinne:
+    private ProductAction productAction;
+    private Date actionValidTo;
     private String productName;
     private String pictureUrl;
 

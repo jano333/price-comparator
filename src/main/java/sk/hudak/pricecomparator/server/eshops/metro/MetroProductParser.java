@@ -30,7 +30,7 @@ public class MetroProductParser extends AbstractEshopProductParser {
 
     @Override
     protected BigDecimal parsePriceForPackage(Document document) {
-        Elements elements = document.select("tr[class=price-package] td:nth-child(4)");
+        Elements elements = document.select("tr.price-package td:nth-child(4)");
         String html = elements.get(0).html();
         html = ParserUtils.removeLastCharacters(html, 2);
         html = ParserUtils.replaceAllCommaForDot(html);
