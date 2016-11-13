@@ -8,6 +8,7 @@ import java.util.Date;
 /**
  * Created by jan on 9. 7. 2016.
  */
+@Deprecated
 public class EshopParserResponse {
 
     private BigDecimal priceForUnit;

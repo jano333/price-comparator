@@ -6,6 +6,7 @@ import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
 /**
  * Created by jan on 3. 7. 2016.
  */
+@Deprecated
 public interface EshopTask {
 
     EshopType getEshopType();

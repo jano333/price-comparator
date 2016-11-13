@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 /**
  * Created by jan on 9. 7. 2016.
  */
+@Deprecated
 public class EshopParserRequest {
 
     // merna jednotka

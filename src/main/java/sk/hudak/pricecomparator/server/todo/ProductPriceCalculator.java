@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.server.async.ng.impl;
+package sk.hudak.pricecomparator.server.todo;
 
 import sk.hudak.pricecomparator.middle.canonical.Unit;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorException;
