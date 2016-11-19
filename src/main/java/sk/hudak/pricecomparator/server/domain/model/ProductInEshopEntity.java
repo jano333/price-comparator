@@ -70,6 +70,9 @@ public class ProductInEshopEntity extends BasicEntity {
     @Column(name = "BEST_PRICE")
     private BigDecimal bestPrice;
 
+    //TODO enum o stave poslednej aktualizacie ceny, teda  uspene neuspesne, url neexustuje atz co vsetko cheme evidovat
+
+
     @Override
     public Long getId() {
         return id;

@@ -208,10 +208,17 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
     }
 
     @Override
+    @Deprecated
     public ProductInEshopDto findProductForPriceUpdate(EshopType eshopType) {
         ProductInEshopEntity productInEshop = productInEshopFacade.findProductForPriceUpdate(eshopType);
         return productInEshopAssembler.transformToProductInEshopDto(productInEshop);
 
+    }
+
+    @Override
+    public ProductInEshopForPriceUpdateDto findProductInEshopForPriceUpdate(EshopType eshopType) {
+        ProductInEshopEntity productInEshop = productInEshopFacade.findProductForPriceUpdate(eshopType);
+        return productInEshopAssembler.transformToProductInEshopForPriceUpdateDto(productInEshop);
     }
 
     @Override

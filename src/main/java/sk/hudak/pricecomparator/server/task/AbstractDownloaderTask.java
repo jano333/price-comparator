@@ -3,15 +3,16 @@ package sk.hudak.pricecomparator.server.task;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sk.hudak.pricecomparator.middle.canonical.EshopType;
-import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
-import sk.hudak.pricecomparator.middle.to.ProductInEshopDto;
+import sk.hudak.pricecomparator.middle.to.ProductInEshopForPriceUpdateDto;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopInfoUpdateDto;
 import sk.hudak.pricecomparator.server.html.parser.HtmlProductParser;
 import sk.hudak.pricecomparator.server.html.parser.ProductParserResultCallback;
 import sk.hudak.pricecomparator.server.html.parser.ProductParserResultDto;
+import sk.hudak.pricecomparator.server.todo.ProductPriceCalculator;
 
 import javax.inject.Inject;
+import java.math.BigDecimal;
 
 /**
  * Created by jan on 6. 11. 2016.
@@ -33,7 +34,7 @@ public abstract class AbstractDownloaderTask<P extends HtmlProductParser> {
     public boolean updateProduct() {
         logger.debug("starting next round ");
         // 1. ziskam jeden produkt, ktoremu sa vytvori/aktualizuje cena pre zvoleny eshop
-        final ProductInEshopDto productForUpdate = service.findProductForPriceUpdate(getEshopType());
+        final ProductInEshopForPriceUpdateDto productForUpdate = service.findProductInEshopForPriceUpdate(getEshopType());
         if (productForUpdate == null) {
             logger.debug("nic nenaslo -> vsetko je aktualne");
             return false;
@@ -42,52 +43,64 @@ public abstract class AbstractDownloaderTask<P extends HtmlProductParser> {
         getHtmlParser().parseProductPage(productForUpdate.getEshopProductPage(), new ProductParserResultCallback() {
             @Override
             public void onSucces(ProductParserResultDto parserResult) {
-                onSuccesParsing(productForUpdate, parserResult);
+                AbstractDownloaderTask.this.onSuccesParsing(productForUpdate, parserResult);
             }
 
             @Override
             public void onProductUnavailable(String productPage) {
-                //TODO
+                AbstractDownloaderTask.this.onProductUnavailable(productPage);
             }
 
             @Override
             public void onProductPageNotFound(String productPage) {
-                //TODO impl
+                AbstractDownloaderTask.this.onProductPageNotFound(productPage);
             }
 
             @Override
             public void onError(String productPage, Exception e) {
-                //TODO impl
+                AbstractDownloaderTask.this.onError(productPage, e);
             }
         });
 
         return true;
     }
 
-    protected void onSuccesParsing(ProductInEshopDto productForUpdate, ProductParserResultDto parserResult) {
-        try {
-            ProductInEshopInfoUpdateDto updateDto = new ProductInEshopInfoUpdateDto();
-            updateDto.setId(productForUpdate.getId());
+    protected void onSuccesParsing(ProductInEshopForPriceUpdateDto productForUpdate, ProductParserResultDto parserResult) {
+        BigDecimal productPriceForPackage = parserResult.getProductPriceForPackage();
 
-            updateDto.setPriceForPackage(parserResult.getProductPriceForPackage());
-            //TODO dopocitat
-            updateDto.setPriceForOneItemInPackage(null);
-            //TODO dopocitat
-            updateDto.setPriceForUnit(null);
-            // nepovinne
-            updateDto.setProductAction(parserResult.getProductAction());
-            updateDto.setActionValidTo(parserResult.getProductActionValidity());
-            updateDto.setProductName(parserResult.getProductName());
-            updateDto.setPictureUrl(parserResult.getProductPictureURL());
+        BigDecimal priceForOneItemInPackage = ProductPriceCalculator.calculatePriceForOneItemInPackage(
+                productPriceForPackage,
+                new BigDecimal(productForUpdate.getCountOfItemInOnePackage()));
 
-            // ulozenie do DB
-            service.updateInfoOfProductInEshop(updateDto);
+        BigDecimal priceForUnit = ProductPriceCalculator.calculatePriceForUnit(
+                productForUpdate.getUnit(), productForUpdate.getCountOfUnit(), priceForOneItemInPackage);
 
-        } catch (PriceComparatorBusinesException e) {
-            //TODO
-            e.printStackTrace();
-        }
+        ProductInEshopInfoUpdateDto updateDto = new ProductInEshopInfoUpdateDto();
+        updateDto.setId(productForUpdate.getId());
+        updateDto.setPriceForPackage(productPriceForPackage);
+        updateDto.setPriceForOneItemInPackage(priceForOneItemInPackage);
+        updateDto.setPriceForUnit(priceForUnit);
+        updateDto.setProductAction(parserResult.getProductAction());
+        updateDto.setActionValidTo(parserResult.getProductActionValidity());
+        updateDto.setProductName(parserResult.getProductName());
+        updateDto.setPictureUrl(parserResult.getProductPictureURL());
+
+        // ulozenie do DB
+        service.updateInfoOfProductInEshop(updateDto);
     }
 
+    protected void onProductUnavailable(String productPage) {
+        //TODO
+    }
+
+    protected void onProductPageNotFound(String productPage) {
+        //TODO
+
+    }
+
+    protected void onError(String productPage, Exception e) {
+        //TODO
+
+    }
 
 }

@@ -280,6 +280,7 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
 
     @Override
     @Transactional(readOnly = true)
+    @Deprecated //nahradene findProductInEshopForPriceUpdate
     public ProductInEshopDto findProductForPriceUpdate(EshopType eshopType) {
         logger.debug(">> findProductForPriceUpdate");
         ProductInEshopDto result = productInEshopService.findProductForPriceUpdate(eshopType);
@@ -288,8 +289,17 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
     }
 
     @Override
+    @Transactional(readOnly = true)
+    public ProductInEshopForPriceUpdateDto findProductInEshopForPriceUpdate(EshopType eshopType) {
+        logger.debug(">> findProductInEshopForPriceUpdate");
+        ProductInEshopForPriceUpdateDto result = productInEshopService.findProductInEshopForPriceUpdate(eshopType);
+        logger.debug("<< findProductInEshopForPriceUpdate");
+        return result;
+    }
+
+    @Override
     @Transactional
-    public void updateInfoOfProductInEshop(ProductInEshopInfoUpdateDto updatePriceDto) throws PriceComparatorBusinesException {
+    public void updateInfoOfProductInEshop(ProductInEshopInfoUpdateDto updatePriceDto) {
         logger.debug(">> updateInfoOfProductInEshop");
         productInEshopService.updateInfoOfProductInEshop(updatePriceDto);
         logger.debug("<< updateInfoOfProductInEshop");

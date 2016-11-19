@@ -197,4 +197,20 @@ public class ProductInEshopAssembler {
         }
         return new PageList<>(versions, productInEshopEntities.getCurrentPage(), productInEshopEntities.getAllPageCount());
     }
+
+    public ProductInEshopForPriceUpdateDto transformToProductInEshopForPriceUpdateDto(ProductInEshopEntity productInEshop) {
+        if (productInEshop == null) {
+            return null;
+        }
+        ProductEntity product = productInEshop.getProduct();
+
+        ProductInEshopForPriceUpdateDto result = new ProductInEshopForPriceUpdateDto();
+        result.setId(productInEshop.getId());
+        result.setProductId(product.getId());
+        result.setCountOfItemInOnePackage(product.getCountOfItemInOnePackage());
+        result.setUnit(product.getUnit());
+        result.setCountOfUnit(product.getCountOfUnit());
+        result.setEshopProductPage(productInEshop.getProductPageInEshop());
+        return result;
+    }
 }
