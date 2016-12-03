@@ -49,7 +49,7 @@ public abstract class AbstractEshopProductParser implements EshopProductParser {
             Document document = connection.get();
 
             if (isProductUnavailable(document)) {
-                logger.warn("produkt nie je dostupny: {}", request.getEshopProductPage());
+                logger.error("produkt nie je dostupny: " + request.getEshopProductPage());
                 return EshopParserResponseFactory.createUnaviable();
             }
 

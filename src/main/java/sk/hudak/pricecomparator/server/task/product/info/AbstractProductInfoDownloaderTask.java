@@ -1,14 +1,14 @@
-package sk.hudak.pricecomparator.server.task;
+package sk.hudak.pricecomparator.server.task.product.info;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import sk.hudak.pricecomparator.middle.canonical.EshopType;
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopForPriceUpdateDto;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopInfoUpdateDto;
 import sk.hudak.pricecomparator.server.html.parser.HtmlProductParser;
 import sk.hudak.pricecomparator.server.html.parser.ProductParserResultCallback;
 import sk.hudak.pricecomparator.server.html.parser.ProductParserResultDto;
+import sk.hudak.pricecomparator.server.task.AbtractEshopTask;
 import sk.hudak.pricecomparator.server.todo.ProductPriceCalculator;
 
 import javax.inject.Inject;
@@ -17,7 +17,7 @@ import java.math.BigDecimal;
 /**
  * Created by jan on 6. 11. 2016.
  */
-public abstract class AbstractDownloaderTask<P extends HtmlProductParser> {
+public abstract class AbstractProductInfoDownloaderTask<P extends HtmlProductParser> extends AbtractEshopTask {
 
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -26,12 +26,21 @@ public abstract class AbstractDownloaderTask<P extends HtmlProductParser> {
 
     protected abstract P getHtmlParser();
 
-    public abstract EshopType getEshopType();
+    @Override
+    public void taskJob() {
+
+        boolean isNext = updateProduct();
+        while (isNext) {
+            //TODO vypocitat
+            //Thread.sleep();
+            isNext = updateProduct();
+        }
+    }
 
     /**
      * @return false, ak nie je co aktualizovat, inak true
      */
-    public boolean updateProduct() {
+    private boolean updateProduct() {
         logger.debug("starting next round ");
         // 1. ziskam jeden produkt, ktoremu sa vytvori/aktualizuje cena pre zvoleny eshop
         final ProductInEshopForPriceUpdateDto productForUpdate = service.findProductInEshopForPriceUpdate(getEshopType());
@@ -43,22 +52,22 @@ public abstract class AbstractDownloaderTask<P extends HtmlProductParser> {
         getHtmlParser().parseProductPage(productForUpdate.getEshopProductPage(), new ProductParserResultCallback() {
             @Override
             public void onSucces(ProductParserResultDto parserResult) {
-                AbstractDownloaderTask.this.onSuccesParsing(productForUpdate, parserResult);
+                AbstractProductInfoDownloaderTask.this.onSuccesParsing(productForUpdate, parserResult);
             }
 
             @Override
             public void onProductUnavailable(String productPage) {
-                AbstractDownloaderTask.this.onProductUnavailable(productPage);
+                AbstractProductInfoDownloaderTask.this.onProductUnavailable(productPage);
             }
 
             @Override
             public void onProductPageNotFound(String productPage) {
-                AbstractDownloaderTask.this.onProductPageNotFound(productPage);
+                AbstractProductInfoDownloaderTask.this.onProductPageNotFound(productPage);
             }
 
             @Override
             public void onError(String productPage, Exception e) {
-                AbstractDownloaderTask.this.onError(productPage, e);
+                AbstractProductInfoDownloaderTask.this.onError(productPage, e);
             }
         });
 

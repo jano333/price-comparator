@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.server.task;
+package sk.hudak.pricecomparator.server.tobedeleted;
 
 import sk.hudak.jef.ssl.JefSslManager;
 import sk.hudak.pricecomparator.middle.canonical.EshopType;
@@ -43,6 +43,7 @@ import javax.inject.Named;
 /**
  * Created by jan on 5. 4. 2016.
  */
+@Deprecated
 @Named
 public class EshopTaskManager {
 

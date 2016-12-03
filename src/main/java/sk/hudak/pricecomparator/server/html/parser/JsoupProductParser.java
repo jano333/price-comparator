@@ -40,7 +40,7 @@ public abstract class JsoupProductParser implements HtmlProductParser {
             Document document = connection.get();
 
             if (isProductUnavailable(document)) {
-                logger.warn("produkt nie je dostupny: {}", productPage);
+                logger.error("produkt nie je dostupny: " + productPage);
                 callback.onProductUnavailable(productPage);
                 return;
             }

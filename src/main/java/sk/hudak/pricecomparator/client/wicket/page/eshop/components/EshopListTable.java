@@ -53,6 +53,24 @@ public class EshopListTable extends Panel {
         TextField<String> eshopNameFilter = new TextField<>("eshopName", new PropertyModel<String>(filter, EshopFindDto.AT_ESHOP_NAME));
         filterForm.add(eshopNameFilter);
 
+//        AutoCompleteSettings autoCompleteSettings = new AutoCompleteSettings();
+//        AutoCompleteTextField<String> eshopNameAutoCompleteFilter = new AutoCompleteTextField<String>("eshopName",
+//                new PropertyModel<String>(filter, EshopFindDto.AT_ESHOP_NAME),
+//                autoCompleteSettings) {
+//
+//            @Override
+//            protected Iterator<String> getChoices(String input) {
+//                if (StringUtils.isBlank(input)) {
+//                    return Collections.emptyIterator();
+//                }
+//                if (input.startsWith("aaa")) {
+//                    return Arrays.asList("ahoj", "cau", "aloha").iterator();
+//                }
+//                return Collections.emptyIterator();
+//            }
+//        };
+//        filterForm.add(eshopNameAutoCompleteFilter);
+
         // pagging
         filterForm.add(new PagingInfoPanel("infoPaging", filter, tableModel));
 
