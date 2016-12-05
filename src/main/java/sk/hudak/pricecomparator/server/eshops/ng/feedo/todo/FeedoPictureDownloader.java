@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.server.eshops.feedo;
+package sk.hudak.pricecomparator.server.eshops.ng.feedo.todo;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -23,6 +23,7 @@ import java.util.Random;
  * Created by jan on 28. 2. 2016.
  */
 @Named
+@Deprecated
 public class FeedoPictureDownloader {
     private static final int DEFAULT_TIMEOUT = 12000;
     private static final String MOZILLA_USER_AGENT_DEFAULT = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0";

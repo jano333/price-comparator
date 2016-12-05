@@ -1,20 +1,26 @@
-package sk.hudak.pricecomparator.server.eshops.feedo;
+package sk.hudak.pricecomparator.server.eshops.ng.feedo;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import sk.hudak.pricecomparator.middle.canonical.ProductAction;
-import sk.hudak.pricecomparator.server.async.ng.impl.AbstractEshopProductParser;
-import sk.hudak.pricecomparator.server.async.ng.impl.ParserUtils;
+import sk.hudak.pricecomparator.server.html.parser.JsoupParserUtils;
+import sk.hudak.pricecomparator.server.html.parser.JsoupProductParser;
 
+import javax.inject.Named;
 import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * Created by jan on 11. 8. 2016.
+ * Created by jan on 4. 12. 2016.
  */
-public class FeedoProductParser extends AbstractEshopProductParser {
+@Named
+public class FeedoProductParser extends JsoupProductParser {
+
+    private static Logger logger = LoggerFactory.getLogger(FeedoProductParser.class);
 
     @Override
     protected int getTimeout() {
@@ -24,11 +30,11 @@ public class FeedoProductParser extends AbstractEshopProductParser {
 
     @Override
     protected boolean isProductUnavailable(Document document) {
-        return ParserUtils.notExistElement(document, "button[class=btn btn-danger btn-large cart]");
+        return JsoupParserUtils.notExistElement(document, "button[class=btn btn-danger btn-large cart]");
     }
 
     @Override
-    protected BigDecimal parsePriceForPackage(Document document) {
+    protected BigDecimal parseProductPriceForPackage(Document document) {
         // skusim -> premim cena
         Elements select = document.select("div[class=price price-premium] span");
         if (!select.isEmpty()) {
@@ -58,22 +64,28 @@ public class FeedoProductParser extends AbstractEshopProductParser {
     }
 
     @Override
-    protected ProductAction parseAction(Document document) {
-        boolean preminumCena = ParserUtils.existElement(document, "div[class=price price-premium]");
-        boolean akcnaCena = ParserUtils.existElement(document, "div[class=price price-discount]");
+    protected ProductAction parseProductAction(Document document) {
+        boolean preminumCena = JsoupParserUtils.existElement(document, "div[class=price price-premium]");
+        boolean akcnaCena = JsoupParserUtils.existElement(document, "div[class=price price-discount]");
         boolean action = preminumCena || akcnaCena;
 
         return action ? ProductAction.IN_ACTION : ProductAction.NON_ACTION;
     }
 
     @Override
-    protected Date parseActionValidity(Document document) {
+    protected Date parseProductActionValidity(Document document) {
         return ACTION_VALIDITY_NOT_DEFINE;
     }
 
     @Override
     protected String parseProductName(Document document) {
-        //TODO parseProductName
+        //TODO
+        return null;
+    }
+
+    @Override
+    protected String parseProductPictureURL(Document document) {
+        //TODO
         return null;
     }
 }

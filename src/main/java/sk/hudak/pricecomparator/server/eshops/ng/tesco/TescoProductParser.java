@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.server.html.parser.impl;
+package sk.hudak.pricecomparator.server.eshops.ng.tesco;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;

@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.server.task.product.picture;
+package sk.hudak.pricecomparator.server.task.picture;
 
 import net.coobird.thumbnailator.Thumbnails;
 

@@ -3,7 +3,7 @@ package sk.parser;
 import sk.hudak.pricecomparator.middle.canonical.Unit;
 import sk.hudak.pricecomparator.server.async.ng.EshopParserRequest;
 import sk.hudak.pricecomparator.server.async.ng.EshopParserResponse;
-import sk.hudak.pricecomparator.server.eshops.feedo.FeedoProductParser;
+import sk.hudak.pricecomparator.server.tobedeleted.FeedoProductParser;
 
 import java.math.BigDecimal;
 

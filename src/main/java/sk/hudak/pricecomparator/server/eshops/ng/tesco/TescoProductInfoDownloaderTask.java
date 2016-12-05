@@ -1,8 +1,7 @@
-package sk.hudak.pricecomparator.server.task.tesco;
+package sk.hudak.pricecomparator.server.eshops.ng.tesco;
 
 import sk.hudak.pricecomparator.middle.canonical.EshopType;
-import sk.hudak.pricecomparator.server.html.parser.impl.TescoProductParser;
-import sk.hudak.pricecomparator.server.task.product.info.AbstractProductInfoDownloaderTask;
+import sk.hudak.pricecomparator.server.task.AbstractProductInfoDownloaderTask;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -17,12 +16,17 @@ public class TescoProductInfoDownloaderTask extends AbstractProductInfoDownloade
     private TescoProductParser parser;
 
     @Override
-    protected TescoProductParser getHtmlParser() {
-        return parser;
+    public EshopType getEshopType() {
+        return EshopType.TESCO;
     }
 
     @Override
-    public EshopType getEshopType() {
-        return EshopType.TESCO;
+    public int getTaskPriority() {
+        return 0;
+    }
+
+    @Override
+    protected TescoProductParser getHtmlParser() {
+        return parser;
     }
 }

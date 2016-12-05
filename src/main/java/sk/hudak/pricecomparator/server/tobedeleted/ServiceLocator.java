@@ -4,7 +4,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
 import sk.hudak.pricecomparator.middle.service.ProductInEshopService;
-import sk.hudak.pricecomparator.server.eshops.feedo.FeedoPictureDownloader;
+import sk.hudak.pricecomparator.server.eshops.ng.feedo.todo.FeedoPictureDownloader;
 
 /**
  * Created by jan on 16. 10. 2015.

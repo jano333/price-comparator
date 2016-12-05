@@ -25,6 +25,9 @@ public abstract class JsoupProductParser implements HtmlProductParser {
     //TODO toto domysliet
     private static final String MOZILLA_USER_AGENT_DEFAULT = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0";
 
+    // flag, ak eshop neudava platnost do kedy plati akcia produktu
+    public static final Date ACTION_VALIDITY_NOT_DEFINE = null;
+
 
     @Override
     public void parseProductPage(String productPage, ProductParserResultCallback callback) {

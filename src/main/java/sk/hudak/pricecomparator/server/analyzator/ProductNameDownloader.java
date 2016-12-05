@@ -5,7 +5,7 @@ import sk.hudak.pricecomparator.middle.exeption.PriceComparatorException;
 import sk.hudak.pricecomparator.server.async.ng.EshopParserRequest;
 import sk.hudak.pricecomparator.server.async.ng.EshopParserResponse;
 import sk.hudak.pricecomparator.server.async.ng.EshopProductParser;
-import sk.hudak.pricecomparator.server.eshops.tesco.TescoProductParser;
+import sk.hudak.pricecomparator.server.tobedeleted.TescoProductParser;
 
 import javax.inject.Named;
 

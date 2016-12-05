@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.server.async.ng.tesco;
+package sk.hudak.pricecomparator.server.tobedeleted;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +10,7 @@ import sk.hudak.pricecomparator.server.async.ng.EshopTaskCallback;
 /**
  * Created by jan on 3. 7. 2016.
  */
+@Deprecated
 public class TescoProductPictureDownloaderTask implements EshopTask {
 
     private static Logger logger = LoggerFactory.getLogger(TescoProductPictureDownloaderTask.class);

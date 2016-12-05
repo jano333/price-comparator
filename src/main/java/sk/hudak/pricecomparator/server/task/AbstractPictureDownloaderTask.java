@@ -1,6 +1,6 @@
-package sk.hudak.pricecomparator.server.task.product.picture;
+package sk.hudak.pricecomparator.server.task;
 
-import sk.hudak.pricecomparator.server.task.AbtractEshopTask;
+import sk.hudak.pricecomparator.server.task.picture.PictureDownloaderBean;
 
 import javax.inject.Inject;
 

@@ -4,8 +4,6 @@ import sk.hudak.jef.ssl.JefSslManager;
 import sk.hudak.pricecomparator.middle.canonical.EshopType;
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
 import sk.hudak.pricecomparator.server.async.ng.impl.EshopTaskManagerImp;
-import sk.hudak.pricecomparator.server.async.ng.tesco.TescoProductPictureDownloaderTask;
-import sk.hudak.pricecomparator.server.async.ng.tesco.TescoProductPriceUpdaterCallback;
 import sk.hudak.pricecomparator.server.eshops.alza.AlzaProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.amddrogeria.AmdDrogeriaProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.andrea.AndreaProductDownloaderTask;
@@ -17,7 +15,6 @@ import sk.hudak.pricecomparator.server.eshops.ckdmarket.CkdMarketProductDownload
 import sk.hudak.pricecomparator.server.eshops.drmax.DrMaxProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.drogeriavmd.DrogeriaVmdProductDowlnoaderTask;
 import sk.hudak.pricecomparator.server.eshops.esodregeria.EsoDrogeriaProductDownloaderTask;
-import sk.hudak.pricecomparator.server.eshops.feedo.FeedoProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.hej.HejProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.internetovalekaren.InternetovaLekarenProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.lekarenbella.LekarenBellaProductDownloaderTask;
@@ -33,7 +30,6 @@ import sk.hudak.pricecomparator.server.eshops.pilulka.PilulkaProductDownloaderTa
 import sk.hudak.pricecomparator.server.eshops.retrogeria.RetrogeriaProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.semistor.SemiltonProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.shoppie.ShoppieProductDownloaderTask;
-import sk.hudak.pricecomparator.server.eshops.tesco.TescoProductDownloaderTask;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -77,7 +73,7 @@ public class EshopTaskManager {
         // E
         manager.registerEshopTask(new EsoDrogeriaProductDownloaderTask());
         // F
-        manager.registerEshopTask(new FeedoProductDownloaderTask());
+//        manager.registerEshopTask(new FeedoProductDownloaderTask());
         // G
         // TODO zakomentovanie koli tomu ze dava Kcs nie Eur
 //        manager.registerEshopTask(new GigaLekarnaProductDownloaderTask());
@@ -111,10 +107,10 @@ public class EshopTaskManager {
         manager.registerEshopTask(new SemiltonProductDownloaderTask());
         manager.registerEshopTask(new ShoppieProductDownloaderTask());
         // T
-        manager.registerEshopTaskWithCallback(
-                new TescoProductDownloaderTask(),
-                new TescoProductPriceUpdaterCallback());
-        manager.registerEshopTask(new TescoProductPictureDownloaderTask());
+//        manager.registerEshopTaskWithCallback(
+//                new TescoProductDownloaderTask(),
+//                new TescoProductPriceUpdaterCallback());
+//        manager.registerEshopTask(new TescoProductPictureDownloaderTask());
 
         startAllTasks();
     }

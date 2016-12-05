@@ -10,6 +10,7 @@ import sk.hudak.pricecomparator.middle.service.*;
 import sk.hudak.pricecomparator.middle.to.*;
 import sk.hudak.pricecomparator.middle.to.internal.ProductByUrlAnalyzatorResponseDto;
 import sk.hudak.pricecomparator.middle.to.internal.ProductByUrlRequestDto;
+import sk.hudak.pricecomparator.middle.to.internal.ProductInEshopUpdateStatus;
 import sk.hudak.pricecomparator.middle.to.internal.StepTwoRequestDto;
 
 import javax.inject.Inject;
@@ -292,9 +293,19 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
     @Transactional(readOnly = true)
     public ProductInEshopForPriceUpdateDto findProductInEshopForPriceUpdate(EshopType eshopType) {
         logger.debug(">> findProductInEshopForPriceUpdate");
-        ProductInEshopForPriceUpdateDto result = productInEshopService.findProductInEshopForPriceUpdate(eshopType);
-        logger.debug("<< findProductInEshopForPriceUpdate");
-        return result;
+        try {
+            ProductInEshopForPriceUpdateDto result = productInEshopService.findProductInEshopForPriceUpdate(eshopType);
+            logger.debug("<< findProductInEshopForPriceUpdate");
+            return result;
+
+        } catch (Exception e) {
+            logger.error("<< findProductInEshopForPriceUpdate with error", e);
+            if (e instanceof RuntimeException) {
+                throw (RuntimeException) e;
+            } else {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     @Override
@@ -395,6 +406,13 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
         logger.debug("<< getProductInEhopPriceInfoListDto");
         return result;
     }
+
+    @Override
+    @Transactional
+    public void changeUpdateStatus(Long productInEshopId, ProductInEshopUpdateStatus updateStatus) {
+        productInEshopService.changeUpdateStatus(productInEshopId, updateStatus);
+    }
+
 
     // --------- GROUP_OF_PRODUCTS ------------
 

@@ -9,6 +9,7 @@ import sk.hudak.pricecomparator.middle.service.ProductInEshopService;
 import sk.hudak.pricecomparator.middle.to.*;
 import sk.hudak.pricecomparator.middle.to.internal.ProductByUrlAnalyzatorResponseDto;
 import sk.hudak.pricecomparator.middle.to.internal.ProductByUrlRequestDto;
+import sk.hudak.pricecomparator.middle.to.internal.ProductInEshopUpdateStatus;
 import sk.hudak.pricecomparator.middle.to.internal.StepTwoRequestDto;
 import sk.hudak.pricecomparator.server.analyzator.ProductByUrlAnalyzator;
 import sk.hudak.pricecomparator.server.domain.assembler.EshopAssembler;
@@ -37,18 +38,25 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
 
     @Inject
     private JefValidator val;
+
     @Inject
     private EshopDao eshopDao;
+
     @Inject
     private EshopAssembler eshopAssembler;
+
     @Inject
     private ProductFacade productFacade;
+
     @Inject
     private ProductInEshopDao productInEshopDao;
+
     @Inject
     private ProductInEshopFacade productInEshopFacade;
+
     @Inject
     private ProductInEshopAssembler productInEshopAssembler;
+
     @Inject
     private ProductByUrlAnalyzator productByUrlAnalyzator;
 
@@ -78,6 +86,12 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
         return productInEshopAssembler.transformToProductInEshopPriceInfoListDto(
                 productInEshopDao.readMandatory(productInEshopId));
     }
+
+    @Override
+    public void changeUpdateStatus(Long productInEshopId, ProductInEshopUpdateStatus updateStatus) {
+        productInEshopFacade.changeUpdateStatus(productInEshopId, updateStatus);
+    }
+
 
     @Override
     public PageList<ProductInEshopPriceInfoListDto> findProductsInEshopPriceInfo(ProductInEshopFindDto findDto) {

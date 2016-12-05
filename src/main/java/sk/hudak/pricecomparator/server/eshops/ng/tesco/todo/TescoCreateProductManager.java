@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.server.eshops.tesco;
+package sk.hudak.pricecomparator.server.eshops.ng.tesco.todo;
 
 import sk.hudak.pricecomparator.middle.to.AutamatResult;
 import sk.hudak.pricecomparator.middle.to.ProductCreateDto;

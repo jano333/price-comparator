@@ -1,6 +1,7 @@
 package sk.hudak.pricecomparator.server.domain.model;
 
 import sk.hudak.pricecomparator.middle.canonical.ProductAction;
+import sk.hudak.pricecomparator.middle.to.internal.ProductInEshopUpdateStatus;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -70,8 +71,17 @@ public class ProductInEshopEntity extends BasicEntity {
     @Column(name = "BEST_PRICE")
     private BigDecimal bestPrice;
 
-    //TODO enum o stave poslednej aktualizacie ceny, teda  uspene neuspesne, url neexustuje atz co vsetko cheme evidovat
+    @Column(name = "UPDATE_STATUS")
+    @Enumerated(value = EnumType.STRING)
+    private ProductInEshopUpdateStatus updateStatus;
 
+    public ProductInEshopUpdateStatus getUpdateStatus() {
+        return updateStatus;
+    }
+
+    public void setUpdateStatus(ProductInEshopUpdateStatus updateStatus) {
+        this.updateStatus = updateStatus;
+    }
 
     @Override
     public Long getId() {

@@ -7,6 +7,8 @@ import sk.hudak.pricecomparator.middle.to.*;
 import java.util.List;
 
 /**
+ * Zakladne operacie(CRUD) nad entitou Product.
+ * <p>
  * Created by jan on 14. 10. 2015.
  */
 public interface ProductService {

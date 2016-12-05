@@ -6,6 +6,7 @@ import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopCreateDto;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopInfoUpdateDto;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopUpdateDto;
+import sk.hudak.pricecomparator.middle.to.internal.ProductInEshopUpdateStatus;
 import sk.hudak.pricecomparator.server.domain.dao.EshopDao;
 import sk.hudak.pricecomparator.server.domain.dao.ProductDao;
 import sk.hudak.pricecomparator.server.domain.dao.ProductInEshopDao;
@@ -14,6 +15,7 @@ import sk.hudak.pricecomparator.server.domain.model.ProductInEshopEntity;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -93,6 +95,7 @@ public class ProductInEshopFacade extends JefFacade {
         entity.setPriceForPackage(priceUpdateDto.getPriceForPackage());
         entity.setPriceForOneItemInPackage(priceUpdateDto.getPriceForOneItemInPackage());
         entity.setLastUpdatedPrice(new Date());
+        entity.setUpdateStatus(ProductInEshopUpdateStatus.OK);
         //TODO ako jeden
         // nastavenie best price
         if (notExistBestPrice(entity)) {
@@ -141,7 +144,18 @@ public class ProductInEshopFacade extends JefFacade {
 
         System.out.println("finding first product older than " + maxOlderDate);
         return productInEshopDao.findProductForPriceUpdate(eshopType, maxOlderDate);
+    }
 
-
+    //TODO zmenit nazov metody lebo sa voal ked sa upstate npodaril
+    public void changeUpdateStatus(Long productInEshopId, ProductInEshopUpdateStatus updateStatus) {
+        ProductInEshopEntity productInEshopEntity = productInEshopDao.readMandatory(productInEshopId);
+        productInEshopEntity.setLastModified(new Date());
+        //musi tyu byt lebo inak stale ten isty produkt vytahuje ze ho chce upatovat
+        productInEshopEntity.setLastUpdatedPrice(new Date());
+        productInEshopEntity.setUpdateStatus(updateStatus);
+        productInEshopEntity.setPriceForOneItemInPackage(new BigDecimal(-1));
+        productInEshopEntity.setPriceForPackage(new BigDecimal(-1));
+        productInEshopEntity.setPriceForUnit(new BigDecimal(-1));
+        productInEshopDao.update(productInEshopEntity);
     }
 }

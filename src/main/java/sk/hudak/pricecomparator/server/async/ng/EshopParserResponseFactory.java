@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 @Deprecated
 public class EshopParserResponseFactory {
 
-    public static final BigDecimal PRICE_UNAVIABLE = new BigDecimal(-1);
+    private static final BigDecimal PRICE_UNAVIABLE = new BigDecimal(-1);
 
     public static EshopParserResponse createUnaviable() {
         return new EshopParserResponse()

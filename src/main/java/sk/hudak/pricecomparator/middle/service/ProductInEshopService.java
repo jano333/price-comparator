@@ -6,11 +6,14 @@ import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
 import sk.hudak.pricecomparator.middle.to.*;
 import sk.hudak.pricecomparator.middle.to.internal.ProductByUrlAnalyzatorResponseDto;
 import sk.hudak.pricecomparator.middle.to.internal.ProductByUrlRequestDto;
+import sk.hudak.pricecomparator.middle.to.internal.ProductInEshopUpdateStatus;
 import sk.hudak.pricecomparator.middle.to.internal.StepTwoRequestDto;
 
 import java.util.List;
 
 /**
+ * Zakladne operacie(CRUD) nad entitou ProductInEshop.
+ * <p>
  * Created by jan on 14. 10. 2015.
  */
 public interface ProductInEshopService {
@@ -42,7 +45,7 @@ public interface ProductInEshopService {
     ProductInEshopDto getProductInEshop(Long productInEshopId) throws PriceComparatorBusinesException;
 
     /**
-     * Nacitanie informacii o produkte v eshope.
+     * Nacitanie informacii o produkte v eshope. Zatial nepouzivane.
      *
      * @param productId id produktu, povinne
      * @param eshopId   id eshopu, povinne
@@ -61,22 +64,27 @@ public interface ProductInEshopService {
     /**
      * Vyhlada vsetky eshop-y, ktore obsahuju produkt <code>productId</code>.
      * <p>
-     * TODO prerobit na page list result
+     * FIXME prerobit na page list result
      *
      * @param productId id produktu
      * @return zoznam eshopov, ktore obsahuju produkt <code>productId</code>
      */
+    @Deprecated
     List<EshopListDto> findEshopsWithProduct(Long productId);
 
     /**
      * Vyhlada vsetky eshop-y, ktore NEobsahuju produkt <code>productId</code>.
      * <p>
-     * TODO prerobit na page list result
+     * FIXME prerobit na page list result
      *
      * @param productId id produktu
      * @return zoznam eshopov, ktore neobsahuju produkt <code>productId</code>
      */
+    @Deprecated
     List<EshopListDto> findEshopsWithoutProduct(Long productId);
+
+
+    // ********
 
     // TODO nizsie prejst co sa pouziva...
 
@@ -177,4 +185,7 @@ public interface ProductInEshopService {
     PageList<EshopWithoutProductListDto> findEshopWithoutProduct(ProductFindDto filter);
 
     ProductInEshopPriceInfoListDto getProductInEhopPriceInfoListDto(Long productInEshopId);
+
+    void changeUpdateStatus(Long productInEshopId, ProductInEshopUpdateStatus updateStatus);
+
 }
