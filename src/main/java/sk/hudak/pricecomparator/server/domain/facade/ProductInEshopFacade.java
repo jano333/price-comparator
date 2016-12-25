@@ -158,4 +158,10 @@ public class ProductInEshopFacade extends JefFacade {
         productInEshopEntity.setPriceForUnit(new BigDecimal(-1));
         productInEshopDao.update(productInEshopEntity);
     }
+
+    public void markPictureOfProductInEshopAsDownloaded(Long productInEshopId) {
+        ProductInEshopEntity entity = productInEshopDao.readMandatory(productInEshopId);
+        entity.setPictureExist(true);
+        productInEshopDao.update(entity);
+    }
 }

@@ -20,6 +20,8 @@ public class ProductInEshopEntity extends BasicEntity {
     public static final transient String AT_PRICE_FOR_UNIT = "priceForUnit";
     public static final transient String AT_PRODUCT_ACTION = "productAction";
     public static final transient String AT_PRODUCT_PAGE_IN_ESHOP = "productPageInEshop";
+    public static final transient String AT_PRODUCT_PICTURE_URL = "productPictureUrl";
+    public static final transient String AT_PICTURE_EXIST = "pictureExist";
 
     //TODO
     // urobit generovanie podla http://stackoverflow.com/questions/27314165/generate-ddl-script-at-maven-build-with-hibernate4-jpa-2-1
@@ -74,6 +76,18 @@ public class ProductInEshopEntity extends BasicEntity {
     @Column(name = "UPDATE_STATUS")
     @Enumerated(value = EnumType.STRING)
     private ProductInEshopUpdateStatus updateStatus;
+
+    //ALTER TABLE YourSchema.YourTable ADD (ColumnName NUMBER(1) DEFAULT 0 NOT NULL);
+    @Column(name = "PICTURE_EXIST")
+    private Boolean pictureExist;
+
+    public Boolean getPictureExist() {
+        return pictureExist;
+    }
+
+    public void setPictureExist(Boolean pictureExist) {
+        this.pictureExist = pictureExist;
+    }
 
     public ProductInEshopUpdateStatus getUpdateStatus() {
         return updateStatus;

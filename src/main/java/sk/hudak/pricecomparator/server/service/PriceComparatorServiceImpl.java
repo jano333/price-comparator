@@ -12,6 +12,7 @@ import sk.hudak.pricecomparator.middle.to.internal.ProductByUrlAnalyzatorRespons
 import sk.hudak.pricecomparator.middle.to.internal.ProductByUrlRequestDto;
 import sk.hudak.pricecomparator.middle.to.internal.ProductInEshopUpdateStatus;
 import sk.hudak.pricecomparator.middle.to.internal.StepTwoRequestDto;
+import sk.hudak.pricecomparator.server.to.ProductInEshopPictureDto;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -411,6 +412,18 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
     @Transactional
     public void changeUpdateStatus(Long productInEshopId, ProductInEshopUpdateStatus updateStatus) {
         productInEshopService.changeUpdateStatus(productInEshopId, updateStatus);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public ProductInEshopPictureDto findUrlOfPictureForDownload(EshopType eshopType) {
+        return productInEshopService.findUrlOfPictureForDownload(eshopType);
+    }
+
+    @Override
+    @Transactional
+    public void markPictureOfProductInEshopAsDownloaded(Long productInEshopId) {
+        productInEshopService.markPictureOfProductInEshopAsDownloaded(productInEshopId);
     }
 
 

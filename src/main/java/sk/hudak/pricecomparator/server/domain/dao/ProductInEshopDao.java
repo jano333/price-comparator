@@ -272,4 +272,18 @@ public class ProductInEshopDao extends JefDao<ProductInEshopEntity> {
     }
 
 
+    public ProductInEshopEntity findUrlOfPictureForDownload(EshopType eshopType) {
+        Criteria crit = createCriteria(ProductInEshopEntity.class);
+
+        Criteria critEshop = crit.createCriteria(ProductInEshopEntity.AT_ESHOP);
+        critEshop.add(Restrictions.eq(EshopEntity.AT_ESHOP_TYPE, eshopType));
+
+        crit.add(Restrictions.isNotNull(ProductInEshopEntity.AT_PRODUCT_PICTURE_URL));
+        crit.add(Restrictions.or(
+                Restrictions.isNull(ProductInEshopEntity.AT_PICTURE_EXIST),
+                Restrictions.eq(ProductInEshopEntity.AT_PICTURE_EXIST, Boolean.FALSE)
+        ));
+        crit.setMaxResults(1);
+        return (ProductInEshopEntity) crit.uniqueResult();
+    }
 }

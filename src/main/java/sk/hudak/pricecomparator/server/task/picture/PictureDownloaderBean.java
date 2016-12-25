@@ -16,15 +16,18 @@ public class PictureDownloaderBean {
     /**
      * @param pictureURL URL obrazku odkial sa ma stiahnut
      * @param pathToSave cela cesta vratane nazvu obrazku, kde sa ma ulozit
+     * @return true, ak uspesne inak false
      */
-    public void downloadPicture(URL pictureURL, String pathToSave) {
-        //TODO
+    public boolean downloadPicture(String pictureURL, String pathToSave) {
         try {
-            Thumbnails.of(pictureURL).size(82, 82).toFile(new File(pathToSave));
+            File targetPictureFile = new File(pathToSave);
+            Thumbnails.of(new URL(pictureURL)).size(82, 82).toFile(targetPictureFile);
+            return true;
 
         } catch (IOException e) {
             //TODO
             e.printStackTrace();
+            return false;
         }
 
     }

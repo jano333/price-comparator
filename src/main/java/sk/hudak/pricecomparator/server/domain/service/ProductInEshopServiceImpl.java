@@ -21,6 +21,7 @@ import sk.hudak.pricecomparator.server.domain.facade.ProductInEshopFacade;
 import sk.hudak.pricecomparator.server.domain.model.EshopEntity;
 import sk.hudak.pricecomparator.server.domain.model.ProductEntity;
 import sk.hudak.pricecomparator.server.domain.model.ProductInEshopEntity;
+import sk.hudak.pricecomparator.server.to.ProductInEshopPictureDto;
 import sk.hudak.pricecomparator.server.utils.ImageUtils;
 
 import javax.inject.Inject;
@@ -90,6 +91,17 @@ public class ProductInEshopServiceImpl implements ProductInEshopService {
     @Override
     public void changeUpdateStatus(Long productInEshopId, ProductInEshopUpdateStatus updateStatus) {
         productInEshopFacade.changeUpdateStatus(productInEshopId, updateStatus);
+    }
+
+    @Override
+    public ProductInEshopPictureDto findUrlOfPictureForDownload(EshopType eshopType) {
+        ProductInEshopEntity result = productInEshopDao.findUrlOfPictureForDownload(eshopType);
+        return productInEshopAssembler.transformToProductInEshopPictureDto(result);
+    }
+
+    @Override
+    public void markPictureOfProductInEshopAsDownloaded(Long productInEshopId) {
+        productInEshopFacade.markPictureOfProductInEshopAsDownloaded(productInEshopId);
     }
 
 

@@ -8,6 +8,7 @@ import sk.hudak.pricecomparator.middle.to.internal.ProductByUrlAnalyzatorRespons
 import sk.hudak.pricecomparator.middle.to.internal.ProductByUrlRequestDto;
 import sk.hudak.pricecomparator.middle.to.internal.ProductInEshopUpdateStatus;
 import sk.hudak.pricecomparator.middle.to.internal.StepTwoRequestDto;
+import sk.hudak.pricecomparator.server.to.ProductInEshopPictureDto;
 
 import java.util.List;
 
@@ -188,4 +189,7 @@ public interface ProductInEshopService {
 
     void changeUpdateStatus(Long productInEshopId, ProductInEshopUpdateStatus updateStatus);
 
+    ProductInEshopPictureDto findUrlOfPictureForDownload(EshopType eshopType);
+
+    void markPictureOfProductInEshopAsDownloaded(Long productInEshopId);
 }

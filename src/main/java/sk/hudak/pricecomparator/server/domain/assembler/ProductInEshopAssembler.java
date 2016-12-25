@@ -5,6 +5,7 @@ import sk.hudak.pricecomparator.middle.to.*;
 import sk.hudak.pricecomparator.server.domain.model.EshopEntity;
 import sk.hudak.pricecomparator.server.domain.model.ProductEntity;
 import sk.hudak.pricecomparator.server.domain.model.ProductInEshopEntity;
+import sk.hudak.pricecomparator.server.to.ProductInEshopPictureDto;
 import sk.hudak.pricecomparator.server.utils.ImageUtils;
 
 import javax.inject.Inject;
@@ -212,5 +213,12 @@ public class ProductInEshopAssembler {
         result.setCountOfUnit(product.getCountOfUnit());
         result.setEshopProductPage(productInEshop.getProductPageInEshop());
         return result;
+    }
+
+    public ProductInEshopPictureDto transformToProductInEshopPictureDto(ProductInEshopEntity result) {
+        if (result == null) {
+            return null;
+        }
+        return new ProductInEshopPictureDto(result.getId(), result.getProductPictureUrl());
     }
 }

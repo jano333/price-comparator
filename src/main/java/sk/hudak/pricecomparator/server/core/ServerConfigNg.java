@@ -1,18 +1,18 @@
 package sk.hudak.pricecomparator.server.core;
 
-/**
- * Created by jan on 15. 11. 2015.
- * <p>
- * Pouzivate {@link ServerConfigNg}
- */
-@Deprecated
-public class ServerConfig {
+import javax.inject.Named;
 
-    public static int getMinWaitingTimeBeforeDownloadNextPriceInSecond() {
+/**
+ * Created by hudak on 24.12.2016.
+ */
+@Named
+public class ServerConfigNg {
+
+    public int getMinWaitingTimeBeforeDownloadNextPriceInSecond() {
         return 5;
     }
 
-    public static int getMaxWaitingTimeBeforeDownloadNextPriceInSecond() {
+    public int getMaxWaitingTimeBeforeDownloadNextPriceInSecond() {
         return 15;
     }
 
@@ -22,7 +22,7 @@ public class ServerConfig {
      *
      * @return
      */
-    public static int getMaxOldProductPriceForUpdateInOurs() {
+    public int getMaxOldProductPriceForUpdateInOurs() {
         return 24;
     }
 
@@ -30,16 +30,15 @@ public class ServerConfig {
     /**
      * @return root adresar, kde su ukladane obrazky k produktom
      */
-    public static String getImagesRootDirectory() {
+    public String getImagesRootDirectory() {
         return "C:\\price-comparator\\images\\";
     }
 
     /**
      * @return pocet miest na kolko sa ma zaokruhlovat
      */
-    public static int getRoundingScale() {
+    public int getRoundingScale() {
         return 4;
     }
-
 
 }
