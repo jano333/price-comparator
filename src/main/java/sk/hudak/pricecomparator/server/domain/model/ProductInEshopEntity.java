@@ -78,16 +78,16 @@ public class ProductInEshopEntity extends BasicEntity {
     private ProductInEshopUpdateStatus updateStatus;
 
     //ALTER TABLE YourSchema.YourTable ADD (ColumnName NUMBER(1) DEFAULT 0 NOT NULL);
-    @Column(name = "PICTURE_EXIST")
-    private Boolean pictureExist;
+//    @Column(name = "PICTURE_EXIST")
+//    private Boolean pictureExist;
 
-    public Boolean getPictureExist() {
-        return pictureExist;
-    }
-
-    public void setPictureExist(Boolean pictureExist) {
-        this.pictureExist = pictureExist;
-    }
+//    public Boolean getPictureExist() {
+//        return pictureExist;
+//    }
+//
+//    public void setPictureExist(Boolean pictureExist) {
+//        this.pictureExist = pictureExist;
+//    }
 
     public ProductInEshopUpdateStatus getUpdateStatus() {
         return updateStatus;

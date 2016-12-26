@@ -31,6 +31,11 @@ public abstract class AbstractPictureDownloaderTask extends AbtractEshopTask {
     @Override
     public void taskJob() {
         logger.debug(">> job stated");
+        //TODO
+        if (true) {
+            logger.debug("<< job finished");
+            return;
+        }
         boolean isNext = downloadPicture();
         while (isNext) {
             sleepFor();
