@@ -22,7 +22,7 @@ public class BambinoProductInfoDownloaderTask extends AbstractProductInfoDownloa
 
     @Override
     public int getTaskPriority() {
-        return 1;
+        return 0;
     }
 
     @Override

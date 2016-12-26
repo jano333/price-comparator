@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.server.eshops.bambino;
+package sk.hudak.pricecomparator.server.tobedeleted;
 
 import sk.hudak.pricecomparator.middle.canonical.EshopType;
 import sk.hudak.pricecomparator.server.async.ng.EshopProductParser;

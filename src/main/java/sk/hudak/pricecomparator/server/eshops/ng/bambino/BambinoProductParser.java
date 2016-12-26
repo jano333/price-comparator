@@ -51,7 +51,7 @@ public class BambinoProductParser extends JsoupProductParser {
 
     @Override
     protected String parseProductName(Document document) {
-        //TODO
+        //TODO zlozeny z 2 html elementov, znacka a nazov ... viac prace...
         return null;
     }
 
