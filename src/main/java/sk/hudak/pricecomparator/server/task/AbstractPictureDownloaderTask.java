@@ -19,23 +19,16 @@ public abstract class AbstractPictureDownloaderTask extends AbtractEshopTask {
 
     @Inject
     private PictureDownloaderBean downloader;
-
     @Inject
     private ServerConfigNg configNg;
 
     // TODO dat tu InternalTxService
-
     @Inject
     private PriceComparatorService priceComparatorService;
 
     @Override
     public void taskJob() {
         logger.debug(">> job stated");
-        //TODO
-        if (true) {
-            logger.debug("<< job finished");
-            return;
-        }
         boolean isNext = downloadPicture();
         while (isNext) {
             sleepFor();
@@ -50,8 +43,7 @@ public abstract class AbstractPictureDownloaderTask extends AbtractEshopTask {
             logger.debug("nic nenaslo -> vsetky obrazky stiahnte");
             return false;
         }
-
-        String pathToSave = null;
+        String pathToSave = configNg.getImagesRootDirectory() + "pie_" + result.getProductInEshopId();
         boolean downloadOk = downloader.downloadPicture(result.getPictureUrl(), pathToSave);
         logger.debug("downloaded ok {}", downloadOk);
 

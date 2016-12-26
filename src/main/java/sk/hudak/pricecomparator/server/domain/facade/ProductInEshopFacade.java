@@ -161,8 +161,7 @@ public class ProductInEshopFacade extends JefFacade {
 
     public void markPictureOfProductInEshopAsDownloaded(Long productInEshopId) {
         ProductInEshopEntity entity = productInEshopDao.readMandatory(productInEshopId);
-        //TODO
-//        entity.setPictureExist(true);
+        entity.setPictureExist(true);
         productInEshopDao.update(entity);
     }
 }

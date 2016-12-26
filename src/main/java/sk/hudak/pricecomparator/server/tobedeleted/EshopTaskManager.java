@@ -8,7 +8,6 @@ import sk.hudak.pricecomparator.server.eshops.alza.AlzaProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.amddrogeria.AmdDrogeriaProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.andrea.AndreaProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.babetkovo.BabetkovoProductDownloaderTask;
-import sk.hudak.pricecomparator.server.eshops.bambino.BambinoProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.belmedika.BelmedikaProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.bugy.BugyProductDownloaderTask;
 import sk.hudak.pricecomparator.server.eshops.ckdmarket.CkdMarketProductDownloaderTask;
@@ -62,7 +61,7 @@ public class EshopTaskManager {
         manager.registerEshopTask(new AndreaProductDownloaderTask());
         // B
         manager.registerEshopTask(new BabetkovoProductDownloaderTask());
-        manager.registerEshopTask(new BambinoProductDownloaderTask());
+//        manager.registerEshopTask(new BambinoProductDownloaderTask());
         manager.registerEshopTask(new BelmedikaProductDownloaderTask());
         manager.registerEshopTask(new BugyProductDownloaderTask());
         // C

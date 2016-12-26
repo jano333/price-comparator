@@ -12,6 +12,7 @@ import java.util.Date;
 /**
  * Created by jan on 11. 8. 2016.
  */
+@Deprecated
 public class BambinoProductParser extends AbstractEshopProductParser {
 
     @Override

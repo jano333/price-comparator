@@ -7,6 +7,7 @@ import sk.hudak.pricecomparator.server.async.ng.impl.AbstractProductDownloaderTa
 /**
  * Created by jan on 11. 8. 2016.
  */
+@Deprecated
 public class BambinoProductDownloaderTask extends AbstractProductDownloaderTask {
     @Override
     public EshopType getEshopType() {

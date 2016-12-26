@@ -79,13 +79,11 @@ public class FeedoProductParser extends JsoupProductParser {
 
     @Override
     protected String parseProductName(Document document) {
-        //TODO
-        return null;
+        return document.select("h1[class=product-detail-heading hidden-xs hidden-sm]").get(0).text();
     }
 
     @Override
     protected String parseProductPictureURL(Document document) {
-        //TODO
-        return null;
+        return document.select("a[class=image]").get(0).attr("href");
     }
 }
