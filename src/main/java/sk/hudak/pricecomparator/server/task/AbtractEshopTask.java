@@ -19,7 +19,7 @@ public abstract class AbtractEshopTask {
     public abstract void taskJob();
 
     /**
-     * 1 je najvyssia priorita
+     * 0 je najvyssia priorita
      *
      * @return
      */
