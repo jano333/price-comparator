@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.server.html.parser;
+package sk.hudak.pricecomparator.server.html.jsoup;
 
 import org.jsoup.Connection;
 import org.jsoup.HttpStatusException;
@@ -7,6 +7,9 @@ import org.jsoup.nodes.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sk.hudak.pricecomparator.middle.canonical.ProductAction;
+import sk.hudak.pricecomparator.server.html.parser.HtmlProductParser;
+import sk.hudak.pricecomparator.server.html.parser.ProductParserResultCallback;
+import sk.hudak.pricecomparator.server.to.ProductParserResultDto;
 
 import java.math.BigDecimal;
 import java.util.Collections;

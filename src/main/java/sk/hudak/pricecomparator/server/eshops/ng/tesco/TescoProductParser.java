@@ -4,8 +4,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import sk.hudak.pricecomparator.middle.canonical.ProductAction;
 import sk.hudak.pricecomparator.middle.utils.DateUtils;
-import sk.hudak.pricecomparator.server.html.parser.JsoupParserUtils;
-import sk.hudak.pricecomparator.server.html.parser.JsoupProductParser;
+import sk.hudak.pricecomparator.server.html.jsoup.JsoupParserUtils;
+import sk.hudak.pricecomparator.server.html.jsoup.JsoupProductParser;
 
 import javax.inject.Named;
 import java.math.BigDecimal;

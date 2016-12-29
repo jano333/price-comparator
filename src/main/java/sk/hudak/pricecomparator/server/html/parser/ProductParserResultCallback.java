@@ -1,5 +1,7 @@
 package sk.hudak.pricecomparator.server.html.parser;
 
+import sk.hudak.pricecomparator.server.to.ProductParserResultDto;
+
 /**
  * Created by jan on 5. 11. 2016.
  */

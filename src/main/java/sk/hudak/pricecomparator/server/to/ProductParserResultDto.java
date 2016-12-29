@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.server.html.parser;
+package sk.hudak.pricecomparator.server.to;
 
 import sk.hudak.pricecomparator.middle.canonical.ProductAction;
 

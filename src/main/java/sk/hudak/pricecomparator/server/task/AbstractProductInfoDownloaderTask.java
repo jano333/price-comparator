@@ -8,7 +8,7 @@ import sk.hudak.pricecomparator.middle.to.internal.ProductInEshopUpdateStatus;
 import sk.hudak.pricecomparator.server.core.ServerConfig;
 import sk.hudak.pricecomparator.server.html.parser.HtmlProductParser;
 import sk.hudak.pricecomparator.server.html.parser.ProductParserResultCallback;
-import sk.hudak.pricecomparator.server.html.parser.ProductParserResultDto;
+import sk.hudak.pricecomparator.server.to.ProductParserResultDto;
 import sk.hudak.pricecomparator.server.todo.ProductPriceCalculator;
 
 import java.math.BigDecimal;

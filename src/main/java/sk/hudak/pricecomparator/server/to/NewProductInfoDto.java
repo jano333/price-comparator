@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.server.eshops.ng.feedo;
+package sk.hudak.pricecomparator.server.to;
 
 /**
  * Created by jan on 27. 12. 2016.
@@ -7,6 +7,7 @@ public class NewProductInfoDto {
 
     private String productName;
     private String productUrl;
+    private String productPictureUrl;
 
     public String getProductName() {
         return productName;
@@ -24,11 +25,20 @@ public class NewProductInfoDto {
         this.productUrl = productUrl;
     }
 
+    public String getProductPictureUrl() {
+        return productPictureUrl;
+    }
+
+    public void setProductPictureUrl(String productPictureUrl) {
+        this.productPictureUrl = productPictureUrl;
+    }
+
     @Override
     public String toString() {
         return "NewProductInfoDto{" +
                 "productName='" + productName + '\'' +
                 ", productUrl='" + productUrl + '\'' +
+                ", productPictureUrl='" + productPictureUrl + '\'' +
                 '}';
     }
 }

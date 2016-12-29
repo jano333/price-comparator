@@ -1,4 +1,4 @@
-package sk.hudak.pricecomparator.server.html.parser;
+package sk.hudak.pricecomparator.server.html.jsoup;
 
 import org.jsoup.nodes.Document;
 import sk.hudak.pricecomparator.middle.canonical.ProductAction;
