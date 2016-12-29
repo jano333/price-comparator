@@ -27,18 +27,39 @@ public class FeedoNewProductDownloaderTask extends AbstractNewProductDownloader 
     @Override
     public void taskJob() {
         logger.debug(">> job stated");
+        //TODO
+        if (true) {
+            logger.debug("<< job finished");
+            return;
+        }
 
         // nacitam zoznam vyhladavcich slov(Nutrilon, Pampers, ...)
         List<String> queryStrings = internalTxService.getListOfSearchQueries();
         logger.debug("count of query string {}", queryStrings.size());
+
         for (String queryString : queryStrings) {
             processQueryString(queryString);
         }
         logger.debug("<< job finished");
     }
 
-    private void processQueryString(String queryString) {
+    private void processQueryString(String searchKey) {
+        // vyskladanie prvej stranky
+        String pageUrl = "https://www.feedo.sk/vysledky-hladania/" + searchKey + "/";
+        int countOfPages = parser.getCountOfPages(pageUrl);
 
+        sleepFor();
+        internalTxService.addNewProducts(parser.parserPage(pageUrl));
+
+        if (countOfPages > 1) {
+            for (int i = 2; i <= countOfPages; i++) {
+                //TODO nefunguje, preto robim tak ako je nizsie...
+//                pageUrl = "https://www.feedo.sk/vysledky-hladania/" + searchKey + "/#page=" + i;
+                pageUrl = "https://www.feedo.sk/vysledky-hladania/Pampers/filter?strana=" + i;
+                sleepFor();
+                internalTxService.addNewProducts(parser.parserPage(pageUrl));
+            }
+        }
     }
 
     @Override

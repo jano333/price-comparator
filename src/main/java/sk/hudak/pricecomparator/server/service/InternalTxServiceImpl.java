@@ -1,6 +1,9 @@
 package sk.hudak.pricecomparator.server.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
+import sk.hudak.pricecomparator.server.to.NewProductInfoDto;
 
 import javax.inject.Named;
 import java.util.Arrays;
@@ -12,10 +15,19 @@ import java.util.List;
 @Named
 public class InternalTxServiceImpl implements InternalTxService {
 
+    private static Logger logger = LoggerFactory.getLogger(InternalTxServiceImpl.class);
+
     @Override
     @Transactional(readOnly = true)
     public List<String> getListOfSearchQueries() {
         //TODO nacitat z DB
-        return Arrays.asList("Nutrilon", "Pampers");
+        return Arrays.asList("Pampers", "Nutrilon");
+    }
+
+    @Override
+    public void addNewProducts(List<NewProductInfoDto> result) {
+        logger.debug(">> addNewProducts");
+        System.out.println(result.toString());
+        logger.debug("<< addNewProducts");
     }
 }

@@ -4,8 +4,10 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import sk.hudak.pricecomparator.middle.exeption.PriceComparatorException;
 import sk.hudak.pricecomparator.server.to.NewProductInfoDto;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -37,15 +39,25 @@ public abstract class JsoupNewProductParser {
     public List<NewProductInfoDto> parserPage(String pageUrl) {
         try {
             logger.debug("conneting to: {}", pageUrl);
-            return parseNewProducts(Jsoup.connect(pageUrl)
-                    .userAgent(getUserAgent())
-                    .cookies(getCookies())
-                    .timeout(getTimeout())
-                    .get());
+            Document doc = getDocument(pageUrl);
+
+            return parseNewProducts(doc);
 
         } catch (Exception e) {
             logger.error(e.getMessage());
             return null;
+        }
+    }
+
+    protected Document getDocument(String pageUrl) {
+        try {
+            return Jsoup.connect(pageUrl)
+                    .userAgent(getUserAgent())
+                    .cookies(getCookies())
+                    .timeout(getTimeout())
+                    .get();
+        } catch (IOException e) {
+            throw new PriceComparatorException("error while retrieving document", e);
         }
     }
 

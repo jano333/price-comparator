@@ -45,15 +45,22 @@ public class FeedoNewProductParser extends JsoupNewProductParser {
         return result;
     }
 
-    //TODo remove
-    public static void main(String[] args) {
-//        String searchKey = "pampers";
-        String searchKey = "nutrilon";
+    public int getCountOfPages(String pageUrl) {
+        Document doc = getDocument(pageUrl);
+        Element element = doc.select("body > main > div > section > p > i").get(0);
+        // "Na Váš zadaný výraz „pampers“ bolo nájdených 85 výsledkov."
+        String text = element.text();
+        text = text.substring(text.indexOf("nájdených ")/*, text.lastIndexOf(" ")*/);
+        text = text.substring("nájdených ".length());
+        text = text.substring(0, text.length() - 1 - "výsledkov.".length());
 
-        // vyskladanie prvej stranky
-        String pageUrl = "https://www.feedo.sk/vysledky-hladania/" + searchKey + "/";
-        new FeedoNewProductParser().parserPage(pageUrl);
-
-
+        int pocetZaznamov = Integer.valueOf(text);
+        //feedo ma 24 itemov na jednu stranku
+        double pocetStran = pocetZaznamov / 24.0;
+        int tmp = (int) pocetStran;
+        if (pocetStran > tmp) {
+            tmp++;
+        }
+        return tmp;
     }
 }

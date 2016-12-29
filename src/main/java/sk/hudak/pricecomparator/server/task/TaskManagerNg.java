@@ -67,9 +67,17 @@ public class TaskManagerNg {
             ExecutorService executorService = Executors.newSingleThreadExecutor(new ThreadFactory() {
                 @Override
                 public Thread newThread(Runnable r) {
-                    return new Thread(r, eshopType.name());
+                    Thread thread = new Thread(r, eshopType.name());
+                    thread.setUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+                        @Override
+                        public void uncaughtException(Thread t, Throwable e) {
+                            logger.error("error in thread " + t.getName(), e);
+                        }
+                    });
+                    return thread;
                 }
             });
+
             for (final AbtractEshopTask task : registredTask.get(eshopType)) {
                 Future<?> future = executorService.submit(new Runnable() {
                     @Override
