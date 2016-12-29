@@ -5,14 +5,12 @@ import org.slf4j.LoggerFactory;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopForPriceUpdateDto;
 import sk.hudak.pricecomparator.middle.to.ProductInEshopInfoUpdateDto;
 import sk.hudak.pricecomparator.middle.to.internal.ProductInEshopUpdateStatus;
-import sk.hudak.pricecomparator.server.core.ServerConfig;
 import sk.hudak.pricecomparator.server.html.parser.HtmlProductParser;
 import sk.hudak.pricecomparator.server.html.parser.ProductParserResultCallback;
 import sk.hudak.pricecomparator.server.to.ProductParserResultDto;
 import sk.hudak.pricecomparator.server.todo.ProductPriceCalculator;
 
 import java.math.BigDecimal;
-import java.util.Random;
 
 /**
  * Created by jan on 6. 11. 2016.
@@ -88,22 +86,6 @@ public abstract class AbstractProductInfoDownloaderTask<P extends HtmlProductPar
         service.changeUpdateStatus(productInEshopId, ProductInEshopUpdateStatus.ERROR);
     }
 
-    private void sleepFor() {
-        //TODO cez inject dat ServerConfig objekt nie statickyu
-        int minSecond = ServerConfig.getMinWaitingTimeBeforeDownloadNextPriceInSecond();
-        int maxSecond = ServerConfig.getMaxWaitingTimeBeforeDownloadNextPriceInSecond();
-
-        int result = new Random().nextInt((maxSecond - minSecond) + 1) + minSecond;
-
-        try {
-            logger.debug("zacinam cakat " + result + " sekund");
-            Thread.currentThread().sleep(result * 1000);
-            logger.debug("skoncil som cakat");
-
-        } catch (InterruptedException e) {
-            logger.error("sleeping was inteapted", e);
-        }
-    }
 
     private class ProductParserResultCallbackImpl implements ProductParserResultCallback {
 
