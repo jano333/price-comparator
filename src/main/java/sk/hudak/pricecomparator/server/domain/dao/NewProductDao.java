@@ -1,8 +1,11 @@
 package sk.hudak.pricecomparator.server.domain.dao;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import sk.hudak.jef.JefDao;
+import sk.hudak.jef.paging.PageData;
+import sk.hudak.pricecomparator.middle.to.NewProductFindDto;
 import sk.hudak.pricecomparator.server.domain.model.NewProductEntity;
 
 import javax.inject.Named;
@@ -28,5 +31,18 @@ public class NewProductDao extends JefDao<NewProductEntity> {
         crit.add(Restrictions.eq(NewProductEntity.AT_PRODUCT_URL, productUrl));
         crit.setMaxResults(1);
         return !crit.list().isEmpty();
+    }
+
+    public PageData<NewProductEntity> findNewProducts(NewProductFindDto findDto) {
+        Criteria crit = createCriteria(NewProductEntity.class);
+        //TODO vstupne parametre
+
+        //TODO if poriesit ale zatial chcem stale ak celkovy pocet...
+//        if(findDto.getPaging().isDoCount()){
+        crit.setProjection(Projections.rowCount());
+        int allCount = ((Long) crit.uniqueResult()).intValue();
+        crit.setProjection(null);
+//        }
+        return createPageData(crit, findDto);
     }
 }

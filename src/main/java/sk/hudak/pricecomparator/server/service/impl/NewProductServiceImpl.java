@@ -4,6 +4,8 @@ import sk.hudak.jef.paging.PageData;
 import sk.hudak.pricecomparator.middle.canonical.EshopType;
 import sk.hudak.pricecomparator.middle.to.NewProductFindDto;
 import sk.hudak.pricecomparator.middle.to.NewProductListDto;
+import sk.hudak.pricecomparator.server.domain.assembler.NewProductAssembler;
+import sk.hudak.pricecomparator.server.domain.dao.NewProductDao;
 import sk.hudak.pricecomparator.server.domain.facade.NewProductFactory;
 import sk.hudak.pricecomparator.server.service.NewProductService;
 import sk.hudak.pricecomparator.server.to.NewProductCreateDto;
@@ -21,6 +23,12 @@ public class NewProductServiceImpl implements NewProductService {
     @Inject
     private NewProductFactory newProductFactory;
 
+    @Inject
+    private NewProductDao newProductDao;
+
+    @Inject
+    private NewProductAssembler newProductAssembler;
+
     @Override
     public void addNewProducts(List<NewProductCreateDto> result, EshopType eshopType) {
         //TODO vstupne paramtre pozor ak je null alebo je prazdna... tak nerob nic? alebo vynimka
@@ -32,7 +40,6 @@ public class NewProductServiceImpl implements NewProductService {
 
     @Override
     public PageData<NewProductListDto> findNewProducts(NewProductFindDto findDto) {
-        //TODO impl
-        return null;
+        return newProductAssembler.transformToPageDataOfNewProductListDto(newProductDao.findNewProducts(findDto));
     }
 }

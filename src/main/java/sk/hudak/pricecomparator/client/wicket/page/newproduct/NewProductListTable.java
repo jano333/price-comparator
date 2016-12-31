@@ -1,5 +1,7 @@
 package sk.hudak.pricecomparator.client.wicket.page.newproduct;
 
+import org.apache.wicket.markup.html.WebMarkupContainer;
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -8,8 +10,13 @@ import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.PropertyModel;
 import sk.hudak.jef.paging.PageData;
 import sk.hudak.pricecomparator.client.wicket.PriceComparatorApplication;
+import sk.hudak.pricecomparator.client.wicket.component.common.IdListView;
+import sk.hudak.pricecomparator.client.wicket.component.table.PagingInfoPanelNg;
+import sk.hudak.pricecomparator.client.wicket.component.table.TableNg;
 import sk.hudak.pricecomparator.middle.to.NewProductFindDto;
 import sk.hudak.pricecomparator.middle.to.NewProductListDto;
+
+import java.io.Serializable;
 
 /**
  * Created by jan on 31. 12. 2016.
@@ -45,9 +52,34 @@ public class NewProductListTable extends Panel {
         //TODO aspon status ... a dalsie
 
         // pagging
-        //TODO zatial nemam..
-        //filterForm.add(new PagingInfoPanelNg("infoPaging", filter, tableModel));
+        filterForm.add(new PagingInfoPanelNg("infoPaging", filter, tableModel));
 
+        // table
+        TableNg<NewProductListDto> table = new TableNg<NewProductListDto>("table", filter, tableModel) {
 
+            @Override
+            protected Serializable getObjectId(NewProductListDto object) {
+                return object.getId();
+            }
+
+            @Override
+            protected NewProductListDto loadLazyById(Serializable id) {
+                //TODO
+                return super.loadLazyById(id);
+            }
+
+            @Override
+            protected void populateItem(IdListView.IdListItem<NewProductListDto> item) {
+                IModel<NewProductListDto> model = item.getModel();
+
+                Label newProductName = new Label("name", new PropertyModel<String>(model, NewProductListDto.AT_PRODUCT_NAME));
+
+                WebMarkupContainer tr = new WebMarkupContainer("tr");
+                tr.add(newProductName);
+
+                item.add(tr);
+            }
+        };
+        add(table);
     }
 }

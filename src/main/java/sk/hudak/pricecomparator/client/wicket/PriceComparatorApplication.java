@@ -18,6 +18,7 @@ public class PriceComparatorApplication extends AbstractPriComApplication {
     @Override
     public Class<? extends Page> getHomePage() {
         return GroupProductPriceListPage.class;
+//        return NewProductListPage.class;
     }
 
     @Override
