@@ -3,7 +3,7 @@ package sk.hudak.pricecomparator.server.to;
 /**
  * Created by jan on 27. 12. 2016.
  */
-public class NewProductInfoDto {
+public class NewProductCreateDto {
 
     private String productName;
     private String productUrl;
@@ -35,7 +35,7 @@ public class NewProductInfoDto {
 
     @Override
     public String toString() {
-        return "NewProductInfoDto{" +
+        return "NewProductCreateDto{" +
                 "productName='" + productName + '\'' +
                 ", productUrl='" + productUrl + '\'' +
                 ", productPictureUrl='" + productPictureUrl + '\'' +

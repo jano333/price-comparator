@@ -49,7 +49,7 @@ public class FeedoNewProductDownloaderTask extends AbstractNewProductDownloader 
         int countOfPages = parser.getCountOfPages(pageUrl);
 
         sleepFor();
-        internalTxService.addNewProducts(parser.parserPage(pageUrl));
+        internalTxService.addNewProducts(parser.parserPage(pageUrl), getEshopType());
 
         if (countOfPages > 1) {
             for (int i = 2; i <= countOfPages; i++) {
@@ -57,7 +57,7 @@ public class FeedoNewProductDownloaderTask extends AbstractNewProductDownloader 
 //                pageUrl = "https://www.feedo.sk/vysledky-hladania/" + searchKey + "/#page=" + i;
                 pageUrl = "https://www.feedo.sk/vysledky-hladania/Pampers/filter?strana=" + i;
                 sleepFor();
-                internalTxService.addNewProducts(parser.parserPage(pageUrl));
+                internalTxService.addNewProducts(parser.parserPage(pageUrl), getEshopType());
             }
         }
     }

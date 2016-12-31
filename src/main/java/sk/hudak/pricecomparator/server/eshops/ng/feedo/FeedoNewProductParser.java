@@ -6,7 +6,7 @@ import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sk.hudak.pricecomparator.server.html.jsoup.JsoupNewProductParser;
-import sk.hudak.pricecomparator.server.to.NewProductInfoDto;
+import sk.hudak.pricecomparator.server.to.NewProductCreateDto;
 
 import javax.inject.Named;
 import java.util.ArrayList;
@@ -21,8 +21,8 @@ public class FeedoNewProductParser extends JsoupNewProductParser {
     private static Logger logger = LoggerFactory.getLogger(FeedoNewProductParser.class);
 
     @Override
-    protected List<NewProductInfoDto> parseNewProducts(Document doc) {
-        List<NewProductInfoDto> result = new ArrayList<>(24);
+    protected List<NewProductCreateDto> parseNewProducts(Document doc) {
+        List<NewProductCreateDto> result = new ArrayList<>(24);
         Elements elements = doc.select("article[class=box box-product]");
         //<article class="box box-product"
         for (Element element : elements) {
@@ -31,14 +31,14 @@ public class FeedoNewProductParser extends JsoupNewProductParser {
         return result;
     }
 
-    private NewProductInfoDto processOneProduct(Element element) {
+    private NewProductCreateDto processOneProduct(Element element) {
         Element a = element.child(0).child(0);
         String href = a.attr("href");
         String name = a.text();
         Element div = element.child(1);
         String impUrl = div.select("div.box-image > a > img").get(0).attr("data-src");
 
-        NewProductInfoDto result = new NewProductInfoDto();
+        NewProductCreateDto result = new NewProductCreateDto();
         result.setProductName(name);
         result.setProductUrl(href);
         result.setProductPictureUrl(impUrl);
@@ -47,7 +47,9 @@ public class FeedoNewProductParser extends JsoupNewProductParser {
 
     public int getCountOfPages(String pageUrl) {
         Document doc = getDocument(pageUrl);
+
         Element element = doc.select("body > main > div > section > p > i").get(0);
+
         // "Na Váš zadaný výraz „pampers“ bolo nájdených 85 výsledkov."
         String text = element.text();
         text = text.substring(text.indexOf("nájdených ")/*, text.lastIndexOf(" ")*/);
@@ -57,6 +59,7 @@ public class FeedoNewProductParser extends JsoupNewProductParser {
         int pocetZaznamov = Integer.valueOf(text);
         //feedo ma 24 itemov na jednu stranku
         double pocetStran = pocetZaznamov / 24.0;
+        //zaokruhlenie nahor :-)
         int tmp = (int) pocetStran;
         if (pocetStran > tmp) {
             tmp++;

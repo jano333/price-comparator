@@ -5,7 +5,7 @@ import org.jsoup.nodes.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorException;
-import sk.hudak.pricecomparator.server.to.NewProductInfoDto;
+import sk.hudak.pricecomparator.server.to.NewProductCreateDto;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -36,7 +36,7 @@ public abstract class JsoupNewProductParser {
         return Collections.emptyMap();
     }
 
-    public List<NewProductInfoDto> parserPage(String pageUrl) {
+    public List<NewProductCreateDto> parserPage(String pageUrl) {
         try {
             logger.debug("conneting to: {}", pageUrl);
             Document doc = getDocument(pageUrl);
@@ -61,5 +61,5 @@ public abstract class JsoupNewProductParser {
         }
     }
 
-    protected abstract List<NewProductInfoDto> parseNewProducts(Document doc);
+    protected abstract List<NewProductCreateDto> parseNewProducts(Document doc);
 }
