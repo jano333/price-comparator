@@ -53,7 +53,7 @@ public class FeedoNewProductDownloaderTask extends AbstractNewProductDownloader 
 
         if (countOfPages > 1) {
             for (int i = 2; i <= countOfPages; i++) {
-                //TODO nefunguje, preto robim tak ako je nizsie...
+                // nefunguje, preto robim tak ako je nizsie...
 //                pageUrl = "https://www.feedo.sk/vysledky-hladania/" + searchKey + "/#page=" + i;
                 pageUrl = "https://www.feedo.sk/vysledky-hladania/" + searchKey + "/filter?strana=" + i;
                 sleepFor();

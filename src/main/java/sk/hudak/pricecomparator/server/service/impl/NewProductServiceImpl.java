@@ -1,6 +1,9 @@
 package sk.hudak.pricecomparator.server.service.impl;
 
+import sk.hudak.jef.paging.PageData;
 import sk.hudak.pricecomparator.middle.canonical.EshopType;
+import sk.hudak.pricecomparator.middle.to.NewProductFindDto;
+import sk.hudak.pricecomparator.middle.to.NewProductListDto;
 import sk.hudak.pricecomparator.server.domain.facade.NewProductFactory;
 import sk.hudak.pricecomparator.server.service.NewProductService;
 import sk.hudak.pricecomparator.server.to.NewProductCreateDto;
@@ -25,5 +28,11 @@ public class NewProductServiceImpl implements NewProductService {
         for (NewProductCreateDto newProductCreateDto : result) {
             newProductFactory.createIfNotExistYet(newProductCreateDto, eshopType);
         }
+    }
+
+    @Override
+    public PageData<NewProductListDto> findNewProducts(NewProductFindDto findDto) {
+        //TODO impl
+        return null;
     }
 }

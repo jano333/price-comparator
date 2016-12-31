@@ -4,12 +4,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
 import sk.hudak.jef.PageList;
+import sk.hudak.jef.paging.PageData;
 import sk.hudak.pricecomparator.middle.canonical.EshopType;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
 import sk.hudak.pricecomparator.middle.service.*;
-import sk.hudak.pricecomparator.middle.to.CategoryCreateDto;
-import sk.hudak.pricecomparator.middle.to.ProductPriceInGroupFindDto;
-import sk.hudak.pricecomparator.middle.to.ResponseDto;
+import sk.hudak.pricecomparator.middle.to.*;
 import sk.hudak.pricecomparator.middle.to.eshop.*;
 import sk.hudak.pricecomparator.middle.to.group.*;
 import sk.hudak.pricecomparator.middle.to.internal.ProductByUrlAnalyzatorResponseDto;
@@ -535,4 +534,12 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
     }
 
 
+    @Inject
+    private NewProductService newProductService;
+
+    @Override
+    @Transactional
+    public PageData<NewProductListDto> findNewProducts(NewProductFindDto findDto) {
+        return newProductService.findNewProducts(findDto);
+    }
 }

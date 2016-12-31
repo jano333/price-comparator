@@ -6,6 +6,7 @@ import java.util.List;
 /**
  * Created by jan on 7. 3. 2016.
  */
+@Deprecated
 public class PageList<T> implements Serializable {
 
     private static final long serialVersionUID = 1L;
