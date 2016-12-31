@@ -5,7 +5,7 @@ import org.apache.wicket.Page;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sk.hudak.pricecomparator.client.wicket.component.ImageResourceReference;
-import sk.hudak.pricecomparator.client.wicket.page.group.GroupProductPriceListPage;
+import sk.hudak.pricecomparator.client.wicket.page.newproduct.NewProductListPage;
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
 
 /**
@@ -17,8 +17,8 @@ public class PriceComparatorApplication extends AbstractPriComApplication {
 
     @Override
     public Class<? extends Page> getHomePage() {
-        return GroupProductPriceListPage.class;
-//        return NewProductListPage.class;
+//        return GroupProductPriceListPage.class;
+        return NewProductListPage.class;
     }
 
     @Override

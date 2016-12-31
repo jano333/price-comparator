@@ -7,13 +7,12 @@ import sk.hudak.pricecomparator.server.service.InternalTxService;
 import sk.hudak.pricecomparator.server.task.AbstractNewProductDownloader;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 import java.util.List;
 
 /**
  * Created by jan on 27. 12. 2016.
  */
-@Named
+//@Named
 public class FeedoNewProductDownloaderTask extends AbstractNewProductDownloader {
 
     private static Logger logger = LoggerFactory.getLogger(FeedoNewProductDownloaderTask.class);

@@ -9,6 +9,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.PropertyModel;
 import sk.hudak.jef.paging.PageData;
+import sk.hudak.jef.paging.Paging;
 import sk.hudak.pricecomparator.client.wicket.PriceComparatorApplication;
 import sk.hudak.pricecomparator.client.wicket.component.common.IdListView;
 import sk.hudak.pricecomparator.client.wicket.component.table.PagingInfoPanelNg;
@@ -34,6 +35,11 @@ public class NewProductListTable extends Panel {
 
             @Override
             protected PageData<NewProductListDto> load() {
+                if (filter.getPaging() == null) {
+                    //TODO ako to nastavit...
+                    filter.setPaging(new Paging(0, 20));
+                }
+
                 return PriceComparatorApplication.getApi().findNewProducts(filter);
             }
         };
