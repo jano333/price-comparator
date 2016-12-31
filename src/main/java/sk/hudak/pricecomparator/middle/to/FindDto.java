@@ -11,6 +11,7 @@ import java.util.List;
  * Created by jan on 27. 12. 2015.
  */
 //TODO remove extend BasicFilter
+@Deprecated
 public class FindDto extends BasicFilter implements Serializable {
 
     private static final long serialVersionUID = 1L;

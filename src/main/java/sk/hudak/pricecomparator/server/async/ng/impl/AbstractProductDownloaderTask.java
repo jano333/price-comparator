@@ -4,9 +4,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
-import sk.hudak.pricecomparator.middle.to.ProductDto;
-import sk.hudak.pricecomparator.middle.to.ProductInEshopDto;
-import sk.hudak.pricecomparator.middle.to.ProductInEshopInfoUpdateDto;
+import sk.hudak.pricecomparator.middle.to.product.ProductDto;
+import sk.hudak.pricecomparator.middle.to.productineshop.ProductInEshopDto;
+import sk.hudak.pricecomparator.middle.to.productineshop.ProductInEshopInfoUpdateDto;
 import sk.hudak.pricecomparator.server.async.ng.*;
 import sk.hudak.pricecomparator.server.core.ServerConfig;
 

@@ -18,9 +18,9 @@ import sk.hudak.pricecomparator.client.wicket.WU;
 import sk.hudak.pricecomparator.client.wicket.component.common.IdListView;
 import sk.hudak.pricecomparator.client.wicket.component.table.PagingInfoPanel;
 import sk.hudak.pricecomparator.client.wicket.component.table.Table;
-import sk.hudak.pricecomparator.middle.to.GroupIdNameDto;
-import sk.hudak.pricecomparator.middle.to.GroupOfProductFindDto;
-import sk.hudak.pricecomparator.middle.to.ProductListDto;
+import sk.hudak.pricecomparator.middle.to.group.GroupIdNameDto;
+import sk.hudak.pricecomparator.middle.to.group.GroupOfProductFindDto;
+import sk.hudak.pricecomparator.middle.to.product.ProductListDto;
 
 import java.io.Serializable;
 import java.util.Collections;

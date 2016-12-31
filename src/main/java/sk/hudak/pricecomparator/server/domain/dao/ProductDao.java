@@ -6,7 +6,7 @@ import org.hibernate.criterion.Restrictions;
 import sk.hudak.jef.JefDao;
 import sk.hudak.jef.PageList;
 import sk.hudak.jef.ServerPaging;
-import sk.hudak.pricecomparator.middle.to.ProductFindDto;
+import sk.hudak.pricecomparator.middle.to.product.ProductFindDto;
 import sk.hudak.pricecomparator.server.domain.model.ProductEntity;
 
 import javax.inject.Named;

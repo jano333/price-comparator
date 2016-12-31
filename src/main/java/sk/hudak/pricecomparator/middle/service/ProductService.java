@@ -2,7 +2,7 @@ package sk.hudak.pricecomparator.middle.service;
 
 import sk.hudak.jef.PageList;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
-import sk.hudak.pricecomparator.middle.to.*;
+import sk.hudak.pricecomparator.middle.to.product.*;
 
 import java.util.List;
 

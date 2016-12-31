@@ -42,6 +42,7 @@
                 <value>sk.hudak.pricecomparator.server.domain.model.ProductInEshopEntity</value>
                 <value>sk.hudak.pricecomparator.server.domain.model.GroupOfProductEntity</value>
                 <value>sk.hudak.pricecomparator.server.domain.model.GroupOfProductFindEntity</value>
+                <value>sk.hudak.pricecomparator.server.domain.model.NewProductEntity</value>
             </list>
         </property>
     </bean>

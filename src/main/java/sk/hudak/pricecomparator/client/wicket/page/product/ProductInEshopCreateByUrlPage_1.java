@@ -18,10 +18,10 @@ import sk.hudak.pricecomparator.client.wicket.page.productineshop.ProductListPer
 import sk.hudak.pricecomparator.middle.canonical.EshopType;
 import sk.hudak.pricecomparator.middle.canonical.Unit;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
-import sk.hudak.pricecomparator.middle.to.ProductInEshopDto;
 import sk.hudak.pricecomparator.middle.to.internal.ProductByUrlAnalyzatorResponseDto;
 import sk.hudak.pricecomparator.middle.to.internal.ProductByUrlRequestDto;
 import sk.hudak.pricecomparator.middle.to.internal.StepTwoRequestDto;
+import sk.hudak.pricecomparator.middle.to.productineshop.ProductInEshopDto;
 
 import java.math.BigDecimal;
 import java.util.Locale;

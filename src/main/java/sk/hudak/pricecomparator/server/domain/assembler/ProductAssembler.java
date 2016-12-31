@@ -1,9 +1,9 @@
 package sk.hudak.pricecomparator.server.domain.assembler;
 
 import sk.hudak.jef.PageList;
-import sk.hudak.pricecomparator.middle.to.ProductDto;
-import sk.hudak.pricecomparator.middle.to.ProductIdNameDto;
-import sk.hudak.pricecomparator.middle.to.ProductListDto;
+import sk.hudak.pricecomparator.middle.to.product.ProductDto;
+import sk.hudak.pricecomparator.middle.to.product.ProductIdNameDto;
+import sk.hudak.pricecomparator.middle.to.product.ProductListDto;
 import sk.hudak.pricecomparator.server.domain.model.CategoryEntity;
 import sk.hudak.pricecomparator.server.domain.model.ProductEntity;
 import sk.hudak.pricecomparator.server.utils.ImageUtils;

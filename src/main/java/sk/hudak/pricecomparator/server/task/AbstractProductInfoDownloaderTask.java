@@ -2,9 +2,9 @@ package sk.hudak.pricecomparator.server.task;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import sk.hudak.pricecomparator.middle.to.ProductInEshopForPriceUpdateDto;
-import sk.hudak.pricecomparator.middle.to.ProductInEshopInfoUpdateDto;
 import sk.hudak.pricecomparator.middle.to.internal.ProductInEshopUpdateStatus;
+import sk.hudak.pricecomparator.middle.to.productineshop.ProductInEshopForPriceUpdateDto;
+import sk.hudak.pricecomparator.middle.to.productineshop.ProductInEshopInfoUpdateDto;
 import sk.hudak.pricecomparator.server.html.parser.HtmlProductParser;
 import sk.hudak.pricecomparator.server.html.parser.ProductParserResultCallback;
 import sk.hudak.pricecomparator.server.to.ProductParserResultDto;

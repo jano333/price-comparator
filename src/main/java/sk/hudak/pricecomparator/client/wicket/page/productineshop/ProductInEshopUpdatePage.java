@@ -11,10 +11,10 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 import sk.hudak.pricecomparator.client.wicket.PriceComparatorApplication;
 import sk.hudak.pricecomparator.client.wicket.page.common.LayoutPage;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
-import sk.hudak.pricecomparator.middle.to.EshopIdNameDto;
-import sk.hudak.pricecomparator.middle.to.ProductIdNameDto;
-import sk.hudak.pricecomparator.middle.to.ProductInEshopDto;
-import sk.hudak.pricecomparator.middle.to.ProductInEshopUpdateDto;
+import sk.hudak.pricecomparator.middle.to.eshop.EshopIdNameDto;
+import sk.hudak.pricecomparator.middle.to.product.ProductIdNameDto;
+import sk.hudak.pricecomparator.middle.to.productineshop.ProductInEshopDto;
+import sk.hudak.pricecomparator.middle.to.productineshop.ProductInEshopUpdateDto;
 
 import java.util.List;
 

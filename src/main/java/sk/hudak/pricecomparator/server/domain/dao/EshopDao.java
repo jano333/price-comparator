@@ -8,7 +8,7 @@ import sk.hudak.jef.JefDao;
 import sk.hudak.jef.PageList;
 import sk.hudak.jef.ServerPaging;
 import sk.hudak.pricecomparator.middle.canonical.EshopType;
-import sk.hudak.pricecomparator.middle.to.EshopFindDto;
+import sk.hudak.pricecomparator.middle.to.eshop.EshopFindDto;
 import sk.hudak.pricecomparator.server.domain.model.EshopEntity;
 
 import javax.inject.Named;

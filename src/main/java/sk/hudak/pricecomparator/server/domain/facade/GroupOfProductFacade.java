@@ -1,7 +1,7 @@
 package sk.hudak.pricecomparator.server.domain.facade;
 
 import sk.hudak.jef.JefFacade;
-import sk.hudak.pricecomparator.middle.to.GroupOfProductCreateDto;
+import sk.hudak.pricecomparator.middle.to.group.GroupOfProductCreateDto;
 import sk.hudak.pricecomparator.server.domain.dao.GroupOfProductDao;
 import sk.hudak.pricecomparator.server.domain.dao.ProductDao;
 import sk.hudak.pricecomparator.server.domain.model.GroupOfProductEntity;

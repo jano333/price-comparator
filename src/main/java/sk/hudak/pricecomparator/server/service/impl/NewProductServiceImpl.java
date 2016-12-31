@@ -20,8 +20,6 @@ public class NewProductServiceImpl implements NewProductService {
 
     @Override
     public void addNewProducts(List<NewProductCreateDto> result, EshopType eshopType) {
-        System.out.println("Eshop type " + eshopType);
-        System.out.println(result.toString());
         //TODO vstupne paramtre pozor ak je null alebo je prazdna... tak nerob nic? alebo vynimka
 
         for (NewProductCreateDto newProductCreateDto : result) {

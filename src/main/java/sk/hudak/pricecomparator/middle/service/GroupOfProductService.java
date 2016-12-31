@@ -1,7 +1,10 @@
 package sk.hudak.pricecomparator.middle.service;
 
 import sk.hudak.jef.PageList;
-import sk.hudak.pricecomparator.middle.to.*;
+import sk.hudak.pricecomparator.middle.to.ProductPriceInGroupFindDto;
+import sk.hudak.pricecomparator.middle.to.group.*;
+import sk.hudak.pricecomparator.middle.to.product.ProductListDto;
+import sk.hudak.pricecomparator.middle.to.productineshop.ProductInEshopPriceResultListDto;
 
 import java.util.List;
 import java.util.Set;

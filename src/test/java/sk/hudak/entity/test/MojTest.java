@@ -5,8 +5,8 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.Test;
 import sk.hudak.jef.PageList;
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
-import sk.hudak.pricecomparator.middle.to.ProductIdsFindDto;
 import sk.hudak.pricecomparator.middle.to.ResponseDto;
+import sk.hudak.pricecomparator.middle.to.product.ProductIdsFindDto;
 
 import javax.inject.Inject;
 import java.util.ArrayList;

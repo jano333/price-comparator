@@ -12,9 +12,9 @@ import sk.hudak.pricecomparator.client.wicket.PriceComparatorApplication;
 import sk.hudak.pricecomparator.client.wicket.WU;
 import sk.hudak.pricecomparator.client.wicket.page.CreatePageMarker;
 import sk.hudak.pricecomparator.client.wicket.page.common.LayoutPage;
-import sk.hudak.pricecomparator.middle.to.EshopIdNameDto;
-import sk.hudak.pricecomparator.middle.to.ProductIdNameDto;
-import sk.hudak.pricecomparator.middle.to.ProductInEshopCreateDto;
+import sk.hudak.pricecomparator.middle.to.eshop.EshopIdNameDto;
+import sk.hudak.pricecomparator.middle.to.product.ProductIdNameDto;
+import sk.hudak.pricecomparator.middle.to.productineshop.ProductInEshopCreateDto;
 
 import java.util.List;
 

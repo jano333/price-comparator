@@ -8,7 +8,12 @@ import sk.hudak.pricecomparator.middle.canonical.Unit;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
 import sk.hudak.pricecomparator.middle.service.ProductInEshopService;
-import sk.hudak.pricecomparator.middle.to.*;
+import sk.hudak.pricecomparator.middle.to.eshop.EshopCreateDto;
+import sk.hudak.pricecomparator.middle.to.eshop.EshopListDto;
+import sk.hudak.pricecomparator.middle.to.product.ProductCreateDto;
+import sk.hudak.pricecomparator.middle.to.productineshop.ProductInEshopCreateDto;
+import sk.hudak.pricecomparator.middle.to.productineshop.ProductInEshopCustomListDto;
+import sk.hudak.pricecomparator.middle.to.productineshop.ProductInEshopListDto;
 
 import javax.inject.Inject;
 import java.math.BigDecimal;

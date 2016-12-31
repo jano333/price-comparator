@@ -2,7 +2,10 @@ package sk.hudak.pricecomparator.server.domain.service;
 
 import sk.hudak.jef.PageList;
 import sk.hudak.pricecomparator.middle.service.GroupOfProductService;
-import sk.hudak.pricecomparator.middle.to.*;
+import sk.hudak.pricecomparator.middle.to.ProductPriceInGroupFindDto;
+import sk.hudak.pricecomparator.middle.to.group.*;
+import sk.hudak.pricecomparator.middle.to.product.ProductListDto;
+import sk.hudak.pricecomparator.middle.to.productineshop.ProductInEshopPriceResultListDto;
 import sk.hudak.pricecomparator.server.domain.assembler.GroupOfProductAssembler;
 import sk.hudak.pricecomparator.server.domain.assembler.ProductAssembler;
 import sk.hudak.pricecomparator.server.domain.assembler.ProductInEshopAssembler;

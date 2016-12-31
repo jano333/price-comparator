@@ -7,10 +7,10 @@ import org.testng.annotations.Test;
 import sk.hudak.pricecomparator.middle.canonical.Unit;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
-import sk.hudak.pricecomparator.middle.to.GroupOfProductCreateDto;
-import sk.hudak.pricecomparator.middle.to.GroupOfProductDto;
-import sk.hudak.pricecomparator.middle.to.ProductCreateDto;
-import sk.hudak.pricecomparator.middle.to.ProductListDto;
+import sk.hudak.pricecomparator.middle.to.group.GroupOfProductCreateDto;
+import sk.hudak.pricecomparator.middle.to.group.GroupOfProductDto;
+import sk.hudak.pricecomparator.middle.to.product.ProductCreateDto;
+import sk.hudak.pricecomparator.middle.to.product.ProductListDto;
 
 import javax.inject.Inject;
 import java.math.BigDecimal;

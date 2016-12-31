@@ -1,5 +1,8 @@
 package sk.hudak.pricecomparator.middle.to;
 
+import sk.hudak.pricecomparator.middle.to.product.ProductCreateDto;
+import sk.hudak.pricecomparator.middle.to.productineshop.ProductInEshopCreateDto;
+
 import java.io.Serializable;
 
 /**

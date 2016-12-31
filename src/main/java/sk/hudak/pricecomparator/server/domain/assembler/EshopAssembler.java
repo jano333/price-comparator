@@ -1,10 +1,10 @@
 package sk.hudak.pricecomparator.server.domain.assembler;
 
 import sk.hudak.jef.PageList;
-import sk.hudak.pricecomparator.middle.to.EshopDto;
-import sk.hudak.pricecomparator.middle.to.EshopHomePageInfoDto;
-import sk.hudak.pricecomparator.middle.to.EshopIdNameDto;
-import sk.hudak.pricecomparator.middle.to.EshopListDto;
+import sk.hudak.pricecomparator.middle.to.eshop.EshopDto;
+import sk.hudak.pricecomparator.middle.to.eshop.EshopHomePageInfoDto;
+import sk.hudak.pricecomparator.middle.to.eshop.EshopIdNameDto;
+import sk.hudak.pricecomparator.middle.to.eshop.EshopListDto;
 import sk.hudak.pricecomparator.server.domain.model.EshopEntity;
 
 import javax.inject.Named;

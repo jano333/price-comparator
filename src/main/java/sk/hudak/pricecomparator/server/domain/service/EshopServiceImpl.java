@@ -3,7 +3,7 @@ package sk.hudak.pricecomparator.server.domain.service;
 import sk.hudak.jef.PageList;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
 import sk.hudak.pricecomparator.middle.service.EshopService;
-import sk.hudak.pricecomparator.middle.to.*;
+import sk.hudak.pricecomparator.middle.to.eshop.*;
 import sk.hudak.pricecomparator.server.domain.assembler.EshopAssembler;
 import sk.hudak.pricecomparator.server.domain.dao.EshopDao;
 import sk.hudak.pricecomparator.server.domain.facade.EshopFacade;

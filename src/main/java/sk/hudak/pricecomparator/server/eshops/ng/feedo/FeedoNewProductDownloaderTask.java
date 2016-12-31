@@ -28,10 +28,10 @@ public class FeedoNewProductDownloaderTask extends AbstractNewProductDownloader 
     public void taskJob() {
         logger.debug(">> job stated");
         //TODO
-        if (true) {
-            logger.debug("<< job finished");
-            return;
-        }
+//        if (true) {
+//            logger.debug("<< job finished");
+//            return;
+//        }
 
         // nacitam zoznam vyhladavcich slov(Nutrilon, Pampers, ...)
         List<String> queryStrings = internalTxService.getListOfSearchQueries();
@@ -55,7 +55,7 @@ public class FeedoNewProductDownloaderTask extends AbstractNewProductDownloader 
             for (int i = 2; i <= countOfPages; i++) {
                 //TODO nefunguje, preto robim tak ako je nizsie...
 //                pageUrl = "https://www.feedo.sk/vysledky-hladania/" + searchKey + "/#page=" + i;
-                pageUrl = "https://www.feedo.sk/vysledky-hladania/Pampers/filter?strana=" + i;
+                pageUrl = "https://www.feedo.sk/vysledky-hladania/" + searchKey + "/filter?strana=" + i;
                 sleepFor();
                 internalTxService.addNewProducts(parser.parserPage(pageUrl), getEshopType());
             }

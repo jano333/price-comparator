@@ -7,7 +7,7 @@ import org.apache.wicket.model.PropertyModel;
 import sk.hudak.pricecomparator.client.wicket.PriceComparatorApplication;
 import sk.hudak.pricecomparator.client.wicket.page.CreatePageMarker;
 import sk.hudak.pricecomparator.client.wicket.page.common.LayoutPage;
-import sk.hudak.pricecomparator.middle.to.GroupOfProductCreateDto;
+import sk.hudak.pricecomparator.middle.to.group.GroupOfProductCreateDto;
 
 /**
  * Created by jan on 17. 4. 2016.

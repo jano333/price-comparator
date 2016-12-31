@@ -7,11 +7,17 @@ import sk.hudak.jef.PageList;
 import sk.hudak.pricecomparator.middle.canonical.EshopType;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
 import sk.hudak.pricecomparator.middle.service.*;
-import sk.hudak.pricecomparator.middle.to.*;
+import sk.hudak.pricecomparator.middle.to.CategoryCreateDto;
+import sk.hudak.pricecomparator.middle.to.ProductPriceInGroupFindDto;
+import sk.hudak.pricecomparator.middle.to.ResponseDto;
+import sk.hudak.pricecomparator.middle.to.eshop.*;
+import sk.hudak.pricecomparator.middle.to.group.*;
 import sk.hudak.pricecomparator.middle.to.internal.ProductByUrlAnalyzatorResponseDto;
 import sk.hudak.pricecomparator.middle.to.internal.ProductByUrlRequestDto;
 import sk.hudak.pricecomparator.middle.to.internal.ProductInEshopUpdateStatus;
 import sk.hudak.pricecomparator.middle.to.internal.StepTwoRequestDto;
+import sk.hudak.pricecomparator.middle.to.product.*;
+import sk.hudak.pricecomparator.middle.to.productineshop.*;
 import sk.hudak.pricecomparator.server.to.ProductInEshopPictureDto;
 
 import javax.inject.Inject;

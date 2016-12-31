@@ -1,7 +1,7 @@
 package sk.hudak.pricecomparator.client.utils;
 
 import org.apache.commons.lang3.StringUtils;
-import sk.hudak.pricecomparator.middle.to.ProductInEshopPriceResultListDto;
+import sk.hudak.pricecomparator.middle.to.productineshop.ProductInEshopPriceResultListDto;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

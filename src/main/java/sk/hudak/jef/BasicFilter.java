@@ -5,15 +5,21 @@ import java.io.Serializable;
 /**
  * Created by jan on 7. 3. 2016.
  */
+@Deprecated
 public class BasicFilter implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @Deprecated
     public static final String AT_OFFSET = "offset";
+    @Deprecated
     public static final String AT_COUNT = "count";
 
+    @Deprecated
     public static final int OFFSET_OF_FIRST_ENTRIES = 0;
+    @Deprecated
     public static final int OFFSET_OF_LAST_ENTRIES = -1;
+    @Deprecated
     public static final int DEFAULT_COUNT = 10;
 
     public static final int MAX_COUNT = 1000;

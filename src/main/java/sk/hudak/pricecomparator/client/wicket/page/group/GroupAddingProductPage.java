@@ -8,8 +8,8 @@ import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.PropertyModel;
 import sk.hudak.pricecomparator.client.wicket.PriceComparatorApplication;
 import sk.hudak.pricecomparator.client.wicket.page.common.LayoutPage;
-import sk.hudak.pricecomparator.middle.to.GroupIdNameDto;
-import sk.hudak.pricecomparator.middle.to.ProductIdNameDto;
+import sk.hudak.pricecomparator.middle.to.group.GroupIdNameDto;
+import sk.hudak.pricecomparator.middle.to.product.ProductIdNameDto;
 
 import java.util.HashSet;
 import java.util.List;

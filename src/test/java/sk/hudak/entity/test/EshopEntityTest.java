@@ -6,7 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
-import sk.hudak.pricecomparator.middle.to.EshopCreateDto;
+import sk.hudak.pricecomparator.middle.to.eshop.EshopCreateDto;
 
 import javax.inject.Inject;
 

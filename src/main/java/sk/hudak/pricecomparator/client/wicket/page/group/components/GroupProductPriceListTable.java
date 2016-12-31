@@ -21,9 +21,9 @@ import sk.hudak.pricecomparator.client.wicket.page.product.ProductUpdatePage;
 import sk.hudak.pricecomparator.client.wicket.page.productineshop.ProductInEshopUpdatePage;
 import sk.hudak.pricecomparator.middle.canonical.ProductAction;
 import sk.hudak.pricecomparator.middle.canonical.Unit;
-import sk.hudak.pricecomparator.middle.to.GroupIdNameDto;
-import sk.hudak.pricecomparator.middle.to.ProductInEshopPriceResultListDto;
 import sk.hudak.pricecomparator.middle.to.ProductPriceInGroupFindDto;
+import sk.hudak.pricecomparator.middle.to.group.GroupIdNameDto;
+import sk.hudak.pricecomparator.middle.to.productineshop.ProductInEshopPriceResultListDto;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

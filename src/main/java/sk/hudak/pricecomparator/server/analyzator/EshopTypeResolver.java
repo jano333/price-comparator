@@ -2,7 +2,7 @@ package sk.hudak.pricecomparator.server.analyzator;
 
 import sk.hudak.pricecomparator.middle.canonical.EshopType;
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
-import sk.hudak.pricecomparator.middle.to.EshopHomePageInfoDto;
+import sk.hudak.pricecomparator.middle.to.eshop.EshopHomePageInfoDto;
 
 import javax.inject.Inject;
 import javax.inject.Named;

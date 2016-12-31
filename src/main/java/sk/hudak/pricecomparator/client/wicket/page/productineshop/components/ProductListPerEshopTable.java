@@ -19,9 +19,9 @@ import sk.hudak.pricecomparator.client.wicket.page.productineshop.ProductInEshop
 import sk.hudak.pricecomparator.middle.canonical.ProductAction;
 import sk.hudak.pricecomparator.middle.canonical.Unit;
 import sk.hudak.pricecomparator.middle.exeption.PriceComparatorBusinesException;
-import sk.hudak.pricecomparator.middle.to.EshopIdNameDto;
-import sk.hudak.pricecomparator.middle.to.ProductInEshopFindDto;
-import sk.hudak.pricecomparator.middle.to.ProductInEshopPriceInfoListDto;
+import sk.hudak.pricecomparator.middle.to.eshop.EshopIdNameDto;
+import sk.hudak.pricecomparator.middle.to.productineshop.ProductInEshopFindDto;
+import sk.hudak.pricecomparator.middle.to.productineshop.ProductInEshopPriceInfoListDto;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

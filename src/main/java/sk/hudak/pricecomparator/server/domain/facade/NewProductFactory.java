@@ -1,5 +1,7 @@
 package sk.hudak.pricecomparator.server.domain.facade;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import sk.hudak.jef.JefFacade;
 import sk.hudak.pricecomparator.middle.canonical.EshopType;
 import sk.hudak.pricecomparator.server.domain.dao.NewProductDao;
@@ -17,31 +19,35 @@ import javax.inject.Named;
 @Named
 public class NewProductFactory extends JefFacade {
 
+    private static Logger logger = LoggerFactory.getLogger(NewProductFactory.class);
+
     @Inject
     private NewProductDao newProductDao;
 
     @Inject
     private ProductInEshopDao productInEshopDao;
 
-    public void createIfNotExistYet(NewProductCreateDto newProductCreateDto, EshopType eshopType) {
+    public void createIfNotExistYet(NewProductCreateDto createDto, EshopType eshopType) {
 
         //ak existuje ako nespracovany, koncim
-        boolean alreadyExist = newProductDao.exist(newProductCreateDto.getProductUrl());
+        boolean alreadyExist = newProductDao.exist(createDto.getProductUrl());
         if (alreadyExist) {
+            logger.debug("product URL {} allready added", createDto.getProductUrl());
             return;
         }
         //ak existuje ako spracovany, koncim
-        alreadyExist = productInEshopDao.existProductWithGivenUrl(newProductCreateDto.getProductUrl());
+        alreadyExist = productInEshopDao.existProductWithGivenUrl(createDto.getProductUrl());
         if (alreadyExist) {
+            logger.debug("product URL {} exist", createDto.getProductUrl());
             return;
         }
 
         NewProductEntity entity = new NewProductEntity();
         entity.setStatus(NewProductStatus.NEW);
-        //TODO tu pokracovat...
-//        entity.setProductUrl();
-
-        //TODO
-
+        entity.setEshopType(eshopType);
+        entity.setProductName(createDto.getProductName());
+        entity.setProductUrl(createDto.getProductUrl());
+        entity.setProductPictureUrl(createDto.getProductPictureUrl());
+        newProductDao.create(entity);
     }
 }
