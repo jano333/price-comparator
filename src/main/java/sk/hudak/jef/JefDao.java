@@ -7,7 +7,7 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import sk.hudak.jef.paging.PageData;
 import sk.hudak.jef.paging.Paging;
-import sk.hudak.pricecomparator.middle.to.FindDto;
+import sk.hudak.pricecomparator.middle.to.FindDtoNg;
 import sk.hudak.pricecomparator.server.domain.LongIdEntity;
 
 import javax.inject.Inject;
@@ -64,7 +64,7 @@ public abstract class JefDao<T extends LongIdEntity> {
         return entity;
     }
 
-    protected PageData<T> createPageData(Criteria criteria, FindDto findDto) {
+    protected PageData<T> createPageData(Criteria criteria, FindDtoNg findDto) {
         val.notNull(criteria, "criteria is null.");
         val.notNull(findDto, "findDto is null.");
         val.notNull(findDto.getPaging(), "paging in find dto is null.");
