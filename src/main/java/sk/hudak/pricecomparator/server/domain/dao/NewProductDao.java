@@ -40,9 +40,9 @@ public class NewProductDao extends JefDao<NewProductEntity> {
         //TODO if poriesit ale zatial chcem stale ak celkovy pocet...
 //        if(findDto.getPaging().isDoCount()){
         crit.setProjection(Projections.rowCount());
-        int allCount = ((Long) crit.uniqueResult()).intValue();
+        int allRecordsCount = ((Long) crit.uniqueResult()).intValue();
         crit.setProjection(null);
 //        }
-        return createPageData(crit, findDto);
+        return createPageData(crit, findDto.getPaging(), allRecordsCount);
     }
 }

@@ -30,7 +30,11 @@ public class PagingInfoPanelNg<T> extends Panel {
         super(id);
 
         currentPage = 0;
-        allPageCount = tableModel.getObject().getAllRecordsCount();
+        //TODO dopocitat...
+        allPageCount = 55;
+
+        final Label allRecordsCountLb = new Label("allRecordsCount", new PropertyModel<String>(tableModel, "allRecordsCount"));
+        add(allRecordsCountLb);
 
         final Label currentPageLb = new Label("currentPage", new PropertyModel<String>(this, AT_CURRENT_PAGE));
         add(currentPageLb);
