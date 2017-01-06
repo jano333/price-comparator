@@ -1,9 +1,9 @@
 package sk.hudak.pricecomparator.client.wicket.page.newproduct;
 
 import org.apache.wicket.markup.html.WebMarkupContainer;
-import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
@@ -11,6 +11,7 @@ import org.apache.wicket.model.PropertyModel;
 import sk.hudak.jef.paging.PageData;
 import sk.hudak.jef.paging.Paging;
 import sk.hudak.pricecomparator.client.wicket.PriceComparatorApplication;
+import sk.hudak.pricecomparator.client.wicket.WU;
 import sk.hudak.pricecomparator.client.wicket.component.common.IdListView;
 import sk.hudak.pricecomparator.client.wicket.component.table.PagingInfoPanelNg;
 import sk.hudak.pricecomparator.client.wicket.component.table.TableNg;
@@ -70,15 +71,20 @@ public class NewProductListTable extends Panel {
 
             @Override
             protected NewProductListDto loadLazyById(Serializable id) {
-                //TODO
-                return super.loadLazyById(id);
+                return PriceComparatorApplication.getApi().getNewProductListDtoById((Long) id);
             }
 
             @Override
             protected void populateItem(IdListView.IdListItem<NewProductListDto> item) {
                 IModel<NewProductListDto> model = item.getModel();
 
-                Label newProductName = new Label("name", new PropertyModel<String>(model, NewProductListDto.AT_PRODUCT_NAME));
+//                Label newProductName = new Label("name", new PropertyModel<String>(model, NewProductListDto.AT_PRODUCT_NAME));
+
+                ExternalLink newProductName = new ExternalLink("name",
+                        new PropertyModel<String>(model, NewProductListDto.AT_PRODUCT_URL),
+                        new PropertyModel<String>(model, NewProductListDto.AT_PRODUCT_NAME)
+                );
+                newProductName.add(WU.atrTargetBlank());
 
                 WebMarkupContainer tr = new WebMarkupContainer("tr");
                 tr.add(newProductName);

@@ -16,4 +16,6 @@ public interface NewProductService {
     void addNewProducts(List<NewProductCreateDto> result, EshopType eshopType);
 
     PageData<NewProductListDto> findNewProducts(NewProductFindDto findDto);
+
+    NewProductListDto getNewProductListDtoById(Long newProductId);
 }

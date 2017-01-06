@@ -25,7 +25,7 @@ public class NewProductAssembler {
         return new PageData<>(newProducts.getAllRecordsCount(), newProducts.getPaging(), records);
     }
 
-    private NewProductListDto transformToNewProductListDto(NewProductEntity entity) {
+    public NewProductListDto transformToNewProductListDto(NewProductEntity entity) {
         if (entity == null) {
             return null;
         }
@@ -35,7 +35,7 @@ public class NewProductAssembler {
         result.setProductName(entity.getProductName());
         result.setProductPictureUrl(entity.getProductPictureUrl());
         result.setStatus(entity.getStatus());
-        result.setProductUrl(result.getProductUrl());
+        result.setProductUrl(entity.getProductUrl());
         return result;
     }
 }

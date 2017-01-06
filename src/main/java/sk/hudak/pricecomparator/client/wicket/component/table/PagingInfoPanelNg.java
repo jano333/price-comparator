@@ -20,59 +20,58 @@ import java.util.Arrays;
 public class PagingInfoPanelNg<T> extends Panel {
 
     public static final String AT_CURRENT_PAGE = "currentPage";
-    public static final String AT_ALL_PAGE_COUNT = "allPageCount";
 
-    private int currentPage = 0;
-    private int allPageCount;
+    private int currentPage;
+//    private int allPageCount;
 
 
     public PagingInfoPanelNg(String id, final FindDtoNg filter, final IModel<PageData<T>> tableModel) {
         super(id);
 
-        currentPage = 0;
+        currentPage = 1;
         //TODO dopocitat...
-        allPageCount = 55;
+//        allPageCount = 55;
 
-        final Label allRecordsCountLb = new Label("allRecordsCount", new PropertyModel<String>(tableModel, "allRecordsCount"));
+        final Label allRecordsCountLb = new Label("allRecordsCount", new PropertyModel<String>(tableModel, PageData.AT_ALL_RECORDS_COUNT));
         add(allRecordsCountLb);
 
         final Label currentPageLb = new Label("currentPage", new PropertyModel<String>(this, AT_CURRENT_PAGE));
         add(currentPageLb);
 
-        Label allPageCountLb = new Label("allPageCount", new PropertyModel<String>(this, AT_ALL_PAGE_COUNT));
+        Label allPageCountLb = new Label("allPageCount", new PropertyModel<String>(tableModel, PageData.AT_PAGE_COUNT));
         add(allPageCountLb);
 
         Link<Void> firstLink = new Link<Void>("firstLink") {
 
             @Override
             public void onClick() {
-                currentPage = 0;
-                filter.getPaging().setOffset(currentPage * filter.getPaging().getPageSize());
+                currentPage = 1;
+                calculateOffset(filter);
             }
         };
-        firstLink.add(VisibilityModifier.notEqual(this, AT_CURRENT_PAGE, 0));
+        firstLink.add(VisibilityModifier.notEqual(this, AT_CURRENT_PAGE, 1));
 
         Link<Void> prevLink = new Link<Void>("prevLink") {
 
             @Override
             public void onClick() {
                 currentPage = currentPage - 1;
-                filter.getPaging().setOffset(currentPage * filter.getPaging().getPageSize());
+                calculateOffset(filter);
             }
         };
-        prevLink.add(VisibilityModifier.notEqual(this, AT_CURRENT_PAGE, 0));
+        prevLink.add(VisibilityModifier.notEqual(this, AT_CURRENT_PAGE, 1));
 
         Link<Void> nextLink = new Link<Void>("nextLink") {
 
             @Override
             public void onClick() {
                 currentPage = currentPage + 1;
-                filter.getPaging().setOffset(currentPage * filter.getPaging().getPageSize());
+                calculateOffset(filter);
             }
         };
         nextLink.add(new VisibilityModifier() {
             protected boolean isVisible(Component component) {
-                return currentPage != allPageCount - 1;
+                return currentPage != tableModel.getObject().getPageCount();
             }
         });
 
@@ -80,13 +79,17 @@ public class PagingInfoPanelNg<T> extends Panel {
 
             @Override
             public void onClick() {
-                currentPage = allPageCount - 1;
-                filter.getPaging().setOffset(currentPage * filter.getPaging().getPageSize());
+//                int hh = tableModel.getObject().getPageCount();
+//                System.out.println("hh " + hh);
+                System.out.println("currentPage " + currentPage);
+
+                currentPage = tableModel.getObject().getPageCount();
+                calculateOffset(filter);
             }
         };
         lastLink.add(new VisibilityModifier() {
             protected boolean isVisible(Component component) {
-                return currentPage != allPageCount - 1;
+                return currentPage != tableModel.getObject().getPageCount();
             }
         });
 
@@ -107,9 +110,9 @@ public class PagingInfoPanelNg<T> extends Panel {
                     public void onClick() {
                         Integer newValue = model.getObject();
 
-                        currentPage = 0;
+                        currentPage = 1;
                         filter.getPaging().setPageSize(newValue);
-                        filter.getPaging().setOffset(currentPage * filter.getPaging().getPageSize());
+                        calculateOffset(filter);
                     }
                 };
 
@@ -123,5 +126,9 @@ public class PagingInfoPanelNg<T> extends Panel {
         add(perPage);
 
 
+    }
+
+    private void calculateOffset(FindDtoNg filter) {
+        filter.getPaging().setOffset((currentPage - 1) * filter.getPaging().getPageSize());
     }
 }

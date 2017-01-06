@@ -18,4 +18,6 @@ public interface PriceComparatorService extends
 
 
     PageData<NewProductListDto> findNewProducts(NewProductFindDto filter);
+
+    NewProductListDto getNewProductListDtoById(Long newProductId);
 }

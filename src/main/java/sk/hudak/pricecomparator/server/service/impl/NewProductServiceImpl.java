@@ -42,4 +42,9 @@ public class NewProductServiceImpl implements NewProductService {
     public PageData<NewProductListDto> findNewProducts(NewProductFindDto findDto) {
         return newProductAssembler.transformToPageDataOfNewProductListDto(newProductDao.findNewProducts(findDto));
     }
+
+    @Override
+    public NewProductListDto getNewProductListDtoById(Long newProductId) {
+        return newProductAssembler.transformToNewProductListDto(newProductDao.readMandatory(newProductId));
+    }
 }

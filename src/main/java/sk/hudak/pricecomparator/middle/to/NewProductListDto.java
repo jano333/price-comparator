@@ -11,6 +11,7 @@ import java.io.Serializable;
 public class NewProductListDto implements Serializable {
 
     public static final String AT_PRODUCT_NAME = "productName";
+    public static final String AT_PRODUCT_URL = "productUrl";
 
     private Long id;
     private String productName;

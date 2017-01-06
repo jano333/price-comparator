@@ -44,6 +44,10 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
     @Inject
     private GroupOfProductService groupOfProductService;
 
+    @Inject
+    private NewProductService newProductService;
+
+
     // --------- ESHOP ----------
 
     @Override
@@ -534,12 +538,15 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
     }
 
 
-    @Inject
-    private NewProductService newProductService;
-
     @Override
     @Transactional
     public PageData<NewProductListDto> findNewProducts(NewProductFindDto findDto) {
         return newProductService.findNewProducts(findDto);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public NewProductListDto getNewProductListDtoById(Long newProductId) {
+        return newProductService.getNewProductListDtoById(newProductId);
     }
 }
