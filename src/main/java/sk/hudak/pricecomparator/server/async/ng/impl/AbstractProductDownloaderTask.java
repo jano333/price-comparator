@@ -15,6 +15,7 @@ import java.util.Random;
 /**
  * Created by jan on 9. 7. 2016.
  */
+@Deprecated
 public abstract class AbstractProductDownloaderTask implements EshopTask {
 
     protected Logger logger = LoggerFactory.getLogger(getClass());

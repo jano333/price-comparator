@@ -28,7 +28,7 @@ public class InternalTxServiceImpl implements InternalTxService {
     @Transactional(readOnly = true)
     public List<String> getListOfSearchQueries() {
         //TODO nacitat z DB
-        return Arrays.asList("Pampers", "Nutrilon");
+        return Arrays.asList("Pampers"/*, "Nutrilon"*/);
     }
 
     @Override

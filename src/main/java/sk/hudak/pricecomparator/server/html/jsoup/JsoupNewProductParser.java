@@ -38,24 +38,23 @@ public abstract class JsoupNewProductParser {
 
     public List<NewProductCreateDto> parserPage(String pageUrl) {
         try {
-            logger.debug("conneting to: {}", pageUrl);
-            Document doc = getDocument(pageUrl);
-
-            return parseNewProducts(doc);
+            return parseNewProducts(getDocument(pageUrl));
 
         } catch (Exception e) {
-            logger.error(e.getMessage());
+            logger.error("error while parsing new products", e);
             return null;
         }
     }
 
     protected Document getDocument(String pageUrl) {
+        logger.debug("connecting to {}", pageUrl);
         try {
             return Jsoup.connect(pageUrl)
                     .userAgent(getUserAgent())
                     .cookies(getCookies())
                     .timeout(getTimeout())
                     .get();
+
         } catch (IOException e) {
             throw new PriceComparatorException("error while retrieving document", e);
         }

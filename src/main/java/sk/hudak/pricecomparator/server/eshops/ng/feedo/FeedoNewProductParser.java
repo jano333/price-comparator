@@ -2,9 +2,9 @@ package sk.hudak.pricecomparator.server.eshops.ng.feedo;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import sk.hudak.pricecomparator.middle.exeption.PriceComparatorException;
 import sk.hudak.pricecomparator.server.html.jsoup.JsoupNewProductParser;
 import sk.hudak.pricecomparator.server.to.NewProductCreateDto;
 
@@ -23,9 +23,7 @@ public class FeedoNewProductParser extends JsoupNewProductParser {
     @Override
     protected List<NewProductCreateDto> parseNewProducts(Document doc) {
         List<NewProductCreateDto> result = new ArrayList<>(24);
-        Elements elements = doc.select("article[class=box box-product]");
-        //<article class="box box-product"
-        for (Element element : elements) {
+        for (Element element : doc.select("article[class=box box-product]")) {
             result.add(processOneProduct(element));
         }
         return result;
@@ -46,24 +44,27 @@ public class FeedoNewProductParser extends JsoupNewProductParser {
     }
 
     public int getCountOfPages(String pageUrl) {
-        Document doc = getDocument(pageUrl);
+        try {
+            Document doc = getDocument(pageUrl);
+            //„Pampers“ (85)
+            Element element = doc.select("body > main > div > section > h1 > span").get(0);
+            String text = element.text();
+            text = text.substring(text.indexOf("(") + 1, text.indexOf(")"));
 
-        Element element = doc.select("body > main > div > section > p > i").get(0);
-
-        // "Na Váš zadaný výraz „pampers“ bolo nájdených 85 výsledkov."
-        String text = element.text();
-        text = text.substring(text.indexOf("nájdených ")/*, text.lastIndexOf(" ")*/);
-        text = text.substring("nájdených ".length());
-        text = text.substring(0, text.length() - 1 - "výsledkov.".length());
-
-        int pocetZaznamov = Integer.valueOf(text);
-        //feedo ma 24 itemov na jednu stranku
-        double pocetStran = pocetZaznamov / 24.0;
-        //zaokruhlenie nahor :-)
-        int tmp = (int) pocetStran;
-        if (pocetStran > tmp) {
-            tmp++;
+            int pocetZaznamov = Integer.valueOf(text);
+            //feedo ma 24 itemov na jednu stranku
+            double pocetStran = pocetZaznamov / 24.0;
+            //zaokruhlenie nahor :-)
+            int tmp = (int) pocetStran;
+            if (pocetStran > tmp) {
+                tmp++;
+            }
+            return tmp;
+        } catch (Exception e) {
+            //TODO bez toho som nevedel aka chyba je, nic v loggoch nebolo
+            logger.error("error", e);
+            throw new PriceComparatorException("erro while retrieving count of pages", e);
         }
-        return tmp;
+
     }
 }

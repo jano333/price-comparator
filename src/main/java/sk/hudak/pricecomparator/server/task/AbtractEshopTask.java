@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import sk.hudak.pricecomparator.middle.canonical.EshopType;
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
 import sk.hudak.pricecomparator.server.core.ServerConfigNg;
+import sk.hudak.pricecomparator.server.service.InternalTxService;
 
 import javax.inject.Inject;
 import java.util.Random;
@@ -14,6 +15,8 @@ import java.util.Random;
  */
 public abstract class AbtractEshopTask {
 
+    @Inject
+    protected InternalTxService internalTxService;
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     //TODO  nazvat to na InternalTxTesrvice??

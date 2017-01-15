@@ -42,6 +42,22 @@ public class NewProductFactory extends JefFacade {
             return;
         }
 
+        // este overim bez/s poslednym lomitkom lebo sa stavalo ze ja som s lomitkom a vstupom
+        // bolo bez lomitka...
+        if (createDto.getProductUrl().endsWith("/")) {
+            alreadyExist = productInEshopDao.existProductWithGivenUrl(createDto.getProductUrl().substring(0, createDto.getProductUrl().length() - 1));
+            if (alreadyExist) {
+                logger.debug("product URL {} exist without last /", createDto.getProductUrl());
+                return;
+            }
+        } else {
+            alreadyExist = productInEshopDao.existProductWithGivenUrl(createDto.getProductUrl() + "/");
+            if (alreadyExist) {
+                logger.debug("product URL {} exist with last /", createDto.getProductUrl());
+                return;
+            }
+        }
+
         NewProductEntity entity = new NewProductEntity();
         entity.setStatus(NewProductStatus.NEW);
         entity.setEshopType(eshopType);
@@ -49,5 +65,6 @@ public class NewProductFactory extends JefFacade {
         entity.setProductUrl(createDto.getProductUrl());
         entity.setProductPictureUrl(createDto.getProductPictureUrl());
         newProductDao.create(entity);
+        logger.info("new product added successfully, URL {}", createDto.getProductUrl());
     }
 }

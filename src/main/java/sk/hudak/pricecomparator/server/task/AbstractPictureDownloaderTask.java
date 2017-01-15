@@ -3,7 +3,7 @@ package sk.hudak.pricecomparator.server.task;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sk.hudak.pricecomparator.middle.service.PriceComparatorService;
-import sk.hudak.pricecomparator.server.task.picture.PictureDownloaderBean;
+import sk.hudak.pricecomparator.server.picture.PictureManager;
 import sk.hudak.pricecomparator.server.to.ProductInEshopPictureDto;
 
 import javax.inject.Inject;
@@ -16,7 +16,7 @@ public abstract class AbstractPictureDownloaderTask extends AbtractEshopTask {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Inject
-    private PictureDownloaderBean downloader;
+    private PictureManager pictureMng;
 
     // TODO dat tu InternalTxService
     @Inject
@@ -40,7 +40,7 @@ public abstract class AbstractPictureDownloaderTask extends AbtractEshopTask {
             return false;
         }
         String pathToSave = configNg.getImagesRootDirectory() + "pie_" + result.getProductInEshopId();
-        boolean downloadOk = downloader.downloadPicture(result.getPictureUrl(), pathToSave);
+        boolean downloadOk = pictureMng.downloadPicture(result.getPictureUrl(), pathToSave);
         logger.debug("downloaded ok {}", downloadOk);
 
         priceComparatorService.markPictureOfProductInEshopAsDownloaded(result.getProductInEshopId());
