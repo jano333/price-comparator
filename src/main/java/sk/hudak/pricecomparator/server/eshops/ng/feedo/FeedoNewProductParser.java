@@ -60,6 +60,7 @@ public class FeedoNewProductParser extends JsoupNewProductParser {
                 tmp++;
             }
             return tmp;
+
         } catch (Exception e) {
             //TODO bez toho som nevedel aka chyba je, nic v loggoch nebolo
             logger.error("error", e);

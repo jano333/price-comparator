@@ -13,6 +13,7 @@ import javax.persistence.*;
 public class NewProductEntity extends BasicEntity {
 
     public static final transient String AT_PRODUCT_URL = "productUrl";
+    public static final transient String AT_STATUS = "status";
 
     @Id
     @Column(name = "ID")

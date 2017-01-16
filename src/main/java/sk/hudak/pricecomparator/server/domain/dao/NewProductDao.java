@@ -5,7 +5,6 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import sk.hudak.jef.JefDao;
 import sk.hudak.jef.paging.PageData;
-import sk.hudak.jef.paging.Paging;
 import sk.hudak.pricecomparator.middle.to.NewProductFindDto;
 import sk.hudak.pricecomparator.server.domain.model.NewProductEntity;
 
@@ -35,13 +34,10 @@ public class NewProductDao extends JefDao<NewProductEntity> {
     }
 
     public PageData<NewProductEntity> findNewProducts(NewProductFindDto findDto) {
-
-        Paging paging = findDto.getPaging();
-        System.out.println("offset: " + paging.getOffset());
-        System.out.println("pagesize: " + paging.getPageSize());
-
         Criteria crit = createCriteria(NewProductEntity.class);
-        //TODO vstupne parametre
+        if (findDto.getStatus() != null) {
+            crit.add(Restrictions.eq(NewProductEntity.AT_STATUS, findDto.getStatus()));
+        }
 
         //TODO if poriesit ale zatial chcem stale ak celkovy pocet...
 //        if(findDto.getPaging().isDoCount()){

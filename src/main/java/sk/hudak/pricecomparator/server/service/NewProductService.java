@@ -5,6 +5,7 @@ import sk.hudak.pricecomparator.middle.canonical.EshopType;
 import sk.hudak.pricecomparator.middle.to.NewProductFindDto;
 import sk.hudak.pricecomparator.middle.to.NewProductListDto;
 import sk.hudak.pricecomparator.server.to.NewProductCreateDto;
+import sk.hudak.pricecomparator.server.to.NewProductStatus;
 
 import java.util.List;
 
@@ -18,4 +19,6 @@ public interface NewProductService {
     PageData<NewProductListDto> findNewProducts(NewProductFindDto findDto);
 
     NewProductListDto getNewProductListDtoById(Long newProductId);
+
+    void changeNewProductStatus(Long newProductId, NewProductStatus newProductStatus);
 }

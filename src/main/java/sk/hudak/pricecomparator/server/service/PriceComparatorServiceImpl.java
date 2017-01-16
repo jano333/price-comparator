@@ -17,6 +17,7 @@ import sk.hudak.pricecomparator.middle.to.internal.ProductInEshopUpdateStatus;
 import sk.hudak.pricecomparator.middle.to.internal.StepTwoRequestDto;
 import sk.hudak.pricecomparator.middle.to.product.*;
 import sk.hudak.pricecomparator.middle.to.productineshop.*;
+import sk.hudak.pricecomparator.server.to.NewProductStatus;
 import sk.hudak.pricecomparator.server.to.ProductInEshopPictureDto;
 
 import javax.inject.Inject;
@@ -548,5 +549,11 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
     @Transactional(readOnly = true)
     public NewProductListDto getNewProductListDtoById(Long newProductId) {
         return newProductService.getNewProductListDtoById(newProductId);
+    }
+
+    @Override
+    @Transactional
+    public void changeNewProductStatus(Long newProductId, NewProductStatus newProductStatus) {
+        newProductService.changeNewProductStatus(newProductId, newProductStatus);
     }
 }

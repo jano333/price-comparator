@@ -67,4 +67,10 @@ public class NewProductFactory extends JefFacade {
         newProductDao.create(entity);
         logger.info("new product added successfully, URL {}", createDto.getProductUrl());
     }
+
+    public void changeNewProductStatus(Long newProductId, NewProductStatus newProductStatus) {
+        NewProductEntity entity = newProductDao.readMandatory(newProductId);
+        entity.setStatus(newProductStatus);
+        newProductDao.update(entity);
+    }
 }
