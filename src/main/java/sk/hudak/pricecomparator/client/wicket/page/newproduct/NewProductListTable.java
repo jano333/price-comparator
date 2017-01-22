@@ -14,6 +14,7 @@ import sk.hudak.jef.paging.PageData;
 import sk.hudak.jef.paging.Paging;
 import sk.hudak.pricecomparator.client.wicket.PriceComparatorApplication;
 import sk.hudak.pricecomparator.client.wicket.WU;
+import sk.hudak.pricecomparator.client.wicket.component.ExternalImageUrl;
 import sk.hudak.pricecomparator.client.wicket.component.common.IdListView;
 import sk.hudak.pricecomparator.client.wicket.component.table.PagingInfoPanelNg;
 import sk.hudak.pricecomparator.client.wicket.component.table.TableNg;
@@ -91,6 +92,9 @@ public class NewProductListTable extends Panel {
             @Override
             protected void populateItem(IdListView.IdListItem<NewProductListDto> item) {
                 final IModel<NewProductListDto> model = item.getModel();
+                String urlAsString = model.getObject().getProductPictureUrl();
+
+                ExternalImageUrl image = new ExternalImageUrl("productImage", urlAsString);
 
                 ExternalLink newProductName = new ExternalLink("name",
                         new PropertyModel<String>(model, NewProductListDto.AT_PRODUCT_URL),
@@ -117,6 +121,7 @@ public class NewProductListTable extends Panel {
                 };
 
                 WebMarkupContainer tr = new WebMarkupContainer("tr");
+                tr.add(image);
                 tr.add(newProductName);
                 //actions
                 tr.add(markAsNotInterestedLink);

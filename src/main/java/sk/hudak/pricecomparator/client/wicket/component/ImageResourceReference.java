@@ -15,6 +15,7 @@ import java.nio.file.Files;
  */
 public class ImageResourceReference extends ResourceReference {
 
+    //TODO cesta...
     private static final String C_PRICE_COMPARATOR_IMAGES = "C:\\price-comparator\\images\\";
 
     public ImageResourceReference() {
