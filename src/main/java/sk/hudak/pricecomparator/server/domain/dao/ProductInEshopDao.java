@@ -89,6 +89,7 @@ public class ProductInEshopDao extends JefDao<ProductInEshopEntity> {
 
     //TODO vsetko nizie prejst ------------------
 
+    @Deprecated
     public List<ProductInEshopEntity> findAllProductInEshop() {
         Criteria crit = createCriteria(ProductInEshopEntity.class);
         return crit.list();

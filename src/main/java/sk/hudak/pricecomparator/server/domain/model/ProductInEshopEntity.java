@@ -1,6 +1,7 @@
 package sk.hudak.pricecomparator.server.domain.model;
 
 import sk.hudak.pricecomparator.middle.canonical.ProductAction;
+import sk.hudak.pricecomparator.middle.canonical.Unit;
 import sk.hudak.pricecomparator.middle.to.internal.ProductInEshopUpdateStatus;
 
 import javax.persistence.*;
@@ -32,10 +33,7 @@ public class ProductInEshopEntity extends BasicEntity {
     @SequenceGenerator(name = "PRODUCT_IN_ESHOP_SEQ", sequenceName = "PRODUCT_IN_ESHOP_SEQ", allocationSize = 1)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "PRODUCT_ID")
-    private ProductEntity product;
-
+    // eshop, z ktoreho je dany produkt
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "ESHOP_ID")
     private EshopEntity eshop;
@@ -44,21 +42,46 @@ public class ProductInEshopEntity extends BasicEntity {
     @Column(name = "PRODUCT_PAGE_IN_ESHOP", nullable = false, unique = true)
     private String productPageInEshop;
 
+    // pocet poloziek v baliku
+    @Column(name = "COUNT_OF_ITEM_IN_ONE_PACKAGE", nullable = false)
+    private Integer countOfItemInOnePackage;
+
+    // merna jednotka
+    @Column(name = "UNIT", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Unit unit;
+
+    // mnozstvo z danej jednotky(napr. sampon - 0.25l, toaletak - 68m, plienky 72ks)
+    @Column(name = "COUNT_OF_UNIT", nullable = false)
+    private BigDecimal countOfUnit;
+
+//    // kategoria pod ktoru patri dany produkt
+//    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+//    @JoinColumn(name = "CATEGORY_ID")
+//    private CategoryEntity category;
+
+    // nasledovne atributy sa aktualizuje pri aktualizacii produktu
+
+    // definuje nazov produktu v eshope(TODO kedy sa aktualizuje)
     @Column(name = "PRODUCT_NAME_IN_ESHOP")
     private String productNameInEhop;
 
-    @Column(name = "PRODUCT_PICTURE_URL")
-    private String productPictureUrl;
+    // cena za balenie
+    @Column(name = "PRICE_FOR_PACKAGE")
+    private BigDecimal priceForPackage;
 
+    // typ akcie
     @Column(name = "PRODUCT_ACTION")
     @Enumerated(EnumType.STRING)
     private ProductAction productAction;
 
+    // platnost akcie
     @Column(name = "ACTION_VALID_TO")
     private Date actionValidTo;
 
-    @Column(name = "PRICE_FOR_PACKAGE")
-    private BigDecimal priceForPackage;
+    // url na obrazok produktu
+    @Column(name = "PRODUCT_PICTURE_URL")
+    private String productPictureUrl;
 
     @Column(name = "PRICE_FOR_ONE_ITEM_IN_PAC")
     private BigDecimal priceForOneItemInPackage;
@@ -79,6 +102,36 @@ public class ProductInEshopEntity extends BasicEntity {
 
     @Column(name = "PICTURE_EXIST")
     private Boolean pictureExist;
+
+    //TODO bude zrusene...
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "PRODUCT_ID")
+    private ProductEntity product;
+
+
+    public Integer getCountOfItemInOnePackage() {
+        return countOfItemInOnePackage;
+    }
+
+    public void setCountOfItemInOnePackage(Integer countOfItemInOnePackage) {
+        this.countOfItemInOnePackage = countOfItemInOnePackage;
+    }
+
+    public Unit getUnit() {
+        return unit;
+    }
+
+    public void setUnit(Unit unit) {
+        this.unit = unit;
+    }
+
+    public BigDecimal getCountOfUnit() {
+        return countOfUnit;
+    }
+
+    public void setCountOfUnit(BigDecimal countOfUnit) {
+        this.countOfUnit = countOfUnit;
+    }
 
     public Boolean getPictureExist() {
         return pictureExist;

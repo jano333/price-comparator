@@ -556,4 +556,5 @@ public class PriceComparatorServiceImpl implements PriceComparatorService {
     public void changeNewProductStatus(Long newProductId, NewProductStatus newProductStatus) {
         newProductService.changeNewProductStatus(newProductId, newProductStatus);
     }
+
 }
