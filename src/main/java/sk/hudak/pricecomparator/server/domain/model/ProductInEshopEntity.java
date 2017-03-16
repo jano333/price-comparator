@@ -60,28 +60,19 @@ public class ProductInEshopEntity extends BasicEntity {
 //    @JoinColumn(name = "CATEGORY_ID")
 //    private CategoryEntity category;
 
-    // nasledovne atributy sa aktualizuje pri aktualizacii produktu
+    // ----------  nasledovne atributy sa aktualizuje pri aktualizacii produktu ----------------------
 
     // definuje nazov produktu v eshope(TODO kedy sa aktualizuje)
     @Column(name = "PRODUCT_NAME_IN_ESHOP")
     private String productNameInEhop;
 
-    // cena za balenie
-    @Column(name = "PRICE_FOR_PACKAGE")
-    private BigDecimal priceForPackage;
-
-    // typ akcie
-    @Column(name = "PRODUCT_ACTION")
-    @Enumerated(EnumType.STRING)
-    private ProductAction productAction;
-
-    // platnost akcie
-    @Column(name = "ACTION_VALID_TO")
-    private Date actionValidTo;
-
     // url na obrazok produktu
     @Column(name = "PRODUCT_PICTURE_URL")
     private String productPictureUrl;
+
+    // cena za balenie
+    @Column(name = "PRICE_FOR_PACKAGE")
+    private BigDecimal priceForPackage;
 
     @Column(name = "PRICE_FOR_ONE_ITEM_IN_PAC")
     private BigDecimal priceForOneItemInPackage;
@@ -96,10 +87,20 @@ public class ProductInEshopEntity extends BasicEntity {
     @Column(name = "BEST_PRICE")
     private BigDecimal bestPrice;
 
+    // typ akcie
+    @Column(name = "PRODUCT_ACTION")
+    @Enumerated(EnumType.STRING)
+    private ProductAction productAction;
+
+    // platnost akcie
+    @Column(name = "ACTION_VALID_TO")
+    private Date actionValidTo;
+
     @Column(name = "UPDATE_STATUS")
     @Enumerated(value = EnumType.STRING)
     private ProductInEshopUpdateStatus updateStatus;
 
+    //TODO zrusit, budem zobrazovat obrazo z PRODUCT_PICTURE_URL teda z prave daneho eshopu
     @Column(name = "PICTURE_EXIST")
     private Boolean pictureExist;
 

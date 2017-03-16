@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 /**
  * Created by jan on 18. 10. 2015.
  */
+@Deprecated
 public class ProductDto {
 
     private Long id;

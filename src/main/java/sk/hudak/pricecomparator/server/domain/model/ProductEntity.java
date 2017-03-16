@@ -10,6 +10,7 @@ import java.math.BigDecimal;
  */
 @Entity
 @Table(name = "PRODUCT")
+@Deprecated
 public class ProductEntity extends BasicEntity {
 
     public static final transient String AT_NAME = "name";

@@ -11,6 +11,7 @@ import java.util.List;
  * <p>
  * Created by jan on 14. 10. 2015.
  */
+@Deprecated
 public interface ProductService {
 
     /**
@@ -20,6 +21,7 @@ public interface ProductService {
      * @return db id novovytvoreneho produtku
      * @throws PriceComparatorBusinesException bussines chyba v pripade zlyhania
      */
+    @Deprecated
     Long createProduct(ProductCreateDto createDto) throws PriceComparatorBusinesException;
 
     /**
@@ -28,6 +30,7 @@ public interface ProductService {
      * @param updateDto data pre update existujuceho produktu
      * @throws PriceComparatorBusinesException bussines chyba v pripade zlyhania
      */
+    @Deprecated
     void updateProduct(ProductUpdateDto updateDto) throws PriceComparatorBusinesException;
 
     /**
@@ -36,6 +39,7 @@ public interface ProductService {
      * @param productId db id produktu.
      * @return detaily produktu
      */
+    @Deprecated
     ProductDto getProduct(Long productId) throws PriceComparatorBusinesException;
 
     //TODO impl delete
@@ -44,6 +48,7 @@ public interface ProductService {
      * @param filter
      * @return
      */
+    @Deprecated
     PageList<ProductListDto> findProducts(ProductFindDto filter);
 
     /**
@@ -52,12 +57,14 @@ public interface ProductService {
      * @param productId
      * @return
      */
+    @Deprecated
     ProductListDto getProductListById(Long productId);
 
     /**
      * @param productId
      * @return
      */
+    @Deprecated
     ProductIdNameDto getProductIdNameById(Long productId);
 
     /**
