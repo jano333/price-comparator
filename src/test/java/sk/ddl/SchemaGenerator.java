@@ -28,6 +28,7 @@ public class SchemaGenerator {
 //        gen.generate(Dialect.MYSQL);
         gen.generate(Dialect.ORACLE);
 //        gen.generate(Dialect.HSQL);
+//        gen.generate(Dialect.H2);
     }
 
     public SchemaGenerator(String packageName) throws Exception {
@@ -99,6 +100,7 @@ public class SchemaGenerator {
     private enum Dialect {
         ORACLE("org.hibernate.dialect.Oracle10gDialect"),
         MYSQL("org.hibernate.dialect.MySQLDialect"),
+        H2("org.hibernate.dialect.H2Dialect"),
         HSQL("org.hibernate.dialect.HSQLDialect");
 
         private String dialectClass;
